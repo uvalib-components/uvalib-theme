@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <title>uva-brand-style demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+    <link rel="import" href="../uva-brand-style.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+    </style>
+  </head>
+  <body>
+
+    <div class="vertical-section-container centered">
+      <h3>Basic uva-brand-style Demo</h3>
+      <demo-snippet>
+        <template>
+          <style is="custom-style" include="uva-brand-style">
+            div.palette div {width: 200px; height: 200px; color: var(--color-white);}
+            .orange {background-color: var(--color-primary-orange);}
+            .blue {background-color: var(--color-primary-blue);}
+            .white {background-color: var(--color-white); color: var(--color-primary-orange) !important;}
+            .orange-2 {background-color: var(--color-secondary-orange);}
+            .blue-2 {background-color: var(--color-secondary-blue);}
+            .lt-gry {background-color: var(--color-light-gray);}
+            .md-gry {background-color: var(--color-medium-gray);}
+            .txt-gry {background-color: var(--color-text-gray);}
+            .emg-red {background-color: var(--color-emergency-red);}
+          </style>
+          <div class="palette">
+            <div class="orange">Primary Orange</div>
+            <div class="blue">Primary Blue</div>
+            <div class="white">White</div>
+            <div class="orange-2">Secondary Orange</div>
+            <div class="blue-2">Secondary Blue</div>
+            <div class="lt-gry">Light Gray</div>
+            <div class="md-gry">Medium Gray</div>
+            <div class="txt-gry">Text Gray</div>
+            <div class="emg-red">Emergency Red</div>
+          </div>
+        </template>
+      </demo-snippet>
+    </div>
+
+  </body>
+</html>
