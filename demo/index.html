@@ -24,13 +24,17 @@
       <demo-snippet>
         <template>
           <style is="custom-style">
+            div.palette {
+              @apply(--layout-horizontal);
+              @apply(--layout-wrap);
+            }
             div.palette div {width: 200px; height: 200px; color: var(--color-white);}
             .orange {background-color: var(--color-primary-orange);}
             .blue {background-color: var(--color-primary-blue);}
-            .white {background-color: var(--color-white); color: var(--color-primary-orange) !important;}
+            .white {background-color: var(--color-white); color: var(--color-text-gray) !important;}
             .orange-2 {background-color: var(--color-secondary-orange);}
             .blue-2 {background-color: var(--color-secondary-blue);}
-            .lt-gry {background-color: var(--color-light-gray);}
+            .lt-gry {background-color: var(--color-light-gray); color: var(--color-text-gray) !important;}
             .md-gry {background-color: var(--color-medium-gray);}
             .txt-gry {background-color: var(--color-text-gray);}
             .emg-red {background-color: var(--color-emergency-red);}
