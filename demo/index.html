@@ -8,7 +8,9 @@
 
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../iron-flex-layout/iron-flex-layout.html">
 
+    <link rel="import" href="../typekit.html">
     <link rel="import" href="../uva-brand-style.html">
 
     <style is="custom-style" include="demo-pages-shared-styles">
@@ -17,10 +19,10 @@
   <body>
 
     <div class="vertical-section-container centered">
-      <h3>Basic uva-brand-style Demo</h3>
+      <h3>Basic uva-brand-style Color Demo</h3>
       <demo-snippet>
         <template>
-          <style is="custom-style" include="uva-brand-style">
+          <style is="custom-style">
             div.palette div {width: 200px; height: 200px; color: var(--color-white);}
             .orange {background-color: var(--color-primary-orange);}
             .blue {background-color: var(--color-primary-blue);}
@@ -43,6 +45,27 @@
             <div class="txt-gry">Text Gray</div>
             <div class="emg-red">Emergency Red</div>
           </div>
+        </template>
+      </demo-snippet>
+
+      <h3>Basic uva-brand-style Font Demo</h3>
+      <demo-snippet>
+        <template>
+          <style is="custom-style">
+            .primary {font-family: var(--font-primary);}
+            .book {font-weight: var(--font-weight-book);}
+            .medium {font-weight: var(--font-weight-medium);}
+            .demi {font-weight: var(--font-weight-demi);}
+            .heavy {font-weight: var(--font-weight-heavy);}
+          </style>
+          <h4>Primary Font</h4>
+            <div class="primary">
+               <div class="book">Primary Book</div>
+               <div class="medium">Primary Medium</div>
+               <div class="demi">Primary Demi</div>
+               <div class="heavy">Primary Heavy</div>
+            </div>
+            <div class="group"></div>
         </template>
       </demo-snippet>
     </div>
