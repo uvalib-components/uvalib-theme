@@ -1,8 +1,8 @@
-# \<uva-brand-style\>
+# \<uvalib-theme\>
 
-Common UVA brand styles
+Common UVA Library styles
 
-_[Demo](https://uva-components.github.io/uva-brand-style/components/uva-brand-style/demo/)_
+_[Demo](https://uvalib-components.github.io/uvalib-theme/components/uvalib-theme/demo/)_
 
 ## Install the Polymer-CLI
 
