@@ -3,7 +3,9 @@
   "description": "Common UVA Library styles",
   "main": "uvalib-theme.html",
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.4.0"
+    "polymer": "Polymer/polymer#^1.4.0",
+    "iron-icon": "^1.0.9",
+    "iron-iconset-svg": "^1.0.9"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
