@@ -2,98 +2,239 @@
 
 <style is="custom-style">
   :root {
-    --color-primary-orange: #e57200;
-    --color-primary-blue: #002f6c;
-    --color-text-blue: #2979ff;
-    --color-white: #ffffff;
+    /* color palette */
+    --uvalib-blue-50: #B3D4FF;
+    --uvalib-blue-100: #67A9FF;
+    --uvalib-blue-200: #2F8AFF;
+    --uvalib-blue-300: #0065E6;
+    --uvalib-blue-400: #0057C8;
+    --uvalib-blue-500: #004AA9;
+    --uvalib-blue-600: #003D8A;
+    --uvalib-blue-700: #002F6C;
+    --uvalib-blue-800: #00224D;
+    --uvalib-blue-900: #00142F;
+    --uvalib-blue-a100: #82B1FF;
+    --uvalib-blue-a200: #448AFF;
+    --uvalib-blue-a400: #2979FF;
+    --uvalib-blue-a700: #2962FF;
+
+    --uvalib-orange-50: #FFF4EA;
+    --uvalib-orange-100: #FFE8D2;
+    --uvalib-orange-200: #FFD3A8;
+    --uvalib-orange-300: #FFB060;
+    --uvalib-orange-400: #FFA042;
+    --uvalib-orange-500: #FF9123;
+    --uvalib-orange-600: #FF8204;
+    --uvalib-orange-700: #E57200;
+    --uvalib-orange-800: #C66300;
+    --uvalib-orange-900: #A85400;
+    --uvalib-orange-a100: #FFD180;
+    --uvalib-orange-a200: #FFAB40;
+    --uvalib-orange-a400: #FF9100;
+    --uvalib-orange-a700: #FF6D00;
+
+    --uvalib-grey-50: #FAFAFA;
+    --uvalib-grey-100: #F5F5F5;
+    --uvalib-grey-200: #EEEEEE;
+    --uvalib-grey-300: #E0E0E0;
+    --uvalib-grey-400: #BDBDBD;
+    --uvalib-grey-500: #9E9E9E;
+    --uvalib-grey-600: #757575;
+    --uvalib-grey-700: #616161;
+    --uvalib-grey-800: #424242;
+    --uvalib-grey-900: #212121;
+
+    --uvalib-black-alpha-12: rgba(#000, 0.12);
+    --uvalib-black-alpha-38: rgba(#000, 0.38);
+    --uvalib-black-alpha-54: rgba(#000, 0.54);
+    --uvalib-black-alpha-87: rgba(#000, 0.87);
+    --uvalib-white-alpha-12: rgba(#FFF, 0.12);
+    --uvalib-white-alpha-30: rgba(#FFF, 0.30);
+    --uvalib-white-alpha-70: rgba(#FFF, 0.70);
+
+    --uvalib-black: #000;
+    --uvalib-white: #FFF;
+    --uvalib-danger: #C15943;
+    --uvalib-success: #00D66E;
+
+    /* color variables */
+    --color-primary-color: var(--uvalib-blue-700);
+    --color-primary-color-dark: var(--uvalib-blue-800);
+    --color-primary-color-light: var(--uvalib-blue-500);
+
+    --color-accent-color: var(--uvalib-orange-a200);
+    --color-accent-color-dark: var(--uvalib-orange-a400);
+    --color-accent-color-light: var(--uvalib-orange-a100);
+
+    --color-text-blue: var(--uvalib-blue-a400);
+    --color-text-gray: var(--uvalib-grey-700);
+    --color-text-dark: var(--uvalib-black-alpha-87);
+    --color-text-dark-secondary: var(--uvalib-black-alpha-54);
+    --color-text-disabled: var(--uvalib-black-alpha-38);
+    --color-text-light: var(--uvalib-white);
+    --color-text-light-secondary: var(--white-alpha-70);
+
+    --color-primary-orange: var(--uvalib-orange-700);
+    --color-primary-blue: var(--uvalib-blue-700);
+    --color-white: var(--uvalib-white);
     --color-secondary-orange: #eb5f0c;
     --color-secondary-blue: #002359;
     --color-medium-blue: #344D9E;
-    --color-light-blue: #9fbad9;
-    --color-light-gray: #f1f1ef;
-    --color-medium-gray: #dadada;
-    --color-text-gray: #666666;
-    --color-emergency-red: #df1e43;
+    --color-light-blue: #9FB2CE;
+    --color-light-gray: var(--uvalib-grey-100);
+    --color-medium-gray: var(--uvalib-grey-400);
+    --color-emergency-red: var(--uvalib-danger);
 
+    /* font variables */
     --font-primary: 'franklin-gothic-urw',arial,sans-serif;
-    --font-primary-condensed: 'franklin-gothic-urw-cond','arial narrow',sans-serif;
-    --font-primary-compressed: 'franklin-gothic-urw-comp','arial narrow',sans-serif;
-    --font-primary-compressed: 'franklin-gothic-urw-comp','arial narrow',sans-serif;
-    --font-secondary: 'bodoni-urw',georgia,serif;
 
-    --font-weight-book: 400;
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
     --font-weight-medium: 500;
-    --font-weight-demi: 700;
-    --font-weight-heavy: 900;
+
+    /* typography variables */
+
+    --font-display4: {
+      color: var(--color-text-dark);
+      font-size: 112px;
+      font-weight: 300;
+      line-height: 112px;
+    };
+
+    --font-display3: {
+      color: var(--color-text-dark);
+      font-size: 56px;
+      font-weight: 400;
+      line-height: 56px;
+    };
+
+    --font-display2: {
+      color: var(--color-text-dark);
+      font-size: 45px;
+      font-weight: 400;
+      line-height: 48px;
+    };
+
+    --font-display1: {
+      color: var(--color-text-dark);
+      font-size: 34px;
+      font-weight: 400;
+      line-height: 40px;
+    };
+
+    --font-headline: {
+      color: var(--color-text-dark);
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 32px;
+    };
+
+    --font-title: {
+      color: var(--color-text-dark);
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 28px;
+    };
+
+    --font-subheading: {
+      color: var(--color-text-dark);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+    };
+
+    --font-body2: {
+      color: var(--color-text-dark);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 24px;
+    };
+
+    --font-body1: {
+      color: var(--color-text-dark);
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 20px;
+    };
+
+    --font-caption: {
+      color: var(--color-text-dark-secondary);
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 16px;
+    };
+
+    --font-menu: {
+      color: var(--color-text-dark);
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 17px;
+    };
+
+    --font-button: {
+      color: var(--color-text-dark);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 18px;
+      text-transform: uppercase;
+    };
+
   }
-  h1 {
+
+  html,
+  body,
+  button,
+  input,
+  textarea {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply(--font-body1);
     font-family: var(--font-primary);
-    font-weight: var(--font-weight-demi);
     font-style: normal;
-    font-size: 60px;
-    line-height: 60px;
-    color: var(--color-primary-blue);
+  }
+
+  h1 {
+    @apply(--font-display3);
+    font-family: var(--font-primary);
   }
   h2 {
-    font-family: var(--font-primary-condensed);
-    font-weight: var(--font-weight-demi);
-    font-style: normal;
-    text-transform: uppercase;
-    font-size: 36px;
-    line-height: 36px;
-    color: var(--color-primary-blue);
+    @apply(--font-display2);
+    font-family: var(--font-primary);
   }
   h3 {
-    font-family: var(--font-secondary);
-    font-weight: var(--font-weight-heavy);
-    font-style: italic;
-    text-transform: uppercase;
-    font-size: 36px;
-    line-height: 40px;
-    color: var(--color-primary-blue);
+    @apply(--font-display1);
+    font-family: var(--font-primary);
   }
   h4 {
+    @apply(--font-headline);
     font-family: var(--font-primary);
-    font-weight: var(--font-weight-demi);
-    font-style: italic;
-    font-size: 30px;
-    line-height: 30px;
-    color: var(--color-primary-blue);
   }
   h5 {
+    @apply(--font-body2);
     font-family: var(--font-primary);
-    font-weight: var(--font-weight-book);
-    font-style: normal;
-    text-transform: uppercase;
-    font-size: 30px;
-    line-height: 33px;
-    color: var(--color-secondary-orange);
   }
+  h6 {
+    @apply(--font-title);
+    font-family: var(--font-primary);
+  }
+
   blockquote {
-    font-family: var(--font-secondary);
-    font-weight: var(--font-weight-heavy);
-    font-style: italic;
-    text-transform: uppercase;
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-regular);
     font-size: 30px;
-    line-height: 33px;
+    line-height: 34px;
     color: var(--color-secondary-orange);
   }
   ul, ol {
     font-family: var(--font-primary);
-    font-weight: var(--font-weight-book);
-    font-style: normal;
-    font-size: 15px;
+    font-weight: var(--font-weight-regular);
     line-height: 30px;
     margin: 15px 0px;
     padding-left: 40px;
     color: var(--color-text-gray);
-  }
-  body {
-    font-family: var(--font-primary);
-    font-weight: var(--font-weight-book);
-    font-style: normal;
-    font-size: 15px;
-    line-height: 30px;
-    color: var(--color-text-gray);
-  }
+  } 
+
 </style>
