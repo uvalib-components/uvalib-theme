@@ -62,17 +62,15 @@
         <template>
           <style is="custom-style">
             .primary {font-family: var(--font-primary);}
+            .light {font-weight: var(--font-weight-light);}
             .book {font-weight: var(--font-weight-book);}
             .medium {font-weight: var(--font-weight-medium);}
-            .demi {font-weight: var(--font-weight-demi);}
-            .heavy {font-weight: var(--font-weight-heavy);}
           </style>
-          <h4>Primary Font</h4>
+          <h4>Font Weights</h4>
             <div class="primary">
-               <div class="book">Primary Book</div>
-               <div class="medium">Primary Medium</div>
-               <div class="demi">Primary Demi</div>
-               <div class="heavy">Primary Heavy</div>
+               <div class="light">Light Font Weight - 300</div>
+               <div class="book">Book Font Weight - 400</div>
+               <div class="medium">Medium Font Weight - 500</div>
             </div>
             <div class="group"></div>
         </template>
@@ -81,27 +79,55 @@
       <h3>Basic uvalib-theme Style Mixin Demo</h3>
       <demo-snippet>
         <template>
-          <h1>H1 Page Title</h1>
-          <h2>H2 Section Header</h2>
-          <p>Body copy Lorem ipsum dolor sit amet, iusto efficiantur te has, cu mea invenire reformidans, erant delectus laboramus duo no. Sea ei feugait voluptatibus. Eu sit illud dicta delenit. Luptatum urbanitas cum an, per ne paulo petentium.</p>
-          <h3>h3 ALT Header</h3>
-          <h4>H4 List Headline</h4>
-          <p>Body copy Lorem ipsum dolor sit amet, iusto efficiantur te has, cu mea invenire reformidans, erant delectus laboramus duo no. Sea ei feugait voluptatibus. Eu sit illud dicta delenit. Luptatum urbanitas cum an, per ne paulo petentium.</p>
-          <h4>H4 List Headline</h4>
-          <p>Body copy Lorem ipsum dolor sit amet, iusto efficiantur te has, cu mea invenire reformidans, erant delectus laboramus duo no. Sea ei feugait voluptatibus. Eu sit illud dicta delenit. Luptatum urbanitas cum an, per ne paulo petentium.</p>
-          <blockquote>
-            <p>"Quote lorem ipsum dolor site amet."</p>
-            <h5>- H5 Source '17</h5>
-          </blockquote>
+        <style is="custom-style">
+          .font-display4 {font-family: var(--font-display4);}
+          .font-display3 {font-weight: var(--font-display3);}
+          .font-display2 {font-weight: var(--font-display2);}
+          .font-display1 {font-weight: var(--font-display1);}
+          .font-headline {font-weight: var(--font-headline);}
+          .font-title {font-weight: var(--font-title);}
+          .font-subheading {font-weight: var(--font-subheading);}
+          .font-body2 {font-weight: var(--font-body2);}
+          .font-body1 {font-weight: var(--font-body1);}
+          .font-caption {font-weight: var(--font-caption);}
+          .font-menu {font-weight: var(--font-menu);}
+          .font-button {font-weight: var(--font-button);}
+        </style>
+        <h4>Font Styles</h4>
+        <div class="font-display4">Display4</div>
+        <div class="font-display3">Display3</div>
+        <div class="font-display2">Display2</div>
+        <div class="font-display1">Display1</div>
+        <div class="font-headline">Headline</div>
+        <div class="font-title">Title</div>
+        <div class="font-subheading">Subheading</div>
+        <div class="font-body2">Body2</div>
+        <div class="font-body1">Body1</div>
+        <div class="font-caption">Caption</div>
+        <div class="font-menu">Menu</div>
+        <div class="font-button">Button</div>
+
+        <p class="body2">Strong body copy</p>
+        <p class="body1">Normal Body copy Lorem ipsum dolor sit amet, iusto
+          efficiantur te has, cu mea invenire reformidans, erant delectus
+          laboramus duo no. Sea ei feugait voluptatibus. Eu sit illud dicta delenit. '
+          Luptatum urbanitas cum an, per ne paulo petentium.
+        </p>
+        <blockquote>
+          <p>"Quote lorem ipsum dolor site amet."</p>
+        </blockquote>
           <ul>
-            <li>Bullet list lorem ipsum
-            <li>Bullet list lorem ipsum dolor sit amet, consectetur adipiscing elit, sed elit, sed do eiusmod tempor in doeiusmod
+            <li>Bullet list item</li>
+            <li>Bullet list item</li>
+            <li>Bullet list item</li>
+            <li>Bullet list item</li>
           </ul>
           <ol>
-            <li>Numbered list 1
-            <li>Numbered list 2
-            <li>Numbered list 3
+            <li>Numbered list 1</li>
+            <li>Numbered list 2</li>
+            <li>Numbered list 3</li>
           </ol>
+          <a href="#">Link</link>
         </template>
       </demo-snippet>
     </div>
