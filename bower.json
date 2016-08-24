@@ -1,7 +1,7 @@
 {
   "name": "uvalib-theme",
   "description": "Common UVA Library styles",
-  "main": "uvalib-theme.html",
+  "main": "uvalib-common-styles.html",
   "dependencies": {
     "polymer": "polymer/polymer#^1.6.1",
     "iron-icon": "^1.0.10",
