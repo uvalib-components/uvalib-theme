@@ -3,8 +3,8 @@
   "description": "Common UVA Library styles",
   "main": "uvalib-theme.html",
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.4.0",
-    "iron-icon": "^1.0.9",
+    "polymer": "polymer/polymer#^1.6.1",
+    "iron-icon": "^1.0.10",
     "iron-iconset-svg": "^1.0.9"
   },
   "devDependencies": {
