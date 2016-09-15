@@ -5,11 +5,10 @@
   <template>
     <style is="custom-style" include="uvalib-theme">
       #maincontent {
-        background-color: #F8F2E3;
+        background-color: var(--color-light-gray);
       }
       #content.row {
         @apply(--layout-horizontal-reverse);
-        background-color: #F8F2E3;
       }
       .onecol { @apply(--layout-flex-1); }
       .twocol { @apply(--layout-flex-2); }
@@ -34,7 +33,7 @@
         width: 1px;
       }
       .breadcrumbs {
-        background: #F4F4F4;
+        background: var(--color-light-blue);
         color: #646464;
         display: inline-block;
         margin-bottom: 0.8em;
