@@ -1,8 +1,12 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="uvalib-theme.html">
 
 <dom-module id="uvalib-legacy-styles">
   <template>
-    <style is="custom-style">
+    <style is="custom-style" include="uvalib-theme">
+      #maincontent {
+        background-color: #F8F2E3;
+      }
       #content.row {
         @apply(--layout-horizontal-reverse);
         background-color: #F8F2E3;
