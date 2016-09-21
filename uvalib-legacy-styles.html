@@ -42,17 +42,6 @@
         -webkit-border-radius: 24px;
         border-radius: 24px;
       }
-      .research-section .research-picture {
-        float: left;
-        padding-right: 2%;
-        width: 18%;
-      }
-      .research-section .research-picture.item-picture img {
-        max-height: 100px;
-        max-width: 100px;
-        padding: 6%;
-        width: 88%;
-      }
       .row {
         width: 100%;
         max-width: 1140px;
@@ -98,16 +87,6 @@
         line-height: 1.3em;
         padding-top: 0.5em;
       }
-      .research-section .research-info .research-links {
-        background: #e9edf5;
-        border-bottom: 1px solid #cdd1d9;
-        border-top: 1px solid #cdd1d9;
-        float: left;
-        font-size: 14px;
-        font-size: 1.2rem;
-        padding: 2%;
-        width: 26%;
-      }
       .item-list .item .item-picture img, .news-event-item img {
         background: #fff;
         border: 1px solid #bbb;
@@ -137,13 +116,21 @@
         margin: 0 0 1.75em 0;
         overflow: hidden;
       }
+      .item-description {
+        color: #333;
+        font-size: 13px;
+        font-size: 1.1rem;
+      }
+      ul, ol {
+        list-style: square outside none;
+        margin: 1em 0;
+        padding: 0 0 0 30px;
+      }
 
-      .research-section .research-info .research-links h3 {
-        color: #444;
-        font-size: 15px;
-        font-size: 1.2rem;
-        font-weight: normal;
-        text-transform: uppercase;
+      /* Research sections */
+      .research-section .research-info {
+        float: left;
+        width: 80%;
       }
       .research-section .research-info .research-description {
         float: left;
@@ -152,14 +139,22 @@
         padding-right: 2%;
         width: 48%;
       }
-      .item-description {
-        color: #333;
-        font-size: 13px;
-        font-size: 1.1rem;
-      }
-      .research-section .research-info {
+      .research-section .research-info .research-links {
+        background: #e9edf5;
+        border-bottom: 1px solid #cdd1d9;
+        border-top: 1px solid #cdd1d9;
         float: left;
-        width: 80%;
+        font-size: 14px;
+        font-size: 1.2rem;
+        padding: 2%;
+        width: 26%;
+      }
+      .research-section .research-info .research-links h3 {
+        color: #444;
+        font-size: 15px;
+        font-size: 1.2rem;
+        font-weight: normal;
+        text-transform: uppercase;
       }
       .research-section .research-info .research-links ul {
         line-height: 1em;
@@ -167,10 +162,20 @@
         margin: 1em 0 0 0;
         padding-left: 0;
       }
-      ul, ol {
-        list-style: square outside none;
-        margin: 1em 0;
-        padding: 0 0 0 30px;
+      .research-section .research-picture {
+        float: left;
+        padding-right: 2%;
+        width: 18%;
+      }
+      .research-section .research-picture.item-picture img {
+        max-height: 100px;
+        max-width: 100px;
+        padding: 6%;
+        width: 88%;
+      }
+      .research-section#databases-a-z .research-description {
+        padding-right: 0;
+        width: 100%;
       }
       .research-section#databases-a-z .research-links h3 {
         display: none;
