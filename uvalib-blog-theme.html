@@ -1,0 +1,267 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../uva-brand-style/uva-theme.html">
+
+<dom-module id="uvalib-theme">
+  <template>
+    <style is="custom-style" include="uva-theme">
+
+    :root {
+      /* color palette */
+      --uvalib-blue-50: #B3D4FF;
+      --uvalib-blue-100: #67A9FF;
+      --uvalib-blue-200: #2F8AFF;
+      --uvalib-blue-300: #0065E6;
+      --uvalib-blue-400: #0057C8;
+      --uvalib-blue-500: #004AA9;
+      --uvalib-blue-600: #003D8A;
+      --uvalib-blue-700: #002F6C;
+      --uvalib-blue-800: #00224D;
+      --uvalib-blue-900: #00142F;
+      --uvalib-blue-a100: #82B1FF;
+      --uvalib-blue-a200: #448AFF;
+      --uvalib-blue-a400: #2979FF;
+      --uvalib-blue-a700: #2962FF;
+
+      --uvalib-orange-50: #FFF4EA;
+      --uvalib-orange-100: #FFE8D2;
+      --uvalib-orange-200: #FFD3A8;
+      --uvalib-orange-300: #FFB060;
+      --uvalib-orange-400: #FFA042;
+      --uvalib-orange-500: #FF9123;
+      --uvalib-orange-600: #FF8204;
+      --uvalib-orange-700: #E57200;
+      --uvalib-orange-800: #C66300;
+      --uvalib-orange-900: #A85400;
+      --uvalib-orange-a100: #FFD180;
+      --uvalib-orange-a200: #FFAB40;
+      --uvalib-orange-a400: #FF9100;
+      --uvalib-orange-a700: #FF6D00;
+
+      --uvalib-grey-50: #FAFAFA;
+      --uvalib-grey-100: #F5F5F5;
+      --uvalib-grey-200: #EEEEEE;
+      --uvalib-grey-300: #E0E0E0;
+      --uvalib-grey-400: #BDBDBD;
+      --uvalib-grey-500: #9E9E9E;
+      --uvalib-grey-600: #757575;
+      --uvalib-grey-700: #616161;
+      --uvalib-grey-800: #424242;
+      --uvalib-grey-900: #212121;
+
+      --uvalib-black-alpha-12: rgba(0, 0, 0, 0.12);
+      --uvalib-black-alpha-38: rgba(0, 0, 0, 0.38);
+      --uvalib-black-alpha-54: rgba(0, 0, 0, 0.54);
+      --uvalib-black-alpha-87: rgba(0, 0, 0, 0.87);
+      --uvalib-white-alpha-12: rgba(255, 255, 255, 0.12);
+      --uvalib-white-alpha-30: rgba(255, 255, 255, 0.30);
+      --uvalib-white-alpha-70: rgba(255, 255, 255, 0.70);
+
+      --uvalib-black: #000;
+      --uvalib-white: #FFF;
+      --uvalib-danger: #C15943;
+      --uvalib-success: #00D66E;
+
+      /* color variables */
+      --color-primary-color: var(--uvalib-danger);
+      --color-primary-color-dark: var(--uvalib-danger);
+      --color-primary-color-light: var(--uvalib-danger);
+
+      --color-accent-color: var(--uvalib-danger);
+      --color-accent-color-dark: var(--uvalib-danger);
+      --color-accent-color-light: var(--uvalib-danger);
+
+      --color-text-blue: var(--uvalib-danger);
+      --color-text-gray: var(--uvalib-danger);
+      --color-text-dark: var(--uvalib-danger);
+      --color-text-dark-secondary: var(--uvalib-danger);
+      --color-text-disabled: var(--uvalib-danger);
+      --color-text-light: var(--uvalib-danger);
+      --color-text-light-secondary: var(--uvalib-danger);
+
+      --color-primary-orange: var(--uvalib-orange-700);
+      --color-primary-blue: var(--uvalib-blue-700);
+      --color-white: var(--uvalib-white);
+      --color-secondary-orange: #eb5f0c;
+      --color-secondary-blue: #002359;
+      --color-medium-blue: #344D9E;
+      --color-light-blue: #9FB2CE;
+      --color-light-gray: var(--uvalib-grey-100);
+      --color-medium-gray: var(--uvalib-grey-400);
+      --color-emergency-red: var(--uvalib-danger);
+
+      /* font variables */
+      --font-primary: "franklin-gothic-urw", arial, sans-serif;
+
+      --font-weight-light: 300;
+      --font-weight-book: 400;
+      --font-weight-medium: 500;
+
+      /* typography variables */
+
+      --font-display4: {
+        font-family: var(--font-primary);
+        font-size: 112px;
+        font-weight: 300;
+        line-height: 112px;
+        color: var(--color-text-dark-secondary);
+      };
+
+      --font-display3: {
+        font-family: var(--font-primary);
+        font-size: 56px;
+        font-weight: 400;
+        line-height: 56px;
+        color: var(--color-text-dark-secondary);
+      };
+
+      --font-display2: {
+        font-family: var(--font-primary);
+        font-size: 45px;
+        font-weight: 400;
+        line-height: 48px;
+        color: var(--color-text-dark-secondary);
+      };
+
+      --font-display1: {
+        font-family: var(--font-primary);
+        font-size: 34px;
+        font-weight: 400;
+        line-height: 40px;
+        color: var(--color-text-dark-secondary);
+      };
+
+      --font-headline: {
+        font-family: var(--font-primary);
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 32px;
+        color: var(--color-text-dark);
+      };
+
+      --font-title: {
+        font-family: var(--font-primary);
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 28px;
+        color: var(--color-text-dark);
+      };
+
+      --font-subheading: {
+        font-family: var(--font-primary);
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        color: var(--color-text-dark);
+      };
+
+      --font-body2: {
+        font-family: var(--font-primary);
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 24px;
+        color: var(--color-text-dark);
+      };
+
+      --font-body1: {
+        font-family: var(--font-primary);
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 20px;
+        color: var(--color-text-dark);
+      };
+
+      --font-caption: {
+        font-family: var(--font-primary);
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16px;
+        color: var(--color-text-dark-secondary);
+      };
+
+      --font-menu: {
+        font-family: var(--font-primary);
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 17px;
+        color: var(--color-text-dark);
+      };
+
+      --font-button: {
+        font-family: var(--font-primary);
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 18px;
+        text-transform: uppercase;
+        color: var(--color-text-dark);
+      };
+
+      /* added here as all cards don't use uvalib-card */
+      --font-card-content: {
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 17px;
+        color: var(--color-text-blue);
+      };
+
+    }
+
+      html,
+      body,
+      button,
+      input,
+      textarea {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      :host, body {
+        @apply(--font-body1);
+        font-style: normal;
+      }
+
+      h1 {
+        @apply(--font-display3);
+      }
+      h2 {
+        @apply(--font-display2);
+      }
+      h3 {
+        @apply(--font-display1);
+      }
+      h4 {
+        @apply(--font-headline);
+      }
+      h5 {
+        @apply(--font-body2);
+      }
+      h6 {
+        @apply(--font-title);
+      }
+
+      blockquote {
+        margin: 20px 0;
+        padding-left: 1.5rem;
+        font-size: 30px;
+        line-height: 36px;
+        border-left: 4px solid var(--color-accent-color);
+      }
+
+      ul, ol {
+        font-family: var(--font-primary);
+        font-weight: var(--font-weight-regular);
+        line-height: 30px;
+        margin: 15px 0px;
+        padding-left: 40px;
+        color: var(--color-text-gray);
+      }
+
+      a, uvalib-liame {
+    	  color: var(--color-text-blue);
+    	  text-decoration: none;
+
+        // Gets rid of tap active state
+        -webkit-tap-highlight-color: transparent;
+      }
+    </style>
+  </template>
+</dom-module>
