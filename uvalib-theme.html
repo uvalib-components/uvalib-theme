@@ -89,6 +89,8 @@
       --color-medium-gray: var(--uvalib-grey-400);
       --color-emergency-red: var(--uvalib-danger);
 
+      --color-accessibility-outline: cyan;
+
       /* font variables */
       --font-primary: "franklin-gothic-urw", arial, sans-serif;
 
@@ -261,6 +263,10 @@
 
         // Gets rid of tap active state
         -webkit-tap-highlight-color: transparent;
+      }
+
+      a:focus {
+        outline: var(--color-accessibility-outline) solid 3px;
       }
     </style>
   </template>
