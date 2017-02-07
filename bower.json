@@ -3,11 +3,6 @@
   "description": "Common UVA Library styles",
   "main": "uvalib-theme.html",
   "dependencies": {
-    "polymer": "polymer/polymer#^1.7.1",
-    "uva-brand-style": "uva-components/uva-brand-style#latest",
-    "iron-elements": "PolymerElements/iron-elements#^1.0.10"
-  },
-  "devDependencies": {
-    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.23"
+    "uvalib-elements": "uvalib-components/uvalib-elements#latest"
   }
 }
