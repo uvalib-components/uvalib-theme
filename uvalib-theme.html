@@ -1,11 +1,15 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../uva-brand-style/uva-theme.html">
+<link rel="import" href="typekit.html">
 
 <dom-module id="uvalib-theme">
   <template>
     <style is="custom-style" include="uva-theme">
 
     :root {
+
+      /* max display width */
+      --uvalib-display-width-max: 1200px;
+
       /* color palette */
       --uvalib-blue-50: #B3D4FF;
       --uvalib-blue-100: #67A9FF;
