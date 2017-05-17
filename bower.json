@@ -4,5 +4,31 @@
   "main": "uvalib-theme.html",
   "dependencies": {
     "uvalib-elements": "uvalib-components/uvalib-elements#latest"
+  },
+  "resolutions": {
+    "uvalib-elements": "0.0.3",
+    "uvalib-banner": "0.0.2",
+    "polymer": "^1.7.1",
+    "uvalib-button": "0.0.2",
+    "uvalib-analytics": "0.0.1",
+    "uvalib-events-card": "0.0.1",
+    "uvalib-footer": "0.1.0",
+    "uvalib-helper-libs": "1.1.4",
+    "uvalib-hours-card": "0.0.1",
+    "uvalib-header": "1.0.3",
+    "uvalib-card": "0.0.3",
+    "uvalib-models": "0.0.3",
+    "uvalib-liame": "0.1.0",
+    "uvalib-logos": "0.0.1",
+    "uvalib-news-section": "0.0.2",
+    "uvalib-nav": "0.0.4",
+    "uvalib-search-box": "0.0.1",
+    "uvalib-theme": "0.0.5",
+    "uvalib-social-links": "0.0.1",
+    "uvalib-skip-nav": "0.0.1",
+    "app-storage": "^0.9.8",
+    "uvalib-alerts": "58d0433b43",
+    "iron-icons": "^1.2.1",
+    "lodash": "^4.17.4"
   }
 }
