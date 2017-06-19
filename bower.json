@@ -29,6 +29,8 @@
     "app-storage": "^0.9.8",
     "uvalib-alerts": "master",
     "iron-icons": "^1.2.1",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "uva-footer": "master",
+    "uvalib-images": "master"
   }
 }
