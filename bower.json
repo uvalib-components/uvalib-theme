@@ -3,34 +3,29 @@
   "description": "Common UVA Library styles",
   "main": "uvalib-theme.html",
   "dependencies": {
-    "uvalib-elements": "uvalib-components/uvalib-elements#latest"
+    "uvalib-elements": "uvalib-components/uvalib-elements#master"
   },
   "resolutions": {
     "uvalib-elements": "master",
-    "uvalib-banner": "master",
-    "polymer": "^1.7.1",
-    "uvalib-button": "master",
+    "uvalib-alerts": "master",
     "uvalib-analytics": "master",
-    "uvalib-events-card": "master",
-    "uvalib-footer": "master",
-    "uvalib-helper-libs": "master",
-    "uvalib-hours-card": "master",
-    "uvalib-header": "master",
+    "uvalib-button": "master",
     "uvalib-card": "master",
-    "uvalib-models": "master",
-    "uvalib-liame": "master",
+    "uvalib-events-card": "master",
+    "uvalib-header": "master",
+    "uvalib-hours-card": "master",
+    "uvalib-helper-libs": "master",
+    "uvalib-footer": "master",
     "uvalib-logos": "master",
-    "uvalib-news-section": "master",
+    "uvalib-liame": "master",
     "uvalib-nav": "master",
+    "uvalib-models": "master",
+    "uvalib-news-section": "master",
     "uvalib-search-box": "master",
     "uvalib-theme": "master",
-    "uvalib-social-links": "master",
     "uvalib-skip-nav": "master",
-    "app-storage": "^0.9.8",
-    "uvalib-alerts": "master",
-    "iron-icons": "^1.2.1",
-    "lodash": "^4.17.4",
+    "app-storage": "^0.10.0",
     "uva-footer": "master",
-    "uvalib-images": "master"
+    "lodash": "^4.17.4"
   }
 }
