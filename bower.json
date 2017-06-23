@@ -3,10 +3,6 @@
   "description": "Common UVA Library styles",
   "main": "uvalib-theme.html",
   "dependencies": {
-    "uvalib-elements": "uvalib-components/uvalib-elements#master"
-  },
-  "resolutions": {
-    "lodash": "^4.17.4",
-    "app-storage": "^0.10.0"
+    "uvalib-elements": "uvalib-components/uvalib-elements#2.0"
   }
 }
