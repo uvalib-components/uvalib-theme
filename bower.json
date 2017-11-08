@@ -3,6 +3,31 @@
   "description": "Common UVA Library styles",
   "main": "uvalib-theme.html",
   "dependencies": {
-    "uvalib-elements": "uvalib-components/uvalib-elements#master"
+    "uvalib-elements": "uvalib-components/uvalib-elements#1.x"
+  },
+  "resolutions": {
+    "uvalib-elements": "1.x",
+    "iron-component-page": "^1.0.0",
+    "webcomponentsjs": "^0.7.24",
+    "iron-demo-helpers": "^1.0.0",
+    "polymer": "^1.10.1",
+    "web-component-tester": "^5.0.1",
+    "lodash": "^4.17.4",
+    "promise-polyfill": "^1.0.0",
+    "app-layout": "1 - 2",
+    "paper-material": "^1.0.5",
+    "app-route": "^0.9.0",
+    "app-storage": "1 - 2",
+    "iron-doc-viewer": "^1.0.1",
+    "iron-icon": "1 - 2",
+    "uvalib-logos": "1.x",
+    "iron-icons": "1 - 2",
+    "iron-iconset-svg": "1 - 2",
+    "iron-location": "1 - 2",
+    "iron-list": "^1.0.0",
+    "paper-icon-button": "1 - 2",
+    "paper-card": "^1.0.0",
+    "paper-button": "^1.0.0",
+    "test-fixture": "^1.0.0"
   }
 }
