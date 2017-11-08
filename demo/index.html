@@ -13,8 +13,10 @@
     <link rel="import" href="../uvalib-theme.html">
     <link rel="import" href="../uvalib-icons.html">
 
-    <style is="custom-style" include="demo-pages-shared-styles">
-    </style>
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+      </style>
+    </custom-style>
   </head>
   <body>
 
@@ -22,24 +24,26 @@
       <h3>Basic uvalib-theme Color Demo</h3>
       <demo-snippet>
         <template>
-          <style is="custom-style" include="uvalib-theme">
-            div.palette {
-              @apply(--layout-horizontal);
-              @apply(--layout-wrap);
-            }
-            div.palette div {width: 200px; height: 200px; color: var(--color-white);}
-            .orange {background-color: var(--color-primary-orange);}
-            .blue {background-color: var(--color-primary-blue);}
-            .white {background-color: var(--color-white); color: var(--color-text-gray) !important;}
-            .orange-2 {background-color: var(--color-secondary-orange);}
-            .blue-2 {background-color: var(--color-secondary-blue);}
-            .md-blue {background-color: var(--color-medium-blue);}
-            .lt-blue {background-color: var(--color-light-blue);}
-            .lt-gry {background-color: var(--color-light-gray); color: var(--color-text-gray) !important;}
-            .md-gry {background-color: var(--color-medium-gray);}
-            .txt-gry {background-color: var(--color-text-gray);}
-            .emg-red {background-color: var(--color-emergency-red);}
-          </style>
+          <custom-style>
+            <style is="custom-style" include="uvalib-theme">
+              div.palette {
+                @apply(--layout-horizontal);
+                @apply(--layout-wrap);
+              }
+              div.palette div {width: 200px; height: 200px; color: var(--color-white);}
+              .orange {background-color: var(--color-primary-orange);}
+              .blue {background-color: var(--color-primary-blue);}
+              .white {background-color: var(--color-white); color: var(--color-text-gray) !important;}
+              .orange-2 {background-color: var(--color-secondary-orange);}
+              .blue-2 {background-color: var(--color-secondary-blue);}
+              .md-blue {background-color: var(--color-medium-blue);}
+              .lt-blue {background-color: var(--color-light-blue);}
+              .lt-gry {background-color: var(--color-light-gray); color: var(--color-text-gray) !important;}
+              .md-gry {background-color: var(--color-medium-gray);}
+              .txt-gry {background-color: var(--color-text-gray);}
+              .emg-red {background-color: var(--color-emergency-red);}
+            </style>
+          </custom-style>
           <div class="palette">
             <div class="orange">Primary Orange</div>
             <div class="blue">Primary Blue</div>
@@ -59,12 +63,14 @@
       <h3>Basic uvalib-theme Font Demo</h3>
       <demo-snippet>
         <template>
-          <style is="custom-style" include="uvalib-theme">
-            .primary {font-family: var(--font-primary);}
-            .light {font-weight: var(--font-weight-light);}
-            .book {font-weight: var(--font-weight-book);}
-            .medium {font-weight: var(--font-weight-medium);}
-          </style>
+          <custom-style>
+            <style is="custom-style" include="uvalib-theme">
+              .primary {font-family: var(--font-primary);}
+              .light {font-weight: var(--font-weight-light);}
+              .book {font-weight: var(--font-weight-book);}
+              .medium {font-weight: var(--font-weight-medium);}
+            </style>
+          </custom-style>
           <h4>Font Weights</h4>
             <div class="primary">
                <div class="light">Light Font Weight - 300</div>
@@ -78,20 +84,22 @@
       <h3>Basic uvalib-theme Style Mixin Demo</h3>
       <demo-snippet>
         <template>
-        <style is="custom-style" include="uvalib-theme">
-          .font-display4 {font-family: var(--font-display4);}
-          .font-display3 {font-weight: var(--font-display3);}
-          .font-display2 {font-weight: var(--font-display2);}
-          .font-display1 {font-weight: var(--font-display1);}
-          .font-headline {font-weight: var(--font-headline);}
-          .font-title {font-weight: var(--font-title);}
-          .font-subheading {font-weight: var(--font-subheading);}
-          .font-body2 {font-weight: var(--font-body2);}
-          .font-body1 {font-weight: var(--font-body1);}
-          .font-caption {font-weight: var(--font-caption);}
-          .font-menu {font-weight: var(--font-menu);}
-          .font-button {font-weight: var(--font-button);}
-        </style>
+        <custom-style>
+          <style is="custom-style" include="uvalib-theme">
+            .font-display4 {font-family: var(--font-display4);}
+            .font-display3 {font-weight: var(--font-display3);}
+            .font-display2 {font-weight: var(--font-display2);}
+            .font-display1 {font-weight: var(--font-display1);}
+            .font-headline {font-weight: var(--font-headline);}
+            .font-title {font-weight: var(--font-title);}
+            .font-subheading {font-weight: var(--font-subheading);}
+            .font-body2 {font-weight: var(--font-body2);}
+            .font-body1 {font-weight: var(--font-body1);}
+            .font-caption {font-weight: var(--font-caption);}
+            .font-menu {font-weight: var(--font-menu);}
+            .font-button {font-weight: var(--font-button);}
+          </style>
+        </custom-style>
         <h4>Font Styles</h4>
         <div class="font-display4">Display4</div>
         <div class="font-display3">Display3</div>
@@ -134,8 +142,10 @@
     <h3>Icon Demo</h3>
     <demo-snippet>
       <template>
-        <style is="custom-style" include="uvalib-theme">
-        </style>
+        <custom-style>
+          <style is="custom-style" include="uvalib-theme">
+          </style>
+        </custom-style>
         <iron-icon icon="home"></iron-icon>
         <iron-icon icon="globe"></iron-icon>
         <iron-icon icon="search"></iron-icon>
