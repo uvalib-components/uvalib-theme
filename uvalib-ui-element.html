@@ -1,0 +1,44 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="uvalib-ui-element">
+  <template>
+    <custom-style>
+      <style include="uvalib-theme">
+        :host {
+          display: none;
+        }
+      </style>
+    </custom-style>
+  </template>
+
+  <script>
+    /**
+     * `uvalib-ui-element`
+     *
+     *
+     * @customElement
+     * @polymer
+     */
+    class UvalibUiElement extends Polymer.Element {
+      static get is() { return 'uvalib-ui-element'; }
+      static get properties() {
+        return {
+          smallScreenQuery: {
+            type: String,
+            value: "(max-width: 600px)"
+          },
+          mediumScreenQuery: {
+            type: String,
+            value: "(min-width: 600px) and (max-width: 992px)"
+          },
+          largeScreenQuery: {
+            type: String,
+            value: "(min-width: 992px)"
+          }
+        };
+      }
+    }
+
+    window.customElements.define(UvaUiElement.is, UvaUiElement);
+  </script>
+</dom-module>
