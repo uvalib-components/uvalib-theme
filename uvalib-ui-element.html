@@ -123,8 +123,21 @@
         .text-container[narrow] {
           max-width: 400px;
         }
+
+        :host([small-screen]) {
+          height: 128px;
+        }
+        :host([medium-screen]) {
+          height: 156px;
+        }
+        :host([large-screen]) {
+          height: 253px;
+        }
       </style>
     </custom-style>
+    <iron-media-query query="[[smallScreenQuery]]" query-matches="{{smallScreen}}"></iron-media-query>
+    <iron-media-query query="[[mediumScreenQuery]]" query-matches="{{mediumScreen}}"></iron-media-query>
+    <iron-media-query query="[[largeScreenQuery]]" query-matches="{{largeScreen}}"></iron-media-query>
   </template>
 
   <script>
@@ -150,6 +163,18 @@
           largeScreenQuery: {
             type: String,
             value: "(min-width: 992px)"
+          },
+          smallScreen:{
+            type: Boolean,
+            reflectToAttribute: true
+          },
+          mediumScreen:{
+            type: Boolean,
+            reflectToAttribute: true
+          },
+          largeScreen:{
+            type: Boolean,
+            reflectToAttribute: true
           }
         };
       }
