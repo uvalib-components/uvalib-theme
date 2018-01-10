@@ -2,15 +2,18 @@
 <link rel="import" href="./uvalib-theme.html">
 <link rel="import" href="../iron-media-query/iron-media-query.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../polymer/lib/elements/dom-if.html">
 
 <dom-module id="uvalib-ui-element">
   <template>
     <custom-style>
       <style include="uvalib-theme"></style>
     </custom-style>
-    <iron-media-query query="[[smallScreenQuery]]" query-matches="{{smallScreen}}"></iron-media-query>
-    <iron-media-query query="[[mediumScreenQuery]]" query-matches="{{mediumScreen}}"></iron-media-query>
-    <iron-media-query query="[[largeScreenQuery]]" query-matches="{{largeScreen}}"></iron-media-query>
+    <template is="dom-if" if="[[_isResponsive]]">
+      <iron-media-query query="[[smallScreenQuery]]" query-matches="{{smallScreen}}"></iron-media-query>
+      <iron-media-query query="[[mediumScreenQuery]]" query-matches="{{mediumScreen}}"></iron-media-query>
+      <iron-media-query query="[[largeScreenQuery]]" query-matches="{{largeScreen}}"></iron-media-query>
+    </template>
   </template>
 
   <script>
@@ -50,7 +53,15 @@
             type: Boolean,
             reflectToAttribute: true
           }
+          lite: {
+            type: Boolean,
+            reflectToAttribute: true,
+            value: false
+          }
         };
+      }
+      _isResponsive(){
+        return !(this.lite);
       }
       _or(t1, t2){
         return (t1 || t2);
