@@ -8,7 +8,6 @@
       display: block;
       position: relative;
       margin: 0;
-/*          z-index: 100; */
       background-color: var(--uvalib-header-background-color, var(--color-primary-color));
       --my-sm-height: var(--uvalib-header-height-sm, 128px);
       --my-md-height: var(--uvalib-header-height-md, 156px);
@@ -74,43 +73,6 @@
       @apply(--layout-end-justified);
     }
 
-    .search-field {
-      margin: 0px;
-      padding: 0px;
-      display: inline-block;
-      width: 91%;
-      max-width: 500px;
-      --paper-input-container: {
-        background-color: white;
-        color: var(--color-text-gray);
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-        border-top-left-radius: 3px;
-        border-bottom-left-radius: 3px;
-        line-height: 30px;
-      }
-      --paper-input-container-underline: {
-        display: none;
-      }
-      --paper-input-container-underline-focus: {
-        display: none;
-      }
-      --paper-input-container-underline-disabled: {
-        display: none;
-      }
-      --paper-input-container-input: {
-        text-align: left;
-        padding-left: 10px;
-        padding-right: 10px;
-      }
-    }
-    .searchbox {
-      margin-left: auto;
-      margin-right: auto;
-      width: 94%;
-      @apply(--layout-horizontal);
-      @apply(--layout-end-justified);
-    }
     uvalib-button {
       color: var(--color-white);
     }
