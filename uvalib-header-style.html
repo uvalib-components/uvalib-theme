@@ -40,11 +40,11 @@
     :host([large-screen]) #bottom { background-color: var(--uvalib-header-nav-background-color, var(--color-secondary-blue)); }
     #bottom { height: var(--my-nav-height); }
 
-    #top {
+    #top, #bottom {
       @apply --layout-horizontal;
       @apply --layout-center-justified;
     }
-    #top > div {
+    #top > div, #bottom > nav {
       @apply --layout-flex;
       max-width: var(--uvalib-display-width-max);
       @apply --layout-horizontal;
