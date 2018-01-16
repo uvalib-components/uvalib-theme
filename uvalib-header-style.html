@@ -1,0 +1,137 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<dom-module id="uvalib-header-style">
+  <template>
+    <style>
+
+    :host {
+      display: block;
+      position: relative;
+      margin: 0;
+/*          z-index: 100; */
+      background-color: var(--uvalib-header-background-color, var(--color-primary-color));
+      --my-sm-height: var(--uvalib-header-height-sm, 128px);
+      --my-md-height: var(--uvalib-header-height-md, 156px);
+      --my-lg-height: var(--uvalib-header-height-lg, 200px);
+      --my-nav-height: var(--uvalib-header-navbar-height, 66px);
+    }
+    :host([small-screen]), :host([small-screen]) app-header {
+      height: var(--my-sm-height);
+    }
+    :host([medium-screen]), :host([medium-screen]) app-header {
+      height: var(--my-md-height);
+    }
+    :host([large-screen]), :host([large-screen]) app-header {
+      height: var(--my-lg-height);
+    }
+    app-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      color: var(--color-white);
+      background-color: var(--uvalib-header-background-color, var(--color-primary-color));
+    }
+    /* a bit of a hack to support flex like layout in the app-header */
+    :host([large-screen]) div { height: calc(var(--my-lg-height) - var(--my-nav-height)); }
+    :host([medium-screen]) div { height: calc(var(--my-md-height) - var(--my-nav-height)); }
+    :host([small-screen]) div { height: calc(var(--my-sm-height) - var(--my-nav-height)); }
+    :host([large-screen]) #bottom { background-color: var(--uvalib-header-nav-background-color, var(--color-secondary-blue)); }
+    #bottom { height: var(--my-nav-height); }
+
+    #top {
+      @apply --layout-horizontal;
+      @apply --layout-center-justified;
+    }
+    #top > div {
+      @apply --layout-flex;
+      max-width: var(--uvalib-display-width-max);
+      @apply --layout-horizontal;
+    }
+    #top #search, #top #menu {
+      @apply --layout-flex;
+      text-align: right;
+    }
+    :host([large-screen]) #menu { display:none; }
+    :host([medium-screen]) #search, :host([medium-screen]) .largeScreen { display:none }
+    :host([small-screen]) #search, :host([small-screen]) .largeScreen { display:none; }
+
+    a, a:link, a:visited {
+      color: inherit;
+    }
+
+    nav a {
+      padding: 10px;
+    }
+    #bottom nav {
+      height: 100%;
+      @apply(--layout-horizontal);
+      @apply(--layout-center);
+      @apply(--layout-justified);
+    }
+    :host([large-screen]) #bottom nav {
+      @apply(--layout-end-justified);
+    }
+
+    .search-field {
+      margin: 0px;
+      padding: 0px;
+      display: inline-block;
+      width: 91%;
+      max-width: 500px;
+      --paper-input-container: {
+        background-color: white;
+        color: var(--color-text-gray);
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+        line-height: 30px;
+      }
+      --paper-input-container-underline: {
+        display: none;
+      }
+      --paper-input-container-underline-focus: {
+        display: none;
+      }
+      --paper-input-container-underline-disabled: {
+        display: none;
+      }
+      --paper-input-container-input: {
+        text-align: left;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
+    .searchbox {
+      margin-left: auto;
+      margin-right: auto;
+      width: 94%;
+      @apply(--layout-horizontal);
+      @apply(--layout-end-justified);
+    }
+    uvalib-button {
+      color: var(--color-white);
+    }
+    #menuDialog {
+      position: fixed;
+      margin: 0;
+      top:0;
+      width: 100%;
+      height: 500px;
+      overflow: auto;
+      background-color: var(--uvalib-header-background-color, var(--color-primary-color));
+    }
+    #menuContainer {
+      @apply --layout-vertical;
+    }
+    #menuTop {
+      @apply --layout-horizontal;
+    }
+    .spacer {
+      @apply --layout-flex;
+    }
+    </style>
+  </template>
+</dom-module>
