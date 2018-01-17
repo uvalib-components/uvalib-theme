@@ -9,41 +9,25 @@
       position: relative;
       margin: 0;
       background-color: var(--uvalib-header-background-color, var(--color-primary-color));
-      --my-sm-height: var(--uvalib-header-height-sm, 128px);
-      --my-md-height: var(--uvalib-header-height-md, 156px);
-      --my-lg-height: var(--uvalib-header-height-lg, 200px);
-      --my-nav-height: var(--uvalib-header-navbar-height, 66px);
-    }
-    :host([small-screen]), :host([small-screen]) app-header {
-      height: var(--my-sm-height);
-    }
-    :host([medium-screen]), :host([medium-screen]) app-header {
-      height: var(--my-md-height);
-    }
-    :host([large-screen]), :host([large-screen]) app-header {
-      height: var(--my-lg-height);
     }
     app-header {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%;
       color: var(--color-white);
       background-color: var(--uvalib-header-background-color, var(--color-primary-color));
     }
-    /* a bit of a hack to support flex like layout in the app-header */
-    :host([large-screen]) div { height: calc(var(--my-lg-height) - var(--my-nav-height)); }
-    :host([medium-screen]) div { height: calc(var(--my-md-height) - var(--my-nav-height)); }
-    :host([small-screen]) div { height: calc(var(--my-sm-height) - var(--my-nav-height)); }
-    :host([large-screen]) #bottom { background-color: var(--uvalib-header-nav-background-color, var(--color-secondary-blue)); }
-    #bottom { height: var(--my-nav-height); }
 
-    #top, #bottom {
+    :host([large-screen]) #bottom {
+      background-color: var(--uvalib-header-nav-background-color, var(--color-secondary-blue));
+    }
+
+    #top, #bottom #menu {
       @apply --layout-horizontal;
       @apply --layout-center-justified;
     }
-    #top > div, #bottom > nav {
+    #top > div, #bottom nav {
       @apply --layout-flex;
       max-width: var(--uvalib-display-width-max);
       @apply --layout-horizontal;
@@ -64,7 +48,6 @@
       padding: 10px;
     }
     #bottom nav {
-      height: 100%;
       @apply(--layout-horizontal);
       @apply(--layout-center);
       @apply(--layout-justified);
