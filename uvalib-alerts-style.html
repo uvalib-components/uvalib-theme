@@ -1,0 +1,32 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<dom-module id="uvalib-alerts-style">
+  <template>
+    <style>
+    :host {
+      display: block;
+    }
+    .alert-item {
+      min-height: 41px;
+      background-color: var(--color-primary-orange);
+      border-width: 2px 0 0 0;
+      border-color: var(--color-white);
+      border-style: solid;
+      color: var(--color-white);
+    }
+    .alert-item[hot] {
+      background-color: var(--color-emergency-red);
+    }
+    .alert-head {
+      @apply --layout-horizontal;
+    }
+    .alert-title {
+      @apply --layout-flex;
+    }
+    [slot="markdown-html"] p {
+      margin:0;
+      padding:0;
+    }
+    </style>
+  </template>
+</dom-module>
