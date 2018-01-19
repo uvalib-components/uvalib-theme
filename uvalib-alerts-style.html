@@ -13,6 +13,12 @@
       border-color: var(--color-white);
       border-style: solid;
       color: var(--color-white);
+      @apply --layout-horizontal;
+      @apply --layout-center-justified;
+    }
+    .alert-item div {
+      width: 100%;
+      max-width: var(--uvalib-display-width-max);
     }
     .alert-item[hot] {
       background-color: var(--color-emergency-red);
