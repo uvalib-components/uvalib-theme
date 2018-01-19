@@ -7,7 +7,9 @@
 <dom-module id="uvalib-ui-element">
   <template>
     <custom-style>
-      <style include="uvalib-theme"></style>
+      <style include="uvalib-theme">
+        [hidden] {display:none}
+      </style>
     </custom-style>
     <template is="dom-if" if="[[_isResponsive]]">
       <iron-media-query query="[[smallScreenQuery]]" query-matches="{{smallScreen}}"></iron-media-query>
