@@ -8,7 +8,7 @@
       display: block;
       position: relative;
       margin: 0;
-      background-color: var(--uvalib-header-background-color, var(--color-primary-color));
+/*      background-color: var(--uvalib-header-background-color, var(--color-primary-color)); */
       z-index: 1000;
     }
     uvalib-logos {
@@ -26,13 +26,14 @@
       background-color: var(--uvalib-header-background-color, var(--color-primary-color));
     }
 
-    :host([large-screen]) #bottom {
+    :host([large-screen]) #bottom #menu {
       background-color: var(--uvalib-header-nav-background-color, var(--color-secondary-blue));
     }
 
     #top, #bottom #menu {
       @apply --layout-horizontal;
       @apply --layout-center-justified;
+      background-color: var(--uvalib-header-background-color, var(--color-primary-color));
     }
     #top > div, #bottom nav {
       @apply --layout-flex;
