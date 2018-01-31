@@ -6,6 +6,7 @@
     "uvalib-elements": "uvalib-components/uvalib-elements#master"
   },
   "resolutions": {
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "paper-icon-button": "^2.0.1"
   }
 }
