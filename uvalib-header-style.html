@@ -60,6 +60,7 @@
     :host([large-screen]) #menu { display:none; }
     :host([medium-screen]) #search, :host([medium-screen]) .largeScreen { display:none }
     :host([small-screen]) #search, :host([small-screen]) .largeScreen { display:none; }
+    :host([large-screen]) .visibleMobile, :host([medium-screen]) .visibleMobile { display: none; }
 
     a, a:link, a:visited {
       color: inherit;
@@ -101,6 +102,14 @@
     .spacer {
       @apply --layout-flex;
     }
+    #menu paper-button {
+      min-width: 4em;
+      border: 1px solid var(--color-white);
+      padding-top: .35em;
+      padding-bottom: .25em;
+      margin-right: .75em;
+      margin-top: .3em;      
+    }
 
     nav {
       min-height: 40px;
@@ -117,6 +126,11 @@
     :host([small-screen]) #menu a iron-icon {
       display: none;
     }
+    #alert paper-badge {
+      --paper-badge-background: var(--color-primary-orange);
+      --paper-badge-margin-left: -1em;
+    }
+
 
 
     #menuContainer {
