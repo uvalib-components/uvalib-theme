@@ -16,9 +16,10 @@
       max-width: 308px;
     }
     uvalib-logos[stacked] {
-      height: 60px;
+      height: 70px;
       max-width: 131px;
     }
+
     app-header {
       position: fixed;
       top: 0;
@@ -50,6 +51,11 @@
       padding-top: 1em;
       padding-bottom: 1em;
     }
+    :host([medium-screen]) #top {
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+
 
     :host([large-screen]) #menu { display:none; }
     :host([medium-screen]) #search, :host([medium-screen]) .largeScreen { display:none }
@@ -108,6 +114,11 @@
       display: inline-block;
       color: var(--color-white);
     }
+    :host([small-screen]) #menu a iron-icon {
+      display: none;
+    }
+
+
     #menuContainer {
       height: 100%;
       @apply --layout-vertical;
