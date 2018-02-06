@@ -1,0 +1,21 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<dom-module id="uvalib-scroll-top-style">
+  <template>
+    <style>
+     :host {
+       display: block;
+     }
+     paper-fab {
+       transition: opacity .25s ease-in-out;
+       position: fixed;
+       right: 25px;
+       bottom: 30px;
+       opacity: 0;
+     }
+     paper-fab[show] {
+       opacity: 1;
+     }
+    </style>
+  </template>
+</dom-module>
