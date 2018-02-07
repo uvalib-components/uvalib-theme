@@ -6,8 +6,21 @@
       :host {
         display: block;
       }
+      :host(uvalib-card) h3 {
+        @apply --font-title;
+        margin-bottom: 0;
+        margin-top: 0;
+      }
+      :host(uvalib-card) ul {
+        list-style: none;
+        padding-left: 1em;
+        margin-top: .25em;
+        margin-bottom: 1.5em;
+      }
       nav ul {
         list-style: none;
+        padding-left: 1em;
+        margin-top: .25em;
       }
       paper-card {
         --paper-card-header-image-text: {
@@ -26,6 +39,22 @@
       paper-card[dark] {
         color: var(--color-white);
         --paper-card-background-color: var(--color-primary-orange);
+      }
+      :host(.definedList) dt {
+        padding: 0 1em;
+        font-weight: 700;
+        font-size: 1.15em;
+      }
+      :host(.definedList) dd {
+        padding: 0 1em;
+        margin-left: 0;
+        margin-bottom: 1.5em;
+      }
+      :host(.definedList) dd, :host(.definedList) dt {
+        border-left: 2px solid var(--uvalib-grey-500);
+      }
+      :host(.definedList) dd:first-child {
+        display: none;
       }
     </style>
   </template>
