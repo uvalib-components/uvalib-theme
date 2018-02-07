@@ -5,6 +5,7 @@
     <style>
      :host {
        display: block;
+       --paper-fab-background: white;
      }
      paper-fab {
        transition: opacity .25s ease-in-out;
@@ -12,6 +13,16 @@
        right: 25px;
        bottom: 30px;
        opacity: 0;
+       --paper-fab: {
+         border: medium solid orange;
+       }
+       padding: 0 0 7px 0;
+       --paper-fab-iron-icon: {
+         height: 40px;
+         width: 40px;
+         font-weight: medium;
+         color: orange;
+       }
      }
      paper-fab[show] {
        opacity: 1;
