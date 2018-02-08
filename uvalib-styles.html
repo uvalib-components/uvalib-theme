@@ -88,6 +88,22 @@
         max-width: 500px;
         min-width: 290px;
       }
+      :host(uvalib-card) h3 {
+        @apply --font-title;
+        margin-bottom: 0;
+        margin-top: 0;
+      }
+      :host(uvalib-card) ul {
+        list-style: none;
+        padding-left: 1em;
+        margin-top: .25em;
+        margin-bottom: 1.5em;
+      }
+      nav ul {
+        list-style: none;
+        padding-left: 1em;
+        margin-top: .25em;
+      }
 
       paper-card.wide {
         margin: 10px 10px 10px 10px;
@@ -121,10 +137,47 @@
         @apply --layout-center;
       }
 
-      paper-card .text-section {
-        padding-right: 2em;
+      paper-card .card-content {
+        padding: 0;
       }
 
+      paper-card .text-section, paper-card .card-nav {
+        padding: 2em;
+      }
+
+      paper-card .text-section {
+        /*color: green;*/
+      }
+
+      paper-card .card-nav, paper-card .card-index {
+        background-color: var(--color-primary-blue);
+        color: var(--color-white);
+      }
+
+      paper-card .card-nav ul {
+        list-style: none;
+        padding-left: 0;
+        margin-top: .25em;
+        margin-bottom: 1.5em;
+      }
+
+      paper-card .card-index a {
+        @apply --font-headline;
+      }
+
+      paper-card .card-nav ul li a, paper-card .card-index a {
+        color: var(--color-white);
+      }
+
+      paper-card .card-actions a {
+        color: var(--color-primary-orange);
+        font-weight: bold;
+      }
+
+      /*paper-card .card-index div {
+        border-right: 1px solid var(--uvalib-blue-800);
+        border-bottom: 1px solid var(--uvalib-blue-800);
+      }*/
       /*Definition List Styling*/
       :host(.defined-list) dt {
         padding: 0 1em;
