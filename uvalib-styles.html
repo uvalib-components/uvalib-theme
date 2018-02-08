@@ -55,11 +55,95 @@
         -webkit-tap-highlight-color: transparent;
       }
 
+
+/*Accessibility*/
       a:focus {
-        outline: var(--color-accessibility-outline) solid 3px;
+        outline: var(--color-accessibility-outline-light-bg) dotted 3px;
+        padding: .15em;
       }
 
+      a:hover {
+        text-decoration: underline;
+      }
 
+      nav a:focus {
+        outline: var(--color-accessibility-outline-dark-bg) dotted 3px;
+        padding: .15em;
+      }
+
+      #top #logo a:focus {
+        outline: var(--color-accessibility-outline-dark-bg) dotted 3px;
+        padding: .15em;
+      }
+
+      #top #logo a:hover {
+        border-bottom: 1px solid var(--color-accessibility-outline-dark-bg);
+        padding-bottom: .1em;
+      }
+/*END*/
+
+/* Card styles in Pages */
+      uvalib-card, paper-card {
+        margin: 10px 10px 10px 10px;
+        max-width: 500px;
+        min-width: 290px;
+      }
+
+      paper-card.wide {
+        margin: 10px 10px 10px 10px;
+        max-width: calc(100% - 20px);
+        width: 100%;
+      }
+
+      paper-card .card-aux-container {
+        @apply --layout-horizontal;
+        @apply --layout-wrap;
+      }
+      paper-card .card-aux-container > div {
+        @apply --layout-flex;
+      }
+      paper-card .text-section, paper-card .card-nav, paper-card .card-index {
+        min-width: 200px;
+      }
+      paper-card .text-section {}
+      paper-card .card-nav {}
+      paper-card .card-index {
+        @apply --layout-horizontal;
+        @apply --layout-wrap;
+      }
+      paper-card .card-index div {
+        min-width: 50px;
+        min-height: 50px;
+        text-align: center;
+        position: relative;
+        @apply --layout-horizontal;
+        @apply --layout-center-justified;
+        @apply --layout-center;
+      }
+
+      paper-card .text-section {
+        padding-right: 2em;
+      }
+
+      /*Definition List Styling*/
+      :host(.defined-list) dt {
+        padding: 0 1em;
+        font-weight: 700;
+        font-size: 1.15em;
+      }
+      :host(.defined-list) dd {
+        padding: 0 1em;
+        margin-left: 0;
+        margin-bottom: 1.5em;
+      }
+      :host(.defined-list) dd, :host(.defined-list) dt {
+        border-left: 2px solid var(--uvalib-grey-500);
+      }
+      :host(.defined-list) dd:first-child {
+        display: none;
+      }
+      /*END*/
+/*END*/
 
 
       /* =WordPress Core
