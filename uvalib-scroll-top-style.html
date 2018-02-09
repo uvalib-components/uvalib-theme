@@ -5,7 +5,7 @@
     <style>
      :host {
        display: block;
-       --paper-fab-background: white;
+       --paper-fab-background: var(--color-white);
      }
      paper-fab {
        transition: opacity .25s ease-in-out;
@@ -14,14 +14,14 @@
        bottom: 30px;
        opacity: 0;
        --paper-fab: {
-         border: medium solid orange;
+         border: medium solid var(--color-primary-orange);
        }
        padding: 0 0 7px 0;
        --paper-fab-iron-icon: {
          height: 40px;
          width: 40px;
          font-weight: medium;
-         color: var(--color-primary-color);
+         color: var(--color-primary-orange);
        }
      }
      paper-fab[show] {
