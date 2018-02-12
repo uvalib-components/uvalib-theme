@@ -91,7 +91,7 @@
 
 /* Card styles in Pages */
       uvalib-card, paper-card {
-        margin: 10px 10px 10px 10px;
+        margin: 10px;
         max-width: 500px;
         min-width: 290px;
       }
@@ -99,6 +99,10 @@
         @apply --font-title;
         margin-bottom: 0;
         margin-top: 0;
+        padding-left: .75em;
+      }
+      :host(uvalib-card) h3:first-child {
+        margin-top: .5em;
       }
       :host(uvalib-card) ul {
         list-style: none;
@@ -189,7 +193,11 @@
         border-right: 1px solid var(--uvalib-blue-800);
         border-bottom: 1px solid var(--uvalib-blue-800);
       }*/
+
       /*Definition List Styling*/
+      :host(.defined-list) dl {
+        padding: 0 1em;
+      }
       :host(.defined-list) dt {
         padding: 0 1em;
         font-weight: 700;
@@ -207,6 +215,35 @@
         display: none;
       }
       /*END*/
+
+      /*Sidebar Blocks*/
+
+      /*Research*/
+      .research-sidebar {
+          border: 1px solid cyan;
+          margin-top: 10em;
+      }
+
+      /* desktop */
+      :host([large-screen]) aside {
+          padding: 30px;
+          background-color: var(--uvalib-grey-200);
+      }
+
+      /* small screen */
+      :host([small-screen]) aside {
+          padding: 0px;
+          background-color: none;
+      }
+
+      :host([small-screen]) .research-sidebar {
+          margin-top: 0px;
+      }
+
+      /*END*/
+
+
+
 /*END*/
 
 
