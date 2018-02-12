@@ -10,23 +10,34 @@
         font-family: var(--font-primary);
       }
 
+      uvalib-article {
+        padding-left: 1em;
+        padding-right: 1em;
+      }
+
       h1 {
         @apply --font-display3;
+        margin-bottom: 0;
       }
       h2 {
         @apply --font-display2;
+        margin-bottom: 0;
       }
       h3 {
         @apply --font-display1;
+        margin-bottom: 0;
       }
       h4 {
         @apply --font-headline;
+        margin-bottom: 0;
       }
       h5 {
         @apply --font-body2;
+        margin-bottom: 0;
       }
       h6 {
         @apply --font-title;
+        margin-bottom: 0;
       }
 
       blockquote {
@@ -55,12 +66,20 @@
         -webkit-tap-highlight-color: transparent;
       }
 
+/* Custom Classes for when you need a little extra */
       .uva-padding-left {
         padding-left: 1em;
       }
       .uva-padding-right {
         padding-right: 1em;
       }
+      .uva-margin-top {
+        margin-top: 1em;
+      }
+      .uva-margin-bottom {
+        margin-bottom: 1em;
+      }
+/*END*/
 
 
 /*Accessibility*/
@@ -194,7 +213,7 @@
         border-bottom: 1px solid var(--uvalib-blue-800);
       }*/
 
-      /*Definition List Styling*/
+/*Definition List Styling*/
       :host(.defined-list) dl {
         padding: 0 1em;
       }
@@ -214,14 +233,46 @@
       :host(.defined-list) dd:first-child {
         display: none;
       }
-      /*END*/
+/*END*/
 
-      /*Sidebar Blocks*/
+/*Sidebar Blocks*/
+    /* Sidebar Navigation */
+      app-sub-nav {
+        background-color: var(--color-white);
+      }
+      :host(app-sub-nav) #content h4 { /*needs more attention - too boring!*/
+        padding: .75em;
+        background-color: var(--uvalib-grey-500);
+      }
+      :host(app-sub-nav) #content ul li {
+        list-style: none;
+        font-size: 1.15em;
+      }
+    /*END*/
 
-      /*Research*/
+    /*Research*/
       .research-sidebar {
-          border: 1px solid cyan;
-          margin-top: 10em;
+          margin-top: 7em; /*8.75em;*/
+          max-width: calc(100% - 20px);
+          width: 100%;
+      }
+      /* small screen */
+      :host([small-screen]) aside {
+          padding: 0px;
+          background-color: none;
+      }
+
+      :host([small-screen]) .research-sidebar {
+          margin-top: 1em;
+      }
+
+      /* medium screen */
+      :host([medium-screen]) aside {
+          padding-top: 2.75em;
+          background-color: var(--uvalib-grey-200);
+      }
+      :host([medium-screen]) .research-sidebar {
+          width: 90%;
       }
 
       /* desktop */
@@ -230,17 +281,7 @@
           background-color: var(--uvalib-grey-200);
       }
 
-      /* small screen */
-      :host([small-screen]) aside {
-          padding: 0px;
-          background-color: none;
-      }
-
-      :host([small-screen]) .research-sidebar {
-          margin-top: 0px;
-      }
-
-      /*END*/
+    /*END*/
 
 
 
