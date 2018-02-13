@@ -66,6 +66,12 @@
         -webkit-tap-highlight-color: transparent;
       }
 
+      iframe {
+        width: 100%;
+        height: 100%;
+        min-height: 500px;
+      }
+
 /* Custom Classes for when you need a little extra */
       .uva-padding-left {
         padding-left: 1em;
@@ -238,11 +244,13 @@
 /*Sidebar Blocks*/
     /* Sidebar Navigation */
       app-sub-nav {
-        background-color: var(--color-white);
+        background-color: var(--uvalib-orange-200);
+        padding-bottom: 1em;
       }
       :host(app-sub-nav) #content h4 { /*needs more attention - too boring!*/
         padding: .75em;
-        background-color: var(--uvalib-grey-500);
+        background-color: var(--uvalib-main-rotunda-orange);
+        color: var(--color-white);
       }
       :host(app-sub-nav) #content ul li {
         list-style: none;
