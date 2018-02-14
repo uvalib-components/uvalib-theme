@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../uva-theme/uva-icons.html">
 
 <dom-module id="uvalib-theme">
   <template>
@@ -181,10 +182,6 @@
         padding: 2em;
       }
 
-      paper-card .text-section {
-        /*color: green;*/
-      }
-
       paper-card .card-nav, paper-card .card-index {
         background-color: var(--color-primary-blue);
         color: var(--color-white);
@@ -214,11 +211,6 @@
         font-weight: bold;
       }
 
-      /*paper-card .card-index div {
-        border-right: 1px solid var(--uvalib-blue-800);
-        border-bottom: 1px solid var(--uvalib-blue-800);
-      }*/
-
 /*Definition List Styling*/
       :host(.defined-list) dl {
         padding: 0 1em;
@@ -245,7 +237,7 @@
     /* Sidebar Navigation */
       app-sub-nav {
         background-color: var(--uvalib-orange-200);
-        padding-bottom: 1em;
+        padding-bottom: .75em;
       }
       :host(app-sub-nav) #content h4 { /*needs more attention - too boring!*/
         padding: .75em;
@@ -253,9 +245,10 @@
         color: var(--color-white);
       }
       :host(app-sub-nav) #content ul li {
-        list-style: none;
+        list-style-image: url('data:image/svg+xml;utf8,%3Csvg%20version%3D%221%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%229%22%20height%3D%2214%22%3E%0A%20%20%3Cpath%20d%3D%22M9%207l-6%206H2q-1%200%200%200l-1-2%204-4-4-5%201-2h1l6%206v1q0%201%200%200z%22%2F%3E%0A%3C%2Fsvg%3E');
         font-size: 1.15em;
       }
+
     /*END*/
 
     /*Research*/
@@ -264,6 +257,27 @@
           max-width: calc(100% - 20px);
           width: 100%;
       }
+
+      paper-card.accordion {
+        --paper-card-background-color: var(--uvalib-orange-100);
+        --paper-card-header-color: blue;
+        --uva-accordion-item-trigger: { color: var(--color-white); background-color: var(--uvalib-main-rotunda-orange); }
+        --uva-accordion-item-trigger-hover: { color: var(--color-white); font-weight: 700; background-color: var(--uvalib-orange-400); }
+        --uva-accordion-item-trigger-focus: { background-color: var(--uvalib-main-rotunda-orange); font-weight: 700; outline: var(--color-accessibility-outline-dark-bg); }
+        --uva-accordion-item-title: { color: var(--color-white); }
+        --uva-accordion-item-icon: { border-color: var(--color-white); background-color: var(--uvalib-orange-800); }
+        --uva-accordion-item-icon-focus: { border-color: var(--color-white); }
+        --uva-accordion-item-icon-hover: { border-color: var(--color-white); }
+        --uva-accordion-item-icon-opened: {  }
+        --uva-accordion-item-panel: {}
+      }
+
+      paper-card.accordion paper-button {
+        font-weight: 700;
+        padding: 0;
+        margin-left: 0;
+      }
+
       /* small screen */
       :host([small-screen]) aside {
           padding: 0px;
