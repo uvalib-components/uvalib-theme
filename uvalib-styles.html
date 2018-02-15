@@ -1,433 +1,436 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../uva-theme/uva-icons.html">
+<link rel="import" href="uvalib-fonts.html">
 
 <dom-module id="uvalib-theme">
   <template>
-    <style>
+    <custom-style>
+      <style is="custom-style" include="uvalib-fonts">
 
-      :host, body {
-        @apply --font-body1;
-        font-style: normal;
-        font-family: var(--font-primary);
-      }
+        :host, body {
+          @apply --font-body1;
+          font-style: normal;
+          font-family: var(--font-primary);
+        }
 
-      uvalib-article {
-        padding-left: 1em;
-        padding-right: 1em;
-      }
+        uvalib-article {
+          padding-left: 1em;
+          padding-right: 1em;
+        }
 
-      h1 {
-        @apply --font-display3;
-        margin-bottom: 0;
-      }
-      h2 {
-        @apply --font-display2;
-        margin-bottom: 0;
-      }
-      h3 {
-        @apply --font-display1;
-        margin-bottom: 0;
-      }
-      h4 {
-        @apply --font-headline;
-        margin-bottom: 0;
-      }
-      h5 {
-        @apply --font-body2;
-        margin-bottom: 0;
-      }
-      h6 {
-        @apply --font-title;
-        margin-bottom: 0;
-      }
+        h1 {
+          @apply --font-display3;
+          margin-bottom: 0;
+        }
+        h2 {
+          @apply --font-display2;
+          margin-bottom: 0;
+        }
+        h3 {
+          @apply --font-display1;
+          margin-bottom: 0;
+        }
+        h4 {
+          @apply --font-headline;
+          margin-bottom: 0;
+        }
+        h5 {
+          @apply --font-body2;
+          margin-bottom: 0;
+        }
+        h6 {
+          @apply --font-title;
+          margin-bottom: 0;
+        }
 
-      blockquote {
-        margin: 20px 0;
-        padding-left: 1.5rem;
-        font-size: 30px;
-        line-height: 36px;
-        border-left: 4px solid var(--color-accent-color);
-        text-transform: none;
-      }
+        blockquote {
+          margin: 20px 0;
+          padding-left: 1.5rem;
+          font-size: 30px;
+          line-height: 36px;
+          border-left: 4px solid var(--color-accent-color);
+          text-transform: none;
+        }
 
-      ul, ol {
-        font-family: var(--font-primary);
-        font-weight: var(--font-weight-regular);
-        line-height: 30px;
-        margin: 15px 0px;
-        padding-left: 40px;
-        color: var(--color-text-gray);
-      }
+        ul, ol {
+          font-family: var(--font-primary);
+          font-weight: var(--font-weight-regular);
+          line-height: 30px;
+          margin: 15px 0px;
+          padding-left: 40px;
+          color: var(--color-text-gray);
+        }
 
-      a, uvalib-liame {
-    	  color: var(--color-text-blue);
-    	  text-decoration: none;
+        a, uvalib-liame {
+      	  color: var(--color-text-blue);
+      	  text-decoration: none;
 
-        // Gets rid of tap active state
-        -webkit-tap-highlight-color: transparent;
-      }
+          // Gets rid of tap active state
+          -webkit-tap-highlight-color: transparent;
+        }
 
-      iframe {
-        width: 100%;
-        height: 100%;
-        min-height: 500px;
-      }
+        iframe {
+          width: 100%;
+          height: 100%;
+          min-height: 500px;
+        }
 
-/* Custom Classes for when you need a little extra */
-      .uva-padding-left {
-        padding-left: 1em;
-      }
-      .uva-padding-right {
-        padding-right: 1em;
-      }
-      .uva-margin-top {
-        margin-top: 1em;
-      }
-      .uva-margin-bottom {
-        margin-bottom: 1em;
-      }
-/*END*/
+  /* Custom Classes for when you need a little extra */
+        .uva-padding-left {
+          padding-left: 1em;
+        }
+        .uva-padding-right {
+          padding-right: 1em;
+        }
+        .uva-margin-top {
+          margin-top: 1em;
+        }
+        .uva-margin-bottom {
+          margin-bottom: 1em;
+        }
+  /*END*/
 
 
-/*Accessibility*/
-      a:focus {
-        outline: var(--color-accessibility-outline-light-bg) dotted 3px;
-        padding: .15em;
-      }
+  /*Accessibility*/
+        a:focus {
+          outline: var(--color-accessibility-outline-light-bg) dotted 3px;
+          padding: .15em;
+        }
 
-      a:hover {
-        text-decoration: underline;
-      }
+        a:hover {
+          text-decoration: underline;
+        }
 
-      nav a:focus {
-        outline: var(--color-accessibility-outline-dark-bg) dotted 3px;
-        padding: .15em;
-      }
+        nav a:focus {
+          outline: var(--color-accessibility-outline-dark-bg) dotted 3px;
+          padding: .15em;
+        }
 
-      #top #logo a:focus {
-        outline: var(--color-accessibility-outline-dark-bg) dotted 3px;
-        padding: .15em;
-      }
+        #top #logo a:focus {
+          outline: var(--color-accessibility-outline-dark-bg) dotted 3px;
+          padding: .15em;
+        }
 
-      #top #logo a:hover {
-        border-bottom: 1px solid var(--color-accessibility-outline-dark-bg);
-        padding-bottom: .1em;
-      }
-/*END*/
+        #top #logo a:hover {
+          border-bottom: 1px solid var(--color-accessibility-outline-dark-bg);
+          padding-bottom: .1em;
+        }
+  /*END*/
 
-/* Card styles in Pages */
-      uvalib-card, paper-card {
-        margin: 10px;
-        max-width: 500px;
-        min-width: 290px;
-      }
-      :host(uvalib-card) h3 {
-        @apply --font-title;
-        margin-bottom: 0;
-        margin-top: 0;
-        padding-left: .75em;
-      }
-      :host(uvalib-card) h3:first-child {
-        margin-top: .5em;
-      }
-      :host(uvalib-card) ul {
-        list-style: none;
-        padding-left: 1em;
-        margin-top: .25em;
-        margin-bottom: 1.5em;
-      }
-      nav ul {
-        list-style: none;
-        padding-left: 1em;
-        margin-top: .25em;
-      }
+  /* Card styles in Pages */
+        uvalib-card, paper-card {
+          margin: 10px;
+          max-width: 500px;
+          min-width: 290px;
+        }
+        :host(uvalib-card) h3 {
+          @apply --font-title;
+          margin-bottom: 0;
+          margin-top: 0;
+          padding-left: .75em;
+        }
+        :host(uvalib-card) h3:first-child {
+          margin-top: .5em;
+        }
+        :host(uvalib-card) ul {
+          list-style: none;
+          padding-left: 1em;
+          margin-top: .25em;
+          margin-bottom: 1.5em;
+        }
+        nav ul {
+          list-style: none;
+          padding-left: 1em;
+          margin-top: .25em;
+        }
 
-      paper-card.wide {
-        margin: 10px 10px 10px 10px;
-        max-width: calc(100% - 20px);
-        width: 100%;
-      }
-
-      paper-card .card-aux-container {
-        @apply --layout-horizontal;
-        @apply --layout-wrap;
-      }
-      paper-card .card-aux-container > div {
-        @apply --layout-flex;
-      }
-      paper-card .text-section, paper-card .card-nav, paper-card .card-index {
-        min-width: 200px;
-      }
-      paper-card .text-section {}
-      paper-card .card-nav {}
-      paper-card .card-index {
-        @apply --layout-horizontal;
-        @apply --layout-wrap;
-      }
-      paper-card .card-index div {
-        min-width: 50px;
-        min-height: 50px;
-        text-align: center;
-        position: relative;
-        @apply --layout-horizontal;
-        @apply --layout-center-justified;
-        @apply --layout-center;
-      }
-
-      paper-card .card-content {
-        padding: 0;
-      }
-
-      paper-card .text-section, paper-card .card-nav {
-        padding: 2em;
-      }
-
-      paper-card .card-nav, paper-card .card-index {
-        background-color: var(--color-primary-blue);
-        color: var(--color-white);
-      }
-
-      paper-card .card-nav ul {
-        list-style: none;
-        padding-left: 0;
-        margin-top: .25em;
-        margin-bottom: 1.5em;
-      }
-
-      paper-card .card-index a {
-        @apply --font-headline;
-      }
-
-      paper-card .card-nav ul li a, paper-card .card-index a {
-        color: var(--color-white);
-      }
-
-      paper-card .card-nav ul li a:focus, paper-card .card-index a:focus {
-        outline: var(--color-accessibility-outline-dark-bg) dotted 3px;
-      }
-
-      paper-card .card-actions a {
-        color: var(--color-primary-orange);
-        font-weight: bold;
-      }
-
-/*Definition List Styling*/
-      :host(.defined-list) dl {
-        padding: 0 1em;
-      }
-      :host(.defined-list) dt {
-        padding: 0 1em;
-        font-weight: 700;
-        font-size: 1.15em;
-      }
-      :host(.defined-list) dd {
-        padding: 0 1em;
-        margin-left: 0;
-        margin-bottom: 1.5em;
-      }
-      :host(.defined-list) dd, :host(.defined-list) dt {
-        border-left: 2px solid var(--uvalib-grey-500);
-      }
-      :host(.defined-list) dd:first-child {
-        display: none;
-      }
-/*END*/
-
-/*Sidebar Blocks*/
-    /* Sidebar Navigation */
-      app-sub-nav {
-        background-color: var(--uvalib-orange-200);
-        padding-bottom: .75em;
-      }
-      :host(app-sub-nav) #content h4 { /*needs more attention - too boring!*/
-        padding: .75em;
-        background-color: var(--uvalib-main-rotunda-orange);
-        color: var(--color-white);
-      }
-      :host(app-sub-nav) #content ul {
-        list-style: none;
-        margin-left: 0;
-        padding-left: 0;
-      }
-      :host(app-sub-nav) #content ul li {
-        /*list-style-image: url('data:image/svg+xml;utf8,%3Csvg%20version%3D%221%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%229%22%20height%3D%2214%22%3E%0A%20%20%3Cpath%20d%3D%22M9%207l-6%206H2q-1%200%200%200l-1-2%204-4-4-5%201-2h1l6%206v1q0%201%200%200z%22%2F%3E%0A%3C%2Fsvg%3E');*/
-        font-size: 1.15em;
-        padding-left: 1em;
-        text-indent: -1em;
-        content: "\f0ac";
-      }
-      :host(app-sub-nav) #content ul li::before {
-        content: "\f0ac";
-        padding-right: .75em;
-      }
-
-    /*END*/
-
-    /*Research*/
-      .research-sidebar {
-          margin-top: 7em; /*8.75em;*/
+        paper-card.wide {
+          margin: 10px 10px 10px 10px;
           max-width: calc(100% - 20px);
           width: 100%;
-      }
+        }
 
-      paper-card.accordion {
-        --paper-card-background-color: var(--uvalib-orange-100);
-        --paper-card-header-color: blue;
-        --uva-accordion-item-trigger: { color: var(--color-white); background-color: var(--uvalib-main-rotunda-orange); }
-        --uva-accordion-item-trigger-hover: { color: var(--color-white); font-weight: 700; background-color: var(--uvalib-orange-400); }
-        --uva-accordion-item-trigger-focus: { background-color: var(--uvalib-main-rotunda-orange); font-weight: 700; outline: var(--color-accessibility-outline-dark-bg); }
-        --uva-accordion-item-title: { color: var(--color-white); }
-        --uva-accordion-item-icon: { border-color: var(--color-white); background-color: var(--uvalib-orange-800); }
-        --uva-accordion-item-icon-focus: { border-color: var(--color-white); }
-        --uva-accordion-item-icon-hover: { border-color: var(--color-white); }
-        --uva-accordion-item-icon-opened: {  }
-        --uva-accordion-item-panel: {}
-      }
-
-      paper-card.accordion paper-button {
-        font-weight: 700;
-        padding: 0;
-        margin-left: 0;
-      }
-
-      /* small screen */
-      :host([small-screen]) aside {
-          padding: 0px;
-          background-color: none;
-      }
-
-      :host([small-screen]) .research-sidebar {
-          margin-top: 1em;
-      }
-
-      /* medium screen */
-      :host([medium-screen]) aside {
-          padding-top: 2.75em;
-          background-color: var(--uvalib-grey-200);
-      }
-      :host([medium-screen]) .research-sidebar {
-          width: 90%;
-      }
-
-      /* desktop */
-      :host([large-screen]) aside {
-          padding: 30px;
-          background-color: var(--uvalib-grey-200);
-      }
-
-    /*END*/
-
-
-
-/*END*/
-
-
-      /* =WordPress Core
-      -------------------------------------------------------------- */
-      .alignnone {
-          margin: 5px 20px 20px 0;
-      }
-
-      .aligncenter,
-      div.aligncenter {
-          display: block;
-          margin: 5px auto 5px auto;
-      }
-
-      .alignright {
-          float:right;
-          margin: 5px 0 20px 20px;
-      }
-
-      .alignleft {
-          float: left;
-          margin: 5px 20px 20px 0;
-      }
-
-      a img.alignright {
-          float: right;
-          margin: 5px 0 20px 20px;
-      }
-
-      a img.alignnone {
-          margin: 5px 20px 20px 0;
-      }
-
-      a img.alignleft {
-          float: left;
-          margin: 5px 20px 20px 0;
-      }
-
-      a img.aligncenter {
-          display: block;
-          margin-left: auto;
-          margin-right: auto
-      }
-
-      .wp-caption {
-          background: #fff;
-          border: 1px solid #f0f0f0;
-          max-width: 96%; /* Image does not overflow the content area */
-          padding: 5px 3px 10px;
+        paper-card .card-aux-container {
+          @apply --layout-horizontal;
+          @apply --layout-wrap;
+        }
+        paper-card .card-aux-container > div {
+          @apply --layout-flex;
+        }
+        paper-card .text-section, paper-card .card-nav, paper-card .card-index {
+          min-width: 200px;
+        }
+        paper-card .text-section {}
+        paper-card .card-nav {}
+        paper-card .card-index {
+          @apply --layout-horizontal;
+          @apply --layout-wrap;
+        }
+        paper-card .card-index div {
+          min-width: 50px;
+          min-height: 50px;
           text-align: center;
-      }
+          position: relative;
+          @apply --layout-horizontal;
+          @apply --layout-center-justified;
+          @apply --layout-center;
+        }
 
-      .wp-caption.alignnone {
-          margin: 5px 20px 20px 0;
-      }
-
-      .wp-caption.alignleft {
-          margin: 5px 20px 20px 0;
-      }
-
-      .wp-caption.alignright {
-          margin: 5px 0 20px 20px;
-      }
-
-      .wp-caption img {
-          border: 0 none;
-          height: auto;
-          margin: 0;
-          max-width: 98.5%;
+        paper-card .card-content {
           padding: 0;
+        }
+
+        paper-card .text-section, paper-card .card-nav {
+          padding: 2em;
+        }
+
+        paper-card .card-nav, paper-card .card-index {
+          background-color: var(--color-primary-blue);
+          color: var(--color-white);
+        }
+
+        paper-card .card-nav ul {
+          list-style: none;
+          padding-left: 0;
+          margin-top: .25em;
+          margin-bottom: 1.5em;
+        }
+
+        paper-card .card-index a {
+          @apply --font-headline;
+        }
+
+        paper-card .card-nav ul li a, paper-card .card-index a {
+          color: var(--color-white);
+        }
+
+        paper-card .card-nav ul li a:focus, paper-card .card-index a:focus {
+          outline: var(--color-accessibility-outline-dark-bg) dotted 3px;
+        }
+
+        paper-card .card-actions a {
+          color: var(--color-primary-orange);
+          font-weight: bold;
+        }
+
+  /*Definition List Styling*/
+        :host(.defined-list) dl {
+          padding: 0 1em;
+        }
+        :host(.defined-list) dt {
+          padding: 0 1em;
+          font-weight: 700;
+          font-size: 1.15em;
+        }
+        :host(.defined-list) dd {
+          padding: 0 1em;
+          margin-left: 0;
+          margin-bottom: 1.5em;
+        }
+        :host(.defined-list) dd, :host(.defined-list) dt {
+          border-left: 2px solid var(--uvalib-grey-500);
+        }
+        :host(.defined-list) dd:first-child {
+          display: none;
+        }
+  /*END*/
+
+  /*Sidebar Blocks*/
+      /* Sidebar Navigation */
+        app-sub-nav {
+          background-color: var(--uvalib-orange-200);
+          padding-bottom: .75em;
+        }
+        :host(app-sub-nav) #content h4 { /*needs more attention - too boring!*/
+          padding: .75em;
+          background-color: var(--uvalib-main-rotunda-orange);
+          color: var(--color-white);
+        }
+        :host(app-sub-nav) #content ul {
+          list-style: none;
+          margin-left: 0;
+          padding-left: 0;
+        }
+        :host(app-sub-nav) #content ul li {
+          /*list-style-image: url('data:image/svg+xml;utf8,%3Csvg%20version%3D%221%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%229%22%20height%3D%2214%22%3E%0A%20%20%3Cpath%20d%3D%22M9%207l-6%206H2q-1%200%200%200l-1-2%204-4-4-5%201-2h1l6%206v1q0%201%200%200z%22%2F%3E%0A%3C%2Fsvg%3E');*/
+          font-size: 1.15em;
+          padding-left: 1em;
+          text-indent: -1em;
+          content: "\f0ac";
+        }
+        :host(app-sub-nav) #content ul li::before {
+          content: "\f0ac";
+          padding-right: .75em;
+        }
+
+      /*END*/
+
+      /*Research*/
+        .research-sidebar {
+            margin-top: 7em; /*8.75em;*/
+            max-width: calc(100% - 20px);
+            width: 100%;
+        }
+
+        paper-card.accordion {
+          --paper-card-background-color: var(--uvalib-orange-100);
+          --paper-card-header-color: blue;
+          --uva-accordion-item-trigger: { color: var(--color-white); background-color: var(--uvalib-main-rotunda-orange); }
+          --uva-accordion-item-trigger-hover: { color: var(--color-white); font-weight: 700; background-color: var(--uvalib-orange-400); }
+          --uva-accordion-item-trigger-focus: { background-color: var(--uvalib-main-rotunda-orange); font-weight: 700; outline: var(--color-accessibility-outline-dark-bg); }
+          --uva-accordion-item-title: { color: var(--color-white); }
+          --uva-accordion-item-icon: { border-color: var(--color-white); background-color: var(--uvalib-orange-800); }
+          --uva-accordion-item-icon-focus: { border-color: var(--color-white); }
+          --uva-accordion-item-icon-hover: { border-color: var(--color-white); }
+          --uva-accordion-item-icon-opened: {  }
+          --uva-accordion-item-panel: {}
+        }
+
+        paper-card.accordion paper-button {
+          font-weight: 700;
+          padding: 0;
+          margin-left: 0;
+        }
+
+        /* small screen */
+        :host([small-screen]) aside {
+            padding: 0px;
+            background-color: none;
+        }
+
+        :host([small-screen]) .research-sidebar {
+            margin-top: 1em;
+        }
+
+        /* medium screen */
+        :host([medium-screen]) aside {
+            padding-top: 2.75em;
+            background-color: var(--uvalib-grey-200);
+        }
+        :host([medium-screen]) .research-sidebar {
+            width: 90%;
+        }
+
+        /* desktop */
+        :host([large-screen]) aside {
+            padding: 30px;
+            background-color: var(--uvalib-grey-200);
+        }
+
+      /*END*/
+
+
+
+  /*END*/
+
+
+        /* =WordPress Core
+        -------------------------------------------------------------- */
+        .alignnone {
+            margin: 5px 20px 20px 0;
+        }
+
+        .aligncenter,
+        div.aligncenter {
+            display: block;
+            margin: 5px auto 5px auto;
+        }
+
+        .alignright {
+            float:right;
+            margin: 5px 0 20px 20px;
+        }
+
+        .alignleft {
+            float: left;
+            margin: 5px 20px 20px 0;
+        }
+
+        a img.alignright {
+            float: right;
+            margin: 5px 0 20px 20px;
+        }
+
+        a img.alignnone {
+            margin: 5px 20px 20px 0;
+        }
+
+        a img.alignleft {
+            float: left;
+            margin: 5px 20px 20px 0;
+        }
+
+        a img.aligncenter {
+            display: block;
+            margin-left: auto;
+            margin-right: auto
+        }
+
+        .wp-caption {
+            background: #fff;
+            border: 1px solid #f0f0f0;
+            max-width: 96%; /* Image does not overflow the content area */
+            padding: 5px 3px 10px;
+            text-align: center;
+        }
+
+        .wp-caption.alignnone {
+            margin: 5px 20px 20px 0;
+        }
+
+        .wp-caption.alignleft {
+            margin: 5px 20px 20px 0;
+        }
+
+        .wp-caption.alignright {
+            margin: 5px 0 20px 20px;
+        }
+
+        .wp-caption img {
+            border: 0 none;
+            height: auto;
+            margin: 0;
+            max-width: 98.5%;
+            padding: 0;
+            width: auto;
+        }
+
+        .wp-caption p.wp-caption-text {
+            font-size: 13px;
+            line-height: 17px;
+            margin: 0;
+            padding: 0 4px 5px;
+        }
+
+        /* Text meant only for screen readers. */
+        .screen-reader-text {
+          clip: rect(1px, 1px, 1px, 1px);
+          position: absolute !important;
+          height: 1px;
+          width: 1px;
+          overflow: hidden;
+        }
+
+        .screen-reader-text:focus {
+          background-color: #f1f1f1;
+          border-radius: 3px;
+          box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+          clip: auto !important;
+          color: #21759b;
+          display: block;
+          font-size: 14px;
+          font-size: 0.875rem;
+          font-weight: bold;
+          height: auto;
+          left: 5px;
+          line-height: normal;
+          padding: 15px 23px 14px;
+          text-decoration: none;
+          top: 5px;
           width: auto;
-      }
-
-      .wp-caption p.wp-caption-text {
-          font-size: 13px;
-          line-height: 17px;
-          margin: 0;
-          padding: 0 4px 5px;
-      }
-
-      /* Text meant only for screen readers. */
-      .screen-reader-text {
-        clip: rect(1px, 1px, 1px, 1px);
-        position: absolute !important;
-        height: 1px;
-        width: 1px;
-        overflow: hidden;
-      }
-
-      .screen-reader-text:focus {
-        background-color: #f1f1f1;
-        border-radius: 3px;
-        box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
-        clip: auto !important;
-        color: #21759b;
-        display: block;
-        font-size: 14px;
-        font-size: 0.875rem;
-        font-weight: bold;
-        height: auto;
-        left: 5px;
-        line-height: normal;
-        padding: 15px 23px 14px;
-        text-decoration: none;
-        top: 5px;
-        width: auto;
-        z-index: 100000; /* Above WP toolbar. */
-      }
-    </style>
+          z-index: 100000; /* Above WP toolbar. */
+        }
+      </style>
+    </custom-style>
   </template>
 </dom-module>
