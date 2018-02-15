@@ -244,9 +244,21 @@
         background-color: var(--uvalib-main-rotunda-orange);
         color: var(--color-white);
       }
+      :host(app-sub-nav) #content ul {
+        list-style: none;
+        margin-left: 0;
+        padding-left: 0;
+      }
       :host(app-sub-nav) #content ul li {
-        list-style-image: url('data:image/svg+xml;utf8,%3Csvg%20version%3D%221%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%229%22%20height%3D%2214%22%3E%0A%20%20%3Cpath%20d%3D%22M9%207l-6%206H2q-1%200%200%200l-1-2%204-4-4-5%201-2h1l6%206v1q0%201%200%200z%22%2F%3E%0A%3C%2Fsvg%3E');
+        /*list-style-image: url('data:image/svg+xml;utf8,%3Csvg%20version%3D%221%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%229%22%20height%3D%2214%22%3E%0A%20%20%3Cpath%20d%3D%22M9%207l-6%206H2q-1%200%200%200l-1-2%204-4-4-5%201-2h1l6%206v1q0%201%200%200z%22%2F%3E%0A%3C%2Fsvg%3E');*/
         font-size: 1.15em;
+        padding-left: 1em;
+        text-indent: -1em;
+        content: "\f0ac";
+      }
+      :host(app-sub-nav) #content ul li::before {
+        content: "\f0ac";
+        padding-right: .75em;
       }
 
     /*END*/
