@@ -201,12 +201,26 @@
         <template>
           <custom-style>
             <style is="custom-style" include="uvalib-theme">
+              ul {
+                list-style-type: none;
+              }
+              li:before {
+                font-family: uvalib-custom-icons;
+                content: '\f007';
+                margin:0 5px 0 15px;
+                color: #f00;
+              }
             </style>
           </custom-style>
           <h1 style="font-family: uvalib-custom-icons;">&#xf007;</h1>
           <div>
             <span class="uvalib-icon-graduation-cap"></span>
           </div>
+          <ul>
+            <li style="">
+              foo
+            </li>
+          </ul>
         </template>
       </demo-snippet>
     </div>
