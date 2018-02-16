@@ -118,38 +118,16 @@
   /*END*/
 
   /* Card styles in Pages */
-        uvalib-card, paper-card {
-          margin: 10px;
+        paper-card {
+          margin: 1em;
           max-width: 500px;
           min-width: 290px;
         }
-        :host(uvalib-card) h3 {
-          @apply --font-title;
-          margin-bottom: 0;
-          margin-top: 0;
-          padding-left: .75em;
-        }
-        :host(uvalib-card) h3:first-child {
-          margin-top: .5em;
-        }
-        :host(uvalib-card) ul {
-          list-style: none;
-          padding-left: 1em;
-          margin-top: .25em;
-          margin-bottom: 1.5em;
-        }
-        nav ul {
-          list-style: none;
-          padding-left: 1em;
-          margin-top: .25em;
-        }
-
         paper-card.wide {
-          margin: 10px 10px 10px 10px;
+          margin: 1em;
           max-width: calc(100% - 20px);
           width: 100%;
         }
-
         paper-card .card-aux-container {
           @apply --layout-horizontal;
           @apply --layout-wrap;
@@ -160,8 +138,24 @@
         paper-card .text-section, paper-card .card-nav, paper-card .card-index {
           min-width: 200px;
         }
+
+        paper-card ul, paper-card nav ul {
+          list-style: none;
+          padding-left: 1.75em;
+        }
+        paper-card .card-nav ul {
+          list-style: none;
+          padding-left: 0;
+          margin-top: .25em;
+          margin-bottom: 1.5em;
+        }
+        :host(uvalib-card) ul.uvalib-card-list {
+          margin-top: 0;
+          margin-bottom: 0;
+        }
+
         paper-card .text-section {}
-        paper-card .card-nav {}
+        paper-card .card-nav div { font-weight: 700; }
         paper-card .card-index {
           @apply --layout-horizontal;
           @apply --layout-wrap;
@@ -175,11 +169,9 @@
           @apply --layout-center-justified;
           @apply --layout-center;
         }
-
         paper-card .card-content {
           padding: 0;
         }
-
         paper-card .text-section, paper-card .card-nav {
           padding: 2em;
         }
@@ -187,13 +179,6 @@
         paper-card .card-nav, paper-card .card-index {
           background-color: var(--color-primary-blue);
           color: var(--color-white);
-        }
-
-        paper-card .card-nav ul {
-          list-style: none;
-          padding-left: 0;
-          margin-top: .25em;
-          margin-bottom: 1.5em;
         }
 
         paper-card .card-index a {
@@ -208,6 +193,26 @@
           color: var(--color-primary-orange);
           font-weight: bold;
         }
+        paper-card h3 {
+          @apply --font-title;
+          margin-bottom: 0;
+          padding-left: .75em;
+        }
+
+        /*
+        :host(uvalib-card) h3 {
+
+        }
+        :host(uvalib-card) h3:first-child {
+          margin-top: .5em;
+        }
+        :host(uvalib-card) ul {
+          list-style: none;
+          padding-left: 1.25em;
+          margin-top: 1.25em;
+          margin-bottom: 1.5em;
+        }
+        */
 
         /*Addressing Accessibility focus*/
         paper-card .card-nav ul li a:focus, paper-card .card-index a:focus {
@@ -275,19 +280,22 @@
             max-width: calc(100% - 20px);
             width: 100%;
         }
+        paper-card.accordion dl { margin: 0; }
 
         paper-card.accordion {
           --paper-card-background-color: var(--uvalib-orange-100);
-          --paper-card-header-color: blue;
+          --paper-card-header-color: color: var(--paper-card-header-color, #000);
           --uva-accordion-item-trigger: { color: var(--color-white); background-color: var(--uvalib-main-rotunda-orange); }
-          --uva-accordion-item-trigger-hover: { color: var(--color-white); font-weight: 700; background-color: var(--uvalib-orange-400); }
+          --uva-accordion-item-trigger-hover: { text-decoration: underline; color: var(--color-white); font-weight: 700; background-color: var(--uvalib-orange-400); }
           --uva-accordion-item-trigger-focus: { background-color: var(--uvalib-main-rotunda-orange); font-weight: 700; outline: var(--color-accessibility-outline-dark-bg); }
           --uva-accordion-item-title: { color: var(--color-white); }
           --uva-accordion-item-icon: { border-color: var(--color-white); background-color: var(--uvalib-orange-800); }
           --uva-accordion-item-icon-focus: { border-color: var(--color-white); }
           --uva-accordion-item-icon-hover: { border-color: var(--color-white); }
           --uva-accordion-item-icon-opened: {}
-          --uva-accordion-item-panel: {}
+          --uva-accordion-item-panel: {}/*part that slides out*/
+          --uva-accordion-dl: { padding: 0; margin: 0; }
+          --paper-card-content: { padding: 0; }
         }
 
         paper-card.accordion paper-button {
@@ -295,7 +303,9 @@
           padding: 0;
           margin-left: 0;
         }
+      /*END*/
 
+    /* Styles the background and element size for the sidebar*/
         /* small screen */
         :host([small-screen]) aside {
             padding: 0px;
@@ -320,8 +330,7 @@
             padding: 30px;
             background-color: var(--uvalib-grey-200);
         }
-
-      /*END*/
+    /*END*/
 
 
 
