@@ -13,10 +13,21 @@
           font-family: var(--font-primary);
         }
 
+        /* easy way to hide/show elements by setting the hidden attribute */
+        [hidden] {
+          display: none !important;
+        }
+
+        article > #content {
+          padding-left: 1em;
+          padding-right: 1em;
+        }
+/*
         uvalib-article {
           padding-left: 1em;
           padding-right: 1em;
         }
+*/
 
         h1 {
           @apply --font-display3;
