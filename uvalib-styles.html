@@ -86,6 +86,11 @@
           min-height: 500px;
         }
 
+        /*This may or may not be ok with general accessibility*/
+        #mainContent:focus {
+          /*outline: none;*/
+        }
+
   /* Custom Classes for when you need a little extra */
         .uva-padding-left {
           padding-left: 1em;
@@ -209,21 +214,6 @@
           padding-left: .75em;
         }
 
-        /*
-        :host(uvalib-card) h3 {
-
-        }
-        :host(uvalib-card) h3:first-child {
-          margin-top: .5em;
-        }
-        :host(uvalib-card) ul {
-          list-style: none;
-          padding-left: 1.25em;
-          margin-top: 1.25em;
-          margin-bottom: 1.5em;
-        }
-        */
-
         /*Addressing Accessibility focus*/
         paper-card .card-nav ul li a:focus, paper-card .card-index a:focus {
           outline: var(--color-accessibility-outline-dark-bg) dotted 3px;
@@ -231,24 +221,36 @@
 
 
   /*Definition List Styling - (e.g. About Us Page /about-uva-library) */
-        :host(.defined-list) dl {
+        paper-card.uvalibSidebarList dl {
           padding: 0 1em;
         }
-        :host(.defined-list) dt {
-          padding: 0 1em;
+        paper-card.uvalibSidebarList dt, paper-card.uvalibSidebarList dt a {
+          padding-left: .45em;
           font-weight: 700;
-          font-size: 1.15em;
+          font-size: 1em;
+          margin: 0;
         }
-        :host(.defined-list) dd {
-          padding: 0 1em;
+        paper-card.uvalibSidebarList dd {
+          padding-top: 0;
+          padding-bottom: .25em;
+          padding-right: 1em;
+          padding-left: 1em;
+          margin-top: 0;
           margin-left: 0;
           margin-bottom: 1.5em;
         }
-        :host(.defined-list) dd, :host(.defined-list) dt {
+        paper-card.uvalibSidebarList dt, paper-card.uvalibSidebarList dd {
           border-left: 2px solid var(--uvalib-grey-500);
         }
-        :host(.defined-list) dd:first-child {
-          display: none;
+        paper-card.uvalibSidebarList dt a::before {
+          font-family: uvalib-custom-icons;
+          content: "\f0da";
+          padding-right: .75em;
+          position: relative;
+          top: 0.1em;
+        }
+        paper-card.uvalibSidebarList dt a::before:hover {
+          text-decoration: none;
         }
   /*END*/
 
