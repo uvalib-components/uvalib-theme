@@ -22,12 +22,6 @@
           padding-left: 1em;
           padding-right: 1em;
         }
-/*
-        uvalib-article {
-          padding-left: 1em;
-          padding-right: 1em;
-        }
-*/
 
         h1 {
           @apply --font-display3;
@@ -86,11 +80,6 @@
           min-height: 500px;
         }
 
-        /*This may or may not be ok with general accessibility*/
-        #mainContent:focus {
-          /*outline: none;*/
-        }
-
   /* Custom Classes for when you need a little extra */
         .uva-padding-left {
           padding-left: 1em;
@@ -131,195 +120,11 @@
           border-bottom: 1px solid var(--color-accessibility-outline-dark-bg);
           padding-bottom: .1em;
         }
-  /*END*/
 
-  /* Card styles in Pages */
-        paper-card {
-          margin: 1em;
-          max-width: 600px;
-          min-width: 290px;
-        }
-        paper-card.wide {
-          margin: 1em;
-          max-width: calc(100% - 20px);
-          width: 100%;
-        }
-        paper-card .card-aux-container {
-          @apply --layout-horizontal;
-          @apply --layout-wrap;
-        }
-        paper-card .card-aux-container > div {
-          @apply --layout-flex;
-        }
-        paper-card .text-section, paper-card .card-nav, paper-card .card-index {
-          min-width: 200px;
-        }
-
-        paper-card ul, paper-card nav ul {
-          list-style: none;
-          padding-left: 1.75em;
-        }
-        paper-card .card-nav ul {
-          list-style: none;
-          padding-left: 0;
-          margin-top: .25em;
-          margin-bottom: 1.5em;
-        }
-        paper-card ul.uvalib-card-list {
-          margin-top: 0;
-          margin-bottom: 0;
-        }
-        paper-card .text-section {}
-        paper-card .card-nav div { font-weight: 700; }
-        paper-card .card-index {
-          @apply --layout-horizontal;
-          @apply --layout-wrap;
-        }
-        paper-card .card-index div {
-          min-width: 50px;
-          min-height: 50px;
-          text-align: center;
-          position: relative;
-          @apply --layout-horizontal;
-          @apply --layout-center-justified;
-          @apply --layout-center;
-        }
-        paper-card .card-content {
-          padding: 0;
-        }
-        paper-card .text-section, paper-card .card-nav {
-          padding: 2em;
-        }
-
-        paper-card .card-nav, paper-card .card-index {
-          background-color: var(--color-primary-blue);
-          color: var(--color-white);
-        }
-
-        paper-card .card-index a {
-          @apply --font-headline;
-        }
-
-        paper-card .card-nav ul li a, paper-card .card-index a {
-          color: var(--color-white);
-        }
-
-        paper-card .card-actions a {
-          color: var(--color-primary-orange);
-          font-weight: bold;
-        }
-        paper-card h3 {
-          @apply --font-title;
-          margin-bottom: 0;
-          padding-left: .75em;
-        }
-
-        /*Addressing Accessibility focus*/
-        paper-card .card-nav ul li a:focus, paper-card .card-index a:focus {
-          outline: var(--color-accessibility-outline-dark-bg) dotted 3px;
-        }
-
-
-  /*Definition List Styling - (e.g. About Us Page /about-uva-library) */
-        paper-card.uvalibSidebarList dl {
-          padding: 0 1em;
-        }
-        paper-card.uvalibSidebarList dt, paper-card.uvalibSidebarList dt a {
-          padding-left: .45em;
-          font-weight: 700;
-          font-size: 1em;
-          margin: 0;
-        }
-        paper-card.uvalibSidebarList dd {
-          padding-top: 0;
-          padding-bottom: .25em;
-          padding-right: 1em;
-          padding-left: 1em;
-          margin-top: 0;
-          margin-left: 0;
-          margin-bottom: 1.5em;
-        }
-        paper-card.uvalibSidebarList dt, paper-card.uvalibSidebarList dd {
-          border-left: 2px solid var(--uvalib-grey-500);
-        }
-        paper-card.uvalibSidebarList dt a::before {
-          font-family: uvalib-custom-icons;
-          content: "\f0da";
-          padding-right: .75em;
-          position: relative;
-          top: 0.1em;
-        }
-        paper-card.uvalibSidebarList dt > a::before:hover {
-          text-decoration: none;
-          border: 1px solid red;
+        paper-button {
+          --paper-button-flat-keyboard-focus: {outline: var(--color-accessibility-outline-dark-bg) dotted 3px; padding: .15em;}
         }
   /*END*/
-
-  /*Sidebar Blocks*/
-
-
-      /*Research Sidebar (/research)*/
-        .research-sidebar {
-            margin-top: 7em; /*8.75em; - having issues with top margin matching top of card alignment in different breakpoints*/
-            max-width: calc(100% - 20px);
-            width: 100%;
-        }
-        paper-card.accordion dl { margin: 0; }
-
-        paper-card.accordion {
-          --paper-card-background-color: var(--uvalib-orange-100);
-          --paper-card-header-color: color: var(--paper-card-header-color, #000);
-          --uva-accordion-item-trigger: { color: var(--color-white); background-color: var(--uvalib-main-rotunda-orange); }
-          --uva-accordion-item-trigger-hover: { text-decoration: underline; color: var(--color-white); font-weight: 700; background-color: var(--uvalib-orange-400); }
-          --uva-accordion-item-trigger-focus: { background-color: var(--uvalib-main-rotunda-orange); font-weight: 700; outline: var(--color-accessibility-outline-dark-bg); }
-          --uva-accordion-item-title: { color: var(--color-white); }
-          --uva-accordion-item-icon: { border-color: var(--color-white); background-color: var(--uvalib-orange-800); }
-          --uva-accordion-item-icon-focus: { border-color: var(--color-white); }
-          --uva-accordion-item-icon-hover: { border-color: var(--color-white); }
-          --uva-accordion-item-icon-opened: {}
-          --uva-accordion-item-panel: {}/*part that slides out*/
-          --uva-accordion-dl: { padding: 0; margin: 0; }
-          --paper-card-content: { padding: 0; }
-        }
-
-        paper-card.accordion paper-button {
-          font-weight: 700;
-          padding: 0;
-          margin-left: 0;
-        }
-      /*END*/
-
-    /* Styles the background and element size for the sidebar*/
-        /* small screen */
-        :host([small-screen]) aside {
-            padding: 0px;
-            background-color: none;
-        }
-
-        :host([small-screen]) .research-sidebar {
-            margin-top: 1em;
-        }
-
-        /* medium screen */
-        :host([medium-screen]) aside {
-            padding-top: 2.75em;
-            background-color: var(--uvalib-grey-200);
-        }
-        :host([medium-screen]) .research-sidebar {
-            width: 90%;
-        }
-
-        /* desktop */
-        :host([large-screen]) aside {
-            padding: 30px;
-            background-color: var(--uvalib-grey-200);
-        }
-    /*END*/
-
-
-
-  /*END*/
-
 
         /* =WordPress Core
         -------------------------------------------------------------- */
