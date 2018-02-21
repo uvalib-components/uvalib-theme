@@ -115,16 +115,6 @@
       dl {
         padding: 0 1em;
       }
-      dt, .uvalibSidebarList dt a {
-        padding-left: .45em;
-        font-weight: 700;
-        font-size: 1em;
-        margin: 0;
-      }
-      .uvalibSidebarList dt a {
-        padding-left: 0;
-        margin-left: -0.4em;
-      }
       dd {
         padding-top: 0;
         padding-bottom: .25em;
@@ -134,7 +124,7 @@
         margin-left: 0;
         margin-bottom: 1.5em;
       }
-      dd {
+      dd, dt {
         border-left: 2px solid var(--uvalib-grey-500);
       }
 
@@ -147,6 +137,19 @@
       }
       a:hover::before {
         text-decoration: none;
+      }
+      dt, .uvalibSidebarList dt a {
+        padding-left: .45em;
+        font-weight: 700;
+        font-size: 1em;
+        margin: 0;
+      }
+      .uvalibSidebarList dt a {
+        padding-left: 0;
+        margin-left: -0.4em;
+      }
+      .uvalibSidebarList dt {
+        border-left: none;
       }
       /*END*/
 
