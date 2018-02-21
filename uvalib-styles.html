@@ -124,6 +124,19 @@
         paper-button {
           --paper-button-flat-keyboard-focus: {outline: var(--color-accessibility-outline-dark-bg) dotted 3px; padding: .15em;}
         }
+
+        paper-button:hover {
+          text-decoration: underline;
+        }
+
+        paper-button[disabled],
+        paper-button[toggles][active] {
+          background: var(--uvalib-orange-200);
+          color: var(--uvalib-black);
+        }
+
+
+
   /*END*/
 
         /* =WordPress Core
