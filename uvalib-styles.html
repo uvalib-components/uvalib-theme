@@ -80,6 +80,16 @@
           min-height: 500px;
         }
 
+        [data-align="left"] {
+          float: left;
+        }
+        [data-align="center"] {
+          margin: 0 auto;
+        }
+        [data-align="right"] {
+          float: right;
+        }
+
   /* Custom Classes for when you need a little extra */
         .uva-padding-left {
           padding-left: 1em;
@@ -115,10 +125,17 @@
           outline: var(--color-accessibility-outline-dark-bg) dotted 3px;
           padding: .15em;
         }
-
         #top #logo a:hover {
           border-bottom: 1px solid var(--color-accessibility-outline-dark-bg);
           padding-bottom: .1em;
+        }
+        #top .section a:focus {
+          outline: var(--color-accessibility-outline-dark-bg) dotted 3px;
+          padding: .15em;
+        }
+        #top .section paper-icon-button:focus {
+          outline: var(--color-accessibility-outline-dark-bg) dotted 3px;
+          padding: .15em;
         }
 
         paper-button {
