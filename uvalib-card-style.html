@@ -178,7 +178,16 @@
           background-color: var(--uvalib-grey-200);
       }
   /*END*/
-
+  /*Homepage cards*/
+  :host([small-screen]) #exhibit, :host([small-screen]) #support {
+      max-width: none;
+  }
+  :host([medium-screen]) #exhibit, :host([medium-screen]) #support {
+      max-width: 45%;
+  }
+  :host([large-screen]) #exhibit, :host([large-screen]) #support {
+      max-width: 46%;
+  }
 
     </style>
   </template>
