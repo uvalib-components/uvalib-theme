@@ -43,7 +43,7 @@
       max-width: var(--uvalib-display-width-max);
       @apply --layout-horizontal;
     }
-    #top #search, #top #menu {
+    #top #search, #top #menu, #menuButton {
       @apply --layout-flex;
       text-align: right;
     }
@@ -54,9 +54,18 @@
     #search, #menu {
       padding-right: 1em;
     }
-    #logo {
-      padding-left: 1em;
+    :host([small-screen]) #logo {
+        padding-left: .1em;
     }
+    :host([medium-screen]) #logo {
+        padding-left: 0;
+    }
+    #logo {
+        padding-left: 1em;
+    }
+
+
+
     :host([medium-screen]) #top {
         padding-left: 1em;
         padding-right: 1em;
