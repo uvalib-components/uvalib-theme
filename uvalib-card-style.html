@@ -160,7 +160,7 @@
       /* small screen */
       :host([small-screen]) aside {
         margin: 1em;
-        width: auto;
+        width: 100%;
         padding: 0px;
         background-color: none;
       }
@@ -188,6 +188,15 @@
   :host([large-screen]) .shady #exhibit, :host([large-screen]) .shady #support {
       max-width: 46%;
   }
+
+  /*Libra Landing page cards*/
+  :host([small-screen]) #libraETD, :host([small-screen]) #libraData, :host([small-screen]) #libraOpen {
+      max-width: none;
+  }
+  :host([large-screen]) #libraETD, :host([large-screen]) #libraData, :host([large-screen]) #libraOpen {
+      max-width: 45%;
+  }
+
 
     </style>
   </template>
