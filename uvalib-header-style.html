@@ -125,6 +125,11 @@
       margin-right: .75em;
       margin-top: .3em;
     }
+    #menuButton paper-button::after {
+      font-family: uvalib-custom-icons;
+      content: "\f002";
+      padding-left: .5em;
+    }
 
     nav {
       min-height: 40px;
@@ -139,7 +144,7 @@
       color: var(--color-white);
     }
     :host([small-screen]) #menu a iron-icon {
-      display: none;
+      /*display: none;*/
     }
     #alert paper-badge {
       --paper-badge-background: var(--color-primary-orange);
