@@ -8,16 +8,29 @@
       --uvalib-main-white: #FFFFFF;
       --uvalib-main-rotunda-orange: #E57200;
       --uvalib-main-jefferson-blue: #232D4B;
-      --uvalib-secondary-orange: #EB5F0C;
-      --uvalib-secondary-blue: #141E3C;
+      --uvalib-secondary-orange: var(--uvalib-secondary-web-orange);
+      --uvalib-secondary-blue: var(--uvalib-secondary-web-blue);
       --uvalib-secondary-lt-grey: #F1F1EF;
-      --uvalib-secondary-md-grey: #DADADA;
-      --uvalib-secondary-emergency-red: #DF1E43;
-      /*--uvalib-text-grey: #666666;*/
+      --uvalib-secondary-md-grey: var(--uvalib-secondary-medium-gray);
+
+      /*Secondary Brand Colors*/
+      --uvalib-secondary-web-orange: #EB5F0C;
+      --uvalib-secondary-web-blue: #141E3C;
+      --uvalib-secondary-cyan: #009FDF;
+      --uvalib-secondary-yellow: #FDDA24;
+      --uvalib-secondary-teal: #25CAD3;
+      --uvalib-secondary-magenta: #EF3F6B;
+      /*--uvalib-secondary-green: #62BB46; - NOT ADA compliant */
+      --uvalib-secondary-green: #008000; /*ADA compliant*/
+      --uvalib-secondary-light-gray: #F1F1F1;
+      --uvalib-secondary-medium-gray: #DADADA;
+      /*--uvalib-secondary-text-gray: #666666; - NOT ADA compliant*/
       --uvalib-text-grey: #595959; /*ADA compliant*/
       --uvalib-text-dk-grey: #474747; /*ADA compliant for hover over shaded table rows*/
+      /*--uvalib-secondary-emergency-red: #DF1E43; - NOT ADA compliant*/
+      --uvalib-secondary-emergency-red: #E00000; /*ADA compliant*/
 
-      /* color palette */
+      /* Other color palette */
       --uvalib-blue-50: #B3D4FF;
       --uvalib-blue-100: #67A9FF;
       --uvalib-blue-200: #2F8AFF;
@@ -104,7 +117,6 @@
       --color-accessibility-outline: cyan;
       --color-accessibility-outline-light-bg: var(--uvalib-grey-700);
       --color-accessibility-outline-dark-bg: var(--uvalib-grey-400);
-
     }
 
   </style>
