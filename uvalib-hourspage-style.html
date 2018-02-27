@@ -6,6 +6,11 @@
     table {
       margin: 2em auto;
     }
+    th { font-family: 'franklingothic-demi'; }
+    th:first-of-type, td:nth-child(2) {
+      background-color: var(--uvalib-main-rotunda-orange);
+      color: var(--color-white);
+    }
     tr:nth-child(even) { background-color: var(--color-light-gray);}
     tr:hover:not(:first-child) { background-color: var(--color-medium-gray); color: var(--uvalib-text-dk-grey);}
     td {
@@ -26,11 +31,11 @@
       width: 30%;
       font-family: 'franklingothic-demi';
     }
-    th { font-family: 'franklingothic-demi'; }
-    th:first-of-type, td:nth-child(2) {
-      background-color: var(--uvalib-main-rotunda-orange);
-      color: var(--color-white);
-    }
+
+    /*td:nth-child(2):hover {
+      background-color: var(--uvalib-orange-900);
+    }*/
+
     /*td paper-button {
 
     }*/
