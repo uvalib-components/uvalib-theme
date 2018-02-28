@@ -15,16 +15,10 @@
           width: 100%;
         };
         --paper-card: {
-/*          @apply --layout-vertical; */
-/*          height: 100%; */
             margin: 1em;
             max-width: 600px;
             min-width: 290px;
         }
-        --paper-card-content: {
-/*          @apply --layout-flex; */
-        }
-
       }
       :host[dark] {
         color: var(--color-white);
@@ -34,11 +28,17 @@
       h3 {
         @apply --font-title;
         margin-bottom: 0;
-        /*padding-left: .75em;*/
       }
-      ul, nav ul {
-        list-style: none;
-        padding-left: 1.75em;
+      paper-card li, paper-card nav li {
+        list-style: none !important;
+      }
+      paper-card ul, paper-card nav ul {
+        padding-left: 1.5em;
+        margin-top: 1.5em;
+      }
+      paper-card h3 {
+        padding-left: 1.19em;
+
       }
 
       .wide {
@@ -180,25 +180,23 @@
       }
   /*END*/
   /*Homepage cards*/
-  :host([small-screen]) .shady #exhibit, :host([small-screen]) .shady #support {
-      max-width: none;
-  }
-  :host([medium-screen]) .shady #exhibit, :host([medium-screen]) .shady #support {
-      max-width: 45%;
-  }
-  :host([large-screen]) .shady #exhibit, :host([large-screen]) .shady #support {
-      max-width: 46%;
-  }
+      :host([small-screen]) .shady #exhibit, :host([small-screen]) .shady #support {
+          max-width: none;
+      }
+      :host([medium-screen]) .shady #exhibit, :host([medium-screen]) .shady #support {
+          max-width: 45%;
+      }
+      :host([large-screen]) .shady #exhibit, :host([large-screen]) .shady #support {
+          max-width: 46%;
+      }
 
-  /*Libra Landing page cards*/
-  :host([small-screen]) #libraETD, :host([small-screen]) #libraData, :host([small-screen]) #libraOpen {
-      max-width: none;
-  }
-  :host([large-screen]) #libraETD, :host([large-screen]) #libraData, :host([large-screen]) #libraOpen {
-      max-width: 45%;
-  }
-
-
+      /*Libra Landing page cards*/
+      :host([small-screen]) #libraETD, :host([small-screen]) #libraData, :host([small-screen]) #libraOpen {
+          max-width: none;
+      }
+      :host([large-screen]) #libraETD, :host([large-screen]) #libraData, :host([large-screen]) #libraOpen {
+          max-width: 45%;
+      }
     </style>
   </template>
 </dom-module>
