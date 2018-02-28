@@ -134,6 +134,37 @@
       margin: 2em auto;
       text-align: center;
     }
+    :host([small-screen]) figcaption {
+      margin-top: 1em;
+      width: 300px;
+    }
+    :host([medium-screen]) figure {
+      margin-top: 2em;
+      text-align: center;
+    }
+    :host([medium-screen]) figcaption {
+      margin-top: 1em;
+      width: 300px;
+    }
+    :host([large-screen]) figure {
+      margin: 2em 0 2em 4em;
+      text-align: center;
+    }
+    :host([large-screen]) figcaption {
+      margin-top: 1em;
+      width: 300px;
+    }
+
+    :host([small-screen]) #profile {
+      margin-bottom: 2em;
+    }
+    :host([medium-screen]) #profile {
+      margin: 2em;
+    }
+    :host([large-screen]) #profile {
+      margin: 2em 4em 2em 6em;
+      min-width: 300px;
+    }
 
     .bigFirstLetter:first-letter {
       float: left;
@@ -147,10 +178,7 @@
       color: var(--color-primary-orange);
     }
 
-    #profile {
-      margin: 0 10px 0 10px;
-      min-width: 300px;
-    }
+
 
     iron-image {min-width: 300px;}
 
