@@ -82,13 +82,19 @@
           line-height: normal;
           padding-bottom: .5em;
         }
+        /* IMG styles */
         article > #content img {
           padding: 1.25em;
         }
+        [data-align="left"] { float: left; max-width: 100%; }
+        [data-align="center"] { margin: 0 auto; max-width: 100%; }
+        [data-align="right"] { float: right; max-width: 100%; }
+
         :host([small-screen]) article > #content img {
           float: none;
           padding: inherit;
         }
+        /* IMG end */
 
         a, uvalib-liame {
       	  color: var(--color-text-blue);
@@ -104,15 +110,7 @@
           min-height: 500px;
         }
 
-        [data-align="left"] {
-          float: left;
-        }
-        [data-align="center"] {
-          margin: 0 auto;
-        }
-        [data-align="right"] {
-          float: right;
-        }
+
 
   /* Custom Classes for when you need a little extra */
         .uva-padding-left {
