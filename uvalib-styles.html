@@ -86,9 +86,9 @@
         article > #content img {
           padding: 1.25em;
         }
-        [data-align="left"] { float: left; max-width: 100%; }
-        [data-align="center"] { margin: 0 auto; max-width: 100%; }
-        [data-align="right"] { float: right; max-width: 100%; }
+        [data-align="left"], figure.align-left { float: left; max-width: 100%; }
+        [data-align="center"], figure.align-center { margin: 0 auto; max-width: 100%; }
+        [data-align="right"], figure.align-right { float: right; max-width: 100%; }
 
         :host([small-screen]) article > #content img {
           float: none;
