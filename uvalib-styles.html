@@ -21,6 +21,10 @@
         article > #content {
           padding-left: 1em;
           padding-right: 1em;
+          margin-bottom: 4em;
+        }
+        :host([small-screen]) article > #content {
+          margin-bottom: 0;
         }
 
         h1 {
@@ -77,6 +81,10 @@
         }
         article > #content img {
           padding: 1.25em;
+        }
+        :host([small-screen]) article > #content img {
+          float: none;
+          padding: inherit;
         }
 
         a, uvalib-liame {
