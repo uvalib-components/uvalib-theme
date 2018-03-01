@@ -155,6 +155,17 @@
       .uvalibSidebarList dt {
         border-left: none;
       }
+      .basiclyDefined dt, .basiclyDefined dd {
+        border-left: none;
+      }
+      .basiclyDefined dd {
+        border-left: none;
+        padding-left: 1.5em;
+      }
+      .noBling dd a::before {
+        content: "";
+        padding-right: 0;
+      }
       /*END*/
 
   /* Styles the background and element size for the sidebar*/
@@ -179,7 +190,7 @@
           background-color: var(--uvalib-sidebar-bg);
       }
   /*END*/
-  /*Homepage cards*/
+      /*Homepage cards*/
       :host([small-screen]) .shady #exhibit, :host([small-screen]) .shady #support {
           max-width: none;
       }
@@ -197,6 +208,19 @@
       :host([large-screen]) #libraETD, :host([large-screen]) #libraData, :host([large-screen]) #libraOpen {
           max-width: 45%;
       }
+
+      /*Emergency page cards*/
+      #emergencyPage paper-card p, #emergencyPage paper-card li {
+        padding-left: 1em;
+        padding-right: 1em;
+      }
+      #emergencyPage paper-card {
+        border: 4px solid var(--uvalib-secondary-emergency-red);
+      }
+      #emergencyPage paper-card#emWeather, #emergencyPage paper-card#emNotes {
+        border: none;
+      }
+
     </style>
   </template>
 </dom-module>
