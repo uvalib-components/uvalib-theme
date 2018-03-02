@@ -104,14 +104,20 @@
         [data-align="left"], figure.align-left { float: left; }
         [data-align="center"], figure.align-center { margin: 0 auto; }
         [data-align="right"], figure.align-right { float: right; }
-        /*figure > img {max-width: 100%;}*/
+        figure > img { max-width: 100%; }
 
-        figure {
-          border: 1px solid blue;
-        }
+        figure { display: table; }
 
         figcaption {
-          border: 1px solid green;
+          padding: .5em;
+          margin-top: -.5em;
+          background-color: var(--uvalib-captions-bg);
+          display: table-caption;
+          caption-side: bottom;
+        }
+
+        .noBg {
+          background-color: inherit;
         }
 
         :host([small-screen]) article > #content img {
