@@ -98,22 +98,26 @@
         }
 
         /* Breadcrumbs */
+        #breadCrumbs ol {
+            list-style: none;
+            display: inline-block;
+        }
+
         #breadCrumbs ol li {
             list-style: none;
             display: inline-block;
         }
-        #breadCrumbs ol li::after {
-            list-style: none;
-            display: inline-block;
-            padding-left: .4em;
-            padding-right: .25em;
+        #breadCrumbs li::after {
             font-family: uvalib-custom-icons;
             content: "\f105";
             position: relative;
             top: 0.1em;
+            padding-left: .4em;
+            padding-right: .25em;
+
         }
         #breadCrumbs ol li:last-child::after {
-            content: '';
+            content: none;
         }
         /* Breadcrumbs End */
 
@@ -133,7 +137,7 @@
           caption-side: bottom;
         }
 
-        .noBg {
+        .noBG {
           background-color: inherit;
         }
 
