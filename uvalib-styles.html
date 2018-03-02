@@ -312,6 +312,27 @@
           };
         }
 
+/* Renovation Pages */
+
+    #renovation-timeline {margin: 0;}
+    #renovation-timeline tr:nth-child(even) {
+      background-color: var(--uvalib-secondary-lt-grey);
+    }
+    #renovation-timeline span.completed::before {
+      content: "✔ ";
+      color: var(--uvalib-main-rotunda-orange);
+    }
+    #renovation-timeline span.completed::after {
+      content: " (complete)";
+    }
+    #renovation-timeline td, table th {
+      padding: 1.5em .5em .5em .5em;
+      border-bottom: 4px solid var(--uvalib-main-white);
+      background: none;
+    }
+    #renovation-timeline td.activeYear {
+      border-bottom: 4px solid var(--uvalib-secondary-blue);
+    }
 
 
 
