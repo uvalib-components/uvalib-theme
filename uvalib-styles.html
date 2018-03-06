@@ -408,6 +408,13 @@
           width: auto;
           z-index: 100000; /* Above WP toolbar. */
         }
+
+        /* Hack to get tables working properl in IE11 */
+        .table { display: table; }
+        .thead { display: table-header-group; }
+        .tbody { display: table-row-group; }
+        .tr { display: table-row; }
+        .td, .th { display: table-cell; }
       </style>
     </custom-style>
   </template>
