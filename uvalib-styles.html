@@ -338,6 +338,29 @@
       border-bottom: 4px solid var(--uvalib-secondary-blue);
     }
 
+/* Collections Page */
+  :host([small-screen]) #collections {
+    @apply --layout-vertical;
+  }
+  :host([small-screen]) #collections div {
+    border-left: none;
+  }
+
+  #collections {
+    margin-bottom: 2em;
+  }
+  #collections div {
+    border-left: 1px solid var(--uvalib-secondary-md-grey);
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+  #collections div:first-child {
+    border-left: none;
+  }
+  #collections p {
+    font-style: italic;
+  }
+
 
 
 
