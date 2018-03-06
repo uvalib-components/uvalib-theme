@@ -98,22 +98,26 @@
         }
 
         /* Breadcrumbs */
+        #breadCrumbs ol {
+            list-style: none;
+            display: inline-block;
+        }
+
         #breadCrumbs ol li {
             list-style: none;
             display: inline-block;
         }
-        #breadCrumbs ol li::after {
-            list-style: none;
-            display: inline-block;
-            padding-left: .4em;
-            padding-right: .25em;
+        #breadCrumbs li::after {
             font-family: uvalib-custom-icons;
             content: "\f105";
             position: relative;
             top: 0.1em;
+            padding-left: .4em;
+            padding-right: .25em;
+
         }
         #breadCrumbs ol li:last-child::after {
-            content: '';
+            content: none;
         }
         /* Breadcrumbs End */
 
@@ -133,7 +137,7 @@
           caption-side: bottom;
         }
 
-        .noBg {
+        .noBG {
           background-color: inherit;
         }
 
@@ -156,6 +160,19 @@
           margin-bottom: 1em;
         }
   /*END*/
+
+  /* Homepage Cards */
+        .events .event {
+          padding-bottom: 1em;
+        }
+        .events .category, #news-content .title {
+          font-family: 'franklin-gothic-urw','arial',sans-serif;
+          font-weight: 700;
+        }
+        #news-content .preview {
+          margin-top: -.75em;
+        }
+
 
   /* About Us page */
         .shady {
@@ -278,6 +295,10 @@
         }
       /*Accessibility End*/
 
+        .smallButton {
+          font-size: .75em;
+        }
+
         .emergencyButton h3 {
             margin-top: 0;
             margin-bottom: 1em;
@@ -295,6 +316,50 @@
           };
         }
 
+/* Renovation Pages */
+
+    #renovation-timeline {margin: 0;}
+    #renovation-timeline tr:nth-child(even) {
+      background-color: var(--uvalib-secondary-lt-grey);
+    }
+    #renovation-timeline span.completed::before {
+      content: "✔ ";
+      color: var(--uvalib-main-rotunda-orange);
+    }
+    #renovation-timeline span.completed::after {
+      content: " (complete)";
+    }
+    #renovation-timeline td, table th {
+      padding: 1.5em .5em .5em .5em;
+      border-bottom: 4px solid var(--uvalib-main-white);
+      background: none;
+    }
+    #renovation-timeline td.activeYear {
+      border-bottom: 4px solid var(--uvalib-secondary-blue);
+    }
+
+/* Collections Page */
+  :host([small-screen]) #collections {
+    @apply --layout-vertical;
+  }
+  :host([small-screen]) #collections div {
+    border-left: none;
+  }
+
+  #collections {
+    margin-bottom: 2em;
+  }
+  #collections div {
+    border-left: 1px solid var(--uvalib-secondary-md-grey);
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+  #collections div:first-child {
+    border-left: none;
+  }
+  #collections p {
+    font-style: italic;
+  }
 
 
 

@@ -8,11 +8,11 @@
       }
 
       :host {
-
         --paper-card-header-image-text: {
           color: var(--color-white);
           background: linear-gradient(to bottom, rgba(0,0,0,0) 10%, rgba(0,0,0,1) 100%);
-          width: 100%;
+          width: 95%;
+          padding-right: 1em;
         };
         --paper-card: {
             margin: 1em;
@@ -23,6 +23,14 @@
       :host[dark] {
         color: var(--color-white);
         --paper-card-background-color: var(--color-primary-orange);
+      }
+
+      paper-card {
+        --paper-card-header-text: {
+          font-family: 'franklin-gothic-urw',arial,sans-serif;
+          font-weight: 500;
+          line-height: 1em;
+        }
       }
 
       paper-card {
@@ -40,12 +48,14 @@
         list-style: none !important;
       }
       paper-card ul, paper-card nav ul {
-        padding-left: 1.5em;
-        margin-top: 1.5em;
+        padding-left: 0;
+        margin-top: 0;
+      }
+      paper-card ul a {
+        padding-left: 1em;
       }
       paper-card h3 {
         padding-left: 1.19em;
-
       }
 
       .wide {
@@ -69,7 +79,7 @@
       .card-nav ul {
         list-style: none;
         padding-left: 0;
-        margin-top: .25em;
+        margin-top: .75em;
         margin-bottom: 1.5em;
       }
       ul.uvalib-card-list {
@@ -93,14 +103,19 @@
       }
       .card-content {
         overflow: hidden;
+        padding: 1em;
+      }
+      .card-content p:first-child {
+        margin-top: 0;
+      }
+
+      /* clear out padding from general card for special cards*/
+      .full-card {
         padding: 0;
       }
-      .card-content p {
-        padding-left: 1em;
-        padding-right: 1em;
-      }
+
       .text-section, .card-nav {
-        padding: 2em;
+        padding: 1em;
       }
       .card-nav, .card-index {
         background-color: var(--color-primary-blue);
@@ -123,9 +138,9 @@
       }
 
       /*Definition List*/
-      dl {
+      /*dl {
         padding: 0 1em;
-      }
+      }*/
       dd {
         padding-top: 0;
         padding-bottom: .25em;
@@ -198,6 +213,13 @@
       }
   /*END*/
       /*Homepage cards*/
+      uvalib-events-ui .event {
+        padding: 1em;
+      }
+
+
+
+
       :host([small-screen]) .shady #exhibit, :host([small-screen]) .shady #support {
           max-width: none;
       }
