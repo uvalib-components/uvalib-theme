@@ -3,28 +3,36 @@
 <dom-module id="uvalib-hourspage-style">
   <template>
     <style>
-    table, .table {
+    .table {
       margin: 2em auto;
     }
-    th, .th { font-family: 'franklingothic-demi'; }
-    th:first-of-type, td:nth-child(2), .th:first-of-type, .td:nth-child(2) {
+    .th {
+      font-family: 'franklingothic-demi';
+      text-align: center;
+    }
+    .th:first-of-type, .td:nth-child(2) {
       background-color: var(--uvalib-main-rotunda-orange);
       color: var(--color-white);
     }
-    tr:nth-child(even), .tr:nth-child(even) { background-color: var(--color-light-gray);}
-    tr:hover:not(:first-child), .tr:hover:not(:first-child) { background-color: var(--color-medium-gray); color: var(--uvalib-text-dk-grey);}
-    td, .td {
+    .tr:nth-child(odd) {
+      background-color: var(--color-light-gray);
+    }
+    .tr:hover:not(.first-row) {
+      background-color: var(--color-medium-gray);
+      color: var(--uvalib-text-dk-grey);
+    }
+    .td {
       text-align: center;
       padding-bottom: .4em;
       padding-top: .4em;
-      width: 8%;
+      width: auto;
 
     }
-    tr:nth-child(2) td, .tr:nth-child(2) .td {
-      border-top: 1px solid var(--uvalib-grey-600);
-      margin-top: 1em;
+    .tr:nth-child(2) > .td, .tr:nth-child(2) > .th {
+      border-bottom: 2px solid var(--uvalib-grey-600);
+      padding-bottom: .5em;
     }
-    td:first-child, .td:first-child {
+    .td:first-child {
       padding-left: 1em;
       padding-right: 0em;
       text-align: left;
