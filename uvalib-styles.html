@@ -18,9 +18,12 @@
           display: none !important;
         }
 
-        /*Only display in certain sizes*/
-        :host([small-screen]) .largeScreen, :host([medium-screen]) .largeScreen { display:none }
+        /* Only display on Mobile */
+        :host([small-screen]) .largeScreen, :host([medium-screen]) .largeScreen { display:none; }
+        /* Only display on Large Screen */
         :host([large-screen]) .visibleMobile, :host([medium-screen]) .visibleMobile { display: none; }
+        /* Display on Tablet and Desktop only */
+        :host([small-screen]) .visibleAllButMobile { display: none; }
 
         article > #content {
           padding-left: 1em;
