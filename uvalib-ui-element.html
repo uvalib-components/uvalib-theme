@@ -62,7 +62,7 @@
             reflectToAttribute: true,
             value: false
           },
-          webPsupport: {
+          webpSupport: {
             type: Boolean,
             value: false
           }
@@ -72,7 +72,7 @@
         super.connectedCallback();
         // Let's see if we support webP images
         check_webp_feature('lossy',function(feature, webpSupported){
-          this.webPsupport = webpSupported;
+          this.webpSupport = webpSupported;
         }.bind(this))
       }
       compressedImage(){
