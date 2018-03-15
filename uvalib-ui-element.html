@@ -83,12 +83,12 @@
         if (typeof obj === 'string' || obj instanceof String) {
           return this._compressedImage(obj);
         } else {
-
+          return obj;
         }
       }
       _compressedImage(url){
         if (url.startsWith('/files')) {
-          return (this.webPsupport)?
+          return (this.webPsupport && url.match(/.*\.(png|jpg|jpeg)?$/i))?
             url.replace('/files/','/files-comp/').replace(/\.(png|jpg|jpeg)?$/i,'.webp'):
             url;
         }
