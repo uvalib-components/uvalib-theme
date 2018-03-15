@@ -11,6 +11,16 @@
           @apply --font-body1;
           font-style: normal;
           font-family: var(--font-primary);
+
+          --accessibility-outline-for-light-bg: {
+            outline: var(--color-accessibility-outline-light-bg) dotted 3px;
+            padding: .15em;
+          };
+
+          --accessibility-outline-for-dark-bg: {
+            outline: var(--color-accessibility-outline-dark-bg) dotted 3px;
+            padding: .15em;
+          };
         }
 
         /* easy way to hide/show elements by setting the hidden attribute */
@@ -299,41 +309,23 @@
 
 
   /*Accessibility*/
-        a:focus {
-          outline: var(--color-accessibility-outline-light-bg) dotted 3px;
-          padding: .15em;
-        }
+        a:focus { @apply --accessibility-outline-for-light-bg; }
+        a:hover { text-decoration: underline; }
+        nav a:focus { @apply --accessibility-outline-for-dark-bg; }
 
-        a:hover {
-          text-decoration: underline;
-        }
-
-        nav a:focus {
-          outline: var(--color-accessibility-outline-dark-bg) dotted 3px;
-          padding: .15em;
-        }
-
-        #top #logo a:focus {
-          outline: var(--color-accessibility-outline-dark-bg) dotted 3px;
-          padding: .15em;
-        }
+        #top #logo a:focus { @apply --accessibility-outline-for-dark-bg; }
         #top #logo a:hover {
           border-bottom: 1px solid var(--color-accessibility-outline-dark-bg);
           padding-bottom: .1em;
         }
-        #top .section a:focus {
-          outline: var(--color-accessibility-outline-dark-bg) dotted 3px;
-          padding: .15em;
-        }
-        #top .section paper-icon-button:focus {
-          outline: var(--color-accessibility-outline-dark-bg) dotted 3px;
-          padding: .15em;
-        }
+        #top .section a:focus, #top .section paper-icon-button:focus { @apply --accessibility-outline-for-dark-bg; }
 
         paper-button {
-          --paper-button-flat-keyboard-focus: {outline: var(--color-accessibility-outline-dark-bg) dotted 3px; padding: .15em;}
+          --paper-button-flat-keyboard-focus: { @apply --accessibility-outline-for-dark-bg; }
         }
-
+        iron-collapse:focus {
+          @apply --accessibility-outline-for-dark-bg;
+        }
         paper-button:hover {
           text-decoration: underline;
         }
@@ -346,10 +338,7 @@
         paper-button:focus {
           outline: var(--color-accessibility-outline-dark-bg) dotted 3px;
         }
-        iron-collapse:focus {
-          outline: var(--color-accessibility-outline-dark-bg) dotted 3px;
-          padding: .15em;
-        }
+
       /*Accessibility End*/
 
         .smallButton {
