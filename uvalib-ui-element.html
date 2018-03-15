@@ -3,7 +3,7 @@
 <link rel="import" href="../iron-media-query/iron-media-query.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
-<link rel="import" href="../uva-helper-libs/webp-check.html">
+<link rel="import" href="../uva-helper-libs/polyfills/string.startswith.html">
 
 <dom-module id="uvalib-ui-element">
   <template>
@@ -62,21 +62,37 @@
             reflectToAttribute: true,
             value: false
           },
-          webpSupport: {
+          webPsupport: {
             type: Boolean,
-            value: false
+            computed: '_supportsWebp()'
           }
         };
       }
-      connectedCallback() {
-        super.connectedCallback();
-        // Let's see if we support webP images
-        check_webp_feature('lossy',function(feature, webpSupported){
-          this.webpSupport = webpSupported;
-        }.bind(this))
+      _supportsWebp(){
+        var elem = document.createElement('canvas');
+        if (!!(elem.getContext && elem.getContext('2d'))) {
+          // was able or not to get WebP representation
+          return elem.toDataURL('image/webp').indexOf('data:image/webp') == 0;
+        }
+        else {
+          // very old browser like IE 8, canvas not supported
+          return false;
+        }
       }
-      compressedImage(){
+      whichImage(obj){
+        if (typeof obj === 'string' || obj instanceof String) {
+          return this._compressedImage(obj);
+        } else {
 
+        }
+      }
+      _compressedImage(url){
+        if (url.startsWith('/files')) {
+          return (this.webPsupport)?
+            url.replace('/files/','/files-comp/').replace(/\.(png|jpg|jpeg)?$/i,'.webp'):
+            url;
+        }
+        return url;
       }
       _isResponsive(){
         return !(this.lite);
