@@ -92,9 +92,10 @@
       }
 
       _scrollToSelector(selector){
-        var node = this.shadowRoot.querySelector(selector);
-        if (selector && node)
-          node.scrollIntoView({behavior:"smooth", block: "center", inline: "nearest"});
+        if (selector) {
+          var node = this.shadowRoot.querySelector(selector);
+          if (node) node.scrollIntoView({behavior:"smooth", block: "center", inline: "nearest"});
+        }
       }
       whichImage(obj){
         if (typeof obj === 'string' || obj instanceof String) {
