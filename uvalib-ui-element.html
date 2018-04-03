@@ -4,6 +4,7 @@
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../uva-helper-libs/polyfills/string.startswith.html">
+<link rel="import" href="../app-route/app-location.html">
 
 <dom-module id="uvalib-ui-element">
   <template>
@@ -12,6 +13,7 @@
         [hidden] {display:none}
       </style>
     </custom-style>
+    <app-location route="{{hash}}" use-hash-as-path></app-location>
     <template is="dom-if" if="[[_isResponsive]]">
       <iron-media-query query="[[smallScreenQuery]]" query-matches="{{smallScreen}}"></iron-media-query>
       <iron-media-query query="[[mediumScreenQuery]]" query-matches="{{mediumScreen}}"></iron-media-query>
@@ -65,6 +67,10 @@
           webPsupport: {
             type: Boolean,
             computed: '_supportsWebp()'
+          },
+          hash: {
+            type: String,
+            observer: "_handleAnchor"
           }
         };
       }
@@ -78,6 +84,17 @@
           // very old browser like IE 8, canvas not supported
           return false;
         }
+      }
+      _handleAnchor(){
+        if (this.hash) {
+            this._scrollToSelector(window.location.hash);
+        }
+      }
+
+      _scrollToSelector(selector){
+        var node = this.shadowRoot.querySelector(selector);
+        if (selector && node)
+          node.scrollIntoView({behavior:"smooth", block: "center", inline: "nearest"});
       }
       whichImage(obj){
         if (typeof obj === 'string' || obj instanceof String) {
