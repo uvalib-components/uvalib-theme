@@ -71,6 +71,12 @@
           hash: {
             type: String,
             observer: "_handleAnchor"
+          },
+          _localhost: {
+            type: Boolean,
+            value: function(){
+              return (document.location.hostname == "127.0.0.1" || document.location.hostname == "localhost");
+            }
           }
         };
       }
@@ -94,7 +100,7 @@
       _scrollToSelector(selector){
         if (selector) {
           var node = this.shadowRoot.querySelector(selector);
-          if (node) node.scrollIntoView({behavior:"smooth", block: "center", inline: "nearest"});
+          if (node) node.scrollIntoView();
         }
       }
       whichImage(obj){
@@ -105,7 +111,7 @@
         }
       }
       _compressedImage(url){
-        if (url.startsWith('/files')) {
+        if (url.startsWith('/files') && !this._localhost) {
           return (this.webPsupport && url.match(/.*\.(png|jpg|jpeg)?$/i))?
             url.replace('/files/','/files-comp/').replace(/\.(png|jpg|jpeg)?$/i,'.webp'):
             url;
