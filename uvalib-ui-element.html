@@ -13,7 +13,9 @@
         [hidden] {display:none}
       </style>
     </custom-style>
+<!--
     <app-location route="{{hash}}" use-hash-as-path></app-location>
+-->
     <template is="dom-if" if="[[_isResponsive]]">
       <iron-media-query query="[[smallScreenQuery]]" query-matches="{{smallScreen}}"></iron-media-query>
       <iron-media-query query="[[mediumScreenQuery]]" query-matches="{{mediumScreen}}"></iron-media-query>
