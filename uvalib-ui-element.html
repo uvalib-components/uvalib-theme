@@ -82,6 +82,14 @@
           }
         };
       }
+
+      ready() {
+        super.ready();
+        window.addEventListener("hashchange", function(){
+          if (location.hash) this.hash = location.hash;
+        }.bind(this), false);
+      }
+
       _supportsWebp(){
         var elem = document.createElement('canvas');
         if (!!(elem.getContext && elem.getContext('2d'))) {
