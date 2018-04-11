@@ -13,9 +13,9 @@
         [hidden] {display:none}
       </style>
     </custom-style>
-<!--
-    <app-location route="{{hash}}" use-hash-as-path></app-location>
--->
+
+    <app-location route="{{hash}}" use-hash-as-path url-space-regex="^/nomatchme/"></app-location>
+
     <template is="dom-if" if="[[_isResponsive]]">
       <iron-media-query query="[[smallScreenQuery]]" query-matches="{{smallScreen}}"></iron-media-query>
       <iron-media-query query="[[mediumScreenQuery]]" query-matches="{{mediumScreen}}"></iron-media-query>
@@ -72,6 +72,9 @@
           },
           hash: {
             type: String,
+            value: function(){
+              return window.decodeURIComponent(location.hash);
+            },
             observer: "_handleAnchor"
           },
           _localhost: {
@@ -83,11 +86,18 @@
         };
       }
 
-      ready() {
-        super.ready();
-        window.addEventListener("hashchange", function(){
-          if (location.hash) this.hash = location.hash;
-        }.bind(this), false);
+      connectedCallback() {
+        super.connectedCallback();
+        window.addEventListener('hashchange', this._hashChanged);
+      }
+
+      disconnectedCallback() {
+        super.disconnectedCallback();
+        window.removeEventListener('hashchange', this._hashChanged);
+      }
+
+      _hashChanged() {
+        this.hash = window.decodeURIComponent(location.hash);
       }
 
       _supportsWebp(){
