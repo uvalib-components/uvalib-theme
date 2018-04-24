@@ -1,6 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="color.html">
 <link rel="import" href="uvalib-styles.html">
+<link rel="stylesheet" href="https://use.typekit.net/pfr1cbw.css">
 
 <script src="//use.typekit.net/tgy5tlj.js"></script>
 <script>try{Typekit.load();}catch(e){}</script>
@@ -45,12 +46,25 @@
       }
 
       /* font variables */
-      --font-primary: franklingothic-book, sans-serif;
+      /*--font-primary: franklingothic-book, sans-serif;*/
+      --font-primary: var(--uva-font-family);
       --font-secondary: franklingothic-demi, sans-serif;
 
-      --font-weight-light: 300;
+      /*Pulling in fonts via Typekit, weights will pull in font variants*/
+      --uva-font-family: 'franklin-gothic-urw',arial,sans-serif;
+      --uva-font-family-condensed: 'franklin-gothic-urw-cond',arial narrow,sans-serif;
+      /*try to refrain from using this one, difficult to read on small screens*/
+      --uva-font-family-compressed: 'franklin-gothic-urw-comp',arial narrow,sans-serif;
+      --uva-font-decorative: {
+        font-family: 'bodoni-urw',georgia,serif;
+        font-weight: 900;
+      }
+
+      --font-weight-light: 300; /*not used?*/
       --font-weight-book: 400;
       --font-weight-medium: 500;
+      --font-weight-demi: 700;
+      --font-weight-heavy: 900;
 
       /* Main sizing unit */
       --uvalib-main-font-size-unit: 16px;
@@ -68,33 +82,50 @@
       }
 
       --h1: {
-        font-size: calc(var(--uvalib-main-font-size-unit)*3.5);
-        line-height: calc(var(--uvalib-main-font-size-unit)*3.5);
-        @apply --uvalib-font-base;
+        font-family: var(--uva-font-family);
+        font-weight: var(--font-weight-demi);
+        font-size: calc(var(--uvalib-main-font-size-unit)*3.75);
+        line-height: calc(var(--uvalib-main-font-size-unit)*3.75);
+        color: var(--uvalib-main-jefferson-blue);
         margin-top: calc(var(--uvalib-spacing-unit)/4);
-        color: var(--uvalib-text-almost-black);
-      };
-
+        margin-bottom: calc(var(--uvalib-spacing-unit)/1.5);
+        text-transform: capitalize;
+      }
       --h2: {
-        font-size: calc(var(--uvalib-main-font-size-unit)*2.5);
-        line-height: calc(var(--uvalib-main-font-size-unit)*2.5);
-        @apply --uvalib-font-base;
-        color: var(--uvalib-text-almost-black);
-      };
-
+        font-family: var(--uva-font-family-condensed);
+        font-weight: var(--font-weight-demi);
+        font-size: calc(var(--uvalib-main-font-size-unit)*2.25);
+        line-height: calc(var(--uvalib-main-font-size-unit)*2.25);
+        /* text-transform: uppercase; Not using to improve cognitive recognition*/
+        color: var(--uvalib-main-jefferson-blue);
+      }
       --h3: {
+        font-family: var(--uva-font-family);
+        font-weight: var(--font-weight-demi);
         font-size: calc(var(--uvalib-main-font-size-unit)*1.5);
-        line-height: calc(var(--uvalib-main-font-size-unit)*1.5);
-        @apply --uvalib-font-base;
-        color: var(--uvalib-text-almost-black);
-      };
-
+        line-height: calc(var(--uvalib-main-font-size-unit)*1.75);
+        text-transform: uppercase;
+        color: var(--uvalib-main-jefferson-blue);
+      }
+      --h3-with-flair: {
+        @apply --uva-font-decorative;
+        font-size: calc(var(--uvalib-main-font-size-unit)*1.5);
+        line-height: calc(var(--uvalib-main-font-size-unit)*1.75);
+        text-transform: uppercase;
+        color: var(--uvalib-main-jefferson-blue);
+      }
       --h4: {
-        font-size: calc(var(--uvalib-main-font-size-unit)*1.5);
-        line-height: calc(var(--uvalib-main-font-size-unit)*1.5);
-        @apply --uvalib-font-base;
-      };
+        font-family: var(--uva-font-family);
+        font-weight: var(--font-weight-demi);
+        font-size: calc(var(--uvalib-main-font-size-unit)*1.875);
+        line-height: calc(var(--uvalib-main-font-size-unit)*1.875);
+        text-transform: capitalize;
+        color: var(--uvalib-main-jefferson-blue);
+      }
 
+      /* Not used? Need to check each */
+
+      /* variant not showing up  on 4,3,2,1 */
       --font-display4: {
         font-family: var(--font-primary);
         font-size: 112px;
@@ -139,6 +170,7 @@
         color: var(--uvalib-text-grey);
       };
 
+      /* used for headers in card body */
       --font-title: {
         font-family: var(--font-primary);
         font-size: 20px;
@@ -147,6 +179,7 @@
         color: var(--uvalib-text-grey);
       };
 
+      /* variant not showing up*/
       --font-subheading: {
         font-family: var(--font-primary);
         font-size: 16px;
@@ -155,6 +188,7 @@
         color: var(--uvalib-text-grey);
       };
 
+      /* variant not showing up */
       --font-body2: {
         font-family: var(--font-primary);
         font-size: 14px;
@@ -163,14 +197,17 @@
         color: var(--uvalib-text-grey);
       };
 
+      /* main body font */
       --font-body1: {
         font-family: var(--font-primary);
-        font-size: var(--uvalib-main-font-size-unit);
         font-weight: 400;
+        font-style: normal;
+        font-size: var(--uvalib-main-font-size-unit);
         line-height: calc(var(--uvalib-main-font-size-unit)*1.25);
         color: var(--uvalib-text-grey);
       };
 
+      /* variant not showing up */
       --font-caption: {
         font-family: var(--font-primary);
         font-size: 12px;
@@ -179,6 +216,7 @@
         color: var(--uvalib-text-grey);
       };
 
+      /* variant not showing up */
       --font-menu: {
         font-family: var(--font-primary);
         font-size: 13px;
@@ -187,6 +225,7 @@
         color: var(--uvalib-text-grey);
       };
 
+      /* variant not showing up */
       --font-button: {
         font-family: var(--font-primary);
         font-size: 14px;
@@ -197,6 +236,7 @@
       };
 
       /* added here as all cards don't use uvalib-card */
+      /* variant not showing up */
       --font-card-content: {
         font-size: 16px;
         font-weight: normal;
@@ -208,32 +248,9 @@
         color: var(--uvalib-blue-a400);
       };
 
-
-      --paper-card: {
-        font-family: var(--font-primary);
-      }
-      --paper-card-header-text: {
-        font-family: var(--font-primary);
-      }
-      --paper-card-header-image-text: {
-        font-family: var(--font-primary);
-      }
-      --paper-card-header: {
-        font-family: var(--font-primary);
-      }
-      --paper-card-content: {
-        font-family: var(--font-primary);
-      }
-      --paper-card-actions: {
-        font-family: var(--font-primary);
-      }
-      --paper-button: {
-        font-family: var(--font-primary);
-      }
-
       --uvalib-TB-margin: {
-        margin-top: 1em;
-        margin-bottom: 1em;
+        margin-top: var(--uvalib-spacing-unit);
+        margin-bottom: var(--uvalib-spacing-unit);
       };
 
     }
