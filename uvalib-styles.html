@@ -9,8 +9,6 @@
 
         :host, body {
           @apply --font-body1;
-          font-style: normal;
-          font-family: var(--font-primary);
 
           --accessibility-outline-for-light-bg: {
             outline: var(--color-accessibility-outline-light-bg) dotted 3px;
@@ -46,7 +44,6 @@
 
         h1 {
           @apply --h1;
-          color: var(--color-text-dark-secondary);
         }
         h2 {
           @apply --h2;
@@ -230,13 +227,6 @@
 
 
   /* About Us page */
-  /*
-        .shady {
-          margin: 0 -1000px 0 -1000px;
-          padding: 0 1000px 0 1000px;
-          background-color: var(--color-light-gray);
-        }
-*/
         iron-image.round {
           border-radius: 50%;
           width: 300px;
@@ -300,8 +290,6 @@
           padding-right: 0.2em;
           color: var(--color-primary-orange);
         }
-
-        /*iron-image {min-width: 300px;} I commented this out so it didn't break the Support page small image.*/
 
         img.aboutSig {
           width: 200px;
