@@ -72,9 +72,7 @@
           },
           hash: {
             type: String,
-            value: function(){
-              return window.decodeURIComponent(location.hash);
-            },
+            value: null,
             observer: "_handleAnchor"
           },
           _localhost: {
@@ -85,21 +83,7 @@
           }
         };
       }
-/*
-      connectedCallback() {
-        super.connectedCallback();
-        window.addEventListener('hashchange', this._hashChanged);
-      }
 
-      disconnectedCallback() {
-        super.disconnectedCallback();
-        window.removeEventListener('hashchange', this._hashChanged);
-      }
-
-      _hashChanged() {
-//        this.hash = window.decodeURIComponent(location.hash);
-      }
-*/
       _supportsWebp(){
         var elem = document.createElement('canvas');
         if (!!(elem.getContext && elem.getContext('2d'))) {
