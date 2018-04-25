@@ -57,7 +57,9 @@
       --uva-font-family-compressed: 'franklin-gothic-urw-comp',arial narrow,sans-serif;
       --uva-font-decorative: {
         font-family: 'bodoni-urw',georgia,serif;
+        font-style: italic;
         font-weight: 900;
+        text-transform: uppercase;
       }
 
       --font-weight-light: 300; /*not used?*/
@@ -111,7 +113,6 @@
         @apply --uva-font-decorative;
         font-size: calc(var(--uvalib-main-font-size-unit)*1.5);
         line-height: calc(var(--uvalib-main-font-size-unit)*1.75);
-        text-transform: uppercase;
         color: var(--uvalib-main-jefferson-blue);
       }
       --h4: {
