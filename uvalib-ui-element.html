@@ -1,3 +1,4 @@
+<link rel="import" href="../bower_components/lazy-imports/lazy-imports-mixin.html">
 <link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="./uvalib-theme.html">
 <link rel="import" href="../iron-media-query/iron-media-query.html">
@@ -33,7 +34,7 @@
      * @demo demo/index.html uvalib-theme theme library
      * @demo demo/page-patterns.html uvalib-page-style styles and patterns
      */
-    class UvalibUiElement extends Polymer.Element {
+    class UvalibUiElement extends Polymer.LazyImportsMixin(UvalibUiElement) {
       static get is() { return 'uvalib-ui-element'; }
       static get properties() {
         return {
