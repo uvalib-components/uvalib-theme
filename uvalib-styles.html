@@ -112,6 +112,10 @@
           font-size: calc(var(--uvalib-main-font-size-unit)*1.5);
         }
 
+        .text-center {
+          text-align: center;
+        }
+
         /* Breadcrumbs */
         #breadCrumbs {
           max-width: var(--uvalib-display-width-max);
@@ -163,6 +167,12 @@
         :host([small-screen]) article > #content img {
           float: none;
           padding: inherit;
+        }
+
+        .shady {
+          margin: 0 -1000px 0 -1000px;
+          padding: 0 1000px 0 1000px;
+          background-color: var(--color-light-gray);
         }
 
   /* Custom Classes for when you need a little extra */
@@ -311,6 +321,8 @@
         #top .section a:focus, #top .section paper-icon-button:focus { @apply --accessibility-outline-for-dark-bg; }
 
         paper-button {
+          border: 1px solid var(--uvalib-secondary-md-grey);
+          border-radius: 5px;
           --paper-button-flat-keyboard-focus: { @apply --accessibility-outline-for-dark-bg; }
         }
         iron-collapse:focus {
