@@ -17,9 +17,9 @@
             padding-right: 1em;
           };
           --paper-card: {
-              margin: 1em;
-              max-width: 600px;
-              min-width: 290px;
+              margin: var(--uvalib-spacing-unit);
+              max-width: var(600px, --uvalib-pc-max-width);
+              min-width: var(290px, --uvalib-pc-min-width);
           }
         }
         :host[dark] {
@@ -36,7 +36,17 @@
             text-transform: capitalize;
             color: var(--uvalib-main-jefferson-blue);
           }
+          padding: var(--uvalib-pc-padding, --uvalib-spacing-unit);
+          border: var(--uvalib-pc-border, inherit);
+          border-radius: var(--uvalib-pc-border-radius, inherit);
+          background-color: var(--uvalib-pc-background-color, inherit);
+          border-bottom: var(--uvalib-pc-border-bottom, inherit);
+
           @apply --paper-material-elevation-2;
+        }
+
+        paper-card h2 {
+          margin-top: var(--uvalib-pc-h2-margin-top, inherit);
         }
 
         .card-content h3 {
