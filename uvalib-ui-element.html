@@ -38,6 +38,10 @@
       static get is() { return 'uvalib-ui-element'; }
       static get properties() {
         return {
+          unresolved: {
+            type:Boolean,
+            reflectToAttribute: true
+          },
           smallScreenQuery: {
             type: String,
             value: "(max-width: 600px)"
@@ -84,7 +88,10 @@
           }
         };
       }
-
+      ready(){
+        super.ready();
+        this.unresolved = false;
+      }
       _supportsWebp(){
         return false;
 //        var elem = document.createElement('canvas');
