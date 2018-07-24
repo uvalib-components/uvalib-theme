@@ -36,12 +36,18 @@
             text-transform: capitalize;
             color: var(--uvalib-main-jefferson-blue);
           }
+          /*many variables added for addressing slotted content*/
           padding: var(--uvalib-pc-padding, --uvalib-spacing-unit);
           border: var(--uvalib-pc-border, inherit);
           border-radius: var(--uvalib-pc-border-radius, inherit);
           background-color: var(--uvalib-pc-background-color, inherit);
+          border-top: var(--uvalib-pc-border-top, inherit);
           border-bottom: var(--uvalib-pc-border-bottom, inherit);
-
+          border-left: var(--uvalib-pc-border-left, inherit);
+          border-right: var(--uvalib-pc-border-right, inherit);
+          max-width: var(--uvalib-pc-max-width, inherit);
+          min-width: var(--uvalib-pc-min-width, inherit);
+          
           @apply --paper-material-elevation-2;
         }
 
