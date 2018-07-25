@@ -88,6 +88,12 @@
           }
         };
       }
+      static get observers() {
+        return [
+          // Observer method name, followed by a list of dependencies, in parenthesis
+          '_screenChanged(smallScreen,mediumScreen,largeScreen)'
+        ]
+      }
       ready(){
         super.ready();
         this.unresolved = false;
