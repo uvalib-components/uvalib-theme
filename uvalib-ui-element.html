@@ -10,7 +10,7 @@
 <dom-module id="uvalib-ui-element">
   <template>
     <custom-style>
-      <style include="uvalib-theme iron-flex iron-flex-alignment iron-flex-factors iron-positioning">
+      <style include="uvalib-theme iron-flex">
         [hidden] {display:none}
       </style>
     </custom-style>
@@ -94,6 +94,8 @@
           '_screenChanged(smallScreen,mediumScreen,largeScreen)'
         ]
       }
+      /* Override this method to listen for changes to screen size */
+      _screenChanged(){},
       ready(){
         super.ready();
         this.unresolved = false;
