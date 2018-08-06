@@ -61,6 +61,54 @@
           .magenta {background-color: var(--uvalib-secondary-magenta);}
           .green {background-color: var(--uvalib-secondary-green);}
 
+
+          /* Tooltip container */
+          .tooltip {
+              position: relative;
+              display: inline-block;
+              border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+          }
+
+          /* Tooltip text */
+          .tooltip .tooltiptext {
+              visibility: hidden;
+              width: 100%;
+              background-color: #555;
+              color: #fff;
+              text-align: center;
+              padding: 5px;
+              border-radius: 6px;
+
+              /* Position the tooltip text */
+              position: absolute;
+              z-index: 1;
+              top: 25%;
+              left: 27%;
+              margin-left: -60px;
+
+              /* Fade in tooltip */
+              opacity: 0;
+              transition: opacity 0.3s;
+          }
+
+          /* Tooltip arrow */
+          .tooltip .tooltiptext::after {
+              content: "";
+              position: absolute;
+              top: 100%;
+              left: 50%;
+              margin-left: -5px;
+              border-width: 5px;
+              border-style: solid;
+              border-color: #555 transparent transparent transparent;
+          }
+
+          /* Show the tooltip text when you mouse over the tooltip container */
+          .tooltip:hover .tooltiptext {
+              visibility: visible;
+              opacity: 1;
+          }
+
       </style>
     </custom-style>
   </head>
@@ -97,28 +145,29 @@
         </template>
         <h2>Main Colors</h2>
         <div class="palette">
-          <div class="orange">Primary Orange</div>
-          <div class="blue">Primary Blue</div>
-          <div class="white">White</div>
-          <div class="black">Black</div>
+          <div class="orange tooltip">Primary Orange<span class="tooltiptext">--uvalib-main-rotunda-orange</span></div>
+          <div class="blue tooltip">Primary Blue<span class="tooltiptext">--uvalib-main-jefferson-blue</span></div>
+          <div class="white tooltip">White<span class="tooltiptext">--uvalib-main-white</span></div>
+          <div class="black tooltip">Black<span class="tooltiptext">--uvalib-main-black</span></div>
         </div>
         <h2>Secondary Colors</h2>
         <div class="palette">
-          <div class="orange-2">Secondary Orange</div>
-          <div class="blue-2">Secondary Blue</div>
-          <div class="lt-gry">Light Gray</div>
-          <div class="md-gry">Medium Gray</div>
-          <div class="txt-gry">Text Gray</div>
-          <div class="txt-dk-gry">Text Dk Gray</div>
-          <div class="almost-black">Almost Black</div>
-          <div class="emg-red">Emergency Red</div>
-          <div class="cyan">Cyan</div>
-          <div class="yellow">Yellow</div>
-          <div class="teal">Teal</div>
-          <div class="magenta">Magenta</div>
-          <div class="green">Green</div>
+          <div class="orange-2 tooltip">Secondary Orange<span class="tooltiptext">uvalib-secondary-web-orange</span></div>
+          <div class="blue-2 tooltip">Secondary Blue<span class="tooltiptext">uvalib-secondary-web-blue</span></div>
+          <div class="lt-gry tooltip">Light Gray<span class="tooltiptext">uvalib-secondary-light-gray</span></div>
+          <div class="md-gry tooltip">Medium Gray<span class="tooltiptext">uvalib-secondary-medium-gray</span></div>
+          <div class="txt-gry tooltip">Text Gray<span class="tooltiptext">--uvalib-text-grey</span></div>
+          <div class="txt-dk-gry tooltip">Text Dk Gray<span class="tooltiptext">--uvalib-text-dk-grey</span></div>
+          <div class="almost-black tooltip">Almost Black<span class="tooltiptext">--uvalib-text-almost-black</span></div>
+          <div class="emg-red tooltip">Emergency Red<span class="tooltiptext">--uvalib-secondary-emergency-red</span></div>
+          <div class="cyan tooltip">Cyan<span class="tooltiptext">--uvalib-secondary-cyan</span></div>
+          <div class="yellow tooltip">Yellow<span class="tooltiptext">--uvalib-secondary-yellow</span></div>
+          <div class="teal tooltip">Teal<span class="tooltiptext">--uvalib-secondary-teal</span></div>
+          <div class="magenta tooltip">Magenta<span class="tooltiptext">--uvalib-secondary-magenta</span></div>
+          <div class="green tooltip">Green<span class="tooltiptext">--uvalib-secondary-green</span></div>
         </div>
         <p>Please style property using:&nbsp; <code style="color: var(--uvalib-secondary-emergency-red);">color: var(--name-of-color);</code>.</p>
+        <p>updated Aug. 6, 2018</p>
       </demo-snippet>
 
       <h3>Basic uvalib-theme Font Demo</h3>
