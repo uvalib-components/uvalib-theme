@@ -16,49 +16,109 @@
 
     <custom-style>
       <style is="custom-style" include="demo-pages-shared-styles uvalib-theme">
+      div.palette {
+        @apply --layout-horizontal;
+        @apply --layout-wrap;
+      }
+      div.palette div {width: 200px; height: 200px; color: var(--color-white); border-radius: 50%;
+          display: -ms-flexbox;
+          display: -webkit-flex;
+          display: flex;
+          -webkit-flex-direction: row;
+          -ms-flex-direction: row;
+          flex-direction: row;
+          -webkit-flex-wrap: nowrap;
+          -ms-flex-wrap: nowrap;
+          flex-wrap: nowrap;
+          -webkit-justify-content: center;
+          -ms-flex-pack: center;
+          justify-content: center;
+          -webkit-align-content: stretch;
+          -ms-flex-line-pack: stretch;
+          align-content: stretch;
+          -webkit-align-items: center;
+          -ms-flex-align: center;
+          align-items: center;
+          margin: 15px;
+          }
+
+          .orange {background-color: var(--uvalib-main-rotunda-orange);}
+          .blue {background-color: var(--uvalib-main-jefferson-blue);}
+          .white {background-color: var(--uvalib-main-white); color: var(--color-text-gray) !important; border: 1px solid var(--color-text-gray);}
+          .black {background-color: var(--uvalib-main-black);}
+
+          .orange-2 {background-color: var(--uvalib-secondary-web-orange);}
+          .blue-2 {background-color: var(--uvalib-secondary-web-blue);}
+          .lt-gry {background-color: var(--uvalib-secondary-light-gray); color: var(--color-text-gray) !important; border: 1px solid var(--color-text-gray);}
+          .md-gry {background-color: var(--uvalib-secondary-medium-gray);}
+          .txt-gry {background-color: var(--uvalib-text-grey);}
+          .txt-dk-gry {background-color: var(--uvalib-text-dk-grey);}
+          .almost-black {background-color: var(--uvalib-text-almost-black);}
+          .emg-red {background-color: var(--uvalib-secondary-emergency-red);}
+          .cyan {background-color: var(--uvalib-secondary-cyan);}
+          .yellow {background-color: var(--uvalib-secondary-yellow);}
+          .teal {background-color: var(--uvalib-secondary-teal);}
+          .magenta {background-color: var(--uvalib-secondary-magenta);}
+          .green {background-color: var(--uvalib-secondary-green);}
+
       </style>
     </custom-style>
   </head>
   <body>
 
     <div class="vertical-section-container centered" style="max-width: 800px">
-      <h3>Basic uvalib-theme Color Demo</h3>
+      <h1>'uvalib' Style Sheet</h1>
       <demo-snippet>
         <template>
           <custom-style>
             <style is="custom-style" include="uvalib-theme">
-              div.palette {
-                @apply --layout-horizontal;
-                @apply --layout-wrap;
-              }
-              div.palette div {width: 200px; height: 200px; color: var(--color-white);}
-              .orange {background-color: var(--color-primary-orange);}
-              .blue {background-color: var(--color-primary-blue);}
-              .white {background-color: var(--color-white); color: var(--color-text-gray) !important;}
-              .orange-2 {background-color: var(--color-secondary-orange);}
-              .blue-2 {background-color: var(--color-secondary-blue);}
-              .md-blue {background-color: var(--color-medium-blue);}
-              .lt-blue {background-color: var(--color-light-blue);}
-              .lt-gry {background-color: var(--color-light-gray); color: var(--color-text-gray) !important;}
-              .md-gry {background-color: var(--color-medium-gray);}
-              .txt-gry {background-color: var(--color-text-gray);}
-              .emg-red {background-color: var(--color-emergency-red);}
+                  /* Brand Color Palate*/
+                  --uvalib-main-rotunda-orange: #E57200;
+                  --uvalib-main-jefferson-blue: #232D4B;
+                  --uvalib-main-white: #FFFFFF;
+                  --uvalib-main-black: #000000;
+
+                  /*Secondary Brand Colors*/
+                  --uvalib-secondary-web-orange: #EB5F0C;
+                  --uvalib-secondary-web-blue: #141E3C;
+                  --uvalib-secondary-light-gray: #F1F1F1;
+                  --uvalib-secondary-medium-gray: #DADADA;
+                  --uvalib-text-grey: #595959; /*ADA compliant*/
+                  --uvalib-text-dk-grey: #474747; /*ADA compliant for hover over shaded table rows*/
+                  --uvalib-text-almost-black: #212121; /*ADA compliant*/
+                  --uvalib-secondary-emergency-red: #E00000; /*ADA compliant*/
+                  --uvalib-secondary-cyan: #009FDF;
+                  --uvalib-secondary-yellow: #FDDA24;
+                  --uvalib-secondary-teal: #25CAD3;
+                  --uvalib-secondary-magenta: #EF3F6B;
+                  --uvalib-secondary-green: #008000; /*ADA compliant*/
             </style>
           </custom-style>
-          <div class="palette">
-            <div class="orange">Primary Orange</div>
-            <div class="blue">Primary Blue</div>
-            <div class="white">White</div>
-            <div class="orange-2">Secondary Orange</div>
-            <div class="blue-2">Secondary Blue</div>
-            <div class="md-blue">Medium Blue</div>
-            <div class="lt-blue">Light Blue</div>
-            <div class="lt-gry">Light Gray</div>
-            <div class="md-gry">Medium Gray</div>
-            <div class="txt-gry">Text Gray</div>
-            <div class="emg-red">Emergency Red</div>
-          </div>
         </template>
+        <h2>Main Colors</h2>
+        <div class="palette">
+          <div class="orange">Primary Orange</div>
+          <div class="blue">Primary Blue</div>
+          <div class="white">White</div>
+          <div class="black">Black</div>
+        </div>
+        <h2>Secondary Colors</h2>
+        <div class="palette">
+          <div class="orange-2">Secondary Orange</div>
+          <div class="blue-2">Secondary Blue</div>
+          <div class="lt-gry">Light Gray</div>
+          <div class="md-gry">Medium Gray</div>
+          <div class="txt-gry">Text Gray</div>
+          <div class="txt-dk-gry">Text Dk Gray</div>
+          <div class="almost-black">Almost Black</div>
+          <div class="emg-red">Emergency Red</div>
+          <div class="cyan">Cyan</div>
+          <div class="yellow">Yellow</div>
+          <div class="teal">Teal</div>
+          <div class="magenta">Magenta</div>
+          <div class="green">Green</div>
+        </div>
+        <p>Please style property using:&nbsp; <code style="color: var(--uvalib-secondary-emergency-red);">color: var(--name-of-color);</code>.</p>
       </demo-snippet>
 
       <h3>Basic uvalib-theme Font Demo</h3>
