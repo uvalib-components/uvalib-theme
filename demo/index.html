@@ -71,6 +71,16 @@
           .font-displayH3b { @apply --h3-with-flair;}
           .font-displayH4 { @apply --h4;}
 
+          .font-family {font-family: var(--uva-font-family);}
+          .font-family-condensed {font-family: var(--uva-font-family-condensed);}
+          .font-family-compressed {font-family: var(--uva-font-family-compressed);}
+          .font-family-flair { @apply --uva-font-decorative;}
+
+          .weights .book { font-weight: var(--font-weight-book);}
+          .weights .medium { font-weight: var(--font-weight-medium);}
+          .weights .demi { font-weight: var(--font-weight-demi);}
+          .weights .heavy { font-weight: var(--font-weight-heavy);}
+
           .weights {
             margin: 50px 0;
           }
@@ -190,15 +200,7 @@
           <custom-style>
             <style is="custom-style" include="uvalib-theme">
             /*Pulling in fonts via Typekit, weights will pull in font variants*/
-            .font-family {font-family: var(--uva-font-family);}
-            .font-family-condensed {font-family: var(--uva-font-family-condensed);}
-            .font-family-compressed {font-family: var(--uva-font-family-compressed);}
-            .font-family-flair { @apply --uva-font-decorative;}
 
-            .weights .book { font-weight: var(--font-weight-book);}
-            .weights .medium { font-weight: var(--font-weight-medium);}
-            .weights .demi { font-weight: var(--font-weight-demi);}
-            .weights .heavy { font-weight: var(--font-weight-heavy);}
             /* --font-weight-book: 400;
             --font-weight-medium: 500;
             --font-weight-demi: 700;
@@ -210,37 +212,30 @@
             /* spacing unit of measure */
             /* --uvalib-spacing-unit: 1em; */
 
-            /* typography variables */
-            /*--uvalib-font-base
-            --h1
-            --h2
-            --h3
-            --h3-with-flair
-            --h4*/
             </style>
-            <div class="families">
-              <div class="font-family">Franklin Gothic</div>
-              <div class="font-family-condensed">Franklin Gothic Condensed</div>
-              <div class="font-family-compressed">Franklin Gothic Compressed&nbsp;&mdash;&nbsp;<span class="font-family"><em>Refrain from using this one, difficult to read on small screens</em></span></div>
-              <div class="font-family-flair">Bodoni</div>
-            </div>
-
-            <div class="weights">
-               <div class="book">Book Font Weight - 400</div>
-               <div class="medium">Medium Font Weight - 500</div>
-               <div class="demi">Demi Font Weight - 700</div>
-               <div class="heavy">Heavy Font Weight - 900</div>
-            </div>
-
-            <div class="headings">
-              <div class="font-displayH1">Display h1</div>
-              <div class="font-displayH2">Display h2</div>
-              <div class="font-displayH3">Display h3</div>
-              <div class="font-displayH3b">Display h3&mdash;with flair</div>
-              <div class="font-displayH4">Display h4</div>
-            </div>
           </custom-style>
         </template>
+        <div class="families">
+          <div class="font-family">Franklin Gothic</div>
+          <div class="font-family-condensed">Franklin Gothic Condensed</div>
+          <div class="font-family-compressed">Franklin Gothic Compressed&nbsp;&mdash;&nbsp;<span class="font-family"><em>Refrain from using this one, difficult to read on small screens</em></span></div>
+          <div class="font-family-flair">Bodoni</div>
+        </div>
+
+        <div class="weights">
+           <div class="book">Book Font Weight - 400</div>
+           <div class="medium">Medium Font Weight - 500</div>
+           <div class="demi">Demi Font Weight - 700</div>
+           <div class="heavy">Heavy Font Weight - 900</div>
+        </div>
+
+        <div class="headings">
+          <div class="font-displayH1">Display h1</div>
+          <div class="font-displayH2">Display h2</div>
+          <div class="font-displayH3">Display h3</div>
+          <div class="font-displayH3b">Display h3&mdash;with flair</div>
+          <div class="font-displayH4">Display h4</div>
+        </div>
       </demo-snippet>
 
       <h3>Basic uvalib-theme Style Mixin Demo</h3>
@@ -248,7 +243,6 @@
         <template>
         <custom-style>
           <style is="custom-style" include="uvalib-theme">
-
             .font-headline { @apply --font-headline;}
             .font-title { @apply --font-title;}
             .font-subheading { @apply --font-subheading;}
