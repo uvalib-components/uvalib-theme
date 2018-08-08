@@ -47,7 +47,7 @@
           border-right: var(--uvalib-pc-border-right, inherit);
           /*max-width: var(--uvalib-pc-max-width, inherit);
           min-width: var(--uvalib-pc-min-width, inherit);*/
-          
+
           @apply --paper-material-elevation-2;
         }
 
@@ -161,7 +161,7 @@
         }
 
         /*Definition List*/
-        dd {
+        .card-content dd {
           padding-top: 0;
           padding-bottom: .25em;
           padding-right: 1em;
@@ -170,21 +170,21 @@
           margin-left: 0;
           margin-bottom: 1.5em;
         }
-        dd, dt {
+        .card-content dd, .card-content dt {
           border-left: 2px solid var(--uvalib-grey-500);
         }
 
-        dt a::before, dd a::before {
+        .card-content dt a::before, .card-content dd a::before {
           font-family: uvalib-custom-icons;
           content: "\f0da";
           padding-right: .75em;
           position: relative;
           top: 0.1em;
         }
-        a:hover::before {
+        .card-content a:hover::before {
           text-decoration: none;
         }
-        dt, .uvalibSidebarList dt a {
+        .card-content dt, .uvalibSidebarList dt a {
           padding-left: .45em;
           font-weight: 700;
           font-size: 1em;
