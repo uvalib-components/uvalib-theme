@@ -5,9 +5,7 @@
   <template>
     <custom-style>
       <style include="paper-material-styles">
-        :host {
-          display: block;
-        }
+        :host { display: block; }
 
         :host {
           --paper-card-header-image-text: {
@@ -22,10 +20,7 @@
               min-width: 290px;
           }
         }
-        :host[dark] {
-          color: var(--color-white);
-          --paper-card-background-color: var(--color-primary-orange);
-        }
+        :host[dark] { color: var(--color-white); --paper-card-background-color: var(--color-primary-orange); }
 
         paper-card {
           --paper-card-header-text: {
@@ -47,57 +42,31 @@
           border-right: var(--uvalib-pc-border-right, inherit);
           /*max-width: var(--uvalib-pc-max-width, inherit);
           min-width: var(--uvalib-pc-min-width, inherit);*/
-          
+
           @apply --paper-material-elevation-2;
         }
 
-        paper-card h2 {
-          margin-top: var(--uvalib-pc-h2-margin-top, inherit);
-        }
+        paper-card h2 { margin-top: var(--uvalib-pc-h2-margin-top, inherit); }
 
-        .card-content h3 {
-          @apply --font-title;
-          margin-bottom: 0;
-        }
-        paper-card li, paper-card nav li {
-          list-style: none !important;
-        }
-        paper-card ul, paper-card nav ul {
-          padding-left: 0;
-          margin-top: 0;
-        }
-        paper-card ul a {
-          padding-left: 1em;
-        }
-        paper-card h3 {
-          padding-left: 1em;
-        }
-        paper-card h3:first-child {
-          margin-top: 0;
-        }
+        .card-content h3 { @apply --font-title; margin-bottom: 0; }
 
-        paper-card paper-button {
-          border: none;
-        }
+        paper-card li, paper-card nav li { list-style: none !important; }
+        paper-card ul, paper-card nav ul { padding-left: 0; margin-top: 0; }
+        paper-card ul a { padding-left: 1em; }
 
-        .wide {
-          margin: 1em;
-          max-width: calc(100% - 20px);
-          width: 100%;
-        }
-        .medWidth {
-          max-width: 50em;
-        }
-        .card-aux-container {
-          @apply --layout-horizontal;
-          @apply --layout-wrap;
-        }
-        .card-aux-container > div {
-          @apply --layout-flex;
-        }
-        .text-section, .card-nav, .card-index {
-          min-width: 200px;
-        }
+        paper-card h3 { padding-left: 1em; }
+        paper-card h3:first-child { margin-top: 0; }
+
+        paper-card paper-button { border: none; }
+
+        .wide { margin: 1em; max-width: calc(100% - 20px); width: 100%; }
+        .medWidth { max-width: 50em; }
+
+        .card-aux-container { @apply --layout-horizontal; @apply --layout-wrap; }
+        .card-aux-container > div { @apply --layout-flex; }
+
+        .text-section, .card-nav, .card-index { min-width: 200px; }
+
         .card-nav ul {
           list-style: none;
           padding-left: 0;
@@ -109,12 +78,9 @@
           margin-bottom: 0;
           padding-left: 1.25em;
         }
-        .text-section {}
+
         .card-nav div { font-weight: 700; }
-        .card-index {
-          @apply --layout-horizontal;
-          @apply --layout-wrap;
-        }
+        .card-index { @apply --layout-horizontal; @apply --layout-wrap; }
         .card-index div {
           min-width: 50px;
           min-height: 50px;
@@ -124,44 +90,26 @@
           @apply --layout-center-justified;
           @apply --layout-center;
         }
-        .card-content {
-          overflow: hidden;
-          padding: 1em;
-        }
-        .card-content p:first-child {
-          margin-top: 0;
-        }
+
+        .text-section, .card-nav { padding: 1em; }
+        .card-nav, .card-index { background-color: var(--color-primary-blue); color: var(--color-white); }
+
+        .card-index a { @apply --font-headline; }
+        .card-nav ul li a, .card-index a { color: var(--color-white); }
+
+        .card-content { overflow: hidden; padding: 1em; }
+        .card-content p:first-child { margin-top: 0; }
+
+        .card-actions a { color: var(--color-primary-orange); font-weight: bold; }
 
         /* clear out padding from general card for special cards*/
-        .full-card {
-          padding: 0;
-        }
+        .full-card { padding: 0; }
 
-        .text-section, .card-nav {
-          padding: 1em;
-        }
-        .card-nav, .card-index {
-          background-color: var(--color-primary-blue);
-          color: var(--color-white);
-        }
-        .card-index a {
-          @apply --font-headline;
-        }
-        .card-nav ul li a, .card-index a {
-          color: var(--color-white);
-        }
-        .card-actions a {
-          color: var(--color-primary-orange);
-          font-weight: bold;
-        }
+/*Addressing Accessibility focus*/
+        .card-nav ul li a:focus, .card-index a:focus { outline: var(--color-accessibility-outline-dark-bg) dotted 3px; }
 
-        /*Addressing Accessibility focus*/
-        .card-nav ul li a:focus, .card-index a:focus {
-          outline: var(--color-accessibility-outline-dark-bg) dotted 3px;
-        }
-
-        /*Definition List*/
-        dd {
+/* Definition List */
+        .card-content dd {
           padding-top: 0;
           padding-bottom: .25em;
           padding-right: 1em;
@@ -170,47 +118,34 @@
           margin-left: 0;
           margin-bottom: 1.5em;
         }
-        dd, dt {
-          border-left: 2px solid var(--uvalib-grey-500);
-        }
+        .card-content dd, .card-content dt { border-left: 2px solid var(--uvalib-grey-500); }
 
-        dt a::before, dd a::before {
+        .card-content dt a::before, .card-content dd a::before {
           font-family: uvalib-custom-icons;
           content: "\f0da";
           padding-right: .75em;
           position: relative;
           top: 0.1em;
         }
-        a:hover::before {
-          text-decoration: none;
-        }
-        dt, .uvalibSidebarList dt a {
+        .card-content a:hover::before { text-decoration: none; }
+
+        .card-content dt, .uvalibSidebarList dt a {
           padding-left: .45em;
           font-weight: 700;
           font-size: 1em;
           margin: 0;
         }
-        .uvalibSidebarList dt a {
-          padding-left: 0;
-          margin-left: -0.4em;
-        }
-        .uvalibSidebarList dt {
-          border-left: none;
-        }
-        .basiclyDefined dt, .basiclyDefined dd {
-          border-left: none;
-        }
-        .basiclyDefined dd {
-          border-left: none;
-          padding-left: 1.5em;
-        }
-        .noBling dd a::before {
-          content: "";
-          padding-right: 0;
-        }
-        /*END*/
 
-    /* Styles the background and element size for the sidebar*/
+        .uvalibSidebarList dt a { padding-left: 0; margin-left: -0.4em; }
+        .uvalibSidebarList dt { border-left: none; }
+
+        .basiclyDefined dt, .basiclyDefined dd { border-left: none; }
+        .basiclyDefined dd { border-left: none; padding-left: 1.5em; }
+
+        .noBling dd a::before { content: ""; padding-right: 0; }
+/*END*/
+
+/* Styles the background and element size for the sidebar*/
         /* small screen */
         :host([small-screen]) aside {
           margin: var(--uvalib-spacing-unit);
@@ -231,40 +166,23 @@
             padding: calc(var(--uvalib-spacing-unit)*1.875);
             background-color: var(--uvalib-sidebar-bg);
         }
-    /*END*/
-        /*Homepage cards*/
-        uvalib-events-ui .event {
-          padding: 1em;
-        }
+/*END*/
 
-        :host([small-screen]) .shady #exhibit, :host([small-screen]) .shady #support {
-            max-width: none;
-        }
-        :host([medium-screen]) .shady #exhibit, :host([medium-screen]) .shady #support {
-            max-width: 45%;
-        }
-        :host([large-screen]) .shady #exhibit, :host([large-screen]) .shady #support {
-            max-width: 46%;
-        }
 
-        /*Libra Landing page cards*/
-        :host([small-screen]) #libraETD, :host([small-screen]) #libraData, :host([small-screen]) #libraOpen {
-            max-width: none;
-        }
-        :host([large-screen]) #libraETD, :host([large-screen]) #libraData, :host([large-screen]) #libraOpen {
-            max-width: 45%;
-        }
+/* Homepage Cards */
+        uvalib-events-ui .event { padding: 1em; }
 
-        /*Emergency page cards*/
-        paper-card#numbers {
-          padding-left: 1em;
-          padding-right: 1em;
-          padding-bottom: 1em;
-        }
-        #emergencyPage paper-card p, #emergencyPage paper-card li {
-          padding-left: 1em;
-          padding-right: 1em;
-        }
+        :host([small-screen]) .shady #exhibit, :host([small-screen]) .shady #support { max-width: none; }
+        :host([medium-screen]) .shady #exhibit, :host([medium-screen]) .shady #support { max-width: 45%; }
+        :host([large-screen]) .shady #exhibit, :host([large-screen]) .shady #support { max-width: 46%; }
+
+/* Libra Landing page cards */
+        :host([small-screen]) #libraETD, :host([small-screen]) #libraData, :host([small-screen]) #libraOpen { max-width: none; }
+        :host([large-screen]) #libraETD, :host([large-screen]) #libraData, :host([large-screen]) #libraOpen { max-width: 45%; }
+
+/* Emergency page cards */
+        paper-card#numbers { padding-left: 1em; padding-right: 1em; padding-bottom: 1em; }
+        #emergencyPage paper-card p, #emergencyPage paper-card li { padding-left: 1em; padding-right: 1em; }
 
       </style>
     </custom-style>

@@ -7,6 +7,10 @@
     <custom-style>
       <style is="custom-style" include="uvalib-fonts">
 
+/*********************************************/
+/*          STRUCTURAL ELEMENTS              */
+/*********************************************/
+
         :host, body {
           @apply --font-body1;
 
@@ -22,9 +26,7 @@
         }
 
         /* easy way to hide/show elements by setting the hidden attribute */
-        [hidden] {
-          display: none !important;
-        }
+        [hidden] { display: none !important; }
 
         /* Only display on Mobile */
         :host([small-screen]) .largeScreen, :host([medium-screen]) .largeScreen { display:none; }
@@ -38,33 +40,16 @@
           padding-right: var(--uvalib-spacing-unit);
           margin-bottom: 4em;
         }
-        :host([small-screen]) article > #content {
-          margin-bottom: 0;
-        }
+        :host([small-screen]) article > #content { margin-bottom: 0; }
 
-        h1 {
-          @apply --h1;
-        }
-        h2 {
-          @apply --h2;
-          margin-bottom: calc(var(--uvalib-spacing-unit)/8);
-        }
-        h3 {
-          @apply --h3;
-        }
-        h4 {
-          @apply --h4;
-        }
-        h5 {
-          @apply --font-body2;
-        }
-        h6 {
-          @apply --font-title;
-        }
-        strong {
-          font-family: 'franklin-gothic-urw','arial',sans-serif;
-          font-weight: 700;
-        }
+        h1 { @apply --h1; }
+        h2 { @apply --h2; margin-bottom: calc(var(--uvalib-spacing-unit)/8); }
+        h3 { @apply --h3; }
+        h4 { @apply --h4; }
+        h5 { @apply --font-body2; }
+        h6 { @apply --font-title; }
+
+        strong { font-family: 'franklin-gothic-urw','arial',sans-serif; font-weight: 700; }
 
         blockquote {
           margin: 20px 0;
@@ -92,10 +77,9 @@
           padding-bottom: .5em;
         }
         a, uvalib-liame {
-       color: var(--color-text-blue);
-       text-decoration: none;
+          text-decoration: none;
 
-          // Gets rid of tap active state
+          /* Gets rid of tap active state */
           -webkit-tap-highlight-color: transparent;
         }
 
@@ -104,33 +88,17 @@
           height: 100%;
           min-height: 500px;
         }
+/*END*/
 
-        .takeNoticeColor, .uvalib-alert-text {
-          color: var(--uvalib-secondary-emergency-red);
-        }
-        .takeNoticeSize {
-          font-size: calc(var(--uvalib-main-font-size-unit)*1.5);
-        }
-
-        .text-center {
-          text-align: center;
-        }
-
-        /* Breadcrumbs */
-        #breadCrumbs {
-          max-width: var(--uvalib-display-width-max);
-          margin: 0 auto;
-        }
+/* BREADCRUMBS */
+        #breadCrumbs { max-width: var(--uvalib-display-width-max); margin: 0 auto; }
         #breadCrumbs ol {
             list-style: none;
             display: inline-block;
             padding-left: 1em;
             margin-top: .5em;
         }
-        #breadCrumbs ol li {
-            list-style: none;
-            display: inline-block;
-        }
+        #breadCrumbs ol li { list-style: none; display: inline-block; }
         #breadCrumbs li::after {
             font-family: uvalib-custom-icons;
             content: "\f105";
@@ -139,12 +107,10 @@
             padding-left: .4em;
             padding-right: .25em;
         }
-        #breadCrumbs ol li:last-child::after {
-            content: none;
-        }
-        /* Breadcrumbs End */
+        #breadCrumbs ol li:last-child::after { content: none; }
+/*END*/
 
-        /* IMG styles */
+/* IMAGES */
         [data-align="left"], figure.align-left { float: left; }
         [data-align="center"], figure.align-center { margin: 0 auto; }
         [data-align="right"], figure.align-right { float: right; }
@@ -160,95 +126,18 @@
           caption-side: bottom;
         }
 
-        .noBG {
-          background-color: inherit;
-        }
+        .noBG { background-color: inherit; }
 
-        :host([small-screen]) article > #content img {
-          float: none;
-          padding: inherit;
-        }
+        :host([small-screen]) article > #content img { float: none; padding: inherit; }
+/*END*/
 
+/*USEFUL TWEAKS & CLASSES (for when you need a little extra) */
         .shady {
           margin: 0 -1000px 0 -1000px;
           padding: 0 1000px 0 1000px;
           background-color: var(--color-light-gray);
         }
 
-  /* Custom Classes for when you need a little extra */
-        .uva-padding {
-          padding: var(--uvalib-spacing-unit);
-        }
-        .uva-padding-left {
-          padding-left: var(--uvalib-spacing-unit);
-        }
-        .uva-padding-right {
-          padding-right: var(--uvalib-spacing-unit);
-        }
-        .uva-padding-left-right {
-          padding-left: var(--uvalib-spacing-unit);
-          padding-right: var(--uvalib-spacing-unit);
-        }
-        .uva-padding-top {
-          padding-top: var(--uvalib-spacing-unit);
-        }
-        .uva-padding-bottom {
-          padding-bottom: var(--uvalib-spacing-unit);
-        }
-        .uva-padding-top-bottom {
-          padding-top: var(--uvalib-spacing-unit);
-          padding-bottom: var(--uvalib-spacing-unit);
-        }
-        .uva-margin {
-          margin: var(--uvalib-spacing-unit);
-        }
-        .uva-margin-left {
-          margin-left: var(--uvalib-spacing-unit);
-        }
-        .uva-margin-right {
-          margin-right: var(--uvalib-spacing-unit);
-        }
-        .uva-margin-left-right {
-          margin-left: var(--uvalib-spacing-unit);
-          margin-right: var(--uvalib-spacing-unit);
-        }
-        .uva-margin-top {
-          margin-top: var(--uvalib-spacing-unit);
-        }
-        .uva-margin-bottom {
-          margin-bottom: var(--uvalib-spacing-unit);
-        }
-        .uva-margin-top-bottom {
-          margin-top: var(--uvalib-spacing-unit);
-          margin-bottom: var(--uvalib-spacing-unit);
-        }
-  /*END*/
-
-  /* ASK A LIBRARIAN */
-        .mobile-small-min { min-width: 320px; max-width: 500px;  }
-
-        .askalibrarian-container {
-          margin-left: var(--uvalib-spacing-unit);
-          margin-right: var(--uvalib-spacing-unit);
-          margin-bottom: var(--uvalib-spacing-unit);
-        }
-
-  /* END */
-
-  /* Homepage Cards */
-        .events .event {
-          padding-bottom: 1em;
-        }
-        .events .category, #news-content .title {
-          font-family: 'franklin-gothic-urw','arial',sans-serif;
-          font-weight: 700;
-        }
-        #news-content .preview {
-          margin-top: -.75em;
-        }
-
-
-  /* About Us page */
         iron-image.round {
           border-radius: 50%;
           width: 300px;
@@ -261,110 +150,44 @@
           height:150px;
           --iron-image-width: 150px;
         }
-        iron-image.rectangle {
-          width: 300px;
-          --iron-image-width: 300px;
-        }
-
-        :host([small-screen]) figure#profileImage {
-          margin: 2em auto;
-          text-align: center;
-        }
-        :host([small-screen]) #profileImage figcaption {
-          margin-top: 1em;
-          width: 300px;
-        }
-        :host([medium-screen]) figure#profileImage {
-          margin-top: 2em;
-          text-align: center;
-        }
-        :host([medium-screen]) #profileImage figcaption {
-          margin-top: 1em;
-          width: 300px;
-        }
-        :host([large-screen]) figure#profileImage {
-          margin: 2em 0 2em 4em;
-          text-align: center;
-        }
-        :host([large-screen]) #profileImage figcaption {
-          margin-top: 1em;
-          width: 300px;
-        }
-
-        :host([small-screen]) #profile {
-          margin-bottom: 2em;
-        }
-        :host([medium-screen]) #profile {
-          margin: 2em;
-        }
-        :host([large-screen]) #profile {
-          margin: 2em 4em 2em 6em;
-          min-width: 300px;
-        }
+        iron-image.rectangle { width: 300px; --iron-image-width: 300px; }
 
         .bigFirstLetter:first-letter {
+          @apply --uva-font-decorative;
           float: left;
-          font-family: 'bodoni-urw',georgia,serif;
-          font-style: italic;
-          font-weight: 900;
-          font-size: 4.5em;
-          line-height: 0.84em;
-          padding-right: 0.2em;
+          font-size: calc(var(--uvalib-main-font-size-unit)*4.5);
+          line-height: calc(var(--uvalib-spacing-unit)*0.84);
+          padding-right: calc(var(--uvalib-spacing-unit)*0.2);
           color: var(--color-primary-orange);
         }
 
-        img.aboutSig {
-          width: 200px;
-        }
-    /* About END */
+        .takeNoticeColor, .uvalib-alert-text { color: var(--uvalib-secondary-emergency-red); }
+        .takeNoticeSize { font-size: calc(var(--uvalib-main-font-size-unit)*1.5); }
 
+        .text-center { text-align: center; }
 
-  /*Accessibility*/
-        a:focus { @apply --accessibility-outline-for-light-bg; }
-        a:hover { text-decoration: underline; }
-        nav a:focus { @apply --accessibility-outline-for-dark-bg; }
+        .uva-padding { padding: var(--uvalib-spacing-unit); }
+        .uva-padding-left { padding-left: var(--uvalib-spacing-unit); }
+        .uva-padding-right { padding-right: var(--uvalib-spacing-unit); }
+        .uva-padding-left-right { padding-left: var(--uvalib-spacing-unit); padding-right: var(--uvalib-spacing-unit); }
+        .uva-padding-top { padding-top: var(--uvalib-spacing-unit); }
+        .uva-padding-bottom { padding-bottom: var(--uvalib-spacing-unit); }
+        .uva-padding-top-bottom { padding-top: var(--uvalib-spacing-unit); padding-bottom: var(--uvalib-spacing-unit); }
 
-        #top #logo a:focus { @apply --accessibility-outline-for-dark-bg; }
-        #top #logo a:hover {
-          border-bottom: 1px solid var(--color-accessibility-outline-dark-bg);
-          padding-bottom: .1em;
-        }
-        #top .section a:focus, #top .section paper-icon-button:focus { @apply --accessibility-outline-for-dark-bg; }
+        .uva-margin { margin: var(--uvalib-spacing-unit); }
+        .uva-margin-left { margin-left: var(--uvalib-spacing-unit); }
+        .uva-margin-right { margin-right: var(--uvalib-spacing-unit); }
+        .uva-margin-left-right { margin-left: var(--uvalib-spacing-unit); margin-right: var(--uvalib-spacing-unit); }
+        .uva-margin-top { margin-top: var(--uvalib-spacing-unit); }
+        .uva-margin-bottom { margin-bottom: var(--uvalib-spacing-unit); }
+        .uva-margin-top-bottom { margin-top: var(--uvalib-spacing-unit); margin-bottom: var(--uvalib-spacing-unit); }
+/*END*/
 
-        paper-button {
-          border: 1px solid var(--uvalib-secondary-md-grey);
-          border-radius: 5px;
-          --paper-button-flat-keyboard-focus: { @apply --accessibility-outline-for-dark-bg; }
-        }
-        iron-collapse:focus {
-          @apply --accessibility-outline-for-dark-bg;
-        }
-        paper-button:hover {
-          text-decoration: underline;
-        }
+/* BUTTONS */
+        .smallButton { font-size: .75em; }
+        .mediumButton { font-size: .85em; }
 
-        paper-button[disabled],
-        paper-button[toggles][active] {
-          background: var(--uvalib-orange-200);
-          color: var(--uvalib-black);
-        }
-        paper-button:focus {
-          outline: var(--color-accessibility-outline-dark-bg) dotted 3px;
-        }
-
-      /*Accessibility End*/
-
-        .smallButton {
-          font-size: .75em;
-        }
-        .mediumButton {
-          font-size: .85em;
-        }
-
-        .emergencyButton h3 {
-            margin-top: 0;
-            margin-bottom: 1em;
-        }
+        .emergencyButton h3 { margin-top: 0; margin-bottom: 1em; }
         .emergencyButton paper-button {
           background-color: var(--uvalib-secondary-emergency-red);
           --paper-button-raised-keyboard-focus: {
@@ -377,150 +200,29 @@
             color: white !important;
           };
         }
+/*END*/
 
-/* Renovation Pages */
+/* ACCESSIBILITY */
+        a:focus { @apply --accessibility-outline-for-light-bg; }
+        a:hover { text-decoration: underline; }
+        nav a:focus { @apply --accessibility-outline-for-dark-bg; }
 
-    #renovation-timeline {margin: 0;}
-    #renovation-timeline tr:nth-child(even) {
-      background-color: var(--uvalib-secondary-lt-grey);
-    }
-    #renovation-timeline span.completed::before {
-      content: "✔ ";
-      color: var(--uvalib-main-rotunda-orange);
-    }
-    #renovation-timeline span.completed::after {
-      content: " (complete)";
-    }
-    #renovation-timeline td, table th {
-      padding: 1.5em .5em .5em .5em;
-      border-bottom: 4px solid var(--uvalib-main-white);
-      background: none;
-    }
-    #renovation-timeline td.activeYear {
-      border-bottom: 4px solid var(--uvalib-secondary-blue);
-    }
+        #top #logo a:focus { @apply --accessibility-outline-for-dark-bg; }
+        #top #logo a:hover { border-bottom: 1px solid var(--color-accessibility-outline-dark-bg); padding-bottom: .1em; }
+        #top .section a:focus, #top .section paper-icon-button:focus { @apply --accessibility-outline-for-dark-bg; }
 
-/* Collections Page */
-  :host([small-screen]) #collections {
-    @apply --layout-vertical;
-  }
-  :host([small-screen]) #collections div {
-    border-left: none;
-  }
-
-  #collections {
-    margin-bottom: 2em;
-  }
-  #collections div {
-    border-left: 1px solid var(--uvalib-secondary-md-grey);
-    padding-left: 2em;
-    padding-right: 2em;
-  }
-  #collections div:first-child {
-    border-left: none;
-  }
-  #collections p {
-    font-style: italic;
-  }
-
-  .aldCollectionTable td {
-    border-bottom: 1px solid var(--color-medium-gray);
-  }
-
-  .aldCollectionTable th, .aldCollectionTable td {
-    text-align: center;
-  }
-  .aldCollectionTable th[scope="row"]  {
-    text-align: left;
-    border-bottom: 1px solid var(--color-medium-gray);
-  }
-  .aldCollectionTable tr:last-child th, .aldCollectionTable tr:last-child td {
-    border-bottom: none;
-  }
-
-
-
-  /*END*/
-
-        /* =WordPress Core
-        -------------------------------------------------------------- */
-        .alignnone {
-            margin: 5px 20px 20px 0;
+        paper-button {
+          border: 1px solid var(--uvalib-secondary-md-grey);
+          border-radius: 5px;
+          --paper-button-flat-keyboard-focus: { @apply --accessibility-outline-for-dark-bg; }
         }
+        iron-collapse:focus { @apply --accessibility-outline-for-dark-bg; }
+        paper-button:hover { text-decoration: underline; }
 
-        .aligncenter,
-        div.aligncenter {
-            display: block;
-            margin: 5px auto 5px auto;
-        }
+        paper-button[disabled], paper-button[toggles][active] { background: var(--uvalib-orange-200); color: var(--uvalib-black); }
+        paper-button:focus { outline: var(--color-accessibility-outline-dark-bg) dotted 3px; }
 
-        .alignright {
-            float:right;
-            margin: 5px 0 20px 20px;
-        }
-
-        .alignleft {
-            float: left;
-            margin: 5px 20px 20px 0;
-        }
-
-        a img.alignright {
-            float: right;
-            margin: 5px 0 20px 20px;
-        }
-
-        a img.alignnone {
-            margin: 5px 20px 20px 0;
-        }
-
-        a img.alignleft {
-            float: left;
-            margin: 5px 20px 20px 0;
-        }
-
-        a img.aligncenter {
-            display: block;
-            margin-left: auto;
-            margin-right: auto
-        }
-
-        .wp-caption {
-            background: #fff;
-            border: 1px solid #f0f0f0;
-            max-width: 96%; /* Image does not overflow the content area */
-            padding: 5px 3px 10px;
-            text-align: center;
-        }
-
-        .wp-caption.alignnone {
-            margin: 5px 20px 20px 0;
-        }
-
-        .wp-caption.alignleft {
-            margin: 5px 20px 20px 0;
-        }
-
-        .wp-caption.alignright {
-            margin: 5px 0 20px 20px;
-        }
-
-        .wp-caption img {
-            border: 0 none;
-            height: auto;
-            margin: 0;
-            max-width: 98.5%;
-            padding: 0;
-            width: auto;
-        }
-
-        .wp-caption p.wp-caption-text {
-            font-size: 13px;
-            line-height: 17px;
-            margin: 0;
-            padding: 0 4px 5px;
-        }
-
-        /* Text meant only for screen readers. */
+        /* Text meant only for screen readers. Mostly used in the Search Bar and Header components */
         .screen-reader-text {
           clip: rect(1px, 1px, 1px, 1px);
           position: absolute !important;
@@ -546,10 +248,88 @@
           text-decoration: none;
           top: 5px;
           width: auto;
-          z-index: 100000; /* Above WP toolbar. */
+          z-index: 100000;
         }
+/*END*/
 
-        /* Hack to get tables working properl in IE11 */
+/*********************************************/
+/*          PAGE SPECIFIC CSS                */
+/*********************************************/
+
+/* ASK A LIBRARIAN */
+        /* .mobile-small-min { min-width: 320px; max-width: 500px;  } */
+        .askalibrarian-container {
+          margin-left: var(--uvalib-spacing-unit);
+          margin-right: var(--uvalib-spacing-unit);
+          margin-bottom: var(--uvalib-spacing-unit);
+        }
+/* END */
+
+/* HOMEPAGE CARDS */
+        .events .event { padding-bottom: var(--uvalib-spacing-unit); }
+        .events .category, #news-content .title { font-family: var(--uva-font-family); font-weight: var(--font-weight-demi); }
+        #news-content .preview { margin-top: calc(var(--uvalib-spacing-unit)/-1.25); }
+/*END*/
+
+/* ABOUT US PAGE */
+        :host([small-screen]) figure#profileImage { margin: 2em auto; text-align: center; }
+        :host([small-screen]) #profileImage figcaption { margin-top: 1em; width: 300px; }
+        :host([medium-screen]) figure#profileImage { margin-top: 2em; text-align: center; }
+        :host([medium-screen]) #profileImage figcaption { margin-top: 1em; width: 300px; }
+        :host([large-screen]) figure#profileImage { margin: 2em 0 2em 4em; text-align: center; }
+        :host([large-screen]) #profileImage figcaption { margin-top: 1em; width: 300px; }
+
+        :host([small-screen]) #profile { margin-bottom: 2em; }
+        :host([medium-screen]) #profile { margin: 2em; }
+        :host([large-screen]) #profile { margin: 2em 4em 2em 6em; min-width: 300px; }
+
+        img.aboutSig { width: 200px; }
+/*END*/
+
+/* RENOVATION PAGES */
+        #renovation-timeline { margin: 0; }
+        #renovation-timeline tr:nth-child(even) { background-color: var(--uvalib-secondary-lt-grey); }
+        #renovation-timeline span.completed::before {
+          content: "✔ ";
+          color: var(--uvalib-main-rotunda-orange);
+        }
+        #renovation-timeline span.completed::after { content: " (complete)"; }
+        #renovation-timeline td, table th {
+          padding: 1.5em .5em .5em .5em;
+          border-bottom: 4px solid var(--uvalib-main-white);
+          background: none;
+        }
+        #renovation-timeline td.activeYear { border-bottom: 4px solid var(--uvalib-secondary-blue); }
+/*END*/
+
+/* COLLECTIONS PAGE */
+        :host([small-screen]) #collections { @apply --layout-vertical; }
+        :host([small-screen]) #collections div { border-left: none; }
+
+        #collections { margin-bottom: 2em; }
+        #collections div {
+          border-left: 1px solid var(--uvalib-secondary-md-grey);
+          padding-left: 2em;
+          padding-right: 2em;
+        }
+        #collections div:first-child { border-left: none; }
+        #collections p { font-style: italic; }
+
+        .aldCollectionTable td { border-bottom: 1px solid var(--color-medium-gray); }
+
+        .aldCollectionTable th, .aldCollectionTable td { text-align: center; }
+        .aldCollectionTable th[scope="row"]  {
+          text-align: left;
+          border-bottom: 1px solid var(--color-medium-gray);
+        }
+        .aldCollectionTable tr:last-child th, .aldCollectionTable tr:last-child td { border-bottom: none; }
+/*END*/
+
+/*********************************************/
+/*              BROWSER HACKS                */
+/*********************************************/
+
+/* Hack to get tables working properl in IE11 */
         .table { display: table; }
         .thead { display: table-header-group; }
         .tbody { display: table-row-group; }
@@ -557,6 +337,8 @@
         .td, .th { display: table-cell; }
         .colgroup {display: table-column-group;}
         .col {display: table-column;}
+/*END*/
+
       </style>
     </custom-style>
   </template>
