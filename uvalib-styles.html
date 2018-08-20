@@ -252,6 +252,61 @@
         }
 /*END*/
 
+/* Styling Headers with slanted borders */
+
+/*Code taken from UVA main - need to clean up and standardize*/
+        .header-wrapper {
+            background: url(https://static.lib.virginia.edu/files/hp-grayhorizline.png) repeat-x center center;
+            background-size: 5px auto;
+            clear: both;
+            margin-top: 48px;
+            margin-top: 3rem;
+            padding: 0 30px;
+            padding: 0 1.875rem;
+            margin-bottom: 48px;
+            margin-bottom: 3rem;
+        }
+
+        .header-wrapper .header-wrapper-bg {
+            background: #FFF;
+            border-left: #979797 solid 1px;
+            border-right: #979797 solid 1px;
+            display: inline-block;
+            left: 50%;
+            position: relative;
+            -moz-transform: skew(-20deg) translateX(-50%);
+            -ms-transform: skew(-20deg) translateX(-50%);
+            -o-transform: skew(-20deg) translateX(-50%);
+            -webkit-transform: skew(-20deg) translateX(-50%);
+            transform: skew(-20deg) translateX(-50%);
+        }
+
+        .header-wrapper .header-wrapper-bg h1, .header-wrapper .header-wrapper-bg h2, .header-wrapper .header-wrapper-bg h3 {
+            margin-top: calc(var(--uvalib-spacing-unit)/8);
+            margin-bottom: calc(var(--uvalib-spacing-unit)/8);
+            margin-left: auto;
+            margin-right: auto;
+            /* color: #232D4B; */
+            text-align: center;
+            /* text-transform: uppercase; */
+            /* font-size: 26px;
+            font-size: 1.625rem; */
+            /* letter-spacing: 3.9px; */
+            line-height: 1;
+            padding: 5px 30px;
+            -moz-transform: skew(20deg);
+            -ms-transform: skew(20deg);
+            -o-transform: skew(20deg);
+            -webkit-transform: skew(20deg);
+            transform: skew(20deg);
+        }
+        /* .header-wrapper .header-wrapper-bg h3 {
+            margin-top: calc(var(--uvalib-spacing-unit)/2);
+          } */
+/*END*/
+
+/*END*/
+
 /*********************************************/
 /*          PAGE SPECIFIC CSS                */
 /*********************************************/
@@ -284,6 +339,13 @@
         :host([large-screen]) #profile { margin: 2em 4em 2em 6em; min-width: 300px; }
 
         img.aboutSig { width: 200px; }
+/*END*/
+
+/* LIBRARY SPECIFIC PAGES (e.g. RMC) */
+
+        #library-template dt { font-weight: var(--font-weight-medium); }
+        #library-template dd { margin-left: var(--uvalib-spacing-unit); margin-bottom: calc(var(--uvalib-spacing-unit)*2); }
+
 /*END*/
 
 /* RENOVATION PAGES */
