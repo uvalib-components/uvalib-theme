@@ -268,9 +268,9 @@
         }
 
         .header-wrapper .header-wrapper-bg {
-            background: #FFF;
-            border-left: #979797 solid 1px;
-            border-right: #979797 solid 1px;
+            background: var(--uvalib-main-white);
+            border-left: var(--uvalib-grey-500) solid 1px;
+            border-right: var(--uvalib-grey-500) solid 1px;
             display: inline-block;
             left: 50%;
             position: relative;
@@ -346,6 +346,7 @@
 /*END*/
 
 /* LIBRARY SPECIFIC PAGES (e.g. RMC) */
+        #library-template .lt-thumbnail figure { border: 1px solid var(--uvalib-grey-500); }
         #library-template .lead-image figure { margin: 0; }
         #library-template paper-button { background-color: var(--uvalib-main-rotunda-orange); color: var(--uvalib-main-white); }
         #library-template dt { font-weight: var(--font-weight-medium); }
