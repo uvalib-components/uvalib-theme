@@ -154,6 +154,10 @@
       _not(b1){
         return !(b1);
       }
+      _first(a){
+        if (Array.isArray(a) && a.length>0) return a[0];
+        else return null;
+      }
     }
 
     window.customElements.define(UvalibUiElement.is, UvalibUiElement);
