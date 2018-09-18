@@ -191,8 +191,12 @@
 
 /* ACCESSIBILITY */
         a:focus { @apply --accessibility-outline-for-light-bg; }
-        a:hover { text-decoration: underline; }
+        /* a:hover { text-decoration: underline; } */
         nav a:focus { @apply --accessibility-outline-for-dark-bg; }
+
+        a span { text-decoration: underline; color: var(--uvalib-link-color); }
+        a span:hover { text-decoration: none; }
+        a span:visited { color: var(--uvalib-link-color-visited); }
 
         #top #logo a:focus { @apply --accessibility-outline-for-dark-bg; }
         #top #logo a:hover { border-bottom: 1px solid var(--color-accessibility-outline-dark-bg); padding-bottom: .1em; }
