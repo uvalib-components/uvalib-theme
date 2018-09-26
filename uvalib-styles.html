@@ -46,16 +46,25 @@
         h2 { @apply --h2; margin-bottom: calc(var(--uvalib-spacing-unit)/8); }
         h3 { @apply --h3; }
         h4 { @apply --h4; }
-        h5 { @apply --font-body2; }
-        h6 { @apply --font-title; }
+        h5 { @apply --h5; }
+        h6 { @apply --h6; }
+
+        .all-cap { text-transform: uppercase; }
 
         strong { font-family: 'franklin-gothic-urw','arial',sans-serif; font-weight: 700; }
 
         blockquote {
           margin: 20px 0;
-          padding-left: 1.5rem;
-          border-left: 4px solid var(--color-accent-color);
           text-transform: none;
+          font-style: italic;
+          line-height: 1.25;
+        }
+        blockquote p {
+          font-size: calc(var(--uvalib-main-font-size-unit)*1.15);
+        }
+        blockquote footer {
+          text-align: right;
+          font-size: calc(var(--uvalib-main-font-size-unit)/1.12);
         }
 
         ul, ol {
