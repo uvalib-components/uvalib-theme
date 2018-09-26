@@ -96,34 +96,47 @@
         /*text-transform: capitalize; Not using, handling with CMS manual entries*/
       }
       --h2: {
-        font-family: var(--uva-font-family-condensed);
-        font-weight: var(--font-weight-demi);
-        font-size: calc(var(--uvalib-main-font-size-unit)*3);
-        line-height: calc(var(--uvalib-main-font-size-unit)*3);
-        /* text-transform: uppercase; Not using to improve cognitive recognition*/
+        font-family: var(--uva-font-family);
+        font-weight: var(--font-weight-medium);
+        font-size: calc(var(--uvalib-main-font-size-unit)*2);
+        line-height: calc(var(--uvalib-main-font-size-unit)*2);
         color: var(--uvalib-main-jefferson-blue);
       }
       --h3: {
         font-family: var(--uva-font-family);
-        font-weight: var(--font-weight-demi);
-        font-size: calc(var(--uvalib-main-font-size-unit)*2);
-        line-height: calc(var(--uvalib-main-font-size-unit)*2);
+        font-weight: var(--font-weight-medium);
+        font-size: calc(var(--uvalib-main-font-size-unit)*1.5);
+        line-height: calc(var(--uvalib-main-font-size-unit)*1.5);
         /* text-transform: uppercase; Not using to improve cognitive recognition*/
         color: var(--uvalib-main-jefferson-blue);
       }
       --h3-with-flair: {
         @apply --uva-font-decorative;
-        font-size: calc(var(--uvalib-main-font-size-unit)*2);
-        line-height: calc(var(--uvalib-main-font-size-unit)*2);
+        font-size: calc(var(--uvalib-main-font-size-unit)*1.5);
+        line-height: calc(var(--uvalib-main-font-size-unit)*1.5);
         color: var(--uvalib-main-jefferson-blue);
       }
       --h4: {
         font-family: var(--uva-font-family);
-        font-weight: var(--font-weight-demi);
-        font-size: calc(var(--uvalib-main-font-size-unit)*1.675);
-        line-height: calc(var(--uvalib-main-font-size-unit)*1.675);
+        font-weight: var(--font-weight-medium);
+        font-size: calc(var(--uvalib-main-font-size-unit)*1.25);
+        line-height: calc(var(--uvalib-main-font-size-unit)*1.25);
         /*text-transform: capitalize; Not using, handling with CMS manual entries*/
         color: var(--uvalib-main-jefferson-blue);
+      }
+      --h5: {
+        font-family: var(--uva-font-family);
+        font-weight: var(--font-weight-medium);
+        font-size: var(--uvalib-main-font-size-unit);
+        line-height: var(--uvalib-main-font-size-unit);
+        color: var(--uvalib-main-jefferson-blue);
+      }
+      --h6: {
+        font-family: var(--uva-font-family);
+        font-weight: var(--font-weight-book);
+        font-size: var(--uvalib-main-font-size-unit);
+        line-height: var(--uvalib-main-font-size-unit);
+        color: var(--uvalib-text-grey);
       }
 
       --font-headline: {
@@ -153,7 +166,7 @@
         color: var(--uvalib-text-grey);
       };
 
-      --uvalib-liame-link-color:  var(--uvalib-link-color); 
+      --uvalib-liame-link-color:  var(--uvalib-link-color);
 
       --link-hover: {
         text-decoration: underline;
