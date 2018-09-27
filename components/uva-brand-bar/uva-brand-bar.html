@@ -1,0 +1,50 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../uva-theme/uva-theme.html">
+<link rel="import" href="../app-layout/app-header/app-header.html">
+<link rel="import" href="../app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../uva-logos/uva-logos.html">
+
+<dom-module id="uva-brand-bar">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      app-header {
+        background-color: var(--color-jefferson-blue);
+      }
+      uva-logos {
+        height: 21.77px;
+      }
+    </style>
+    <app-header>
+      <app-toolbar>
+        <uva-logos reverse two-color></uva-logos>
+      </app-toolbar>
+    </app-header>
+  </template>
+
+  <script>
+    /**
+     * `uva-brand-bar`
+     * https://brand.virginia.edu/tools-templates/web-design/design-elements/brand-bar-search
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class UvaBrandBar extends Polymer.Element {
+      static get is() { return 'uva-brand-bar'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'uva-brand-bar'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(UvaBrandBar.is, UvaBrandBar);
+  </script>
+</dom-module>

@@ -1,0 +1,26 @@
+{
+  "name": "uvalib-directory",
+  "main": "uvalib-directory.html",
+  "dependencies": {
+    "uvalib-elements": "uvalib-components/uvalib-elements#master",
+    "vaadin-grid": "vaadin/vaadin-grid#^5.0.4"
+  },
+  "resolutions": {
+    "polymer": "^2.5.0",
+    "webcomponentsjs": "^1.1.1",
+    "lodash": "^4.17.5",
+    "vaadin-element-mixin": "^2.0.0",
+    "vaadin-usage-statistics": "^2.0.1",
+    "vaadin-development-mode-detector": "^2.0.0"
+  },
+  "homepage": "https://github.com/uvalib-components/uvalib-directory",
+  "_release": "d2d9da11b6",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "d2d9da11b6d7b54c0cfc5a49998ded8b581f0197"
+  },
+  "_source": "https://github.com/uvalib-components/uvalib-directory.git",
+  "_target": "master",
+  "_originalSource": "uvalib-components/uvalib-directory"
+}

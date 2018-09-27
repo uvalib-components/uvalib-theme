@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>uvalib-button demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script>
+      Polymer = {dom: 'shadow'};
+
+      (function() {
+        if ('registerElement' in document
+            && 'import' in document.createElement('link')
+            && 'content' in document.createElement('template')) {
+          // platform is good!
+        } else {
+          document.write( '<script src="../../webcomponentsjs/webcomponents-lite.min.js">\x3C/script>')
+        }
+      })();
+    </script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+    </style>
+  </head>
+  <body>
+
+    <div class="vertical-section-container centered">
+      <h3>Basic uvalib-button Demo</h3>
+      <demo-snippet>
+        <template>
+          <style is="custom-style">
+            .simple {
+              --uvalib-button: {
+                text-transform: none;
+                font-family: SofiaPro;
+                font-size: 14px;
+                font-weight: bold;
+                font-style: normal;
+                font-stretch: normal;
+                line-height: 1.14;
+                letter-spacing: 10px;
+                color: #fd7d1c;
+              };
+            }
+          </style>
+          <uvalib-button class="simple">simple</uvalib-button>
+          <uvalib-button raised>raised</uvalib-button>
+          <uvalib-button toggles raised>toggles</uvalib-button>
+          <uvalib-button disabled>disabled</uvalib-button>
+        </template>
+      </demo-snippet>
+
+      <h3>uvalib-button with icon Demo</h3>
+      <demo-snippet>
+        <template>
+          <uvalib-button icon="bars"></uvalib-button>
+          <uvalib-button icon="search" raised>with text</uvalib-button>
+          <uvalib-button icon="user">another</uvalib-button>
+          <uvalib-button icon="comments" reverse>reverse</uvalib-button>
+        </template>
+      </demo-snippet>
+
+      <h3>uvalib-button with link Demo</h3>
+      <demo-snippet>
+        <template>
+          <style is="custom-style">
+            .custom {
+              color: var(--color-primary-orange);
+            }
+          </style>
+          <uvalib-button href="https://www.library.virginia.edu">UVA Library Homepage</uvalib-button>
+          <uvalib-button href="https://www.library.virginia.edu" class="custom" icon="search">Custom</uvalib-button>
+          <uvalib-button href="https://www.library.virginia.edu" class="custom" icon="comments"></uvalib-button>
+        </template>
+      </demo-snippet>
+
+      <h3>Custom uvalib-button with icon Demo</h3>
+      <demo-snippet>
+        <template>
+          <style is="custom-style">
+            .small {
+              font-size: 10px;
+              --uvalib-button-icon-width: 10px;
+              --uvalib-button-icon-height: 10px;
+            }
+            .large {
+              font-size: 30px;
+              --uvalib-button-icon-width: 30px;
+              --uvalib-button-icon-height: 30px;
+            }
+          </style>
+          <uvalib-button icon="bars" class="small">Small</uvalib-button><br />
+          <uvalib-button icon="search" raised style="color: blue; height: 33px;">Blue</uvalib-button><br />
+          <uvalib-button icon="user" class="large">Large</uvalib-button><br />
+          <uvalib-button icon="comments" reverse>reverse</uvalib-button><br />
+        </template>
+      </demo-snippet>
+
+    </div>
+
+  </body>
+</html>

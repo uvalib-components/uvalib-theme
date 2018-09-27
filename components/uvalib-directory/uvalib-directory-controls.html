@@ -1,0 +1,142 @@
+<link rel="import" href="../uvalib-theme/uvalib-ui-element.html">
+<link rel="import" href="../uvalib-theme/uvalib-theme.html">
+<link rel="import" href="../paper-button/paper-button.html" >
+<link rel="import" href="../uvalib-search-box/uvalib-simple-search-box.html">
+<link rel="import" href="../paper-toggle-button/paper-toggle-button.html">
+
+<dom-module id="uvalib-directory-controls">
+
+  <template>
+    <custom-style>
+      <style include="uvalib-theme">
+        :host {
+          display: block;
+          padding-bottom: 20px;
+        }
+        [hidden] {
+          display: none;
+        }
+        paper-toggle-button.orange {
+          --paper-toggle-button-checked-bar-color:  var(--uvalib-main-rotunda-orange);
+          --paper-toggle-button-checked-button-color:  var(--uvalib-main-rotunda-orange);
+          --paper-toggle-button-checked-ink-color: var(--uvalib-main-rotunda-orange);
+        }
+        span[staff-text] {
+          @apply --h4;
+          font-size: var(--uvalib-main-font-size-unit);
+          color: var(--uvalib-main-jefferson-blue);
+          margin-top: calc(var(--uvalib-spacing-unit)/1.6);
+          display: inline-block;
+          text-transform: uppercase;
+          font-style: italic;
+        }
+        #login-buttons {
+          float: right;
+        }
+        uvalib-simple-search-box {
+          --uvalib-search-box-border: 2px solid var(--uvalib-secondary-lt-grey);
+          --uvalib-background-search: var(--uvalib-main-jefferson-blue)
+        }
+      </style>
+    </custom-style>
+
+
+      <template is="dom-if" if="[[staffView]]" restamp>
+        <div id="login-buttons">
+          <paper-button on-tap="_signIn" hidden$="[[signedIn]]" raised>Staff Login</paper-button>
+          <paper-button on-tap="_signOut" hidden$="[[!signedIn]]" raised>Sign Out</paper-button>
+        </div>
+      </template>
+      <template is="dom-if" if="[[!smallScreen]]" restamp>
+        <uvalib-simple-search-box label="[[searchPlaceholder]]" placeholder="[[searchPlaceholder]]" value="{{query}}"></uvalib-simple-search-box>
+        <template is="dom-if" if="[[staffView]]" restamp>
+          <paper-toggle-button id="staffSelect" checked="{{staffViewEnabled}}" hidden$="[[!staffmember]]" class="orange">
+            <template is="dom-if" if="[[staffViewEnabled]]"><span class"staff-text">Staff View</span></template>
+            <template is="dom-if" if="[[!staffViewEnabled]]">Public View</template>
+          </paper-toggle-button>
+        </template>
+      </template>
+      <template is="dom-if" if="[[smallScreen]]" restamp>
+        <template is="dom-if" if="[[staffView]]" restamp>
+          <paper-toggle-button id="staffSelect" checked="{{staffViewEnabled}}" hidden$="[[!staffmember]]" class="orange">
+            <template is="dom-if" if="[[staffViewEnabled]]"><span class"staff-text">Staff View</span></template>
+            <template is="dom-if" if="[[!staffViewEnabled]]">Public View</template>
+          </paper-toggle-button>
+        </template>
+        <div class="uva-margin-top">
+          <uvalib-simple-search-box value="{{query}}" label="[[searchPlaceholder]]" placeholder="[[searchPlaceholder]]"></uvalib-simple-search-box>
+        </div>
+      </template>
+
+  </template>
+
+  <script>
+    let uvalibDirectoryControlsTemplate;
+
+    /**
+     * `uvalib-directory-controls`
+     * UVA Library directory controls conponent
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/directory.html
+     */
+    class UvalibDirectoryControls extends UvalibUiElement {
+      static get is() { return 'uvalib-directory-controls'; }
+      static get properties() {
+        return Object.assign(super.properties,
+            {
+              query: {
+                type:String,
+                notify: true
+              },
+              staffView: {
+                type: Boolean,
+                value: false
+              },
+              signedIn: {
+                type:Boolean,
+                value: false
+              },
+              staffmember: {
+                type: Boolean,
+                value: false,
+                observer: "_staffmemberChange"
+              },
+              staffViewEnabled: {
+                type: Boolean,
+                value: false,
+                notify: true
+              },
+              searchPlaceholder: {
+                type: String,
+                value: "Search the directory"
+              }
+            });
+      }
+      static get template() {
+        if (!uvalibDirectoryControlsTemplate) {
+            // Retrieve this element's dom-module template
+            uvalibDirectoryControlsTemplate = Polymer.DomModule.import(this.is, 'template');
+            // Clone the contents of the superclass template
+            let superTemplateContents = UvalibUiElement.template.content.cloneNode(true);
+            // Insert the superclass contents
+            uvalibDirectoryControlsTemplate.content.insertBefore(superTemplateContents, null);
+        }
+        return uvalibDirectoryControlsTemplate;
+      }
+
+      _staffmemberChange() {}
+
+      _signIn() {
+        this.dispatchEvent(new CustomEvent('signin', {detail: {}}));
+      }
+      _signOut() {
+        this.dispatchEvent(new CustomEvent('signout', {detail: {}}));
+      }
+
+    }
+
+    window.customElements.define(UvalibDirectoryControls.is, UvalibDirectoryControls);
+  </script>
+</dom-module>

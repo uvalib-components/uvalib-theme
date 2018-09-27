@@ -1,0 +1,20 @@
+{
+  "name": "uvalib-chat",
+  "main": "uvalib-chat.html",
+  "dependencies": {
+    "uvalib-elements": "uvalib-components/uvalib-elements#master"
+  },
+  "resolutions": {
+    "lodash": "^4.17.5"
+  },
+  "homepage": "https://github.com/uvalib-components/uvalib-chat",
+  "_release": "d341fe7ca5",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "d341fe7ca56ce7c19e923a6f438b0f7ac6b576b0"
+  },
+  "_source": "https://github.com/uvalib-components/uvalib-chat.git",
+  "_target": "master",
+  "_originalSource": "uvalib-components/uvalib-chat"
+}

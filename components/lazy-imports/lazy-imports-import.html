@@ -1,0 +1,102 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<script>
+  (function() {
+    'use strict';
+
+    var __importPromises = new Map();
+
+    /**
+     * Calls `Polymer.Base.importHref` for each `<link rel="lazy-import"` in
+     * the `dom-module` where the calling element is defined, where the
+     * "group" attribute matches the provided "group". If no group is
+     * provided, Lazy HTML Imports with no group will be imported.
+     *
+     * `importHref` is only called once per globally-unique URL.
+     *
+     * @param {HTMLElement} fromElement The element to search for lazy imports
+     *                                  within.
+     * @param {string=} group The group attribute to filter on.
+     * @param {object=} options Accepts a retry flag which will force a
+     *                          retry of a previously failed import.
+     * @return {Promise}
+     */
+    Polymer.__importLazyGroup = function(fromElement, group, options) {
+      var importStatuses = {loaded: [], failed: []};
+      var groupAttribute = group ? '[group="' + group + '"]' : ':not([group])';
+      var query =
+        'link' + groupAttribute + '[rel=\'lazy-import\'][href]:not([href=\'\'])';
+
+      var links =
+        Polymer.DomModule.import(fromElement.localName).querySelectorAll(query);
+
+      if (links.length < 1) {
+        return Promise.reject(
+          new Error('No imports found in the specified group.'));
+      }
+
+      var requestPromises = Array.from(links).map(function(link) {
+        var promise;
+        var href = link.getAttribute('href');
+        var resolvedUrl = fromElement.resolveUrl(href);
+
+        var requestImport = function() {
+          return new Promise(function(resolve, reject) {
+            var importHref = Polymer.importHref || fromElement.importHref;
+            importHref(resolvedUrl, resolve, reject);
+          });
+        };
+
+        if (__importPromises.has(resolvedUrl)) {
+          promise = __importPromises.get(resolvedUrl);
+          if (options && options.retry) {
+            promise = promise.catch(requestImport);
+          }
+        } else {
+          promise = requestImport();
+        }
+
+        __importPromises.set(resolvedUrl, promise);
+
+        return promise.then(
+          function onLoad() {
+            return {loaded: href};
+          },
+          function onFail() {
+            return {failed: href};
+          }
+        );
+      });
+
+      return Promise.all(requestPromises).then(function(importRequests) {
+        importStatuses = importRequests.reduce(function(requests, nextRequest) {
+          if (nextRequest.loaded) {
+            requests.loaded.push(nextRequest.loaded);
+          }
+
+          if (nextRequest.failed) {
+            requests.failed.push(nextRequest.failed);
+          }
+
+          return requests;
+        }, importStatuses);
+
+        if (importStatuses.failed.length > 0) {
+          const error = new Error('One or more imports failed to load.');
+          error.importStatuses = importStatuses;
+          throw error;
+        } else {
+          return importStatuses;
+        }
+      });
+    };
+  })();
+</script>

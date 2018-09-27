@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>uvalib-elements demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="//static.lib.virginia.edu/js/controllers/webcomponents.js"></script>
+    <script>
+      Polymer = {dom: 'shadow'};
+
+      (function() {
+        if ('registerElement' in document
+            && 'import' in document.createElement('link')
+            && 'content' in document.createElement('template')) {
+          // platform is good!
+        } else {
+          document.write( '<script src="../../webcomponentsjs/webcomponents-lite.min.js">\x3C/script>')
+        }
+      })();
+    </script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+    <link rel="import" href="../../uvalib-theme/typekit.html">
+    <link rel="import" href="../../uvalib-theme/uvalib-theme.html">
+    <link rel="import" href="../paper-button.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+    </style>
+  </head>
+  <body>
+
+    <div class="vertical-section-container centered">
+      <h3>Basic paper-button Demo</h3>
+      <demo-snippet>
+        <template>
+          <style is="custom-style">
+            .simple {
+              --paper-button: {
+                text-transform: none;
+                font-family: SofiaPro;
+                font-size: 14px;
+                font-weight: bold;
+                font-style: normal;
+                font-stretch: normal;
+                line-height: 1.14;
+                letter-spacing: 10px;
+                color: #fd7d1c;
+              };
+            }
+          </style>
+          <paper-button class="simple">simple</paper-button>
+          <paper-button raised>raised</paper-button>
+          <paper-button toggles raised>toggles</paper-button>
+          <paper-button disabled>disabled</paper-button>
+        </template>
+      </demo-snippet>
+
+      <h3>paper-button with icon Demo</h3>
+      <demo-snippet>
+        <template>
+          <paper-button icon="bars"></paper-button>
+          <paper-button icon="search" raised>with text</paper-button>
+          <paper-button icon="user">another</paper-button>
+          <paper-button icon="comments" reverse>reverse</paper-button>
+        </template>
+      </demo-snippet>
+
+      <h3>paper-button with link Demo</h3>
+      <demo-snippet>
+        <template>
+          <style is="custom-style">
+            .custom {
+              color: var(--color-primary-orange);
+            }
+          </style>
+          <paper-button href="https://www.library.virginia.edu">UVA Library Homepage</paper-button>
+          <paper-button href="https://www.library.virginia.edu" class="custom" icon="search">Custom</paper-button>
+          <paper-button href="https://www.library.virginia.edu" class="custom" icon="comments"></paper-button>
+        </template>
+      </demo-snippet>
+
+      <h3>Custom paper-button with icon Demo</h3>
+      <demo-snippet>
+        <template>
+          <style is="custom-style">
+            .small {
+              font-size: 10px;
+              --paper-button-icon-width: 10px;
+              --paper-button-icon-height: 10px;
+            }
+            .large {
+              font-size: 30px;
+              --paper-button-icon-width: 30px;
+              --paper-button-icon-height: 30px;
+            }
+          </style>
+          <paper-button icon="bars" class="small">Small</paper-button><br />
+          <paper-button icon="search" raised style="color: blue; height: 33px;">Blue</paper-button><br />
+          <paper-button icon="user" class="large">Large</paper-button><br />
+          <paper-button icon="comments" reverse>reverse</paper-button><br />
+        </template>
+      </demo-snippet>
+
+    </div>
+
+  </body>
+</html>

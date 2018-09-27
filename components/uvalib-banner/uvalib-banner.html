@@ -1,0 +1,201 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../uvalib-theme/uvalib-ui-element.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../uvalib-theme/uvalib-theme.html">
+<link rel="import" href="../iron-image/iron-image.html">
+
+<dom-module id="uvalib-banner">
+  <template>
+    <custom-style>
+      <style include="uvalib-theme">
+        :host {
+          position: relative;
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+        iron-image {
+          z-index: 5;
+          position:absolute;
+          top:0;
+          right:0;
+          bottom:0;
+          left:0;
+        }
+        .text-container {
+          z-index: 10;
+          position: absolute;
+        }
+
+        /* container for text and button */
+        .text-container {
+          color: var(--color-white);
+        }
+        :host([small-screen]) .text-container {
+          width: 85%;
+          margin-left: 16px;
+          margin-top: 34px;
+        }
+        :host([medium-screen]) .text-container {
+          width: 70%;
+          margin-left: 30px;
+          margin-top: 35px;
+        }
+        :host([large-screen]) .text-container {
+          width: 70%;
+          margin-left: 40px;
+          margin-top: 35px;
+        }
+
+        /* container for the title */
+        .text-container .textTitle {
+          text-align: left;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          letter-spacing: normal;
+        }
+        :host([small-screen]) .text-container .textTitle {
+          @apply --h1;
+          font-size: calc(var(--uvalib-main-font-size-unit)*1.5);
+          line-height: calc(var(--uvalib-main-font-size-unit)*1.5);
+          font-weight: 500;
+          color: var(--uvalib-white);
+          margin-top: 0;
+          margin-bottom: 8px;
+        }
+        :host([medium-screen]) .text-container .textTitle {
+          @apply --h1;
+          font-size: calc(var(--uvalib-main-font-size-unit)*2.125);
+          line-height: calc(var(--uvalib-main-font-size-unit)*2.125);
+          font-weight: 500;
+          color: var(--uvalib-white);
+          margin-top: 0;
+          margin-bottom: 9px;
+        }
+        :host([large-screen]) .text-container .textTitle {
+          @apply --h1;
+          font-size: calc(var(--uvalib-main-font-size-unit)*3);
+          line-height: calc(var(--uvalib-main-font-size-unit)*3);
+          color: var(--uvalib-white);
+          margin-bottom: 18px;
+        }
+
+        /* container for the body text */
+        :host([tone="Light"]) .text-container .text, :host([tone="Light"]) .text-container .textTitle {
+          color: var(--uvalib-black);
+        }
+        .text-container .text {
+          color: var(--color-white);
+          font-family: var(--font-primary);
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          letter-spacing: normal;
+        }
+        :host([small-screen]) .text-container .text {
+          font-size: var(--uvalib-main-font-size-unit);
+          line-height: var(--uvalib-main-font-size-unit);
+          margin-bottom: 16px;
+        }
+        :host([medium-screen]) .text-container .text {
+          font-size: calc(var(--uvalib-main-font-size-unit)*1.1);
+          line-height: calc(var(--uvalib-main-font-size-unit)*1.1);
+          margin-bottom: 9px;
+        }
+        :host([large-screen]) .text-container .text {
+          font-size: calc(var(--uvalib-main-font-size-unit)*1.1);
+          line-height: 1.33;
+          margin-bottom: 20px;
+        }
+      /* container for the button */
+      paper-button {
+        color: var(--color-white);
+        --paper-button: {
+          background-color: var(--uvalib-blue-700);
+        };
+      }
+      :host([tone="Light"]) paper-button {
+        color: var(--color-white);
+        --paper-button: {
+          background-color: var(--uvalib-blue-500);
+        }
+      }
+      </style>
+    </custom-style>
+    <iron-image position="left" sizing="cover" src$="[[_getImage(obj)]]" alt$="[[_getAlt(obj)]]" style=""></iron-image>
+    <div class="text-container">
+      <div class="textTitle" hidden="[[!obj.displayTitle]]">[[obj.title]]</div>
+      <div class="text" hidden="[[!obj.body]]" inner-h-t-m-l="[[obj.body]]"></div>
+      <a href="[[obj.link]]" tabindex="-1" hidden$="[[!obj.buttonText]]"><paper-button raised$="[[_isDark(obj.tone)]]">[[obj.buttonText]]</paper-button></a>
+    </div>
+  </template>
+
+  <script>
+    /**
+     * `uvalib-banner`
+     *
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class UvalibBanner extends Polymer.Element {
+      static get is() { return 'uvalib-banner'; }
+      static get properties() {
+        return {
+          largeScreen: {
+            type:Boolean,
+            reflectToAttribute: true
+          },
+          mediumScreen: {
+            type:Boolean,
+            reflectToAttribute: true
+          },
+          smallScreen: {
+            type:Boolean,
+            reflectToAttribute: true
+          },
+          obj: {
+            type:Object,
+            function(){return null;}
+          },
+          tone: {
+            type: String,
+            value: "Dark",
+            reflectToAttribute: true
+          }
+        };
+      }
+      ready() {
+        this.addEventListener('click', this._onClick);
+        super.ready();
+      }
+
+      _getImage(banner) {
+        return (this.largeScreen)? banner.desktopImage.url:
+                              (this.mediumScreen)? banner.tabletImage.url:
+                                              banner.phoneImage.url;
+      }
+      _getAlt(banner) {
+        return (this.largeScreen)? banner.desktopImage.alt:
+                              (this.mediumScreen)? banner.tabletImage.alt:
+                                              banner.phoneImage.alt;
+      }
+      _isDark(tone){
+        return (tone==='Dark');
+      }
+      _onClick(e){
+        e.preventDefault();
+        var link = e.currentTarget.shadowRoot.querySelector('a:not([hidden])')?e.currentTarget.shadowRoot.querySelector('a:not([hidden])').getAttribute('href'):null;
+        this.dispatchEvent(new CustomEvent('uvalib-analytics-event', {bubbles: true, composed: true, detail: {track:['banner','click',this.obj.title,(link)?1:0]}}));
+        if (link)
+        setTimeout(function(){
+          window.location=link;
+        },500);
+      }
+    }
+
+    window.customElements.define(UvalibBanner.is, UvalibBanner);
+  </script>
+</dom-module>

@@ -1,0 +1,11 @@
+{
+  "name": "uvalib-scroll-top",
+  "description": "scroll to top",
+  "main": "uvalib-scroll-top.html",
+  "dependencies": {
+    "uvalib-elements": "uvalib-components/uvalib-elements#master"
+  },
+  "resolutions": {
+    "lodash": "^4.17.4"
+  }
+}

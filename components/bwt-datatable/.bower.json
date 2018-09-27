@@ -1,0 +1,60 @@
+{
+  "name": "bwt-datatable",
+  "authors": [
+    "Blue Water Tracks"
+  ],
+  "description": "Material design data table.",
+  "keywords": [
+    "bwt-datatable",
+    "paper-datatable",
+    "web-components",
+    "polymer",
+    "data-table"
+  ],
+  "main": [
+    "bwt-datatable.html",
+    "bwt-datatable-card.html"
+  ],
+  "license": "http://www.gnu.org/licenses/gpl-3.0.en.html",
+  "homepage": "https://github.com/bluewatertracks/bwt-datatable",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^2.0.0",
+    "paper-material": "^2.0.0",
+    "paper-item": "^2.0.0",
+    "paper-icon-button": "^2.0.1",
+    "paper-checkbox": "^2.0.1",
+    "paper-tooltip": "^2.0.1",
+    "paper-styles": "^2.0.0",
+    "whenever.js": "~0.0.1",
+    "iron-form": "^2.0.1",
+    "iron-media-query": "^2.0.0",
+    "iron-scroll-target-behavior": "^2.0.0",
+    "paper-listbox": "^2.0.0",
+    "paper-dropdown-menu": "^2.0.0",
+    "paper-progress": "^2.0.1"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "paper-card": "PolymerElements/paper-card#~1.0.7",
+    "web-component-tester": "*",
+    "paper-input": "PolymerElements/paper-input#~1.0.18",
+    "paper-header-panel": "^1.1.7",
+    "paper-drawer-panel": "PolymerElements/paper-drawer-panel#^1.0.11",
+    "paper-dialog": "PolymerElements/paper-dialog#^1.1.0",
+    "paper-dialog-scrollable": "PolymerElements/paper-dialog-scrollable#^1.1.5",
+    "google-map": "GoogleWebComponents/google-map#^1.2.0"
+  },
+  "_release": "4fbb9afb36",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "4fbb9afb362e7c446010d41e4fd7b699a9e877d6"
+  },
+  "_source": "https://github.com/uva-components/uva-datatable.git",
+  "_target": "master",
+  "_originalSource": "uva-components/uva-datatable"
+}

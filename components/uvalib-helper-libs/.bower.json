@@ -1,0 +1,57 @@
+{
+  "name": "uvalib-helper-libs",
+  "authors": [
+    "Anonymous <anonymous@example.com>"
+  ],
+  "description": "An element providing a solution to no problem in particular.",
+  "keywords": [
+    "web-component",
+    "polymer",
+    "seed"
+  ],
+  "main": "uvalib-helper-libs.html",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/<USERNAME>/seed-element/",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "uvalib-elements": "uvalib-components/uvalib-elements#master"
+  },
+  "resolutions": {
+    "lodash": "^4.17.4",
+    "app-storage": "1 - 2",
+    "iron-demo-helpers": "^1.0.0",
+    "iron-component-page": "^1.0.0",
+    "polymer": "^1.10.1",
+    "webcomponentsjs": "^0.7.24",
+    "promise-polyfill": "^1.0.0",
+    "web-component-tester": "^5.0.1",
+    "iron-ajax": "1 - 2",
+    "uva-icon-link": "master",
+    "iron-doc-viewer": "^1.0.1",
+    "iron-icon": "1 - 2",
+    "iron-icons": "1 - 2",
+    "iron-flex-layout": "1 - 2",
+    "iron-iconset-svg": "1 - 2",
+    "iron-location": "1 - 2",
+    "iron-list": "^1.0.0",
+    "app-layout": "1 - 2",
+    "paper-icon-button": "1 - 2",
+    "marked-element": "1 - 2",
+    "paper-card": "^1.0.0",
+    "paper-button": "^1.0.0",
+    "test-fixture": "^1.0.0",
+    "uva-elements": "master"
+  },
+  "_release": "64cadb54aa",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "64cadb54aaaf0ec50c775c37235b07b0f4c04893"
+  },
+  "_source": "https://github.com/uvalib-components/uvalib-helper-libs.git",
+  "_target": "master",
+  "_originalSource": "uvalib-components/uvalib-helper-libs"
+}

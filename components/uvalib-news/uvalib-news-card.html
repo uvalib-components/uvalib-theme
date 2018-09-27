@@ -1,0 +1,116 @@
+<link rel="import" href="../uvalib-theme/uvalib-ui-element.html">
+<link rel="import" href="../uvalib-theme/uvalib-theme.html">
+<link rel="import" href="../uva-models/uva-library.html">
+<link rel="import" href="../paper-card/paper-card.html">
+<link rel="import" href="../share-menu/share-menu.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../uva-helper-libs/moment-timezone.html">
+
+<dom-module id="uvalib-news-card">
+  <template>
+    <custom-style>
+      <style include="uvalib-theme iron-flex iron-flex-alignment">
+        :host {
+          display: block;
+        }
+        .card-news-item {
+          padding: var(--uvalib-spacing-unit);
+          max-width: 540px;
+          margin-left: var(--uvalib-spacing-unit);
+          margin-right: var(--uvalib-spacing-unit);
+          margin-top: var(--uvalib-spacing-unit);
+          margin-bottom: var(--uvalib-spacing-unit);
+          border-radius: 5px;
+          @apply --uvalib-news-item;
+          color: var(--uvalib-news-item-color, inherit);
+        }
+        .card-news-source {
+          /* padding-bottom: calc(var(--uvalib-spacing-unit)/3); */
+          text-transform: capitalize;
+          @apply --uvalib-news-source;
+          color: var(--uvalib-news-item-source-color, inherit);
+        }
+        .card-news-title {
+          /* padding-bottom: calc(var(--uvalib-spacing-unit)/3); */
+          font-size: 24px;
+          font-weight: 400;
+          line-height: 1.2;
+          text-transform: capitalize;
+          @apply --uvalib-news-title;
+        }
+        .card-news-copy {
+          @apply --uvalib-news-copy;
+        }
+        .card-news-link, .card-share-link {
+          width: 120px;
+          /* height: 20px; */
+          padding-top: calc(var(--uvalib-spacing-unit)*2);
+          /* padding-bottom: calc(var(--uvalib-spacing-unit)/3); */
+          text-transform: uppercase;
+          @apply --uvalib-news-link;
+        }
+        /* .card-news-link paper-button, .card-share-link paper-button {
+          border: none;
+          padding: 0;
+        } */
+        paper-button {
+          background: white !important;
+          color: var(--uvalib-link-color);
+        }
+        paper-button span:hover {
+          text-decoration: underline;
+        }
+        .card-share-link {
+          text-align: right;
+        }
+        .created {
+          font-style: italic;
+          opacity: .6;
+          padding-top: 10px;
+        }
+      </style>
+    </custom-style>
+
+    <paper-card class="card-news-item">
+      <div class="layout vertical justified">
+        <div class="card-news-source" hidden$="[[!newsItem.source]]">[[newsItem.source]]</div>
+        <div class="card-news-title" hidden$="[[!newsItem.title]]">[[newsItem.title]]</div>
+        <div class="card-news-copy" hidden$="[[!newsItem.body]]" inner-h-t-m-l="[[newsItem.body]]"></div>
+        <div class="horizontal justified layout">
+          <div class="card-news-link" hidden$="[[!newsItem.link]]"><a href="[[newsItem.link]]" tabindex="-1">Read More</a></div>
+          <div class="card-share-link" hidden$="[[!newsItem.link]]"><iron-icon icon="share-alt"></iron-icon>&nbsp;<a on-tap="_share" aria-label="Share"><span>share</span></a></div>
+        </div>
+        <div class="created">Posted on [[_prettyCreated(newsItem.created)]]</div>
+      </div>
+      <share-menu id="shareMenu" title="[[newsItem.title]]" text="[[newsItem.body]" url="[[newsItem.link]]" via="University of Virginia Library" is-image="auto" copy-success-text="Text copied to clipboard!" copy-failed-text="Oh no! Couldn't copy the text automatically."></share-menu>
+    </paper-card>
+
+  </template>
+
+  <script>
+    /**
+     * `uvalib-news-card`
+     * News Card
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class UvalibNewsCard extends UvalibUiElement {
+      static get is() { return 'uvalib-news-card'; }
+      static get properties() {
+        return {
+          newsItem: Object
+        };
+      }
+      _share(){
+        this.shadowRoot.querySelector('#shareMenu').share();
+      }
+      _prettyCreated(created){
+        return moment.unix(created).format('LL');
+      }
+    }
+
+    window.customElements.define(UvalibNewsCard.is, UvalibNewsCard);
+  </script>
+</dom-module>

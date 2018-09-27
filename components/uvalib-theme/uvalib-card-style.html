@@ -1,0 +1,194 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-styles/element-styles/paper-material-styles.html">
+
+<dom-module id="uvalib-card-style">
+  <template>
+    <custom-style>
+      <style include="paper-material-styles">
+        :host { display: block; }
+
+        :host {
+          --paper-card-header-image-text: {
+            color: var(--color-white);
+            background: linear-gradient(to bottom, rgba(0,0,0,0) 10%, rgba(0,0,0,1) 100%);
+            width: 95%;
+            padding-right: 1em;
+          };
+          --paper-card: {
+              margin: var(--uvalib-spacing-unit);
+              max-width: 600px;
+              min-width: 290px;
+          }
+        }
+        :host[dark] { color: var(--color-white); --paper-card-background-color: var(--color-primary-orange); }
+
+        paper-card {
+          --paper-card-header-text: {
+            font-family: var(--uva-font-family);
+            font-weight: var(--font-weight-demi);
+            font-size: calc(var(--uvalib-main-font-size-unit)*1.875);
+            line-height: calc(var(--uvalib-main-font-size-unit)*1.875);
+            text-transform: capitalize;
+            color: var(--uvalib-main-jefferson-blue);
+          }
+          /*many variables added for addressing slotted content*/
+          padding: var(--uvalib-pc-padding, --uvalib-spacing-unit);
+          border: var(--uvalib-pc-border, inherit);
+          border-radius: var(--uvalib-pc-border-radius, inherit);
+          background-color: var(--uvalib-pc-background-color, inherit);
+          border-top: var(--uvalib-pc-border-top, inherit);
+          border-bottom: var(--uvalib-pc-border-bottom, inherit);
+          border-left: var(--uvalib-pc-border-left, inherit);
+          border-right: var(--uvalib-pc-border-right, inherit);
+          /*max-width: var(--uvalib-pc-max-width, inherit);
+          min-width: var(--uvalib-pc-min-width, inherit);*/
+
+          @apply --paper-material-elevation-2;
+        }
+
+        paper-card h2 { margin-top: var(--uvalib-pc-h2-margin-top, inherit); }
+
+        .card-content h3 { @apply --font-title; margin-bottom: 0; }
+
+        paper-card li, paper-card nav li { list-style: none !important; }
+        paper-card ul, paper-card nav ul { padding-left: 0; margin-top: 0; }
+        paper-card ul a { padding-left: 1em; }
+
+        paper-card h3 { padding-left: 1em; }
+        paper-card h3:first-child { margin-top: 0; }
+
+        paper-card paper-button { border: none; }
+
+        .wide { margin: 1em; max-width: calc(100% - 20px); width: 100%; }
+        .medWidth { max-width: 50em; }
+
+        .card-aux-container { @apply --layout-horizontal; @apply --layout-wrap; }
+        .card-aux-container > div { @apply --layout-flex; }
+
+        .text-section, .card-nav, .card-index { min-width: 200px; }
+
+        .card-nav ul {
+          list-style: none;
+          padding-left: 0;
+          margin-top: .75em;
+          margin-bottom: 1.5em;
+        }
+        ul.uvalib-card-list {
+          margin-top: 0;
+          margin-bottom: 0;
+          padding-left: 1.25em;
+        }
+
+        .card-nav div { font-weight: 700; }
+        .card-index { @apply --layout-horizontal; @apply --layout-wrap; }
+        .card-index div {
+          min-width: 50px;
+          min-height: 50px;
+          text-align: center;
+          position: relative;
+          @apply --layout-horizontal;
+          @apply --layout-center-justified;
+          @apply --layout-center;
+        }
+
+        .text-section, .card-nav { padding: 1em; }
+        .card-nav, .card-index { background-color: var(--color-primary-blue); color: var(--color-white); }
+
+        .card-index a { @apply --font-headline; }
+        .card-nav ul li a, .card-index a { color: var(--color-white); }
+
+        .card-content { overflow: hidden; padding: 1em; }
+        .card-content p:first-child { margin-top: 0; }
+
+        .card-actions a { color: var(--color-primary-orange); font-weight: bold; }
+
+        /* clear out padding from general card for special cards*/
+        .full-card { padding: 0; }
+
+/*Addressing Accessibility focus*/
+        .card-nav ul li a:focus, .card-index a:focus { outline: var(--color-accessibility-outline-dark-bg) dotted 3px; }
+
+/* Definition List */
+        .card-content dd {
+          padding-top: 0;
+          padding-bottom: .25em;
+          padding-right: 1em;
+          padding-left: 1em;
+          margin-top: 0;
+          margin-left: 0;
+          margin-bottom: 1.5em;
+        }
+        .card-content dd, .card-content dt { border-left: 2px solid var(--uvalib-grey-500); }
+        .card-content .linkedHeaders dd { border-left: none; }
+
+        .card-content dt a::after, .card-content dd a::after {
+          font-family: uvalib-custom-icons;
+          font-size: calc(var(--uvalib-main-font-size-unit)/1.05);
+          content: "\f0da";
+          padding-left: calc(var(--uvalib-main-font-size-unit)/2);
+          position: relative;
+          top: 0.1em;
+          text-decoration: none !important;
+        }
+        .card-content a:hover::before { text-decoration: none; }
+
+        .card-content dt, .uvalibSidebarList dt a {
+          padding-left: .45em;
+          font-weight: 700;
+          font-size: 1em;
+          margin: 0;
+        }
+
+        .uvalibSidebarList dt a { padding-left: 0; margin-left: -0.4em; }
+        .uvalibSidebarList dt { border-left: none; }
+
+        .basiclyDefined dt, .basiclyDefined dd { border-left: none; }
+        .basiclyDefined dd { border-left: none; padding-left: 1.5em; }
+
+        .noBling dd a::before { content: ""; padding-right: 0; }
+
+/*END*/
+
+/* Styles the background and element size for the sidebar*/
+        /* small screen */
+        :host([small-screen]) aside {
+          margin: var(--uvalib-spacing-unit);
+          width: 100%;
+          padding: 0px;
+          background-color: none;
+        }
+        /* medium screen */
+        :host([medium-screen]) aside {
+          margin-top: calc(var(--uvalib-spacing-unit)/2);
+          padding-top: calc(var(--uvalib-spacing-unit)*2);
+          padding-right: var(--uvalib-spacing-unit);
+          padding-left: var(--uvalib-spacing-unit);
+          background-color: var(--uvalib-sidebar-bg);
+        }
+        /* large screen */
+        :host([large-screen]) aside {
+            padding: calc(var(--uvalib-spacing-unit)*1.875);
+            background-color: var(--uvalib-sidebar-bg);
+        }
+/*END*/
+
+
+/* Homepage Cards */
+        uvalib-events-ui .event { padding: 1em; }
+
+        :host([small-screen]) .shady #exhibit, :host([small-screen]) .shady #support { max-width: none; }
+        :host([medium-screen]) .shady #exhibit, :host([medium-screen]) .shady #support { max-width: 45%; }
+        :host([large-screen]) .shady #exhibit, :host([large-screen]) .shady #support { max-width: 46%; }
+
+/* Libra Landing page cards */
+        :host([small-screen]) #libraETD, :host([small-screen]) #libraData, :host([small-screen]) #libraOpen { max-width: none; }
+        :host([large-screen]) #libraETD, :host([large-screen]) #libraData, :host([large-screen]) #libraOpen { max-width: 45%; }
+
+/* Emergency page cards */
+        paper-card#numbers { padding-left: 1em; padding-right: 1em; padding-bottom: 1em; }
+        #emergencyPage paper-card p, #emergencyPage paper-card li { padding-left: 1em; padding-right: 1em; }
+
+      </style>
+    </custom-style>
+  </template>
+</dom-module>

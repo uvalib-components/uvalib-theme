@@ -1,0 +1,690 @@
+{
+  "schema_version": "1.0.0",
+  "elements": [
+    {
+      "description": "An element providing Library Twitter Link.\n\nExample:\n\n    <uvalib-twitter-link></uvalib-twitter-link>",
+      "summary": "",
+      "path": "uvalib-social-links.html",
+      "properties": [
+        {
+          "name": "href",
+          "type": "string",
+          "description": "URI for the library twitter account.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 49,
+              "column": 8
+            },
+            "end": {
+              "line": 52,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"https://twitter.com/UVaLibrary\""
+        },
+        {
+          "name": "alt",
+          "type": "string",
+          "description": "Alternate text to display if the icon is not found.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 56,
+              "column": 8
+            },
+            "end": {
+              "line": 59,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"Twitter\""
+        }
+      ],
+      "methods": [],
+      "staticMethods": [],
+      "demos": [
+        {
+          "url": "demo/index.html",
+          "description": ""
+        }
+      ],
+      "metadata": {},
+      "sourceRange": {
+        "start": {
+          "line": 42,
+          "column": 12
+        },
+        "end": {
+          "line": 61,
+          "column": 5
+        }
+      },
+      "privacy": "public",
+      "superclass": "HTMLElement",
+      "attributes": [
+        {
+          "name": "href",
+          "description": "URI for the library twitter account.",
+          "sourceRange": {
+            "start": {
+              "line": 49,
+              "column": 8
+            },
+            "end": {
+              "line": 52,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
+          "name": "alt",
+          "description": "Alternate text to display if the icon is not found.",
+          "sourceRange": {
+            "start": {
+              "line": 56,
+              "column": 8
+            },
+            "end": {
+              "line": 59,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        }
+      ],
+      "events": [],
+      "styling": {
+        "cssVariables": [],
+        "selectors": []
+      },
+      "slots": [],
+      "tagname": "uvalib-twitter-link"
+    },
+    {
+      "description": "An element providing a Library Facebook Link.\n\nExample:\n\n    <uvalib-facebook-link></uvalib-facebook-link>",
+      "summary": "",
+      "path": "uvalib-social-links.html",
+      "properties": [
+        {
+          "name": "href",
+          "type": "string",
+          "description": "URI for the library facebook account.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 109,
+              "column": 8
+            },
+            "end": {
+              "line": 112,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"https://www.facebook.com/University-of-Virginia-Library-136530559704906/\""
+        },
+        {
+          "name": "alt",
+          "type": "string",
+          "description": "Alternate text to display if the icon is not found.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 116,
+              "column": 8
+            },
+            "end": {
+              "line": 119,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"Facebook\""
+        }
+      ],
+      "methods": [],
+      "staticMethods": [],
+      "demos": [
+        {
+          "url": "demo/index.html",
+          "description": ""
+        }
+      ],
+      "metadata": {},
+      "sourceRange": {
+        "start": {
+          "line": 102,
+          "column": 12
+        },
+        "end": {
+          "line": 121,
+          "column": 5
+        }
+      },
+      "privacy": "public",
+      "superclass": "HTMLElement",
+      "attributes": [
+        {
+          "name": "href",
+          "description": "URI for the library facebook account.",
+          "sourceRange": {
+            "start": {
+              "line": 109,
+              "column": 8
+            },
+            "end": {
+              "line": 112,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
+          "name": "alt",
+          "description": "Alternate text to display if the icon is not found.",
+          "sourceRange": {
+            "start": {
+              "line": 116,
+              "column": 8
+            },
+            "end": {
+              "line": 119,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        }
+      ],
+      "events": [],
+      "styling": {
+        "cssVariables": [],
+        "selectors": []
+      },
+      "slots": [],
+      "tagname": "uvalib-facebook-link"
+    },
+    {
+      "description": "An element providing a Library Instagram Link.\n\nExample:\n\n    <uvalib-instagram-link></uvalib-instagram-link>",
+      "summary": "",
+      "path": "uvalib-social-links.html",
+      "properties": [
+        {
+          "name": "href",
+          "type": "string",
+          "description": "URI for the library instagram account.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 169,
+              "column": 8
+            },
+            "end": {
+              "line": 172,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"https://www.instagram.com/uvalibrary/\""
+        },
+        {
+          "name": "alt",
+          "type": "string",
+          "description": "Alternate text to display if the icon is not found.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 176,
+              "column": 8
+            },
+            "end": {
+              "line": 179,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"Instagram\""
+        }
+      ],
+      "methods": [],
+      "staticMethods": [],
+      "demos": [
+        {
+          "url": "demo/index.html",
+          "description": ""
+        }
+      ],
+      "metadata": {},
+      "sourceRange": {
+        "start": {
+          "line": 162,
+          "column": 12
+        },
+        "end": {
+          "line": 181,
+          "column": 5
+        }
+      },
+      "privacy": "public",
+      "superclass": "HTMLElement",
+      "attributes": [
+        {
+          "name": "href",
+          "description": "URI for the library instagram account.",
+          "sourceRange": {
+            "start": {
+              "line": 169,
+              "column": 8
+            },
+            "end": {
+              "line": 172,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
+          "name": "alt",
+          "description": "Alternate text to display if the icon is not found.",
+          "sourceRange": {
+            "start": {
+              "line": 176,
+              "column": 8
+            },
+            "end": {
+              "line": 179,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        }
+      ],
+      "events": [],
+      "styling": {
+        "cssVariables": [],
+        "selectors": []
+      },
+      "slots": [],
+      "tagname": "uvalib-instagram-link"
+    },
+    {
+      "description": "An element providing a Library Pinterest Link.\n\nExample:\n\n    <uvalib-pinterest-link></uvalib-pinterest-link>",
+      "summary": "",
+      "path": "uvalib-social-links.html",
+      "properties": [
+        {
+          "name": "href",
+          "type": "string",
+          "description": "URI for the library Pinterest account.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 229,
+              "column": 8
+            },
+            "end": {
+              "line": 232,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"https://www.pinterest.com/uvalibrary/\""
+        },
+        {
+          "name": "alt",
+          "type": "string",
+          "description": "Alternate text to display if the icon is not found.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 236,
+              "column": 8
+            },
+            "end": {
+              "line": 239,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"Pinterest\""
+        }
+      ],
+      "methods": [],
+      "staticMethods": [],
+      "demos": [
+        {
+          "url": "demo/index.html",
+          "description": ""
+        }
+      ],
+      "metadata": {},
+      "sourceRange": {
+        "start": {
+          "line": 222,
+          "column": 12
+        },
+        "end": {
+          "line": 241,
+          "column": 5
+        }
+      },
+      "privacy": "public",
+      "superclass": "HTMLElement",
+      "attributes": [
+        {
+          "name": "href",
+          "description": "URI for the library Pinterest account.",
+          "sourceRange": {
+            "start": {
+              "line": 229,
+              "column": 8
+            },
+            "end": {
+              "line": 232,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
+          "name": "alt",
+          "description": "Alternate text to display if the icon is not found.",
+          "sourceRange": {
+            "start": {
+              "line": 236,
+              "column": 8
+            },
+            "end": {
+              "line": 239,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        }
+      ],
+      "events": [],
+      "styling": {
+        "cssVariables": [],
+        "selectors": []
+      },
+      "slots": [],
+      "tagname": "uvalib-pinterest-link"
+    },
+    {
+      "description": "An element providing a social link selection Link based on alternate text.\n\nExample:\n\n    <uvalib-social-link alt=\"YouTube\" href=\"https://www.youtube.com/channel/UCjy7Xanb1YeFGvEXvdu6Uow\"></uvalib-social-link>",
+      "summary": "",
+      "path": "uvalib-social-links.html",
+      "properties": [
+        {
+          "name": "href",
+          "type": "string",
+          "description": "URI for the library social media account.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 300,
+              "column": 8
+            },
+            "end": {
+              "line": 302,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          }
+        },
+        {
+          "name": "alt",
+          "type": "string",
+          "description": "Text used to identify the social media link. If text contains one of the supported links (Twitter, Facebook, Instagram, or Pinterest) then an icon is displayed in place of the text.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 306,
+              "column": 8
+            },
+            "end": {
+              "line": 308,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          }
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 309,
+              "column": 8
+            },
+            "end": {
+              "line": 312,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"\""
+        }
+      ],
+      "methods": [
+        {
+          "name": "_isTwitter",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 316,
+              "column": 6
+            },
+            "end": {
+              "line": 318,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "txt"
+            }
+          ]
+        },
+        {
+          "name": "_isFacebook",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 319,
+              "column": 6
+            },
+            "end": {
+              "line": 321,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "txt"
+            }
+          ]
+        },
+        {
+          "name": "_isInstagram",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 322,
+              "column": 6
+            },
+            "end": {
+              "line": 324,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "txt"
+            }
+          ]
+        },
+        {
+          "name": "_isPinterest",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 325,
+              "column": 6
+            },
+            "end": {
+              "line": 327,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "txt"
+            }
+          ]
+        },
+        {
+          "name": "_isOther",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 328,
+              "column": 6
+            },
+            "end": {
+              "line": 337,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "txt"
+            }
+          ]
+        }
+      ],
+      "staticMethods": [],
+      "demos": [
+        {
+          "url": "demo/index.html",
+          "description": ""
+        }
+      ],
+      "metadata": {},
+      "sourceRange": {
+        "start": {
+          "line": 293,
+          "column": 12
+        },
+        "end": {
+          "line": 339,
+          "column": 5
+        }
+      },
+      "privacy": "public",
+      "superclass": "HTMLElement",
+      "attributes": [
+        {
+          "name": "href",
+          "description": "URI for the library social media account.",
+          "sourceRange": {
+            "start": {
+              "line": 300,
+              "column": 8
+            },
+            "end": {
+              "line": 302,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
+          "name": "alt",
+          "description": "Text used to identify the social media link. If text contains one of the supported links (Twitter, Facebook, Instagram, or Pinterest) then an icon is displayed in place of the text.",
+          "sourceRange": {
+            "start": {
+              "line": 306,
+              "column": 8
+            },
+            "end": {
+              "line": 308,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
+          "name": "style",
+          "description": "",
+          "sourceRange": {
+            "start": {
+              "line": 309,
+              "column": 8
+            },
+            "end": {
+              "line": 312,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        }
+      ],
+      "events": [],
+      "styling": {
+        "cssVariables": [],
+        "selectors": []
+      },
+      "slots": [],
+      "tagname": "uvalib-social-link"
+    }
+  ]
+}

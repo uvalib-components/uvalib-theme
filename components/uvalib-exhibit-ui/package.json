@@ -1,0 +1,19 @@
+{
+  "name": "uvalib-exhibit-ui",
+  "version": "1.0.0",
+  "description": "collection of exhibit objects for display in a user interface.",
+  "main": "uvalib-exhibit-ui.html",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-accessibility": "^3.0.1",
+    "gulp-rename": "^1.2.2",
+    "run-sequence": "^1.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uvalib-components/uvalib-exhibit-ui"
+  }
+}

@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+  <head>
+    <title>uvalib-analytics demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+    <link rel="import" href="../../app-route/app-location.html">
+    <link rel="import" href="../../app-route/app-route.html">
+    <link rel="import" href="../../app-route/app-route-converter.html">
+    <link rel="import" href="../../paper-button/paper-button.html">
+
+    <link rel="import" href="../uvalib-analytics.html">
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+      </style>
+    </custom-style>
+  </head>
+  <body>
+
+    <div class="vertical-section-container centered">
+      <h3>Basic uvalib-analytics Demo</h3>
+      <demo-snippet>
+        <template id="t">
+
+          <dom-bind id="app">
+            <template is="dom-bind">
+              <p>This example uses a test site in our Piwik setup</p>
+              <app-location route="{{route}}"></app-location>
+              <app-route route="{{route}}" pattern="/:page" data="{{data}}"></app-route>
+              <app-route-converter path="{{path}}" route="{{route}}"></app-route-converter>
+              <uvalib-analytics site-id="23" path="{{path}}" event="{{theEvent}}" error="{{theError}}"></uvalib-analytics>
+              <p>Your path is currently: {{path}}</p>
+              <a href="page1">Page1</a>
+              <a href="page2">Page2</a>
+              <a href="page3">Page3</a>
+              <a href="not-here" on-tap="setError">404 example</a>
+              <paper-button on-tap="randomEvent">Trigger Event</paper-button>
+              <paper-button on-tap="extraEvent">Extra Event</paper-button>
+              <paper-button on-tap="extraEvent2">Extra Event #2</paper-button>
+            </template>
+          </dom-bind>
+
+        </template>
+      </demo-snippet>
+    </div>
+    <script>
+      (function() {
+        setTimeout(function(){
+          var app = document.querySelector('#app');
+          app.randomEvent = function(){
+            app.theEvent = {'Foo':'Bar! http://foo.bar'};
+          }
+          app.extraEvent = function(){
+            app.theEvent = ['foo','bar','foobar',10.2];
+          }
+          app.extraEvent2 = function(){
+            app.theEvent = ['foo','bar','foobar'];
+          }
+          app.setError = function(){
+            app.theError = "404";
+          }
+        }, 3000);
+      })();
+    </script>
+
+  </body>
+</html>

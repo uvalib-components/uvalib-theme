@@ -1,0 +1,44 @@
+{
+  "name": "uvalib-hours-card",
+  "description": "Library hours information displayed in a card section",
+  "main": "uvalib-hours-card.html",
+  "dependencies": {
+    "uvalib-elements": "uvalib-components/uvalib-elements#master"
+  },
+  "resolutions": {
+    "lodash": "^4.17.4",
+    "app-storage": "1 - 2",
+    "iron-demo-helpers": "^1.0.0",
+    "iron-component-page": "^1.0.0",
+    "webcomponentsjs": "^0.7.24",
+    "polymer": "^1.10.1",
+    "web-component-tester": "^5.0.1",
+    "promise-polyfill": "^1.0.0",
+    "uva-icon-link": "master",
+    "app-layout": "1 - 2",
+    "iron-ajax": "1 - 2",
+    "iron-doc-viewer": "^1.0.1",
+    "iron-flex-layout": "1 - 2",
+    "iron-icons": "1 - 2",
+    "iron-icon": "1 - 2",
+    "iron-iconset-svg": "1 - 2",
+    "iron-location": "1 - 2",
+    "iron-list": "^1.0.0",
+    "marked-element": "1 - 2",
+    "paper-icon-button": "1 - 2",
+    "paper-button": "^1.0.0",
+    "paper-card": "^1.0.0",
+    "test-fixture": "^1.0.0",
+    "uva-elements": "master"
+  },
+  "homepage": "https://github.com/uvalib-components/uvalib-hours-card",
+  "_release": "a656a3158f",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "a656a3158fc8fe3739b12693b2d835fc62034c16"
+  },
+  "_source": "https://github.com/uvalib-components/uvalib-hours-card.git",
+  "_target": "master",
+  "_originalSource": "uvalib-components/uvalib-hours-card"
+}

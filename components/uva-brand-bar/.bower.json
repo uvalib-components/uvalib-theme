@@ -1,0 +1,18 @@
+{
+  "name": "uva-brand-bar",
+  "description": "https://brand.virginia.edu/tools-templates/web-design/design-elements/brand-bar-search",
+  "main": "uva-brand-bar.html",
+  "dependencies": {
+    "uva-elements": "uva-components/uva-elements#master"
+  },
+  "homepage": "https://github.com/uva-components/uva-brand-bar",
+  "_release": "78c0082937",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "78c0082937bf9871aa37c0b6e44fc59691b12f14"
+  },
+  "_source": "https://github.com/uva-components/uva-brand-bar.git",
+  "_target": "master",
+  "_originalSource": "uva-components/uva-brand-bar"
+}

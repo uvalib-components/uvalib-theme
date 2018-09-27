@@ -1,0 +1,85 @@
+<link rel="import" href="./uva-library.html">
+<link rel="import" href="../uva-helper-libs/polyfills/object.assign.html">
+<link rel="import" href="../app-route/app-location.html">
+<link rel="import" href="../app-storage/app-localstorage/app-localstorage-document.html" />
+
+<dom-module id="uva-library-stages">
+  <template>
+    <app-location query-params="{{_qp}}"></app-location>
+    <app-localstorage-document zero-value="_getStage" session-only="[[sessionOnly]]" key="uvalib-stage" data="{{_stage}}"></app-localstorage-document>
+  </template>
+
+  <script>
+    /**
+     * `uva-library-stages`
+     * Binds to the UVA Library Stages APIs and offeres some helper functionality
+     * If the user there is a querystring parameter matching an existing session OR
+     * the localstorage contains a session, makes that stage available.
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/library-stages.html
+     */
+    class UvaLibraryStages extends UvaLibrary {
+      static get is() { return 'uva-library-stages'; }
+      static get properties() {
+        return Object.assign(super.properties,
+            {
+              sessionOnly: Boolean,
+              stage: {
+                type:Object,
+                computed: "_getStage(item)",
+                observer: "_stageChanged",
+                notify: true
+              },
+              _stage: Object,
+              _qp: Object,
+              auto: {
+                type: Boolean,
+                value: false
+              },
+              returnFirst: {
+                type: Boolean,
+                value: false
+              }
+            });
+      }
+      static get observers() {
+        return [
+          // uuid is set via param, or pulled from localstorage
+          '_uuidChanged(_qp.stageID, _stage.uuid)'
+        ]
+      }
+      //Concat the this elements template with the parents
+      static get template() {
+        var parentTemplate = UvaLibrary.template.cloneNode(true);
+        var childTemplate = Polymer.DomModule.import('uva-library-stages', 'template');
+        parentTemplate.content.insertBefore(childTemplate.content,null);
+        return parentTemplate;
+      }
+      _makeURL(path,apiVersion) {
+        return this._apidomain+apiVersion+"/library/web/stages";
+      }
+      _uuidChanged(paramStageID,lsStorageID){
+        if (paramStageID) {
+          this.uuid=paramStageID;
+          this.set('_qp.stageID',null);
+        } else if (lsStorageID) {
+          this.uuid=lsStorageID;
+        }
+        this.generateRequest();
+      }
+      _getStage(params) {
+        return (this.item)? this.item:{};
+      }
+      _stageChanged(stage,oldStage){
+        if(!oldStage || (stage.uuid != oldStage.uuid)) {
+          //save to localstorage
+          console.log('setting stage to '+stage.uuid)
+          this.set('_stage',stage);
+        }
+      }
+    }
+    window.customElements.define(UvaLibraryStages.is, UvaLibraryStages);
+  </script>
+</dom-module>

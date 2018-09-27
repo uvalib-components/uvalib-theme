@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>uva-buildings demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../../polymer/polymer.html">
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../uva-sensors.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic uva-sensors demo</h3>
+      <demo-snippet>
+        <template>
+          <dom-bind>
+            <template>
+
+              <uva-sensors key="59e7aea6e85e555020cdfe4d" sensors="{{sensors}}"></uva-sensors>
+
+              <h1>Listing of UVA sensors</h1>
+              <div style="height:200px; overflow:scroll; margin-bottom:20px;">
+                <dom-repeat items="[[sensors]]">
+                  <template>
+                    <div><strong>[[item.Name]]</strong> [[item.Type]]</div>
+                  </template>
+                </dom-repeat>
+              </div>
+
+<!--
+              <google-map style="height:600px;" zoom="13" latitude="[[rotunda.Latitude]]" longitude="[[rotunda.Longitude]]" api-key="AIzaSyBxAaVYnYIkwmvR4pigOojpxvli_OxBeFs">
+                <dom-repeat items="[[buildings]]">
+                  <template>
+                    <dom-if if="[[item.Latitude]]">
+                      <template>
+                        <google-map-marker latitude="[[item.Latitude]]" longitude="[[item.Longitude]]" title="[[item.Name]]"></google-map-marker>
+                      </template>
+                    </dom-if>
+                  </template>
+                </dom-repeat>
+              </google-map>
+-->
+            </template>
+          </dom-bind>
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+</html>

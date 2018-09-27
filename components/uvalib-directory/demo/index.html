@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>uvalib-directory demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../uvalib-directory.html">
+    <link rel="import" href="../../paper-toggle-button/paper-toggle-button.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+      .centered { max-width: 100%; }
+      </style>
+    </custom-style>
+
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic uvalib-directory demo</h3>
+      <demo-snippet>
+        <template>
+          <dom-bind id="app">
+            <template>
+              <h3>Demo attribute options:</h3>
+              <paper-toggle-button active="{{controls}}">Show Controls</paper-toggle-button>
+              <paper-toggle-button active="{{staffView}}">Staff View Option</paper-toggle-button>
+              <hr />
+              <uvalib-directory controls="[[controls]]" staff-view="[[staffView]]"></uvalib-directory>
+            </template>
+          </dom-bind>
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+</html>

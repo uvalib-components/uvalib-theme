@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>uvalib-logos demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../uvalib-theme/uvalib-theme.html">
+    <link rel="import" href="../uvalib-logos.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+        .centered {
+          min-width: 800px;
+        }
+        .darkbg {
+          --demo-snippet-demo: {
+            background-color: var(--color-jefferson-blue);
+          };
+          background-color: var(--color-jefferson-blue);
+        }
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Horizontal Logo in Two-Color Reverse uvalib-logos demo</h3>
+      <demo-snippet class="darkbg">
+        <template>
+          <uvalib-logos reverse two-color></uvalib-logos>
+        </template>
+      </demo-snippet>
+    </div>
+    <div class="vertical-section-container centered">
+      <h3>Centered Logo in One-Color Reverse uvalib-logos demo</h3>
+      <demo-snippet class="darkbg">
+        <template>
+          <uvalib-logos variation="centered" reverse></uvalib-logos>
+        </template>
+      </demo-snippet>
+    </div>
+    <div class="vertical-section-container centered">
+      <h3>Primary Logo Minimum Size uvalib-logos demo</h3>
+      <demo-snippet>
+        <template>
+          <uvalib-logos style="height: 2px;" variation="primary"></uvalib-logos>
+          <uvalib-logos class="darkbg" style="height: 10px;" variation="primary" reverse two-color></uvalib-logos>
+        </template>
+      </demo-snippet>
+    </div>
+    <div class="vertical-section-container centered">
+      <h3>Horizontal Logo Minimum Size uvalib-logos demo</h3>
+      <demo-snippet>
+        <template>
+          <uvalib-logos style="height: 2px;"></uvalib-logos>
+          <uvalib-logos class="darkbg" style="height: 10px;" reverse two-color></uvalib-logos>
+        </template>
+      </demo-snippet>
+    </div>
+    <div class="vertical-section-container centered">
+      <h3>Centered Logo Minimum Size uvalib-logos demo</h3>
+      <demo-snippet>
+        <template>
+          <uvalib-logos style="height: 2px;" variation="centered"></uvalib-logos>
+          <uvalib-logos class="darkbg" style="height: 10px;" variation="centered" reverse two-color></uvalib-logos>
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+</html>

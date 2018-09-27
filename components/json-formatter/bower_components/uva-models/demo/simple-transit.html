@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>uva-transit demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../../polymer/polymer.html">
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../paper-range-slider/paper-range-slider.html">
+    <link rel="import" href="../../iron-selector/iron-selector.html">
+    <link rel="import" href="../../iron-list/iron-list.html">
+    <link rel="import" href="../../google-map/google-map.html">
+    <link rel="import" href="../../google-map/google-map-marker.html">
+    <link rel="import" href="../../google-map/google-map-poly.html">
+    <link rel="import" href="../../google-map/google-map-point.html">
+    <link rel="import" href="../../google-map/google-map-circle.html">
+    <link rel="import" href="../../paper-dialog/paper-dialog.html">
+    <link rel="import" href="../../paper-dialog-scrollable/paper-dialog-scrollable.html">
+    <link rel="import" href="../../marked-element/marked-element.html">
+    <link rel="import" href="../../polymer/lib/elements/dom-bind.html">
+    <link rel="import" href="../../polymer/lib/elements/dom-repeat.html">
+    <link rel="import" href="../uva-transit.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+      </style>
+    </custom-style>
+
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic uva-transit demo</h3>
+      <demo-snippet>
+        <template>
+          <dom-bind id="app">
+            <template>
+
+              <uva-transit filtered-stops="{{stops}}" routes="{{routes}}" segments="{{segments}}" announcements="{{announcements}}" buses="{{buses}}" on-new-announcement="openAnnouncement"></uva-transit>
+
+              <h1>Listing of UVA UTS Bus stops</h1>
+
+              <google-map id="gmap" style="height:600px;" zoom="14" latitude="38.0356" longitude="-78.5034" api-key="AIzaSyBxAaVYnYIkwmvR4pigOojpxvli_OxBeFs">
+                <dom-repeat items="[[stops]]">
+                  <template>
+                    <dom-if if="[[item.latitude]]">
+                      <template>
+                        <google-map-marker latitude="[[item.latitude]]" longitude="[[item.longitude]]" title="[[item.name]]" icon='[[getCircleIcon()]]'></google-map-marker>
+                      </template>
+                    </dom-if>
+                  </template>
+                </dom-repeat>
+                <dom-repeat items="[[buses]]">
+                  <template>
+                    <google-map-marker latitude="[[item.latitude]]" longitude="[[item.longitude]]" title="[[item.routeName]]"></google-map-marker>
+                  </template>
+                </dom-repeat>
+                <dom-repeat items="[[segments]]">
+                  <template>
+                    <google-map-poly>
+                      <dom-repeat items="[[item.points]]">
+                        <template>
+                          <google-map-point latitude="[[item.lat]]" longitude="[[item.lng]]"></google-map-point>
+                        </template>
+                      </dom-repeat>
+                    </google-map-poly>
+                  </template>
+                </dom-repeat>
+              </google-map>
+
+              <dom-repeat items="[[announcements]]">
+                <template>
+                  <paper-dialog modal>
+                    <h2>[[item.date]] [[item.title]]</h2>
+                    <paper-dialog-scrollable>
+                      <marked-element markdown="[[item.html]]">
+                        <div slot="markdown-html"></div>
+                      </marked-element>
+                    </paper-dialog-scrollable>
+                    <div class="buttons">
+                      <paper-button dialog-confirm autofocus>Accept</paper-button>
+                    </div>
+                  </paper-dialog>
+                </template>
+              </dom-repeat>
+
+            </template>
+          </dom-bind>
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+  <script>
+    var app = document.querySelector('#app');
+    app.getCircleIcon = function(){
+      if (!window.circleIcon) {
+        window.circleIcon = {
+          path: google.maps.SymbolPath.CIRCLE,
+          scale: 2
+        }
+      }
+      return window.circleIcon;
+    };
+
+    app.getBusIcon = function(rotate){
+
+        let busIcon = {
+          path: "M 370.72195,338.45161 C 373.30468,337.531 377.32463,334.96481 379.65519,332.74894 C 399.7396,313.65296 382.29888,280.53965 355.53796,286.95949 C 344.37851,289.63661 335.1262,301.52866 335.1262,313.19487 C 335.1262,319.94706 338.74946,327.79447 344.17694,332.79735 C 351.93081,339.94462 361.07126,341.8916 370.72195,338.45161 z M 353.20939,322.14862 C 350.37907,319.3183 349.66733,317.54629 349.66733,313.33005 C 349.66733,310.42796 350.46355,306.91677 351.43671,305.52738 C 355.74064,299.38265 366.23264,298.90036 371.58817,304.60105 C 373.87113,307.03118 374.50842,309.03334 374.50842,313.77563 C 374.50842,318.9197 373.99165,320.28624 371.10851,322.76621 C 366.01597,327.14664 357.92835,326.86758 353.20939,322.14862 z M 165.86284,338.47621 C 176.56675,334.65872 183.58072,324.42129 183.6295,312.54446 C 183.66271,304.45544 181.24813,299.26016 174.61291,293.14403 C 157.71963,277.57234 130.39184,289.82268 130.39184,312.96721 C 130.39184,331.38005 148.7473,344.58039 165.86284,338.47621 z M 148.60825,321.9622 C 140.61432,313.96826 145.68635,300.24372 156.63453,300.24372 C 168.9233,300.24372 174.59886,314.80208 165.34552,322.58825 C 159.98986,327.09473 153.49795,326.8519 148.60825,321.9622 z M 450.56318,321.75247 C 454.50806,318.75686 455.09051,313.64658 455.09051,282.0306 L 455.09051,250.64586 L 451.62297,246.66548 L 448.15543,242.68509 L 446.74098,211.17931 C 444.57363,162.90316 444.69398,163.60821 438.15944,160.90836 C 436.06529,160.04313 377.60356,159.74445 253.33235,159.9641 L 71.568225,160.28536 L 65.509425,163.07389 C 57.843995,166.60187 52.241415,171.95418 48.133635,179.67353 L 44.909485,185.73233 L 44.909485,242.50886 L 44.909485,299.28539 L 83.685835,311.26946 C 105.01283,317.8607 122.81945,323.25661 123.2561,323.26035 C 123.69275,323.26411 123.76214,320.09254 123.4103,316.21244 C 121.54089,295.59609 137.07696,278.43203 157.60732,278.43203 C 166.116,278.43203 173.96201,281.90924 180.73424,288.68147 C 188.60167,296.54891 191.50471,304.44677 190.6129,315.55686 L 189.99399,323.26717 L 260.21823,323.26717 L 330.44248,323.26717 L 329.52531,320.54071 C 327.78632,315.37115 328.74025,304.54857 331.44139,298.80214 C 341.31946,277.78745 367.36967,272.4453 384.90202,287.83891 C 392.08558,294.14616 395.10836,301.67731 395.10836,313.26769 L 395.10836,323.26225 L 421.83842,323.26471 C 441.35408,323.26651 449.10686,322.85836 450.56318,321.75247 z M 405.32865,302.62461 C 403.06434,301.41279 402.98479,299.50862 402.98479,246.52009 C 402.98479,205.47456 403.35076,191.30399 404.43891,190.21585 C 405.3353,189.31946 409.73425,188.76174 415.908,188.76174 C 424.66642,188.76174 426.08492,189.06433 427.21368,191.17343 C 428.0864,192.80412 428.39452,211.06598 428.16513,247.56515 C 427.87345,293.97691 427.57105,301.70618 426.00825,302.69354 C 423.55654,304.24248 408.2564,304.19149 405.32865,302.62461 z M 313.80525,234.68142 C 311.74039,232.39979 311.49687,230.11209 311.49687,212.99695 C 311.49687,195.88182 311.74039,193.59412 313.80525,191.31248 C 316.04251,188.84032 317.11319,188.76174 348.55682,188.76174 C 375.89346,188.76174 381.28838,189.05011 382.83212,190.59385 C 385.51666,193.2784 386.41694,201.74613 385.74707,218.01114 C 384.89048,238.80969 387.95109,237.23217 348.45556,237.23217 C 317.11487,237.23217 316.04218,237.1532 313.80525,234.68142 z M 230.23755,235.51303 C 228.0695,233.92848 227.88537,232.18829 227.88537,213.28366 C 227.88537,197.68172 228.28337,192.2934 229.54844,190.76758 C 231.02064,188.99197 234.94982,188.76174 263.78069,188.76174 C 294.73418,188.76174 296.47009,188.88196 298.77337,191.18526 C 300.99208,193.40397 301.1969,195.22446 301.1969,212.72733 C 301.1969,228.06991 300.82434,232.37778 299.31055,234.53902 C 297.44118,237.20792 297.13234,237.23217 265.00698,237.23217 C 238.93039,237.23217 232.12966,236.89591 230.23755,235.51303 z M 147.68432,234.59742 C 144.97564,232.05274 144.87975,231.28872 144.87975,212.24856 C 144.87975,193.25022 144.97753,192.46595 147.5729,190.64809 C 149.84133,189.05923 155.19225,188.76174 181.50221,188.76174 C 221.1598,188.76174 217.89478,186.55905 217.36471,212.95569 C 217.02665,229.79152 216.69714,232.44967 214.67113,234.68513 C 212.44034,237.14655 211.32285,237.23217 181.42581,237.23217 C 151.32988,237.23217 150.41264,237.16054 147.68432,234.59742 z M 61.942845,234.53902 C 59.081505,230.45387 59.255425,203.05729 62.178955,197.34683 C 66.232905,189.42836 69.235415,188.76174 100.84658,188.76174 L 128.95097,188.76174 L 131.46244,191.95456 C 133.74819,194.86041 133.97391,196.77131 133.97391,213.21545 C 133.97391,230.78316 133.89155,231.36589 130.99959,234.25784 L 128.02526,237.23217 L 95.927235,237.23217 C 64.131715,237.23217 63.811435,237.20678 61.942845,234.53902 z",
+          scale: .1,
+          strokeWeight: 1,
+          fillColor: "black",
+          rotation: rotate-90
+        }
+
+      return busIcon;
+    };
+
+    app.openAnnouncement = function(){
+      setTimeout(function(){
+        document.querySelector('paper-dialog').open();
+      },3000);
+    }
+
+  </script>
+</html>

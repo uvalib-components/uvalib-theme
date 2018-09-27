@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>uvalib-card test</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../uvalib-hours-ui.html">
+  </head>
+  <body>
+
+    <test-fixture id="BasicTestFixture">
+      <template>
+        <uvalib-hours-ui></uvalib-hours-ui>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="SingleDay">
+      <template>
+        <uvalib-hours-ui single-day></uvalib-hours-ui>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('uvalib-hours-ui', () => {
+
+        test('instantiating the element with default properties works', () => {
+          const element = fixture('BasicTestFixture');
+          assert.equal(element.constructor.is, 'uvalib-hours-ui');
+        });
+
+        test('setting singleDay on the element works', () => {
+          // Create a test fixture
+          const element = fixture('SingleDay');
+          assert.equal(element.singleDay, true);
+        });
+
+        a11ySuite('BasicTestFixture');
+        a11ySuite('SingleDay');
+      });
+    </script>
+
+  </body>
+</html>

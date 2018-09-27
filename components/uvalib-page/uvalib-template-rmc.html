@@ -1,0 +1,188 @@
+<link rel="import" href="../uvalib-theme/uvalib-ui-element.html">
+<link rel="import" href="../uvalib-theme/uvalib-theme.html">
+<link rel="import" href="../paper-button/paper-button.html"><!-- 7/27 -->
+<link rel="import" href="../paper-card/paper-card.html"><!-- 7/27 -->
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html"><!-- 7/27 -->
+<link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../uvalib-banner/uvalib-image-header.html">
+<link rel="import" href="../uvalib-directory/uvalib-staff.html">
+<link rel="import" href="../iron-image/iron-image.html">
+<link rel="import" href="../uvalib-events-ui/uvalib-events-ui.html">
+
+<dom-module id="uvalib-template-rmc">
+  <template>
+    <custom-style>
+      <style include="uvalib-theme iron-flex iron-flex-alignment iron-flex-factors uvalib-card-style">
+        :host { display: block; }
+
+        [hidden] { display: none; }
+
+        .mid-section, .main-section, .bottom-section { margin: 75px 0; }
+
+        /* .mid-section {        } */
+        .main-section p { padding-left: calc(var(--uvalib-spacing-unit)*2); padding-right: calc(var(--uvalib-spacing-unit)*2); }
+        .main-section h3 { text-transform: uppercase !important; }
+
+        /* .bottom-section { } */
+
+        #location-map {
+          width: 100% /*300px*/;
+          height: 300px;
+          /* margin-left: calc(var(--uvalib-spacing-unit)*-1.5);  */
+        }
+
+        /* .faux-table {
+          margin-top: calc(var(--uvalib-spacing-unit)*2);
+          margin-bottom: calc(var(--uvalib-spacing-unit)*2);
+          text-align: left;
+        }
+        .faux-table h3 { padding: 0; margin: 0; text-transform: none !important; } */
+
+      </style>
+    </custom-style>
+      <uvalib-image-header src="https://static.lib.virginia.edu/files/temp-images/NCSU_FPO_ONLY-22.jpg" alt="">
+          <h1 slot="header-title">Robertson Media Center</h1>
+          <p slot="header-description">Whether you’re exploring and creating in this reality or a virtual one, RMC’s skilled staff and easy-to-use tutorials can connect you to something great!</p>
+        </uvalib-image-header>
+      <div class="mid-section layout horizontal wrap justified">
+        <paper-card class="flex-2" heading="Spaces" image="https://static.lib.virginia.edu/files/temp-images/NCSU_FPO_ONLY-02.jpg" alt="FPO text">
+          <div class="card-content">
+            <p>RMC is home to a variety of spaces meant to empower and inspire you to make great things happen. From editing studios to collaboration spaces, RMC can encourage you to work, create, and grow in a whole new way.</p>
+          </div>
+          <div class="card-actions">
+            <a tabindex="-1" href="/rmc/spaces">
+              <paper-button>View Spaces</paper-button>
+            </a>
+          </div>
+        </paper-card>
+
+        <paper-card class="flex-2" heading="Equipment" image="https://static.lib.virginia.edu/files/temp-images/NCSU_FPO_ONLY-21.png" alt="FPO text">
+          <div class="card-content">
+            <p>There’s nothing like having the right tools for a job, and RMC loans a wide range of equipment to help you realize your vision. 3-D printers, cameras, sound equipment, virtual reality technology, and more&mdash;you’ll find just what you need to get the job done.</p>
+          </div>
+          <div class="card-actions">
+            <a tabindex="-1" href="/rmc/equipment">
+              <paper-button>View Equipment</paper-button>
+            </a>
+          </div>
+        </paper-card>
+
+        <paper-card class="flex-2" heading="Learning" image="https://static.lib.virginia.edu/files/temp-images/NCSU_FPO_ONLY-06.jpg" alt="FPO text">
+          <div class="card-content">
+            <p>Whether you’re a beginning or an advanced user of RMC’s equipment and spaces, one-on-one consultations, equipment tutorials, and classroom instruction assistance means you’ll be ready when it counts!</p>
+          </div>
+          <div class="card-actions">
+            <a tabindex="-1" href="/rmc/learning">
+              <paper-button>Visit Learning</paper-button>
+            </a>
+          </div>
+        </paper-card>
+      </div>
+
+      <div class="main-section">
+        <!-- <iron-image src="https://static.lib.virginia.edu/files/temp-images/NCSU_FPO_ONLY-08.jpg" sizing="cover" style="height: 200px; width: 100%;" alt=""></iron-image> -->
+        <div class="header-wrapper">
+          <div class="header-wrapper-bg">
+            <h2>Mission</h2>
+          </div>
+        </div>
+        <div class="layout horizontal wrap">
+          <div class="flex-3">
+            <p>The RMC is all about creativity. Located on the third floor of Clemons Library, the RMC fosters innovations in learning and creation by providing space, equipment, and expertise to support audiovisual production, 3D data processing, 3D fabrication, and virtual and augmented reality. Staff offer individual consultations and group training to help students with their projects and assist faculty in the design of innovative assignments.</p>
+            <p>Students are front and center in the planning and running of the RMC. A student advisory group provides input on planning and operations, and a dedicated corps of student staffers provides the bulk of the support for daily operations. Students assist, train, troubleshoot, and fix. Our student staff are also some of our most accomplished makers, leading the way with their experimental approaches to creating new work.</p>
+            <p>All students are welcome in this space, no matter their level of knowledge or expertise. Staff are committed to meeting students at their own level and helping them to develop the skills that allow for self-expression in a variety of media.</p>
+          </div>
+          <iron-image class="flex-2" sizing="cover" src="https://static.lib.virginia.edu/files/temp-images/NCSU_FPO_ONLY-10.jpg" style="max-width:100%;" alt="FPO"></iron-image>
+        </div>
+        <div class="header-wrapper">
+          <div class="header-wrapper-bg">
+            <h3>Services and Access</h3>
+          </div>
+        </div>
+        <div class="layout horizontal wrap">
+          <iron-image class="flex-2" sizing="cover" src="https://static.lib.virginia.edu/files/temp-images/NCSU_FPO_ONLY-13.jpg" style="max-width:100%;" alt="FPO"></iron-image>
+          <div class="flex-3">
+            <p>RMC holds production studios, a makerspace, a media lab, and virtual reality spaces. Reservable studio spaces and computer stations are available for media project work. A wide variety of audio/video equipment and accessories are available at the RMC Desk for checkout to the University community on a first-come, first-serve basis. Additionally, there are sophisticated video cameras, light kits, and associated filmmaking gear available for class assignment use. A training process and a reservation system are in place for this “high-end” equipment. Consultants at the RMC desk are available to assist with media and equipment questions, and can provide referrals to librarians and media professionals available for training, consultations, and project planning.</p>
+          </div>
+        </div>
+
+        <div class="header-wrapper">
+          <div class="header-wrapper-bg">
+            <h2>Events &amp; Location (FPO)</h2>
+          </div>
+        </div>
+        <div class="layout horizontal around-justified wrap">
+          <div class="flex-2">
+            <paper-card id="events" heading="Upcoming Events (FPO)" style="width: 90%;">
+              <div class="card-content">
+                <uvalib-events-ui cal-id="4299" class="long" max-num-events-shown="4"></uvalib-events-ui>
+              </div>
+              <div class="card-actions">
+               <a tabindex="-1" href="http://cal.lib.virginia.edu/calendar/events">
+                 <paper-button>View All Events</paper-button>
+               </a>
+              </div>
+            </paper-card>
+          </div>
+          <div class="flex-2">
+            <paper-card id="map_hours" heading="Location &amp; Hours" style="width: 90%;">
+              <div class="card-content layout horizontal center-center wrap">
+                <iron-image id="location-map" src="https://static.lib.virginia.edu/files/temp-images/rmc-map-3.jpg" sizing="contain" alt="FPO"></iron-image>
+                <p><b>Mon-Th:&nbsp;&nbsp;&nbsp;9 a.m.&nbsp;&mdash;&nbsp;7 p.m.<br />
+                Friday:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9 a.m.&nbsp;&mdash;&nbsp;5 p.m.<br />
+                Saturday:&nbsp;1 p.m.&nbsp;&mdash;&nbsp;5 p.m.</b></p>
+              </div>
+              <div class="card-actions">
+               <a tabindex="-1" href="https://www.library.virginia.edu/hours">
+                 <paper-button>See All Hours</paper-button>
+               </a>
+              </div>
+            </paper-card>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-section">
+
+        <div class="header-wrapper">
+          <div class="header-wrapper-bg">
+            <h2>Who we are</h2>
+          </div>
+        </div>
+        <div>
+          <uvalib-staff show-columns="photo,name,title,contact" team="0e8d92d8-b98d-41c8-9336-05a2a8dc09a6"></uvalib-staff>
+        </div>
+
+        <!-- <div class="header-wrapper">
+          <div class="header-wrapper-bg">
+            <h2>What we're about</h2>
+          </div>
+        </div>
+        <div>
+          <p>about content</p>
+        </div> -->
+      </div>
+    </div>
+  </template>
+
+  <script>
+    /**
+     * `uvalib-template-rmc`
+     * UVA Library rmc template component
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/rmc.html
+     */
+     class UvalibTemplateRMC extends UvalibUiElement {
+       static get is() { return 'uvalib-template-rmc'; }
+       //Concat the this elements template with the parents
+       static get template() {
+         var parentTemplate = UvalibUiElement.template.cloneNode(true);
+         var childTemplate = Polymer.DomModule.import('uvalib-template-rmc', 'template');
+         parentTemplate.content.insertBefore(childTemplate.content,null);
+         return parentTemplate;
+       }
+     }
+     window.customElements.define(UvalibTemplateRMC.is, UvalibTemplateRMC);
+  </script>
+</dom-module>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>uvalib-alerts test</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../uvalib-alerts.html">
+  </head>
+  <body>
+
+    <test-fixture id="BasicTestFixture">
+      <template>
+        <uvalib-alerts></uvalib-alerts>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="ChangedPropertyTestFixture">
+      <template>
+        <uvalib-alerts prop1="new-prop1"></uvalib-alerts>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('uvalib-alerts', () => {
+
+        test('instantiating the element with default properties works', () => {
+          const element = fixture('BasicTestFixture');
+          assert.equal(element.constructor.is, 'uvalib-alerts');
+          assert.isNotNaN(element.seenCount, 'Seen count is a number');
+          assert.isAtLeast(element.seenCount, 0, 'Seen count >= 0')
+        });
+
+      });
+      a11ySuite('BasicTestFixture');
+    </script>
+
+  </body>
+</html>

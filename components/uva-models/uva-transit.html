@@ -1,0 +1,297 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+
+<link rel="import" href="../polymer/lib/utils/debounce.html">
+<link rel="import" href="../uva-helper-libs/polyfills/object.assign.html">
+<link rel="import" href="../uva-helper-libs/polyfills/array.findindex.html">
+
+<link rel="import" href="./uva-model.html">
+
+<dom-module id="uva-transit">
+  <template>
+    <!-- get some bus stops! -->
+    <uva-model id="stops" path="transit/bus-stops" last-response="{{_stops}}" loading="{{loadingStops}}"></uva-model>
+
+    <!-- get some bus routes! -->
+    <uva-model id="routes" path="transit/routes" last-response="{{_routes}}" loading="{{loadingRoutes}}"></uva-model>
+
+    <!-- get some route path segments! -->
+    <uva-model id="segments" path="transit/segments" last-response="{{_segments}}" loading="{{loadingSegments}}"></uva-model>
+
+    <!-- get some bus announcements -->
+    <uva-model id="announcements" path="transit/announcements" last-response="{{_announcements}}" loading="{{loadingAnnouncements}}"></uva-model>
+
+    <!-- get some buses! -->
+    <uva-model id="buses" path="transit/vehicles" poll="2000" csv last-response="{{_buses}}" loading="{{loadingBuses}}"></uva-model>
+  </template>
+  <script>
+    /**
+     * `uva-transit`
+     * Helper component to bind to the UVA transit API endpoints.
+     * This API provides information about UTS Bus stops, routes, and buses.
+     *
+     * Example:
+     *
+     *    <uva-transit stops="{{stops}}"></uva-transit>
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/simple-transit.html Map bind demo
+     */
+    class UvaTransit extends UvaModel {
+      static get is() { return 'uva-transit'; }
+      static get properties() {
+        return Object.assign(super.properties,
+          {
+
+            /** True while stops ajax request is in flight */
+            loadingStops: {
+              type: Boolean,
+              value: false
+            },
+
+            /** True while routes ajax request is in flight */
+            loadingRoutes: {
+              type: Boolean,
+              value: false
+            },
+
+            /** True while routes ajax request is in flight */
+            loadingAnnouncements: {
+              type: Boolean,
+              value: false
+            },
+
+            /** True while routes ajax request is in flight */
+            loadingBuses: {
+              type: Boolean,
+              value: false
+            },
+
+            /** True while API requests are in flight */
+            loading: {
+              type: Boolean,
+              computed: "_either(loadingStops, loadingRoutes, loadingAnnouncements, loadingBuses)"
+            },
+
+            /** Used for storing the segments from ajax call (these are not filtered in any way and are not available offline) */
+            _segments: {
+              type: Object,
+              value: function(){return {};}
+            },
+
+            /** Used for storing the announcements from ajax call (these are not filtered in any way and are not available offline) */
+            _announcements: {
+              type: Object,
+              value: function(){return {};}
+            },
+
+            /** Used for storing the buses from ajax call (these are not filtered in any way) */
+            _buses: {
+              type: Object,
+              value: function(){return {};},
+              observer: "_getBuses"
+            },
+
+            /** Used for storing the stops (this are not filtered in any way) */
+            _stops: {
+              type: Object,
+              value: function(){return {};},
+              observer: "_processStops"
+            },
+
+            /** Used for storing the routes (this are not filtered in any way) */
+            _routes: {
+              type: Object,
+              value: function(){return {};},
+              observer: "_processRoutes"
+            },
+
+            /** Used for storing the segments (this are not filtered in any way) */
+            _segments: {
+              type: Object,
+              value: function(){return {};},
+              observer: "_processSegments"
+            },
+
+            /** Used for storing the full list of stops */
+            stops: {
+              type: Object,
+              value: function(){return {};},
+              notify: true
+            },
+
+            /** Used for storing the full list of routes */
+            routes: {
+              type: Object,
+              value: function(){return {};},
+              notify: true
+            },
+
+            /** Used for storing the full list of route segments */
+            segments: {
+              type: Array,
+              value: function(){return [];},
+              notify: true
+            },
+
+            /** Used for storing the list of UVA UTS announcements */
+            announcements: {
+              type: Array,
+              computed: "_getAnnouncements(_announcements)",
+              notify: true
+            },
+
+            /** Used for storing the list of UVA UTS buses and their locations */
+            buses: {
+              type: Array,
+              value: function(){return [];},
+              notify: true
+            },
+
+            /** UVA UTS bus stops filtered by attributes */
+            filteredStops: {
+              type: Array,
+              computed: '_filterStops(stops.*)',
+              notify: true
+            },
+
+            /** UVA UTS bus routes filtered by attributes */
+            filteredRoutes: {
+              type: Array,
+              computed: '_filterRoutes(routes.*)',
+              notify: true
+            }
+
+          });
+      }
+
+      /**
+       * Parses raw stops data and populates `stops` and `routes` with datapoints
+       */
+      _processStops() {
+        this._debouncer = Polymer.Debouncer.debounce(this._debouncer,
+            Polymer.Async.timeOut.after(200),
+            () => {
+              if (this._stops.routes) {
+                this._stops.routes.forEach((route)=>{
+                  let routePath = "routes."+route.id;
+                  (this.routes[route.id] || this.set(routePath,{}) );
+                  (route.stops && this.set(routePath+'.stops',route.stops) );
+                });
+              }
+              if (this._stops.stops) {
+                this._stops.stops.forEach((stop)=>{
+                  let stopPath = "stops."+stop.id;
+                  (this.stops[stop.id] || this.set(stopPath,{}) );
+                  (stop.name && this.set(stopPath+'.name', stop.name) );
+                  (stop.position && this.set(stopPath+'.latitude', stop.position[0]) || this.set(stopPath+'.longitude', stop.position[1]) );
+                });
+              }
+            } );
+      }
+
+      _getAnnouncements(announcements) {
+        if (announcements.announcements && announcements.announcements.length>0) {
+          this.dispatchEvent(new CustomEvent('new-announcement', {}));
+          return announcements.announcements;
+        }
+        return [];
+      }
+
+      _cleanupBus(bus) {
+        if (this.routes && this.routes[parseInt(bus.route_id)]) {
+          bus.routeName = this.routes[parseInt(bus.route_id)].name;
+        }
+        bus.latitude = bus.lat;
+        bus.longitude = bus.lng;
+        return bus;
+      }
+
+      _getBuses() {
+        if (this._buses && this._buses.length) { //this._buses.vehicles && this._buses.vehicles.length>0) {
+          this._buses.forEach((bus)=>{
+            let index = this.buses.findIndex((b)=>{return (b.id==bus.id)});
+            if (index==-1) {
+              this.push('buses',this._cleanupBus(bus));
+            } else {
+              this.set('buses.'+index,this._cleanupBus(bus));
+            }
+          });
+          this.dispatchEvent(new CustomEvent('buses-refresh', {}));
+        }
+      }
+
+      /**
+       * Parses raw routes data and populates `routes` with datapoints
+       */
+      _processRoutes() {
+        this._routeDebouncer = Polymer.Debouncer.debounce(this._routeDebouncer,
+            Polymer.Async.timeOut.after(200),
+            () => {
+              if (this._routes.routes) {
+                this._routes.routes.forEach((route)=>{
+                  let routePath = "routes."+route.id;
+                  (this.routes[route.id] || this.set(routePath,{}) );
+                  (route.bounds && this.set(routePath+'.bounds',route.bounds) );
+                  (route.is_active && this.set(routePath+'.active',route.is_active) );
+                  (route.long_name && this.set(routePath+'.name',route.long_name) );
+                });
+              }
+            } );
+      }
+
+      /**
+       * Parses raw route segment data and populates `routes` and `segments`
+       */
+      _processSegments() {
+        this._segmentDebouncer = Polymer.Debouncer.debounce(this._segmentDebouncer,
+            Polymer.Async.timeOut.after(200),
+            () => {
+              // assign the segment ids to the routes
+              if (this._segments.routes) {
+                this._segments.routes.forEach((route)=>{
+                  let routePath = "routes."+route.id;
+                  (this.routes[route.id] || this.set(routePath,{}) );
+                  (route.segments && this.set(routePath+'.segments', route.segments.filter((seg)=>seg>0) ) );
+                });
+              }
+              // get the segments (ignoring levels for now)
+              if (this._segments.segments) {
+                var listing = [];
+                this._segments.segments.forEach((segment)=>{
+                  listing.push( { id:segment.id,
+                                  points:google.maps.geometry.encoding.decodePath(segment.points).map((p)=>{return {lat:p.lat(),lng:p.lng()}; })
+                                });//google.maps.geometry.encoding.decodePath(segment.points).map((p)=>{return {lat:p.lat(),lng:p.lng()}; }) );
+                });
+                this.set('segments',listing);
+              }
+            } );
+      }
+
+      /**
+       * Returns true if either parameter is truthy
+       *
+       * @param b1 First value to evaluate
+       * @param b2 Second value to evaluate
+       * @param b3 Third value to evaluate
+       * @param b4 Fourth value to evaluate
+       * @return {Boolean} true if either parameter is truthy
+       */
+      _either(b1, b2, b3, b4) {
+        return (b1 || b2 || b3 || b4);
+      }
+
+      _filterRoutes(routes) {
+        return Object.values(this.routes);
+      }
+
+      _filterStops(stops) {
+        return Object.values(this.stops);
+      }
+
+    }
+
+    window.customElements.define(UvaTransit.is, UvaTransit);
+  </script>
+</dom-module>

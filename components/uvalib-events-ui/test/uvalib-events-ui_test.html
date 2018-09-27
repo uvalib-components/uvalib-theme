@@ -1,0 +1,52 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <title>uvalib-events-ui test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../uvalib-events-ui.html">
+  </head>
+  <body>
+
+    <test-fixture id="basic">
+      <template>
+        <uvalib-events-ui></uvalib-events-ui>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="empty">
+      <template>
+        <uvalib-events-ui max-num-events-shown="0"></uvalib-events-ui>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('uvalib-events-ui', function() {
+
+        test('instantiating the element works', function(done) {
+          var element = fixture('basic');
+          flush(function() {
+            assert.equal(element.is, 'uvalib-events-ui');
+            done();
+          });
+        });
+
+        test('no events generates card content', function(done) {
+          var element = fixture('empty');
+          flush(function() {
+            assert.equal(element.is, 'uvalib-events-ui');
+            assert.isUndefined(element._events);
+            done();
+          });
+        });
+      });
+
+      a11ySuite('basic');
+      a11ySuite('empty');
+    </script>
+  </body>
+</html>

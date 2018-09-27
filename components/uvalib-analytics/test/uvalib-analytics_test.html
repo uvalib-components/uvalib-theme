@@ -1,0 +1,32 @@
+<!doctype html>
+
+<html>
+  <head>
+    <title>uvalib-analytics test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../uvalib-analytics.html">
+  </head>
+  <body>
+
+    <test-fixture id="basic">
+      <template>
+        <uvalib-analytics></uvalib-analytics>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('uvalib-analytics', function() {
+
+        test('instantiating the element works', function() {
+          var element = fixture('basic');
+          assert.equal(element.is, 'uvalib-analytics');
+        });
+
+      });
+    </script>
+  </body>
+</html>

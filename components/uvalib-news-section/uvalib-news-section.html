@@ -1,0 +1,85 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+
+<link rel="import" href="../uvalib-theme/uvalib-theme.html">
+<link rel="import" href="../uvalib-helper-libs/uvalib-html-echo.html">
+
+<link rel="import" href="uvalib-news-source.html">
+
+
+<!--
+`uvalib-news-section`
+This component handles the Library news display on the homepage
+
+@demo demo/index.html
+-->
+
+<dom-module id="uvalib-news-section">
+  <template>
+    <style is="custom-style" include="uvalib-theme">
+    </style>
+    <div id="news-content">
+      <uvalib-news-source items="{{newsItems}}" limit="{{numItems}}"></uvalib-news-source>
+      <template is="dom-repeat" items="{{newsItems}}">
+        <div class="news-item">
+          <template is="dom-if" if="{{item.source}}">
+            <div class="source">Source: {{item.source}}</div>
+          </template>
+          <div class="title" tabindex="-1"><a href="{{item.url}}">{{_decodeHtml(item.title)}}</a></div>
+          <div class="preview">
+            <uvalib-html-echo html="{{_truncate(item.excerpt)}}"></uvalib-html-echo>
+          </div>
+          <template is="dom-if" if="{{item.category}}">
+            <div class="category">{{item.category}}</div>
+          </template>
+        </div>
+      </template>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'uvalib-news-section',
+
+      properties: {
+        previewCharacterLimit: {
+          type: Number,
+          value: 200
+        },
+        numItems: {
+          type: Number,
+          value: 3
+        }
+      },
+
+      _decodeHtml: function(html) {
+        var txt = document.createElement("textarea");
+        txt.innerHTML = html;
+        return txt.value;
+      },
+      _truncate: function(s){
+        if(s.length <= this.previewCharacterLimit){
+            return s;
+        } else {
+            var ts = "";
+            var subs = s.split('&');
+            if(subs[0].length > this.previewCharacterLimit){
+                return subs[0].substring(0, this.previewCharacterLimit) + "&hellip;";
+            } else {
+                ts = ts + subs[0];
+            }
+            for(var i = 1; i < subs.length; i++){
+                var end = subs[i].indexOf(';');
+                ts = ts + '&' + subs[i];
+                if(ts.length >= this.previewCharacterLimit){
+                    return ts.substring(0,this.previewCharacterLimit) + "&hellip;";
+                }
+            }
+            return ts;
+        }
+     }
+
+    });
+  </script>
+</dom-module>

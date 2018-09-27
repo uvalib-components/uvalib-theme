@@ -1,0 +1,10 @@
+{
+  "name": "uvalib-chat",
+  "main": "uvalib-chat.html",
+  "dependencies": {
+    "uvalib-elements": "uvalib-components/uvalib-elements#master"
+  },
+  "resolutions": {
+    "lodash": "^4.17.5"
+  }
+}

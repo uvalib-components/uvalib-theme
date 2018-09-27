@@ -1,0 +1,24 @@
+{
+  "name": "uvalib-banner",
+  "main": "uvalib-banner.html",
+  "dependencies": {
+    "uvalib-elements": "uvalib-components/uvalib-elements#master",
+    "iron-swiper": "safetychanger/iron-swiper#^2.1.1"
+  },
+  "resolutions": {
+    "webcomponentsjs": "^v1.0.19",
+    "polymer": "^2.5.0",
+    "lodash": "^4.17.5",
+    "iron-swiper": "^2.1.1"
+  },
+  "homepage": "https://github.com/uvalib-components/uvalib-banner",
+  "_release": "44669effee",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "44669effee81e5cf36630614571c1729587c03d0"
+  },
+  "_source": "https://github.com/uvalib-components/uvalib-banner.git",
+  "_target": "master",
+  "_originalSource": "uvalib-components/uvalib-banner"
+}

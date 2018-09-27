@@ -1,0 +1,19 @@
+{
+  "name": "uvalib-hours-card",
+  "version": "1.0.0",
+  "description": "Library hours information displayed in a card section.",
+  "main": "uvalib-hours-card.html",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-accessibility": "^3.0.1",
+    "gulp-rename": "^1.2.2",
+    "run-sequence": "^1.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uvalib-components/uvalib-hours-card"
+  }
+}

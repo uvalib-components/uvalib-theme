@@ -1,0 +1,34 @@
+<!DOCTYPE html><html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=yes">
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    
+    <link rel="import" href="../uvalib-footer.html">
+  </head>
+  <body>
+
+    
+    <test-fixture id="uvalib-footer-fixture">
+      <template>
+        <uvalib-footer>
+          <h4>Other Sites</h4>
+          <ul>
+            <li class="line_rv"><a href="https://collab.itc.virginia.edu/portal">UVaCollab</a></li>
+            <li><a href="https://sisuva.admin.virginia.edu/psp/epprd/EMPLOYEE/EMPL/h/?tab=PAPP_GUEST">SIS</a></li>
+            <li><a href="http://its.virginia.edu/home.php">ITS</a></li>
+            <li><a href="http://www.virginia.edu/cavalieradvantage/">Cavalier Advantage</a></li>
+            <li><a href="http://www.virginia.edu/">UVA Home</a></li>
+            <li><a href="http://staffweb.lib.virginia.edu/">Library Staff Site</a></li>
+          </ul>
+        </uvalib-footer>
+      </template>
+    </test-fixture>
+
+    <script>suite("<uvalib-footer>",function(){var e;setup(function(){e=fixture("uvalib-footer-fixture")}),test('defines the "author" property',function(){assert.equal(e.author.name,"Dimitri Glazkov"),assert.equal(e.author.image,"http://addyosmani.com/blog/wp-content/uploads/2013/04/unicorn.jpg")}),test("says hello",function(){assert.equal(e.sayHello(),"uvalib-footer says, Hello World!");var t=e.sayHello("greetings Earthlings");assert.equal(t,"uvalib-footer says, greetings Earthlings")}),test("fires lasers",function(t){e.addEventListener("uvalib-footer-lasers",function(e){assert.equal(e.detail.sound,"Pew pew!"),t()}),e.fireLasers()}),test("distributed children",function(){var t=e.getContentChildren();assert.equal(t.length,1,"one distributed node"),assert.equal(t[0],e.querySelector("h2"),"content distributed correctly")})});</script>
+
+  
+
+</body></html>

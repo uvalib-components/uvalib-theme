@@ -1,0 +1,90 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<dom-module id="uva-theme">
+  <template>
+    <custom-style>
+      <style is="custom-style">
+
+      h1 {
+        font-family: var(--font-primary);
+        font-weight: var(--font-weight-demi);
+        font-style: normal;
+        font-size: 60px;
+        line-height: 60px;
+        color: var(--color-primary-blue);
+      }
+      h2 {
+        font-family: var(--font-primary-condensed);
+        font-weight: var(--font-weight-demi);
+        font-style: normal;
+        text-transform: uppercase;
+        font-size: 36px;
+        line-height: 36px;
+        color: var(--color-primary-blue);
+      }
+      h3 {
+        font-family: var(--font-secondary);
+        font-weight: var(--font-weight-heavy);
+        font-style: italic;
+        text-transform: uppercase;
+        font-size: 36px;
+        line-height: 40px;
+        color: var(--color-primary-blue);
+      }
+      h4 {
+        font-family: var(--font-primary);
+        font-weight: var(--font-weight-demi);
+        font-style: italic;
+        font-size: 30px;
+        line-height: 30px;
+        color: var(--color-primary-blue);
+      }
+      h5 {
+        font-family: var(--font-primary);
+        font-weight: var(--font-weight-book);
+        font-style: normal;
+        text-transform: uppercase;
+        font-size: 30px;
+        line-height: 33px;
+        color: var(--color-secondary-orange);
+      }
+      blockquote {
+        font-family: var(--font-secondary);
+        font-weight: var(--font-weight-heavy);
+        font-style: italic;
+        text-transform: uppercase;
+        font-size: 30px;
+        line-height: 33px;
+        color: var(--color-secondary-orange);
+      }
+      ul, ol {
+        font-family: var(--font-primary);
+        font-weight: var(--font-weight-book);
+        font-style: normal;
+        font-size: 15px;
+        line-height: 30px;
+        margin: 15px 0px;
+        padding-left: 40px;
+        color: var(--color-text-gray);
+      }
+      :host, body {
+        font-family: var(--font-primary);
+        font-weight: var(--font-weight-book);
+        font-style: normal;
+        font-size: 15px;
+        line-height: 30px;
+        color: var(--color-text-gray);
+      }
+      /* Hide from view but not from screen reader */
+      .visuallyhidden {
+        position: absolute;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        height: 1px; width: 1px;
+        margin: -1px; padding: 0; border: 0;
+      }
+
+      </style>
+    </custom-style>
+  </template>
+</dom-module>

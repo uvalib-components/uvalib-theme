@@ -1,0 +1,58 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="uvalib-springshare-form">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <div id="[[formId]]"></div>
+    <script type="text/javascript" src="https://virginia.libsurveys.com/form_loader.php?id=[[_simpleVer(formId)]]"></script>
+  </template>
+
+  <script>
+    /**
+     * `uvalib-springshare-form`
+     *
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class UvalibSpringshareForm extends Polymer.Element {
+      static get is() { return 'uvalib-springshare-form'; }
+      static get properties() {
+        return {
+          formId: {
+            type: String,
+            value: 'form_37bdb6a9a88c69815261ca3836bbec9a'
+          }
+        };
+      }
+      ready(){
+        super.ready();
+        var cont = document.createElement("div");
+        cont.id = this.formId;
+        cont.style.cssText = 'visibility:hidden; display:absolute; width: 100%; height: 100%;';
+        document.body.appendChild(cont);
+        setTimeout(this._snatchIframe.bind(this),5000);
+      }
+      _simpleVer(fid){
+        return fid.replace('form_','');
+      }
+      _snatchIframe(){
+        var iframe = document.getElementById(this.formId);
+        if (!iframe) setTimeout(this._snatchIframe.bind(this),5000);
+        else {
+          var height = iframe.querySelector('iframe').height;
+          this.shadowRoot.getElementById(this.formId).replaceWith(iframe);
+          iframe.style.cssText = 'display: block; visibility:visible; height:'+height;
+          iframe.querySelector('iframe').width = "100%";
+        }
+      }
+    }
+
+    window.customElements.define(UvalibSpringshareForm.is, UvalibSpringshareForm);
+  </script>
+</dom-module>

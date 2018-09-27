@@ -1,0 +1,293 @@
+<link rel="import" href="../uvalib-theme/uvalib-ui-element.html">
+<link rel="import" href="../uvalib-theme/uvalib-theme.html">
+<link rel="import" href="../iron-collapse/iron-collapse.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-card/paper-card.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="../uvalib-imageviewer/uvalib-imageviewer.html">
+<link rel="import" href="../uvalib-springshare-form/uvalib-springshare-form.html">
+<link rel="import" href="../moment/moment.js">
+<link rel="import" href="../uvalib-news/uvalib-news.html">
+
+<!-- EXHIBITION FONT SELECTED from Drupal -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+<!-- END -->
+
+<dom-module id="uvalib-majorexhibitpage">
+  <template>
+    <custom-style>
+      <style include="uvalib-theme">
+        :host {
+          display: block;
+        }
+
+        paper-button {
+          background: white !important;
+          color: var(--uvalib-link-color);
+        }
+        paper-button span:hover {
+          text-decoration: underline;
+        }
+
+        .exhibit-header { margin-top: -1px; min-height: 520px; }
+
+        /* .exhibit-main-image { } */
+        .exhibit-main-image ::slotted(*) { margin: 16px 0; --iron-image-width: auto; }
+        .exhibit-welcome {
+          width: auto;
+          padding-left: 30px;
+          padding-right: 30px;
+          padding-top: 0px;
+          padding-bottom: 15px;
+          line-height: 1.5;
+        }
+        .exhibit-welcome .header-label { font-size: 16px; font-weight: 300; text-transform: uppercase; margin-top: calc(var(--uvalib-spacing-unit)*1.5); }
+        .exhibit-welcome .header-title::slotted(h1) { line-height: 1.25 !important; font-size: 36px !important; margin-top: calc(var(--uvalib-spacing-unit)*1.25) !important; margin-bottom: calc(var(--uvalib-spacing-unit)/2) !important; padding-top: 0 !important; }
+        .exhibit-welcome .header-supporting-text::slotted(p) { margin: 0 0 var(--uvalib-spacing-unit) 0; font-size: 21px; }
+        .exhibit-date-range { font-size: 24px; font-weight: 500; padding-top: calc(var(--uvalib-spacing-unit)*1.5); }
+        .exhibit-location { font-size: 16px; font-weight: 400; padding-top: calc(var(--uvalib-spacing-unit)/2); }
+        .exhibit-button-group { padding-top: calc(var(--uvalib-spacing-unit)*1.75); }
+        .exhibit-book-tour { padding: var(--uvalib-spacing-unit); text-align: center; }
+        .exhibit-book-tour ::slotted(p) {text-align: center;}
+
+        .exhibit-overview { padding: var(--uvalib-spacing-unit); }
+        .exhibit-collapse-link { float: right; text-transform: uppercase; }
+        .exhibit-gallery-info, .exhibit-news { padding-top: 20px; padding-bottom: 20px; }
+        .exhibit-gallery-info h2, .exhibit-overview h2.content-title, .exhibit-book-tour h2.content-title, .exhibit-news h2 { text-align: center; clear: both; }
+        .exhibit-gallery-item { padding: var(--uvalib-spacing-unit); width: 540px; border-radius: 5px; }
+        .exhibit-gallery-item { padding-top: 20px;  height: 200px; }
+        .exhibit-gallery-item .gallery-container { height: 100%; }
+        .exhibit-card-title { flex-grow: 0; font-size: 24px; font-weight: 600; text-transform: none; padding-bottom: calc(var(--uvalib-spacing-unit)/3);}
+        .exhibit-card-content { flex-grow: 1; line-height: 1.5;}
+        .exhibit-card-link { margin-top: 20px; text-transform: uppercase;}
+
+        /* uncomment to override uvalib-news default style
+        uvalib-news { --uvalib-news-item: {
+                          padding: var(--uvalib-spacing-unit);
+                          width: 540px;
+                          border-radius: 5px;
+                          height: 150px; };
+                      --uvalib-news-source: {
+                          padding-bottom: calc(var(--uvalib-spacing-unit)/3);
+                          text-transform: capitalize;};
+                      --uvalib-news-title: {};
+                      --uvalib-news-copy: {};
+                      --uvalib-news-link: {};
+                    }
+        */
+
+        .exhibit-pre-footer { padding-top: calc(var(--uvalib-spacing-unit)*1.25); padding-bottom: calc(var(--uvalib-spacing-unit)*1.25); text-align: center; margin-top: -1px; margin-bottom: -64px; }
+        .exhibit-pre-footer a:first-child { margin-right: calc(var(--uvalib-spacing-unit)*2.5);}
+
+        /*MEDIUM BREAKPOINT*/
+        :host([medium-screen]) .exhibit-header  { margin-top: -5px; height: 100%; padding-left: 985px;  }
+        :host([medium-screen]) .exhibit-main-image ::slotted(*) { --iron-image-width: 100vw; --iron-image-height: calc(100vw)/2; }
+        :host([medium-screen]) .exhibit-welcome { float: left; padding-bottom: 32px; }
+        :host([medium-screen]) .exhibit-gallery-item { width: 45%; height: 200px; }
+        :host([medium-screen]) uvalib-news {
+          --uvalib-news-item: { width: 45%; height: 200px; }
+        }
+        :host([medium-screen]) .exhibit-pre-footer { margin-bottom: -65px;}
+
+        /*SMALL BREAKPOINT*/
+        :host([small-screen]) .exhibit-header { margin-top: -5px; height: 100%; padding-left: 985px; }
+        :host([small-screen]) .exhibit-main-image ::slotted(*)  { --iron-image-width: 100vw; }
+        :host([small-screen]) .exhibit-welcome { float: left; padding-bottom: 32px; width: 83vw; }
+        :host([small-screen]) .exhibit-gallery-info h2, :host([small-screen]) .exhibit-news h2 { width: 92vw; }
+        :host([small-screen]) .exhibit-gallery-item { width: 92vw; height: auto; margin-left: 0; margin-right: 0;}
+        :host([small-screen]) uvalib-news {
+          --uvalib-news-item: { width: 92vw; height: auto; margin-left: 0; margin-right: 0;};
+        }
+        :host([small-screen]) .exhibit-pre-footer { margin-bottom: 0px; width: 92vw; padding-bottom: 0; }
+        :host([small-screen]) .exhibit-pre-footer paper-button { margin-bottom: var(--uvalib-spacing-unit); }
+
+
+        /*CUSTOM STYLES HANDLED THROUGH DRUPAL*/
+        /* header background color */
+        .exhibit-header { background-color: #A0005D; }
+        /* header font colors */
+        .exhibit-welcome, .exhibit-welcome ::slotted(h1) { color: #FFFFFF !important; }
+        /* 'Gallery Info' section background color */
+        .exhibit-gallery-info { background-color: #2AOC53; }
+        /* .exhibit-gallery-info h2 { color: var(--uvalib-main-black); } */
+
+
+
+        /* 'In the news' background color */
+        .exhibit-news { background-color: #AFAFAF; }
+        /* 'In the news' copy color */
+        uvalib-news {
+          color: #747679;
+          /* 'In the news' article source color */
+          --uvalib-news-item-source-color: #9F3515;
+        }
+
+        /* Pre-footer background color */
+        .exhibit-pre-footer { background-color: #9F3515; }
+
+        :host, a, h2, h3, ul, span, iron-collapse h2, paper-button, paper-card {
+          font-family: 'Open Sans', sans-serif !important;
+        }
+        ::slotted(*) {
+          /* cusotom font */
+          font-family: 'Open Sans', sans-serif !important;
+        }
+        :host {
+          --uvalib-liame-link: { font-family: 'Open Sans', sans-serif !important; };
+        }
+
+      </style>
+    </custom-style>
+
+    <div class="exhibit-header shady">
+      <div class="layout horizontal wrap">
+        <div class="exhibit-main-image"><slot name="main-image"></slot></div>
+        <div class="exhibit-welcome flex">
+          <div class="vertical layout justified">
+            <span class="header-label">exhibition</span>
+            <slot class="header-title" name="header-title" style="margin:0"></slot>
+            <slot class="header-supporting-text" name="header-supporting-text"></slot>
+            <div class="exhibit-date-range">
+              <span>[[_dayMonthYear(startDate)]]&nbsp;&ndash;&nbsp;[[_dayMonthYear(endDate)]]</span>
+            </div>
+            <slot class="exhibit-location" name="location"></slot>
+            <div class="exhibit-button-group">
+              <paper-button id="exhibitOverviewButton" raised on-tap="_openCollapse" data-collapseid="exhibitOverview"><span>Overview</span></paper-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <iron-collapse id="exhibitOverview">
+      <div class="exhibit-overview">
+        <paper-button on-tap="_closeCollapse" data-collapseid="exhibitOverview" class="exhibit-collapse-link">close x</paper-button>
+        <h2 class="content-title">Overview</h2>
+        <div>
+          <h2>The Exhibition</h2>
+          <slot name="overview"></slot>
+          <h3>Visitor Policy</h3>
+          <p>To enhance the experience of all guests and to protect our collections on display, please note the following policies:&nbsp;</p>
+          <ul>
+          	<li>No food or drinks allowed in the Main Gallery, the Flowerdew Hundred Gallery, or the Declaring Independence Gallery&nbsp;</li>
+          	<li>Photography is permitted for personal, noncommercial use only. Flash photography, tripods, and other photographic equipment, including selfie-sticks, are not permitted in any exhibition gallery.</li>
+          	<li>Low light levels in the exhibition galleries protect the unique materials on display from fading and discoloration. Light damage is both cumulative and permanent, and we strive to balance an enjoyable experience for our visitors with conditions that allow us to preserve our collections for generations.</li>
+          </ul>
+          <p>Please note: large print versions of exhibition text are available in each gallery. We appreciate your participation in the care of our collections and hope you enjoy your visit.</p>
+        </div>
+      </div>
+    </iron-collapse>
+
+    <div class="exhibit-gallery-info shady">
+      <h2>Gallery info</h2>
+      <div>
+        <paper-card class="exhibit-gallery-item">
+          <div class="gallery-container vertical layout justified">
+            <div class="exhibit-card-title">Harrison-Small Hours</div>
+            <div class="exhibit-card-content">
+                Mon&ndash;Th:&nbsp;&nbsp;&nbsp;9 a.m. &ndash; 7 p.m.<br />
+                Friday:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9 a.m. &ndash; 5 p.m.<br />
+                Saturday:&nbsp;1 p.m. &ndash; 5 p.m.<br  />
+            </div>
+            <div class="exhibit-card-link"><a href="/map">directions</a></div>
+          </div>
+        </paper-card>
+        <paper-card class="exhibit-gallery-item">
+          <div class="gallery-container vertical layout justified">
+            <div class="exhibit-card-title">Events</div>
+            <div class="exhibit-card-content">Next up: (No exhibition events currently scheduled.)</div>
+            <div class="exhibit-card-link"><a href="https://cal.lib.virginia.edu/calendar/events/">view all library events</a></div>
+          </div>
+        </paper-card>
+        <paper-card class="exhibit-gallery-item">
+          <div class="gallery-container vertical layout justified">
+            <div class="exhibit-card-title">Image gallery</div>
+            <div class="exhibit-card-content">Browse through selected items on view in the exhibition.</div>
+            <div class="exhibit-card-link"><a on-tap="_openImageViewer"><span>view images</span></a></div>
+            <iron-ajax auto id="ajax" last-response="{{_ivItems}}" url="[[_mkImagesFeedURL(exhibitSlug)]]" handle-as="json"></iron-ajax>
+            <uvalib-imageviewer id="imageViewer" items$="[[_ivItems]]" image-prop="image.url" thumb-prop="image.url" html-prop="body" firebase-array></uvalib-imageviewer>
+          </div>
+        </paper-card>
+
+        <paper-card class="exhibit-gallery-item">
+          <div class="gallery-container vertical layout justified">
+            <div class="exhibit-card-title">Bring your group on a tour</div>
+            <div class="exhibit-card-content">Schedule a private tour for your group or class. Private tours can be tailored based on your group’s needs.</div>
+            <div class="exhibit-card-link"><a id="exhibitBookTourButton" on-tap="_openCollapse" data-collapseid="exhibitBookTour"><span>Book a Tour</span></a></div>
+
+          </div>
+        </paper-card>
+      </div>
+    </div>
+
+    <iron-collapse id="exhibitBookTour">
+      <div class="exhibit-book-tour">
+        <paper-button on-tap="_closeCollapse" data-collapseid="exhibitBookTour" class="exhibit-collapse-link">close x</paper-button>
+        <h2 class="content-title">Book a tour</h2>
+        <p>Please complete the form below to request a guided tour. To request a UVA class tour, please submit a <a href="http://small.library.virginia.edu/services/instruction/" aria-label="use our class tour request form to submit a U V A class tour">class tour</a> request.</p>
+        <slot name="book-tour-language"></slot>
+        <uvalib-springshare-form formId="form_37bdb6a9a88c69815261ca3836bbec9a"></uvalib-springshare-form>
+      </div>
+    </iron-collapse>
+
+    <div class="exhibit-news shady">
+      <h2>In the news</h2>
+      <uvalib-news association="[[exhibitSlug]]"></uvalib-news>
+    </div>
+    <div class="exhibit-pre-footer shady">
+      <a href="https://virginia.box.com/s/rqklvioqw52nrw8957na1wb5z87gwba6" target="_blank"><paper-button raised><span>Download Press Kit</span></paper-button></a>
+      <paper-button raised><uvalib-liame id="liame" rid="n8rah" subject="Question regarding the current exhibition">Contact Exhibit Coordinator</uvalib-liame></paper-button>
+    </div>
+
+  </template>
+
+  <script>
+    /**
+     * `uvalib-majorexhibitpage`
+     * UVA Library major exhibit page layout component
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/exhibits.html
+     */
+    class UvalibMajorExhibitpage extends UvalibUiElement {
+      static get is() { return 'uvalib-majorexhibitpage'; }
+      static get properties() {
+        return Object.assign(super.properties, {
+          exhibitSlug: String,
+          startDate: String,
+          endDate: String
+        });
+      }
+      //Concat the this elements template with the parents
+      static get template() {
+        var parentTemplate = UvalibUiElement.template.cloneNode(true);
+        var childTemplate = Polymer.DomModule.import('uvalib-majorexhibitpage', 'template');
+        parentTemplate.content.insertBefore(childTemplate.content,null);
+        return parentTemplate;
+      }
+      _openCollapse(e){
+        var collapseId = e.currentTarget.getAttribute('data-collapseid');
+        // store opening element to restore focus on close
+        this._ovPrevFocus = e.currentTarget;
+        var ovCollapse = this.shadowRoot.getElementById(collapseId);
+        ovCollapse.show();
+        ovCollapse.focus();
+      }
+      _closeCollapse(e){
+        var collapseId = e.currentTarget.getAttribute('data-collapseid');
+        this.shadowRoot.getElementById(collapseId).hide();
+      }
+      _openImageViewer(){ this.shadowRoot.getElementById('imageViewer').open(); }
+      _mkImagesFeedURL(){
+        if (this.exhibitSlug)
+          return "https://uvalib-api.firebaseio.com/mediaobjects.json?orderBy=%22association%22&startAt=%22"+this.exhibitSlug+"%22&endAt=%22"+this.exhibitSlug+"%22"
+      }
+      _dayMonthYear(dtString) {
+        return (dtString) ? moment.tz(dtString,'America/New_York').format("LL") : '';
+      }
+    }
+
+    window.customElements.define(UvalibMajorExhibitpage.is, UvalibMajorExhibitpage);
+  </script>
+</dom-module>

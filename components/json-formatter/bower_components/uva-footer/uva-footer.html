@@ -1,0 +1,36 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="uva-footer">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+  </template>
+
+  <script>
+    /**
+     * `uva-footer`
+     * 
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class UvaFooter extends Polymer.Element {
+      static get is() { return 'uva-footer'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'uva-footer'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(UvaFooter.is, UvaFooter);
+  </script>
+</dom-module>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>uvalib-news-section demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+    <link rel="import" href="../uvalib-news-section.html">
+    <!--
+    <link rel="import" href="../uvalib-news-banner.html">
+    -->
+    <style is="custom-style" include="demo-pages-shared-styles">
+      #home-banner-demo {
+        --demo-snippet-demo: {
+          padding: 0px;
+        };
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="vertical-section-container centered" style="max-width: 95%;">
+      <h3>Basic uvalib-news-section</h3>
+      <demo-snippet class="reverse">
+        <template>
+          <uvalib-news-section></uvalib-news-section>
+        </template>
+      </demo-snippet>
+    </div>
+
+    <div class="vertical-section-container centered" style="max-width: 95%;">
+      <h3>Advanced uvalib-news-section</h3>
+      <demo-snippet class="reverse">
+        <template>
+          <uvalib-news-section num-items="4" preview-character-limit="150"></uvalib-news-section>
+        </template>
+      </demo-snippet>
+    </div>
+
+  </body>
+</html>

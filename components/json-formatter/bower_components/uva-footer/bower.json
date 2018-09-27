@@ -1,0 +1,7 @@
+{
+  "name": "uva-footer",
+  "main": "uva-footer.html",
+  "dependencies": {
+    "uva-elements": "uva-components/uva-elements#master"
+  }
+}

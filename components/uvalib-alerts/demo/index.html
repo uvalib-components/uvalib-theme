@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>uvalib-alerts demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../polymer/lib/elements/dom-bind.html">
+    <link rel="import" href="../../paper-button/paper-button.html">
+    <link rel="import" href="../uvalib-alerts.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic uvalib-alerts demo</h3>
+      <demo-snippet>
+        <template>
+          <dom-bind id="app">
+            <template>
+              <div>
+                <paper-button onclick="seeall()">See All Alerts</paper-button>
+                [[_alertSeenCount]]
+              </div>
+              <uvalib-alerts id="alerts" seen-count="{{_alertSeenCount}}"></uvalib-alerts>
+            </template>
+          </demo-bind>
+        </template>
+      </demo-snippet>
+      <script>
+        var seeall = function(){
+          document.querySelector('#alerts').unseeAll();
+        };
+      </script>
+    </div>
+  </body>
+</html>

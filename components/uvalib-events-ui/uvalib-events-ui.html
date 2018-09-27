@@ -1,0 +1,215 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../uvalib-theme/uvalib-theme.html">
+<link rel="import" href="../uvalib-elements/uvalib-elements.html">
+<link rel="import" href="../byutv-jsonp/byutv-jsonp.html">
+
+<!--
+`uvalib-events-ui`
+This card component generates the LibCal mini calendar widget which allows for selecting a single calendar and filtering on library as well as category.
+
+@demo demo/index.html
+-->
+
+<dom-module id="uvalib-events-ui">
+  <template>
+    <style is="custom-style" include="uvalib-theme">
+    </style>
+
+    <byutv-jsonp id="evtData" auto url="{{_springshareLibcalApiUrl}}" params="{{_eventListParams}}" last-response="{{_springshareData}}"
+      debounce-duration="300"></byutv-jsonp>
+
+    <div class="events">
+      <template is="dom-repeat" items="{{_events}}">
+        <div class="event">
+          <div class="category">{{item.category}}</div>
+          <div class="title"><a href="{{item.url}}">{{item.title}}</a></div>
+          <div class="date-time">{{item.date}}, {{item.starttime}} - {{item.endtime}}</div>
+          <div class="location">{{item.location}}</div>
+        </div>
+      </template>
+      <template is="dom-if" if="{{!_events.length}}">
+        <div class="title">No events at this time. Please check back again soon.</div>
+      </template>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'uvalib-events-ui',
+
+      properties: {
+        elevation: {
+          type: Number,
+          value: 1
+        },
+
+        headingIcon: {
+          type: String,
+          value: "calendar"
+        },
+
+        /**
+         * Card heading to use for the uvalib-events-ui component.
+         */
+        heading: {
+          type: String,
+          value: ""
+        },
+
+        /**
+         * Identifier for the LibCal account id. Defaults to existing UVA Library account having ID 863.
+         */
+        institutionId: {
+          type: String,
+          value: 863
+        },
+
+        /**
+         * Identifier for the LibCal calender to display. Defaults to existing UVA Library Events calendar having ID 4299.
+         */
+        calId: {
+          type: String,
+          value: 4299
+        },
+
+        /**
+         * Identifier(s) for the LibCal locations to limit what displays on the card.
+         * Use commas between IDs when specifying multiple values. No value will show all by default.
+         */
+        locIdsFilter: {
+          type: String,
+          value: ""
+        },
+
+        /**
+         * Identifier(s) for the LibCal calendar categories to limit what displays on the card.
+         * Use commas between IDs when specifying multiple values. No value will show all by default.
+         */
+        catIdsFilter: {
+          type: String,
+          value: ""
+        },
+
+        /**
+         * Limit the number of events to show.
+         */
+        maxNumEventsShown: {
+          type: Number,
+          value: 5
+        },
+
+        /**
+         * Starting date to retrieve events. Can accept dates from the past.
+         * Format: YYYY-MM-DD
+         */
+        startDate: {
+          type: String,
+          value: ''
+        },
+
+        /**
+         * Number of days into the future to retrieve events from, starting from startDate.
+         */
+        days: {
+          type: Number,
+          value: 365
+        },
+
+        /**
+         * Springshare LibCal API event list URL
+         */
+        _springshareLibcalApiUrl: {
+          type: String,
+          value: 'https://api2.libcal.com/1.0/events/'
+        },
+
+        /**
+         * Springshare LibCal API Event request key
+         */
+        _apiKey: {
+          type: String,
+          value: 'c45a1428103ed000ba4025e9970edf54'
+        },
+
+        /**
+         * The Springshare parameters for retrieving the event list.
+         */
+        _eventListParams: {
+          type: Object,
+          computed: "_getParams(institutionId,calId,locIdsFilter,catIdsFilter,maxNumEventsShown,startDate,days,_apiKey)"
+        },
+
+        /**
+         * JSON data returned from Springshare API call.
+         */
+        _springshareData: Object,
+
+        _events: {
+          type: Array,
+          computed: '_buildEventList(_springshareData)'
+        }
+      },
+
+      /**
+       * Get the Springshare parameters into a proper object.
+       */
+      _getParams: function(institutionId,calId,locIdsFilter,catIdsFilter,maxNumEventsShown,startDate,days,_apiKey) {
+        var params = {
+          key: _apiKey,
+          iid: institutionId,
+          cal_id: calId,
+          limit: maxNumEventsShown,
+          campus: locIdsFilter.split(/[ ]+/).join(','),
+          category: catIdsFilter.split(/[ ]+/).join(',')
+        }
+        if (locIdsFilter != '') { params.campus = locIdsFilter; }
+        if (catIdsFilter != '') { params.category = catIdsFilter; }
+        if (startDate != '') { params.date = startDate; }
+        if (days != 0) { params.days = days; }
+        return params;
+      },
+
+      _buildEventList: function(data) {
+        moment().tz("America/New_York").format();
+        var events = new Array();
+        for (var i=0; i < data.events.length; i++) {
+          var title = data.events[i].title;
+          var url = data.events[i].url.public;
+          var category = (data.events[i].category.length > 0) ? data.events[i].category[0].name : '';
+          var location = data.events[i].location.name;
+          var date =  moment(data.events[i].start).tz("America/New_York").format("MMMM Do");
+          var startTime = moment(data.events[i].start).tz("America/New_York").format("h:mm A");
+          var endTime =  moment(data.events[i].end).tz("America/New_York").format("h:mm A zz");
+          var info = {
+            title: title,
+            url: url,
+            category: category,
+            location: location,
+            date: date,
+            starttime: startTime,
+            endtime: endTime
+          }
+          events[i] = info;
+        }
+        return events;
+      },
+
+      /**
+       * Apply styles from this component onto the LibCal widget
+       */
+      ready: function() {
+        this.scopeSubtree(this.querySelector('.card-content'), true);
+        this.scopeSubtree(this.querySelector('.card-actions'), true);
+      },
+
+      attached: function() {
+        this._childText = Polymer.dom(this).textContent;
+      },
+      _hasContent: function(){
+        return this._childText && this._childText.length > 0;
+      }
+
+    });
+  </script>
+</dom-module>

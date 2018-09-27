@@ -1,0 +1,43 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../uva-helper-libs/polyfills/element.replacewith.html">
+<script src="../json-human/src/json.human.js"></script>
+
+<dom-module id="json-formatter">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <div class="jh-root"></div>
+  </template>
+
+  <script>
+    /**
+     * `json-formatter`
+     * formats JSON
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class JsonFormatter extends Polymer.Element {
+      static get is() { return 'json-formatter'; }
+      static get properties() {
+        return {
+          json: {
+            type: Object,
+            value: function(){return {};},
+            observer: '_printFormatted'
+          }
+        };
+      }
+      _printFormatted(json){
+          var node = JsonHuman.format(json);
+          this.shadowRoot.querySelector('.jh-root').replaceWith(node);
+      }
+    }
+
+    window.customElements.define(JsonFormatter.is, JsonFormatter);
+  </script>
+</dom-module>

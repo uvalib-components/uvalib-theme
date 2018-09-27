@@ -1,0 +1,122 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../uva-models/uva-library.html">
+<link rel="import" href="../uva-models/uva-library-hours.html">
+<link rel="import" href="../polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="../uvalib-theme/uvalib-theme.html">
+<link rel="import" href="../uvalib-theme/uvalib-hours-ui-style.html">
+
+<dom-module id="uvalib-hours-ui">
+  <template>
+    <custom-style>
+      <style include="uvalib-theme uvalib-hours-ui-style">
+        /* hide tables for a11y */
+        .hideme { height: 1px; border: none }
+        .offscreen { height: 1px; width: 1px; position: absolute; overflow: hidden; top: -10px; }
+
+        .table { width: 100%; border-collapse: collapse; }
+        .td { padding-top: .25em; padding-bottom: .25em;}
+        .td:first-child {width: 47%; padding-left: 1em; }
+        .td:nth-child(2) {width: 15%; text-align: center; }
+        .td:nth-child(3) {width: 38%; padding-right: 1em; text-align: right; }
+
+        .tr:nth-child(even) { background-color: var(--color-light-gray);}
+
+        .open {
+          color: var(--uvalib-secondary-green);
+          display: none; /*temp hide*/
+        }
+        .closed {
+          color: var(--uvalib-secondary-emergency-red);
+          display: none; /*temp hide*/
+        }
+
+      </style>
+    </custom-style>
+    <uva-library filter="libcalID" items="{{_libraries}}" sort-by="shortTitle"></uva-library>
+    <uva-library-hours id="hours" times="{{_times}}"></uva-library-hours>
+
+    <div class="table daily-hours" role="table" aria-readonly="true">
+      <div class="thead" role="rowgroup">
+        <div class="tr hideme" role="row">
+          <div scope="col" class="th noborder" role="columnheader">
+            <span class="offscreen">Library Name</span>
+          </div>
+          <div scope="col" class="th noborder" role="columnheader">
+            <span class="offscreen">Open now status</span>
+          </div>
+          <div scope="col" class="th noborder" role="columnheader">
+            <span class="offscreen">Today's Hours of Operation</span>
+          </div>
+        </div>
+      </div>
+      <div class="tbody" role="rowgroup">
+        <template is="dom-repeat" items="[[_libraries]]" filter="_hasLibCal">
+          <div class="tr" role="row">
+            <div class="td" role="cell">
+              [[_noLibrary(item.shortTitle)]]
+            </div>
+            <div class="td" role="cell">
+              <span hidden$="[[_isClosed(item.libcalID,_times,_refresh)]]" class="open">open</span>
+            </div>
+            <div clsss="td" role="cell">[[_getRange(item.libcalID,_times,_refresh)]]</div>
+          </div>
+        </template>
+      </div>
+    </div>
+
+  </template>
+
+  <script>
+    /**
+     * `uvalib-hours-ui`
+     * Card showing todays hours of operation at the Libraries
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/hours.html
+     */
+    class UvalibHoursUI extends Polymer.Element {
+      static get is() { return 'uvalib-hours-ui'; }
+      static get properties() {
+        return {
+          /** If true displays the single day format **/
+          singleDay: Boolean,
+          elevation: {
+            type: Number,
+            value: 3
+          },
+          _refresh: {
+            type: Number,
+            value: 0
+          }
+        };
+      }
+      connectedCallback(){
+        super.connectedCallback();
+        // update the open/closed and range every 5 minutes
+        this._intervalId = setInterval(function(){
+              this._refresh++;  // the change forces the dom-bound method to evaluate
+            }.bind(this), 300000);
+      }
+      disconnectedCallback(){
+        super.disconnectedCallback();
+        clearInterval(this._intervalId);
+      }
+      _noLibrary(title){
+        return title.replace('Library','');
+      }
+      _hasLibCal(lib){
+        return !!(lib.libcalID);
+      }
+      _isClosed(calID){
+        return !this.$.hours.isOpenNow(calID);
+      }
+      _getRange(calID){
+        return this.$.hours.getHoursRange(calID);
+      }
+    }
+
+    window.customElements.define(UvalibHoursUI.is, UvalibHoursUI);
+  </script>
+</dom-module>

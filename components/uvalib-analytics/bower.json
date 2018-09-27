@@ -1,0 +1,13 @@
+{
+  "name": "uvalib-analytics",
+  "description": "Web tracking for the Library",
+  "main": "uvalib-analytics.html",
+  "dependencies": {
+    "uvalib-elements": "uvalib-components/uvalib-elements#master"
+  },
+  "resolutions": {
+    "polymer": "^2.5.0",
+    "lodash": "^4.17.5",
+    "webcomponentsjs": "^v1.1.0"
+  }
+}

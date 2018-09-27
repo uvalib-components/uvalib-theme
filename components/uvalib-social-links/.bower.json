@@ -1,0 +1,34 @@
+{
+  "name": "uvalib-social-links",
+  "authors": [
+    "Anonymous <anonymous@example.com>"
+  ],
+  "description": "An element providing a solution to no problem in particular.",
+  "keywords": [
+    "web-component",
+    "polymer",
+    "seed"
+  ],
+  "main": "uvalib-social-links.html",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/uvalib-components/uvalib-social-links/",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "uvalib-elements": "uvalib-components/uvalib-elements#master"
+  },
+  "resolutions": {
+    "lodash": "^4.17.4"
+  },
+  "_release": "c9e6cb9d92",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "c9e6cb9d9256ad73a929a23f723f2b1e7aabfa00"
+  },
+  "_source": "https://github.com/uvalib-components/uvalib-social-links.git",
+  "_target": "master",
+  "_originalSource": "uvalib-components/uvalib-social-links"
+}

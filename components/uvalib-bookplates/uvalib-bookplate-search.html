@@ -1,0 +1,154 @@
+<link rel="import" href="../uvalib-theme/uvalib-ui-element.html">
+<link rel="import" href="../uvalib-theme/uvalib-theme.html">
+<link rel="import" href="../uvalib-theme/uvalib-page-style.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-card/paper-card.html">
+<link rel="import" href="../uvalib-search-box/uvalib-simple-search-box.html">
+<link rel="import" href="../uva-models/uva-library.html">
+<link rel="import" href="../iron-location/iron-location.html">
+<link rel="import" href="../iron-location/iron-query-params.html">
+<link rel="import" href="../uvalib-theme/uvalib-card-style.html">
+
+<dom-module id="uvalib-bookplate-search">
+  <template>
+    <custom-style>
+      <style include="uvalib-theme iron-flex uvalib-card-style uvalib-page-style">
+        paper-card {
+          max-width: 30%;
+
+        }
+        .card-content h3 {
+          text-transform: capitalize;
+          font-weight: 500;
+          line-height: 1.2;
+          padding-left: 0;
+        }
+        .bookplate-search.shady {
+          background-color: var(--uvalib-secondary-md-grey);
+          margin-top: calc(var(--uvalib-spacing-unit)*2);
+          padding: var(--uvalib-spacing-unit) 0;
+        }
+        .view-buttons {
+          margin: calc(var(--uvalib-spacing-unit)/2) var(--uvalib-spacing-unit);
+        }
+        .view-buttons paper-button {
+          height: calc(var(--uvalib-spacing-unit)*3);
+          background-color: white;
+        }
+        .results.shady {
+          padding-top: calc(var(--uvalib-spacing-unit)*2);
+          padding-bottom: calc(var(--uvalib-spacing-unit)*2);
+        }
+      </style>
+    </custom-style>
+
+    <uva-library path="bookplates" last-response="{{bookplates}}"></uva-library>
+    <iron-location query="{{_qs}}"></iron-location>
+    <iron-query-params params-string="{{_qs}}" params-object="{{params}}"></iron-query-params>
+    <div>
+      <div class="bookplate-search shady layout horizontal wrap center-justified">
+        <uvalib-simple-search-box on-submit="_pullQuery" value="{{query}}"></uvalib-simple-search-box>
+        <div class="view-buttons">
+          <a tabindex="-1" href="/bookplates?viewAll=true"><paper-button raised>View All Bookplates</paper-button></a>
+        </div>
+      </div>
+    </div>
+
+    <div hidden$="[[!_sorry(query,_resultsBoolean)]]">
+      <h2>Your search term "[[params.q]]" returned no results.</h2>
+    </div>
+    <div hidden$="[[!_resultsBoolean]]">
+      <h2>Your search term "[[params.q]]" returned the following results:</h2>
+      <div class="results layout horizontal wrap center-justified">
+        <template is="dom-repeat" items="[[results]]">
+          <paper-card hidden$="[[!item.bookplateResults]]" image="[[_imageFallback(item.bookplateImage.url)]]" alt="[[_altFallback(item.bookplateImage.alt)]]">
+            <div class="card-content">
+              <h3>[[item.title]]</h3>
+            </div>
+            <div class="card-actions">
+              <a href="[[_mkBookplateURL(item.fundID)]]" tabindex="-1"><paper-button>View More</paper-button></a>
+            </div>
+          </paper-card>
+        </template>
+      </div>
+    </div>
+
+
+
+  </template>
+
+  <script>
+    /**
+     * `uvalib-bookplate-search`
+     *
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class UvalibBookplateSearch extends UvalibUiElement {
+      static get is() { return 'uvalib-bookplate-search'; }
+      static get properties() {
+        return Object.assign(super.properties,{
+          params: {
+            type:Object,
+            observer: '_updatequery'
+          },
+          query: {
+            type: String
+          },
+          results: {
+            type: Array,
+            computed: '_searchBookplates(params.q,bookplates)',
+            observer: '_areResults'
+          },
+          _resultsBoolean: {
+            type: Boolean,
+            value: false
+          }
+        });
+      }
+      //Concat the this elements template with the parents
+      static get template() {
+        var parentTemplate = UvalibUiElement.template.cloneNode(true);
+        var childTemplate = Polymer.DomModule.import('uvalib-bookplate-search', 'template');
+        parentTemplate.content.insertBefore(childTemplate.content,null);
+        return parentTemplate;
+      }
+      _altFallback(alt){
+        return (alt)? alt:"University of Virginia Library Bookplate image";
+      }
+      _imageFallback(image){
+        return (image)? image:"https://static.lib.virginia.edu/files/generic-bookplate.png";
+      }
+      _sorry(){
+        return this.query && !this._resultsBoolean;
+      }
+      _areResults(){
+        this._resultsBoolean = (this.results && this.results.length > 0);
+      }
+      _updatequery(){
+        this.query = this.params.q;
+      }
+      _pullQuery(e){
+        this.set('params.q', e.currentTarget.value);
+      }
+      _searchBookplates(query){
+        if (query) {
+          var q = query.toLowerCase();
+          if (this.bookplates && q)
+              // Todo: filter by query
+              return this.bookplates.filter(bp => (bp.title && bp.title.toLowerCase().includes(q))||(bp.summary && bp.summary.toLowerCase().includes(q)));
+        }
+        return null;
+      }
+      _mkBookplateURL(fundID){
+        return "/bookplates/"+fundID;
+      }
+    }
+
+    window.customElements.define(UvalibBookplateSearch.is, UvalibBookplateSearch);
+  </script>
+</dom-module>

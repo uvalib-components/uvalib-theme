@@ -1,0 +1,367 @@
+<link rel="import" href="../uvalib-theme/uvalib-ui-element.html">
+<link rel="import" href="../uvalib-theme/uvalib-theme.html">
+<link rel="import" href="../uvalib-theme/uvalib-hourspage-style.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-card/paper-card.html">
+<link rel="import" href="../marked-element/marked-element.html">
+<link rel="import" href="../uva-models/uva-library.html">
+<link rel="import" href="../uva-models/uva-library-hours.html">
+<link rel="import" href="../uva-helper-libs/moment-timezone.html">
+<link rel="import" href="../uvalib-theme/uvalib-icons.html">
+<link rel="import" href="../paper-dialog/paper-dialog.html">
+<link rel="import" href="../google-map/google-map.html" />
+<link rel="import" href="../google-map/google-map-marker.html">
+
+<dom-module id="uvalib-hourspage">
+  <template>
+  <custom-style>
+      <style include="uvalib-theme uvalib-hourspage-style iron-flex-factors">
+        :host {
+          display: block;
+        }
+        [hidden] {
+          display: none;
+        }
+        paper-card {
+          max-width: 20em;
+          --paper-card-header-image: {
+            max-height: 300px;
+          }
+        }
+        :host([medium-screen]) paper-card {
+          max-width: 100%;
+        }
+        .card-content {
+          padding: var(--uvalib-spacing-unit);
+        }
+        .card-content dt, .card-content dd {
+          border-left: 0;
+          padding-left: 0;
+        }
+
+        .card-content dd a:before {
+          content: none;
+        }
+
+        .table { margin: 2em auto; }
+        .th {
+          font-family: 'franklingothic-demi';
+          text-align: center;
+        }
+        .th:first-of-type, .td:nth-child(2) {
+          background-color: var(--uvalib-main-rotunda-orange);
+          color: var(--color-white);
+        }
+        .td {
+          text-align: center;
+          padding-bottom: .4em;
+          padding-top: .4em;
+          width: auto;
+        }
+        .td:first-child {
+          padding-left: 1em;
+          padding-right: 0em;
+          text-align: left;
+          width: 30%;
+          font-family: 'franklin-gothic-urw-cond','arial narrow',sans-serif;
+          font-weight: 700;
+        }
+        .tr:nth-child(odd) { background-color: var(--color-light-gray); }
+        .tr:nth-child(2) > .td, .tr:nth-child(2) > .th {
+          border-bottom: 2px solid var(--uvalib-grey-600);
+          padding-bottom: .5em;
+        }
+        .tr:hover:not(.first-row) {
+          background-color: var(--color-medium-gray);
+          color: var(--uvalib-text-dk-grey);
+        }
+        .tr:hover:not(.first-row) {
+          background-color: var(--color-medium-gray);
+          color: var(--uvalib-text-dk-grey);
+        }
+        .tr:hover:not(.first-row) .td:nth-child(2) {
+          background-color: var(--uvalib-orange-800);
+        }
+
+        /* Mobile */
+        .days {
+          margin-top: var(--uvalib-spacing-unit);
+          margin-bottom: var(--uvalib-spacing-unit);
+          width: 100%;
+        }
+        .current-times {
+          font-weight: 700;
+          font-size: 1.25em;
+          background-color: var(--uvalib-main-rotunda-orange);
+          color: var(--color-white);
+          text-align: center;
+          padding: .4em;
+          margin-bottom: 1em;
+        }
+        .date-row {
+          padding-top: .5em;
+          padding-bottom: .5em;
+        }
+        .date-row:nth-child(odd) {
+          background-color: var(--color-light-gray);
+        }
+        .date, .hours {
+          text-align: center;
+        }
+        #mapDialog {
+          position: fixed;
+          margin: 0;
+          top:0;
+          width: 100%;
+          height: 100vh;
+          overflow: auto;
+          background-color: var(--color-primary-color);
+        }
+        .otherLocationContainer a {
+          margin-top: calc(var(--uvalib-spacing-unit)/2);
+          margin-bottom: calc(var(--uvalib-spacing-unit)/2);
+        }
+      </style>
+    </custom-style>
+
+    <uva-library filter="libcalID" items="{{_libraries}}" sort-by="shortTitle"></uva-library>
+    <uva-library-hours id="hours" start="[[_start]]" end="[[_end]]" times="{{_times}}"></uva-library-hours>
+
+    <template is="dom-if" if="[[largeScreen]]">
+        <div class="horizontal layout end-justified wrap">
+          <a href="/map" tabindex="-1"><paper-button raised>Directions & Maps</paper-button></a>
+          <a href="http://uvalibrary.maps.arcgis.com/apps/Shortlist/index.html?appid=e6cb8c4cde61410f873bc780c38bd958" tabindex="-1"><paper-button raised>Find a Study Space</paper-button></a>
+          <a href="/services/reserve-rooms/" tabindex="-1"><paper-button raised>Room Reservations</paper-button></a>
+        </div>
+
+        <div class="table">
+          <div class="colgroup">
+            <div class="col"></div>
+            <template is="dom-repeat" items="[[_days]]">
+              <div class="col" shady$="[[item.today]]"></div>
+            </template>
+          </div>
+          <div class="tr first-row">
+            <div class="td">
+              <paper-button class="smallButton" raised disabled$="[[!page]]" on-tap="_setPageZero">Today</paper-button>
+              <paper-button class="smallButton" raised hidden$="[[!page]]" on-tap="_pageDown">Previous</iron-icon></paper-button>
+              <paper-button class="smallButton" raised on-tap="_pageUp">Next</iron-icon></paper-button>
+            </div>
+            <template is="dom-repeat" items="[[_days]]">
+              <div class="th">[[item.date]]<br />[[item.title]]</div>
+            </template>
+          </div>
+          <template is="dom-repeat" items="[[_libraries]]" as="library">
+            <div class="tr" id$="[[library.slug]]-hours">
+              <div class="td">[[library.title]]</div>
+              <template is="dom-repeat" items="[[_days]]" as="day">
+                <div class="td">[[_getOpenRange(library.libcalID,day.id,_times)]]</div>
+              </template>
+            </div>
+          </template>
+        </div>
+    </template>
+    <template is="dom-if" if="[[!largeScreen]]">
+      <div class="layout vertical">
+        <template is="dom-repeat" items="[[_libraries]]" as="library" on-rendered-item-count-changed="_handleAnchor">
+          <template is="dom-if" if="[[library.libcalID]]">
+            <paper-card id$="[[library.slug]]-hours" heading="[[library.title]]" on-tap="_cardTap">
+                <div class="card-content">
+                  <div class="current-times" closed$="[[_isClosed(library.libcalID,_times,_refresh)]]">[[_getRange(library.libcalID,_times,_refresh)]]</div>
+                  <div class="extended-info">
+                    <div>
+                      <paper-button raised disabled$="[[!page]]" on-tap="_setPageZero">Today</paper-button>
+                      <paper-button raised hidden$="[[!page]]" on-tap="_pageDown">Previous</iron-icon></paper-button>
+                      <paper-button raised on-tap="_pageUp">Next</iron-icon></paper-button>
+                    </div>
+                    <div class="days">
+                      <template is="dom-repeat" items="[[_days]]" as="day">
+                        <div class="date-row layout horizontal around-justified">
+                          <div class="date flex">
+                            [[day.title]] [[day.date]]
+                          </div>
+                          <div class="hours flex">
+                            [[_getOpenRange(library.libcalID,day.id,_times)]]
+                          </div>
+                        </div>
+                      </template>
+                    </div>
+                    <div>
+                      <paper-button raised id="map-[[library.id]]" on-tap="_mapIt">Map it</paper-button>
+                    </div>
+                  </div>
+                </div>
+            </paper-card>
+          </template>
+        </template>
+      </div>
+    </template>
+    <div class="horizontal layout center-justified wrap uva-margin-bottom otherLocationContainer">
+      <a href="https://rotunda.virginia.edu/" tabindex="-1"><paper-button raised>The Rotunda</paper-button></a>
+      <a href="https://www.darden.virginia.edu/current-students/library/hours-location/" tabindex="-1"><paper-button raised>Darden Library</paper-button></a>
+      <a href="https://www.hsl.virginia.edu/hours" tabindex="-1"><paper-button raised>Health Sciences Library</paper-button></a>
+      <a href="https://guides.lib.virginia.edu/jag-library" tabindex="-1"><paper-button raised>JAG School Library</paper-button></a>
+      <a href="http://libguides.law.virginia.edu/hours" tabindex="-1"><paper-button raised>Law Library</paper-button></a>
+    </div>
+
+    <div class="shady layout horizontal wrap center-justified">
+      <template is="dom-repeat" items="[[_libraries]]" as="lib" on-rendered-item-count-changed="_handleAnchor">
+        <paper-card id$="[[lib.slug]]" heading$="[[lib.title]]" image$="[[whichImage(lib.mainImage.url)]]">
+          <div class="card-content">
+            <marked-element markdown="[[lib.body]]">
+              <div slot="markdown-html"></div>
+            </marked-element>
+            <dl>
+              <dt hidden$="[[!lib.emailAddress]]">Email</dt>
+              <dd hidden$="[[!lib.emailAddress]]"><a href="mailto:[[lib.emailAddress]]">[[lib.emailAddress]]</a></dd>
+              <dt hidden$="[[!lib.phoneNumber]]">Phone</dt>
+              <dd hidden$="[[!lib.phoneNumber]]">[[lib.phoneNumber]]</dd>
+            </dl>
+          </div>
+          <template is="dom-if" if="[[lib.location]]">
+            <div class="card-actions">
+              <paper-button raised data-location="[[lib.location]]" on-tap="_mapIt" class="uva-margin-top uva-margin-bottom">Map It</paper-button>
+            </div>
+          </template>
+        </paper-card>
+      </template>
+    </div>
+
+    <paper-dialog id="mapDialog" with-backdrop>
+      <template is="dom-if" if="[[_mapLat]]">
+        <google-map id="gmap" style="height:100vh;" zoom="18" latitude="[[_mapLat]]" longitude="[[_mapLon]]" api-key="AIzaSyBxAaVYnYIkwmvR4pigOojpxvli_OxBeFs">
+          <google-map-marker latitude="[[_mapLat]]" longitude="[[_mapLon]]"></google-map-marker>
+        </google-map>
+      </template>
+    </paper-dialog>
+
+  </template>
+
+  <script>
+    let uvalibHoursTemplate;
+
+    /**
+     * `uvalib-hourspage`
+     * UVA Library page layout component
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class UvalibHourspage extends UvalibUiElement {
+      static get is() { return 'uvalib-hourspage'; }
+      static get properties() {
+        return Object.assign(super.properties,{
+          _libraries: Array,
+          page: {
+            type: Number,
+            value: 0
+          },
+          count: {
+            type: Number,
+            value: 7
+          },
+          _start: {
+            type: Object,
+            computed: '_getStartDate(page,count)',
+            notify: true
+          },
+          _end: {
+            type: Object,
+            computed: '_getEndDate(page,count)',
+            notify: true
+          },
+          _days: {
+            type: Array,
+            computed: '_getDays(_start,_end)'
+          },
+          _times: Object,
+          /** Used to force a refresh - incremented via a setInterval */
+          _refresh: {
+            type: Number,
+            value: 0
+          }
+        });
+      }
+      static get template() {
+        if (!uvalibHoursTemplate) {
+            // Retrieve this element's dom-module template
+            uvalibHoursTemplate = Polymer.DomModule.import(this.is, 'template');
+            // Clone the contents of the superclass template
+            let superTemplateContents = UvalibUiElement.template.content.cloneNode(true);
+            // Insert the superclass contents
+            uvalibHoursTemplate.content.insertBefore(superTemplateContents,null);
+        }
+        return uvalibHoursTemplate;
+      }
+      connectedCallback(){
+        super.connectedCallback();
+        // update the open/closed and range every 5 minutes
+        this._intervalId = setInterval(function(){
+              this._refresh++;  // the change forces the dom-bound method to evaluate
+            }.bind(this), 300000);
+      }
+      disconnectedCallback(){
+        super.disconnectedCallback();
+        clearInterval(this._intervalId);
+      }
+      _mapIt(e){
+        var loc = e.currentTarget.dataLocation;
+        if (loc.lat && loc.lng) {
+          this._mapLon = loc.lng;
+          this._mapLat = loc.lat;
+          this.$.mapDialog.open();
+        }
+      }
+      _cardTap(e){
+        var foo="bar";
+        console.log(e);
+      }
+      _hasLibCal(lib){
+        return !!(lib.libcalID);
+      }
+      _isClosed(calID){
+        return !this.$.hours.isOpenNow(calID);
+      }
+      _getRange(calID){
+        return this.$.hours.getHoursRange(calID);
+      }
+      _getOpenRange(lid,d){
+        if (this._times && this._times[lid] && this._times[lid][d])
+          return this._times[lid][d].rendered;
+      }
+      _pageUp(){
+        this.page++;
+      }
+      _pageDown(){
+        this.page--;
+      }
+      _setPageZero(){
+        this.page=0;
+      }
+      _getStartDate(page,count){
+        return moment().add(page*count,'days');
+      }
+      _getEndDate(page,count){
+        return moment().add(page*count+count,'days');
+      }
+      _getDays(start, end) {
+        var s = moment(start),
+            range = [];
+        while (s < end) {
+          var isToday = s.isSame(new Date(),'day'),
+              sf = s.tz('America/New_York');
+          range.push({
+            id:sf.format('YYYY-MM-DD'),
+            date:sf.format('MMM D'),
+            title:(isToday)?'Today':sf.format('dddd'),
+            today:isToday});
+          s.add(1,'days');
+        }
+        return range;
+      }
+    }
+
+    window.customElements.define(UvalibHourspage.is, UvalibHourspage);
+  </script>
+</dom-module>

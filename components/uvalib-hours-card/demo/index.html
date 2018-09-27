@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>uvalib-hours-card demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script>
+      Polymer = {dom: 'shadow'};
+      (function() {
+        if ('registerElement' in document
+            && 'import' in document.createElement('link')
+            && 'content' in document.createElement('template')) {
+          // platform is good!
+        } else {
+          document.write( '<script src="../../webcomponentsjs/webcomponents-lite.min.js">\x3C/script>')
+        }
+      })();
+    </script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+    <link rel="import" href="../../iron-flex-layout/iron-flex-layout.html">
+    <link rel="import" href="../../uvalib-button/uvalib-button.html">
+    <link rel="import" href="../../uvalib-theme/uvalib-icons.html">
+    <link rel="import" href="../uvalib-hours-card.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+    </style>
+  </head>
+  <body>
+
+    <div class="vertical-section-container centered">
+      <h3>Basic uvalib-hours-card Demo</h3>
+      <demo-snippet>
+        <template>
+          <style is="custom-style">
+            #container {
+              height: 1700px;
+              @apply(--layout-vertical);
+            }
+            uvalib-hours-card {
+              padding: 20px;
+              @apply(--layout-flex);
+            }
+            uvalib-hours-card[all-locations] {
+              min-height: 975px;
+            }
+            .card-close {
+              float: right;
+              padding-right: 0px;
+            }
+          </style>
+          <div id="container">
+            <uvalib-hours-card locations="Alderman,Clemons,Brown" elevation="3">
+              <uvalib-button href="http://www.library.virginia.edu/hours/#!/">All locations</uvalib-button>
+            </uvalib-hours-card>
+            <uvalib-hours-card locations="Alderman,Brown,Clemons" elevation="3">
+              <uvalib-button href="http://www.library.virginia.edu/hours/#!/">All locations</uvalib-button>
+            </uvalib-hours-card>
+            <uvalib-hours-card all-locations elevation="3">
+              <uvalib-button class="card-close" icon="times" reverse on-tap="closeHours">Close<uvalib-button>
+            </uvalib-hours-card>
+          </div>
+        </template>
+      </demo-snippet>
+    </div>
+
+  </body>
+</html>

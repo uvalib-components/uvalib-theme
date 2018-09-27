@@ -1,0 +1,175 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<dom-module id="uvalib-header-style">
+  <template>
+    <style>
+
+    :host {
+      display: block;
+      position: relative;
+      margin: 0;
+      z-index: 1000;
+      transition: height 1s ease;
+    }
+    uvalib-logos {
+      height: 22px;
+      max-width: 308px;
+    }
+    uvalib-logos[stacked] {
+      height: 70px;
+      max-width: 131px;
+    }
+
+    app-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      color: var(--color-white);
+      background-color: var(--uvalib-header-background-color, var(--color-primary-color));
+    }
+
+    :host([large-screen]) #bottom #menu {
+      background-color: var(--uvalib-header-nav-background-color, var(--color-secondary-blue));
+    }
+
+    #top, #bottom #menu {
+      @apply --layout-horizontal;
+      @apply --layout-center-justified;
+      background-color: var(--uvalib-header-background-color, var(--color-primary-color));
+    }
+    #bottom nav {
+      width: 100%;
+
+    }
+    #top > div, #bottom nav {
+/*      @apply --layout-flex; */
+      max-width: var(--uvalib-display-width-max);
+      @apply --layout-horizontal;
+    }
+    #top #search, #top #menu, #menuButton {
+      @apply --layout-flex;
+      text-align: right;
+    }
+    #top {
+      padding-top: 1em;
+      padding-bottom: 1em;
+    }
+    #search, #menu {
+      padding-right: 1em;
+    }
+    :host([small-screen]) #logo {
+        padding-left: .1em;
+    }
+    :host([medium-screen]) #logo {
+        padding-left: 0;
+    }
+    #logo {
+        padding-left: 1em;
+    }
+
+    :host([medium-screen]) #top {
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+
+    :host([large-screen]) #menuButton { display:none; }
+    :host([medium-screen]) #search, :host([medium-screen]) .largeScreen { display:none }
+    :host([small-screen]) #search, :host([small-screen]) .largeScreen { display:none; }
+    :host([large-screen]) .visibleMobile, :host([medium-screen]) .visibleMobile { display: none; }
+
+    a, a:link, a:visited {
+      color: inherit;
+    }
+    nav {
+      min-height: 40px;
+    }
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    nav li {
+      display: inline-block;
+      color: var(--color-white);
+    }
+    nav a {
+      padding: 10px;
+    }
+    #bottom nav {
+      @apply(--layout-horizontal);
+      @apply(--layout-center);
+      @apply(--layout-justified);
+    }
+    :host([large-screen]) #bottom nav {
+      @apply(--layout-end-justified);
+    }
+
+    uvalib-search-box {
+      color: var(--color-white);
+    }
+    paper-button {
+      color: var(--color-white);
+      border: none;
+    }
+    #menuDialog {
+      position: fixed;
+      margin: 0;
+      top:0;
+      width: 100%;
+      height: 100vh;
+      overflow: auto;
+      background-color: var(--uvalib-header-background-color, var(--color-primary-color));
+    }
+
+    :host([small-screen]) #menuDialogSearch {
+      background-color: var(--uvalib-blue-600);
+      padding: 2em;
+      margin-top: 1em;
+      margin-bottom: 1em;
+      margin-left: -.5em;
+      margin-right: -.5em;
+    }
+
+    #menuContainer {
+      height: 100%;
+      @apply --layout-vertical;
+      padding-left: .5em;
+      padding-right: .5em;
+    }
+    :host([small-screen]) #menuContainer nav li {
+      display: block;
+      font-size: 130%;
+      padding-left: 1.5em;
+      padding-bottom: .5em;
+    }
+
+    #menuTop {
+      @apply --layout-horizontal;
+    }
+    .spacer {
+      @apply --layout-flex;
+    }
+    #menuButton paper-button {
+      min-width: 4em;
+      border: 1px solid var(--color-white);
+      padding-top: .35em;
+      padding-bottom: .25em;
+      margin-right: .75em;
+      margin-top: .3em;
+    }
+    #menuButton.menuLarge paper-button::after {
+      font-family: uvalib-custom-icons;
+      content: "\f002";
+      padding-left: .5em;
+    }
+
+    #alert paper-badge {
+      --paper-badge-background: var(--color-primary-orange);
+      --paper-badge-margin-left: -1.65em;
+      --paper-badge-margin-bottom: -0.2em;
+    }
+
+    </style>
+  </template>
+</dom-module>

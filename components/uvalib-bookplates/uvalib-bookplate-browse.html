@@ -1,0 +1,151 @@
+<link rel="import" href="../uvalib-theme/uvalib-ui-element.html">
+<link rel="import" href="../uvalib-theme/uvalib-theme.html">
+<link rel="import" href="../uvalib-theme/uvalib-page-style.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-card/paper-card.html">
+<link rel="import" href="../uvalib-search-box/uvalib-simple-search-box.html">
+<link rel="import" href="../uva-models/uva-library.html">
+<link rel="import" href="../uvalib-theme/uvalib-card-style.html">
+<link rel="import" href="../iron-location/iron-location.html">
+<link rel="import" href="../iron-location/iron-query-params.html">
+
+<dom-module id="uvalib-bookplate-browse">
+  <template>
+    <custom-style>
+      <style include="uvalib-theme iron-flex uvalib-card-style uvalib-page-style">
+
+        uvalib-simple-search-box {
+          --uvalib-background-search: var(--uvalib-main-jefferson-blue);
+        }
+        .view-buttons {
+          margin: calc(var(--uvalib-spacing-unit)/2) var(--uvalib-spacing-unit);
+        }
+        .view-buttons paper-button {
+          height: calc(var(--uvalib-spacing-unit)*3);
+          background-color: white;
+          /* margin-top: var(--uvalib-spacing-unit);
+          margin-bottom: var(--uvalib-spacing-unit); */
+        }
+        paper-card {
+          max-width: 30%;
+
+        }
+        .card-content h3 {
+          text-transform: capitalize;
+          font-weight: 500;
+          line-height: 1.2;
+          padding-left: 0;
+        }
+        .bookplate-search.shady {
+          background-color: var(--uvalib-secondary-md-grey);
+          margin-top: calc(var(--uvalib-spacing-unit)*2);
+          padding-top: calc(var(--uvalib-spacing-unit)*1);
+          padding-bottom: calc(var(--uvalib-spacing-unit)*1);
+
+        }
+        .bookplate-intro::slotted(*) {
+          /* float: right;
+          width: 80%; */
+        }
+
+        .recent.shady {
+          padding-top: calc(var(--uvalib-spacing-unit)*2);
+          padding-bottom: calc(var(--uvalib-spacing-unit)*2);
+        }
+
+        :host([small-screen]) .bookplate-intro::slotted(*), :host([medium-screen]) .bookplate-intro::slotted(*) {
+          width: 100%;
+        }
+
+
+      </style>
+    </custom-style>
+
+    <iron-location query="{{_qs}}"></iron-location>
+    <iron-query-params params-string="{{_qs}}" params-object="{{params}}"></iron-query-params>
+
+    <uva-library path="bookplates" last-response="{{bookplates}}"></uva-library>
+
+    <slot class="bookplate-intro"></slot>
+    <div class="bookplate-search layout horizontal wrap center-justified shady">
+      <uvalib-simple-search-box action="https://www.library.virginia.edu/bookplates/search" query-name="q"></uvalib-simple-search-box>
+      <div class="view-buttons">
+        <paper-button raised hidden$="[[!recent]]" on-tap="_toggleRecent">View All Bookplates</paper-button>
+        <paper-button raised hidden$="[[recent]]" on-tap="_toggleRecent">View Recent Bookplates</paper-button>
+      </div>
+    </div>
+    <div class="recent layout horizontal wrap center-justified shady">
+      <template is="dom-repeat" items="[[_viewBookplates(bookplates,recent)]]">
+        <paper-card hidden$="[[!item.bookplateResults]]" image="[[_imageFallback(item.bookplateImage.url)]]" alt="[[_altFallback(item.bookplateImage.alt)]]">
+          <div class="card-content">
+            <h3>[[item.title]]</h3>
+          </div>
+          <div class="card-actions">
+            <a href="[[_mkBookplateURL(item.fundID)]]" tabindex="-1"><paper-button>View More</paper-button></a>
+          </div>
+        </paper-card>
+      </template>
+    </div>
+  </template>
+
+  <script>
+    /**
+     * `uvalib-bookplate-browse`
+     *
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class UvalibBookplateBrowse extends UvalibUiElement {
+      static get is() { return 'uvalib-bookplate-browse'; }
+      static get properties() {
+        return Object.assign(super.properties,{
+          recent: {
+            type: Boolean,
+            value: true
+          },
+          params: {
+            type:Object,
+            observer: '_triggerViewAll'
+          }
+        });
+      }
+      //Concat the this elements template with the parents
+      static get template() {
+        var parentTemplate = UvalibUiElement.template.cloneNode(true);
+        var childTemplate = Polymer.DomModule.import('uvalib-bookplate-browse', 'template');
+        parentTemplate.content.insertBefore(childTemplate.content,null);
+        return parentTemplate;
+       }
+      _triggerViewAll() {
+        if (this.params.viewAll) this.recent = false;
+      }
+      _altFallback(alt){
+        return (alt)? alt:"University of Virginia Library Bookplate image";
+      }
+      _imageFallback(image){
+        return (image)? image:"https://static.lib.virginia.edu/files/generic-bookplate.png";
+      }
+      _viewBookplates(){
+        if (this.bookplates)
+          if (this.recent)
+            // ToDo: when dates are added, need to sort on those
+            return this.bookplates.slice(1,8);
+          else {
+            return this.bookplates;
+          }
+      }
+      _mkBookplateURL(fundID){
+        return "/bookplates/"+fundID;
+      }
+      _toggleRecent(){
+        this.recent = !this.recent;
+      }
+    }
+
+    window.customElements.define(UvalibBookplateBrowse.is, UvalibBookplateBrowse);
+  </script>
+</dom-module>

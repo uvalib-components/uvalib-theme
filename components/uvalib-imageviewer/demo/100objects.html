@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>uvalib-imageviewer demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-ajax/iron-ajax.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../polymer/lib/elements/dom-bind.html">
+    <link rel="import" href="../uvalib-imageviewer.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic uvalib-imageviewer demo</h3>
+
+      <demo-snippet>
+        <template>
+          <dom-bind id="app">
+            <template>
+              <button class="imageviewerbutton" onclick="imageViewer.open()" disabled$="[[!items]]">Image Gallery</button>
+              <iron-ajax auto id="ajax" last-response="{{items}}" url="https://uvalib-api.firebaseio.com/mediaobjects.json?orderBy=%22association%22&startAt=%22100objectsCarousel%22&endAt=%22100objectsCarousel%22" handle-as="json"></iron-ajax>
+              <uvalib-imageviewer id="imageViewer" items$="[[items]]" image-prop="image.url" thumb-prop="image.url" html-prop="body" firebase-array></uvalib-imageviewer>
+            </template>
+          </dom-bind>
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,348 @@
+{
+  "schema_version": "1.0.0",
+  "elements": [
+    {
+      "description": "An element that is an email obfuscator.\n\nExample:\n\n    <div is=\"uvalib-liame\" rid=\"z4chd\">Doug Chestnut</div>",
+      "summary": "",
+      "path": "uvalib-liame.html",
+      "properties": [
+        {
+          "name": "domain",
+          "type": "string",
+          "description": "`domain` is the domain on the other side of the at sign",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 39,
+              "column": 8
+            },
+            "end": {
+              "line": 42,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"virginia.edu\""
+        },
+        {
+          "name": "rid",
+          "type": "string",
+          "description": "`rid` is the email id (at virginia.edu) in reverse\nThis is a required attribute for this element",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 48,
+              "column": 8
+            },
+            "end": {
+              "line": 52,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"_ridChanged\""
+            }
+          },
+          "defaultValue": "null"
+        },
+        {
+          "name": "overwrite",
+          "type": "boolean",
+          "description": "`overwrite` is a flag that when present will ignore children of this element.  Used to support older browsers.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 57,
+              "column": 8
+            },
+            "end": {
+              "line": 57,
+              "column": 26
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          }
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "description": "`text` is optional and when present will replace the child text element with its value",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 62,
+              "column": 8
+            },
+            "end": {
+              "line": 62,
+              "column": 20
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          }
+        },
+        {
+          "name": "subject",
+          "type": "string",
+          "description": "`subject` is optional and specifies the subject line to be filled out in the email",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 67,
+              "column": 8
+            },
+            "end": {
+              "line": 67,
+              "column": 23
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          }
+        },
+        {
+          "name": "body",
+          "type": "string",
+          "description": "`body` is optional and specifies the default text to be filled out in the body of the email",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 72,
+              "column": 8
+            },
+            "end": {
+              "line": 72,
+              "column": 20
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          }
+        },
+        {
+          "name": "_rest",
+          "type": "string",
+          "description": "`_rest` is additional text used in the mailto that combines subject and body input",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 77,
+              "column": 8
+            },
+            "end": {
+              "line": 77,
+              "column": 21
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          }
+        },
+        {
+          "name": "_eid",
+          "type": "string",
+          "description": "`_eid` is the email id transformed from the rid input",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 82,
+              "column": 8
+            },
+            "end": {
+              "line": 82,
+              "column": 20
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          }
+        },
+        {
+          "name": "_text",
+          "type": "string",
+          "description": "`_text` is a combination of input values used to display for the email link if text input is not provided",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 87,
+              "column": 8
+            },
+            "end": {
+              "line": 87,
+              "column": 21
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          }
+        }
+      ],
+      "methods": [
+        {
+          "name": "ready",
+          "description": "Element Lifecycle",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 91,
+              "column": 6
+            },
+            "end": {
+              "line": 93,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
+          "name": "_ridChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 95,
+              "column": 6
+            },
+            "end": {
+              "line": 124,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": []
+        }
+      ],
+      "staticMethods": [],
+      "demos": [
+        {
+          "url": "demo/index.html",
+          "description": ""
+        }
+      ],
+      "metadata": {},
+      "sourceRange": {
+        "start": {
+          "line": 32,
+          "column": 12
+        },
+        "end": {
+          "line": 126,
+          "column": 5
+        }
+      },
+      "privacy": "public",
+      "superclass": "HTMLElement",
+      "attributes": [
+        {
+          "name": "domain",
+          "description": "`domain` is the domain on the other side of the at sign",
+          "sourceRange": {
+            "start": {
+              "line": 39,
+              "column": 8
+            },
+            "end": {
+              "line": 42,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
+          "name": "rid",
+          "description": "`rid` is the email id (at virginia.edu) in reverse\nThis is a required attribute for this element",
+          "sourceRange": {
+            "start": {
+              "line": 48,
+              "column": 8
+            },
+            "end": {
+              "line": 52,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
+          "name": "overwrite",
+          "description": "`overwrite` is a flag that when present will ignore children of this element.  Used to support older browsers.",
+          "sourceRange": {
+            "start": {
+              "line": 57,
+              "column": 8
+            },
+            "end": {
+              "line": 57,
+              "column": 26
+            }
+          },
+          "metadata": {},
+          "type": "boolean"
+        },
+        {
+          "name": "text",
+          "description": "`text` is optional and when present will replace the child text element with its value",
+          "sourceRange": {
+            "start": {
+              "line": 62,
+              "column": 8
+            },
+            "end": {
+              "line": 62,
+              "column": 20
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
+          "name": "subject",
+          "description": "`subject` is optional and specifies the subject line to be filled out in the email",
+          "sourceRange": {
+            "start": {
+              "line": 67,
+              "column": 8
+            },
+            "end": {
+              "line": 67,
+              "column": 23
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
+          "name": "body",
+          "description": "`body` is optional and specifies the default text to be filled out in the body of the email",
+          "sourceRange": {
+            "start": {
+              "line": 72,
+              "column": 8
+            },
+            "end": {
+              "line": 72,
+              "column": 20
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        }
+      ],
+      "events": [],
+      "styling": {
+        "cssVariables": [],
+        "selectors": []
+      },
+      "slots": [],
+      "tagname": "uvalib-liame"
+    }
+  ]
+}

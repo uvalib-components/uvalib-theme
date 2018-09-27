@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0.0",
+  "elements": [
+    {
+      "description": "`uvalib-chat`",
+      "summary": "",
+      "path": "uvalib-chat.html",
+      "properties": [
+        {
+          "name": "widgetHashValue",
+          "type": "string",
+          "description": "Hash value from Springshare widget code; default value is for standard LibChat embed widget.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 29,
+              "column": 8
+            },
+            "end": {
+              "line": 32,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"c9adaed872cb301005b575ca25700881\""
+        }
+      ],
+      "methods": [],
+      "staticMethods": [],
+      "demos": [
+        {
+          "url": "demo/index.html",
+          "description": ""
+        }
+      ],
+      "metadata": {},
+      "sourceRange": {
+        "start": {
+          "line": 21,
+          "column": 12
+        },
+        "end": {
+          "line": 35,
+          "column": 5
+        }
+      },
+      "privacy": "public",
+      "superclass": "HTMLElement",
+      "attributes": [
+        {
+          "name": "widget-hash-value",
+          "description": "Hash value from Springshare widget code; default value is for standard LibChat embed widget.",
+          "sourceRange": {
+            "start": {
+              "line": 29,
+              "column": 8
+            },
+            "end": {
+              "line": 32,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        }
+      ],
+      "events": [],
+      "styling": {
+        "cssVariables": [],
+        "selectors": []
+      },
+      "slots": [],
+      "tagname": "uvalib-chat"
+    }
+  ]
+}

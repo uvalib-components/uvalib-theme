@@ -1,0 +1,246 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../iron-collapse/iron-collapse.html">
+<link rel="import" href="../iron-selector/iron-selector.html">
+<link rel="import" href="../iron-a11y-keys-behavior/iron-a11y-keys-behavior.html">
+
+<dom-module id="uva-accordion-item">
+  <template>
+    <style>
+      :host {
+        display: block;
+        border-top: 1px solid hsl(0, 0%, 82%);
+      }
+      .Accordion-trigger {
+          background: none;
+          border: 0;
+          color: hsl(0, 0%, 13%);
+          display: block;
+          font-size: 1rem;
+          font-weight: normal;
+          margin: 0;
+          padding: 1em 1.5em;
+          position: relative;
+          text-align: left;
+          width: 100%;
+          @apply --uva-accordion-item-trigger;
+      }
+      .Accordion-trigger:focus {
+        background: hsl(0, 0%, 93%);
+        @apply --uva-accordion-item-trigger-focus;
+      }
+      .Accordion-trigger:hover {
+        background: hsl(0, 0%, 93%);
+        @apply --uva-accordion-item-trigger-hover;
+      }
+      .Accordion-title {
+        display: block; /* For Edge bug https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/8295099/ */
+        pointer-events: none;
+        @apply --uva-accordion-item-title;
+      }
+      .Accordion-icon {
+        border: solid hsl(0, 0%, 62%);
+        border-width: 0 2px 2px 0;
+        height: .5rem;
+        pointer-events: none;
+        position: absolute;
+        right: 1.5em;
+        top: 50%;
+        transform: translateY(-60%) rotate(45deg);
+        width: .5rem;
+        @apply --uva-accordion-item-icon;
+      }
+      .Accordion-trigger:focus .Accordion-icon {
+        border-color: hsl(0, 0%, 13%);
+        @apply --uva-accordion-item-icon-focus;
+      }
+      .Accordion-trigger:hover .Accordion-icon {
+        border-color: hsl(0, 0%, 13%);
+        @apply --uva-accordion-item-icon-hover;
+      }
+      .Accordion-trigger[aria-expanded] .Accordion-icon {
+        transform: translateY(-50%) rotate(-135deg);
+        @apply --uva-accordion-item-icon-opened;
+      }
+      .Accordion-panel {
+        margin: 0;
+        padding: 1em 1.5em;
+        @apply --uva-accordion-item-panel;
+      }
+      /* For Edge bug https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/4806035/ */
+      .Accordion-panel[hidden] {
+        display: none;
+      }
+    </style>
+    <dt role="heading" aria-level$="[[headingLevel]]">
+      <button tabindex="0" id="accordionId" aria-expanded$="{{opened}}" class="Accordion-trigger" aria-controls="bodysect" type="button">
+        <span class="Accordion-title"><slot name="heading"></slot></span>
+        <span class="Accordion-icon"></span>
+      </button>
+    </dt>
+    <iron-collapse id="collapse" opened$="{{opened}}">
+      <dd id="bodysect" role="region" aria-labelledby="accordionId" class="Accordion-panel">
+        <div><slot name="body"></slot></div>
+      </dd>
+    </iron-collapse>
+  </template>
+
+  <script>
+    /**
+     * `uva-accordion-item`
+     *
+     * ### Styling
+     *
+     * The following custom properties and mixins are available for styling:
+     *
+     * Custom property | Description | Default
+     * ----------------|-------------|----------
+     * `--uva-accordion-item-trigger` | Mixin applied to the items button (header) | `{}`
+     * `--uva-accordion-item-trigger-focus;` | Mixin applied to the items button (header) when focused | `{}`
+     * `--uva-accordion-item-trigger-hover` | Mixin applied to the items button (header) when hovered | `{}`
+     * `--uva-accordion-item-title` | Mixin applied to the items title span | `{}`
+     * `--uva-accordion-item-icon` | Mixin applied to the items icon | `{}`
+     * `--uva-accordion-item-icon-focus` | Mixin applied to the items icon when focused | `{}`
+     * `--uva-accordion-item-icon-hover` | Mixin applied to the items icon when hovered | `{}`
+     * `--uva-accordion-item-icon-opened` | Mixin applied to the items icon when opened | `{}`
+     * `--uva-accordion-item-panel` | Mixin applied to the items panel  | `{}`
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     * @demo demo/card.html Card Usage
+     */
+    class UvaAccordionItem extends Polymer.Element {
+      static get is() { return 'uva-accordion-item'; }
+      static get properties() {
+        return {
+          opened: {
+            type: Boolean,
+            notify: true,
+            value: false
+          },
+          /** The heading level assigned to the items heading **/
+          headingLevel: {
+            type: Number,
+            value: 3
+          }
+        };
+      }
+    }
+
+    window.customElements.define(UvaAccordionItem.is, UvaAccordionItem);
+  </script>
+</dom-module>
+
+<dom-module id="uva-accordion">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .Accordion {
+        border: 1px solid hsl(0, 0%, 82%);
+        border-radius: .3em;
+        box-shadow: 0 1px 2px hsl(0, 0%, 82%);
+      }
+      dl {
+        @apply --uva-accordion-dl;
+      }
+    </style>
+    <dl id="accordionGroup" role="presentation" class="Accordion">
+      <iron-selector id="selector" multi="[[multi]]" selected="{{_selectedIndex}}" selected-attribute="opened" selected-item="{{_selectedItem}}" items="{{_items}}">
+        <slot></slot>
+      </iron-selector>
+    </dl>
+  </template>
+
+  <script>
+    /**
+     * `uva-accordion`
+     *
+     * An accordion component taking direction from the WAI-Aria example.
+     * https://www.w3.org/TR/wai-aria-practices-1.1/#accordion
+     *
+     ** ### Styling
+     *
+     * The following custom properties and mixins are available for styling:
+     *
+     * Custom property | Description | Default
+     * ----------------|-------------|----------
+     * `--uva-accordion-dl` | Mixin applied to the dl wrapping the accordion | `{}`
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     * @demo demo/card.html Card Usage
+     */
+    class UvaAccordion extends Polymer.mixinBehaviors([Polymer.IronA11yKeysBehavior], Polymer.Element) {
+      static get is() { return 'uva-accordion'; }
+      static get properties() {
+        return {
+          /** If true, multiple selections are allowed **/
+          multi: {
+            type: Boolean,
+            value: false
+          },
+          /** the currently selected accordion node */
+          _selectedItem: {
+            type: Object,
+            observer: '_selectedItemChanged'
+          },
+          _items: {
+            type: Array,
+            observer: '_activate',
+          }
+        };
+      }
+      get keyBindings() {
+        return {
+          'ctrl+pagedown': 'selectNext',
+          'down': 'selectNext',
+          'ctrl+pageup': 'selectPrevious',
+          'up': 'selectPrevious',
+          'end': 'selectLast',
+          'home': 'selectFirst'
+        };
+      }
+      _activate() {
+        // Iron-selector doesn't init the selected state by attribute so we must do it :(
+        this._items.forEach(function(item,index){
+          if(item.hasAttribute('opened'))this.$.selector.selectIndex(index)
+        }.bind(this));
+      }
+      selectNext(e) {
+        e.preventDefault();
+        this.$.selector.selectNext();
+        if (this._selectedItem) this._selectedItem.$.accordionId.focus();
+      }
+      selectPrevious(e) {
+        e.preventDefault();
+        this.$.selector.selectPrevious();
+        if (this._selectedItem) this._selectedItem.$.accordionId.focus();
+      }
+      
+      selectLast(e) {
+        e.preventDefault();
+        this.$.selector.selectIndex(this.$.selector.items.length-1);
+        if (this._selectedItem) this._selectedItem.$.accordionId.focus();
+      }
+      /** Select and focus the first uva-accordion-item.  preventDefault method is run on an event passed as a parameter **/
+      selectFirst(e) {
+        e.preventDefault();
+        this.$.selector.selectIndex(0);
+        if (this._selectedItem) this._selectedItem.$.accordionId.focus();
+      }
+      /** Set disabled state, via aria-disabled, to an expanded / active accordion which is not allowed to be toggled close (when !multi ) */
+      _selectedItemChanged(newNode, oldNode){
+        if (!this.multi && newNode) {
+          newNode.setAttribute('aria-disabled','');
+        } else if (!this.multi && oldNode) {
+          oldNode.removeAttribute('aria-disabled');
+        }
+      }
+    }
+
+    window.customElements.define(UvaAccordion.is, UvaAccordion);
+  </script>
+</dom-module>

@@ -1,0 +1,86 @@
+<link rel="import" href="uvalib-directory.html">
+<link rel="import" href="../uvalib-theme/uvalib-icons.html">
+
+<dom-module id="uvalib-areas">
+
+  <script>
+
+    /**
+     * `uvalib-areas`
+     * UVA Library Staff directory component
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/staff.html
+     */
+    class UvalibAreas extends UvalibDirectory {
+      static get is() { return 'uvalib-areas'; }
+      static get properties() {
+        return Object.assign(super.properties,
+            {
+              _mainDataModel: {
+                type: String,
+                value: "_areas"
+              },
+              searchPlaceholder: {
+                type: String,
+                value: "Search for Library Areas"
+              },
+              area: {
+                type: String,
+                value: null
+              },
+              _controls: {
+                type: Boolean,
+                computed: '_showControls(area)',
+                observer: "_controlsChanged"
+              },
+              columns: {
+                type: Array,
+                computed: "_makeColumns(area)"
+              },
+              showColumns: {
+                type:String,
+                value: "name,title,area,contact,library",
+                observer: "_showColumnsChanged"
+              }
+
+            });
+      }
+
+      _makeColumns(area){
+        var cols = [];
+        cols.push(
+          {
+            title:"Area Title",
+            sortable:{dir:'asc',path:'title'},
+            width:"20%",
+            mkCell:function(item,that){
+              return `<a href="/areas/${item.uuid}">${that._getAreaName(item.uuid)}</p>`;
+            }
+          });
+        cols.push(
+          {
+            title:"Lead",
+            width:"20%",
+            mkCell:function(item,that){
+              return item.manager? `<a href="/staff/${that._getPersonID(item.manager)}">${that._getPersonName(item.manager)}</a>`:"";
+            }
+          });
+        return cols;
+      }
+
+      /* filter rows by _query and other parameters */
+      _filterRows(rows){
+        if (this.area)
+          rows = rows.filter(row=>row.area && row.area.includes(this.area));
+        return (this._query)?
+          rows.filter(row=>row.displayName.toLowerCase().includes(this._query.toLowerCase())):
+          rows;
+      }
+
+
+    }
+    window.customElements.define(UvalibAreas.is, UvalibAreas);
+  </script>
+</dom-module>

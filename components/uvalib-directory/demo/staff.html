@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>uvalib-directory demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../uvalib-staff.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+      .centered { max-width: 100%; }
+      </style>
+    </custom-style>
+
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic uvalib-staff demo</h3>
+      <demo-snippet>
+        <template>
+          <uvalib-staff team="0e8d92d8-b98d-41c8-9336-05a2a8dc09a6"></uvalib-staff>
+        </template>
+      </demo-snippet>
+      <demo-snippet>
+        <template>
+          <uvalib-staff show-columns="photo,name" team="0e8d92d8-b98d-41c8-9336-05a2a8dc09a6"></uvalib-staff>
+        </template>
+      </demo-snippet>
+      <demo-snippet>
+        <template>
+          <uvalib-staff controls></uvalib-staff>
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+</html>

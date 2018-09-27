@@ -1,0 +1,74 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>uvalib-social-links Demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../iron-flex-layout/iron-flex-layout.html">
+
+    <link rel="import" href="../uvalib-social-links.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+    </style>
+  </head>
+  <body>
+
+    <demo-snippet>
+      <template>
+        <uvalib-twitter-link></uvalib-twitter-link>
+        <uvalib-twitter-link style="color:yellow" alt="Library Twitter"></uvalib-twitter-link>
+        <uvalib-twitter-link style="color:red; height:100px; width:100px"></uvalib-twitter-link>
+      </template>
+    </demo-snippet>
+
+    <demo-snippet>
+      <template>
+        <uvalib-facebook-link></uvalib-facebook-link>
+        <uvalib-facebook-link style="color:yellow"></uvalib-facebook-link>
+        <uvalib-facebook-link style="color:red; height:100px; width:100px" alt="Library Facebook Account"></uvalib-facebook-link>
+      </template>
+    </demo-snippet>
+
+    <demo-snippet>
+      <template>
+        <uvalib-instagram-link></uvalib-instagram-link>
+        <uvalib-instagram-link style="color:yellow"></uvalib-instagram-link>
+        <uvalib-instagram-link style="color:red; height:100px; width:100px"></uvalib-instagram-link>
+      </template>
+    </demo-snippet>
+
+    <demo-snippet>
+      <template>
+        <uvalib-pinterest-link></uvalib-pinterest-link>
+        <uvalib-pinterest-link style="color:yellow"></uvalib-pinterest-link>
+        <uvalib-pinterest-link style="color:red; height:100px; width:100px"></uvalib-pinterest-link>
+        <uvalib-pinterest-link style="color:blue" href="https://www.pinterest.com/explore/university-of-virginia/" alt="University of Virginia Pinterest Explore"></uvalib-pinterest-link>
+      </template>
+    </demo-snippet>
+
+    <demo-snippet>
+      <template>
+        <uvalib-social-link href="https://twitter.com/UVaLibrary" alt="UVA Library Twitter"></uvalib-social-link>
+        <uvalib-social-link href="https://www.facebook.com/University-of-Virginia-Library-136530559704906/" alt="UVA Library Facebook" style="color:yellow"></uvalib-social-link>
+        <uvalib-social-link href="https://www.instagram.com/uvalibrary/" alt="UVA Library Instagram" style="color:red; height:100px; width:100px"></uvalib-social-link>
+        <uvalib-social-link href="https://www.pinterest.com/explore/university-of-virginia/" alt="University of Virginia Pinterest Explore" style="color:blue"></uvalib-social-link>
+        <uvalib-social-link href="http://smallspecialcollections.tumblr.com/" alt="Special Collections Library Tumblr"></uvalib-social-link>
+        <uvalib-social-link alt="YouTube" href="https://www.youtube.com/channel/UCjy7Xanb1YeFGvEXvdu6Uow"></uvalib-social-link>
+      </template>
+    </demo-snippet>
+
+  </body>
+</html>

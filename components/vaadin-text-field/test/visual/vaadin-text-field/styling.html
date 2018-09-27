@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+
+  <script src="../../../../webcomponentsjs/webcomponents-loader.js"></script>
+  <script>
+    const theme = window.location.search.replace(/.*theme=(\w+).*/, '$1') || 'lumo';
+    document.write(`<link rel="import" href="../../../theme/${theme}/vaadin-text-field.html">`);
+  </script>
+</head>
+
+<body>
+
+  <dom-module id="text-field-styles" theme-for="vaadin-text-field">
+    <template>
+      <style>
+        [part~="label"] {
+          font-weight: bold;
+        }
+
+        [part~="value"] {
+          background-color: red;
+          border: none;
+          --_lumo-text-field-overflow-mask-image: none;
+        }
+
+        [part~="input-field"] {
+          border: 1px solid black;
+          padding: 0;
+        }
+
+        [part~="error-message"] {
+          color: red;
+        }
+      </style>
+    </template>
+  </dom-module>
+
+  <div id="text-field">
+    <vaadin-text-field error-message="error" label="Label" required></vaadin-text-field>
+  </div>
+
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      document.querySelector('vaadin-text-field').validate();
+    });
+  </script>
+
+</body>

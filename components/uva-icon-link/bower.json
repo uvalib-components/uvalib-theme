@@ -1,0 +1,8 @@
+{
+  "name": "uva-icon-link",
+  "description": "Link with icon",
+  "main": "uva-icon-link.html",
+  "dependencies": {
+    "uva-elements": "uva-components/uva-elements#master"
+  }
+}

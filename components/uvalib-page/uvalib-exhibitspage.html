@@ -1,0 +1,199 @@
+<link rel="import" href="../uvalib-theme/uvalib-ui-element.html">
+<link rel="import" href="../uvalib-theme/uvalib-theme.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-card/paper-card.html">
+<link rel="import" href="../marked-element/marked-element.html">
+<link rel="import" href="../uva-models/uva-library.html">
+<link rel="import" href="../uvalib-theme/uvalib-icons.html">
+<link rel="import" href="../uvalib-helper-libs/uvalib-helper-libs.html">
+
+
+<dom-module id="uvalib-exhibitspage">
+  <template>
+    <custom-style>
+      <style include="uvalib-theme iron-flex-factors">
+        :host {
+          display: block;
+        }
+        [hidden] {
+          display: none;
+        }
+        paper-card {
+          max-width: 20em;
+          --paper-card-header-image: {
+            max-height: 300px;
+          }
+        }
+        .exhibitCategory {
+          margin-top: 0;
+          margin-bottom: 0;
+          padding-top: var(--uvalib-spacing-unit);
+        }
+        .exhibitDates {
+          color: var(--uvalib-main-rotunda-orange);
+        }
+        h4 {
+          color: var(--uvalib-main-rotunda-orange);
+          text-transform: uppercase;
+          font-weight: bold;
+          font-size: var(--uvalib-spacing-unit);
+        }
+
+
+      </style>
+    </custom-style>
+
+    <uva-library filter="libcalID" items="{{_libraries}}" sort-by="shortTitle"></uva-library>
+    <uva-library path="exhibits" items="{{_exhibits}}" sort-by="date" sort-order="desc"></uva-library>
+
+    <div class="uva-margin-top-bottom uva-padding-top-bottom">
+      <paper-button raised><a href="/exhibitions/#currentExhibits">Current Exhibits</a></paper-button>
+      <paper-button raised><a href="/exhibitions/#featuredExhibits">Featured Exhibits</a></paper-button>
+      <paper-button raised><a href="/exhibitions/#pastExhibits">Past Exhibits</a></paper-button>
+    </div>
+
+    <div class="shady">
+       <h2 id="currentExhibits" class="exhibitCategory">Current Exhibits</h2>
+    </div>
+    <div class="shady layout horizontal wrap center-justified">
+      <template is="dom-repeat" items="[[_exhibits]]" filter="_isCurrent" as="exhibit" on-rendered-item-count-changed="_resized">
+        <paper-card heading$="[[exhibit.title]]" image$="[[whichImage(exhibit.image.url)]]">
+          <div class="card-content">
+            <marked-element markdown="[[exhibit.body]]">
+              <div slot="markdown-html"></div>
+            </marked-element>
+            <div>
+              <!-- <h4>Dates</h4> -->
+              <div class="exhibitDates"><strong><span hidden$="[[!exhibit.endDate]]">[[_dayMonthYear(exhibit.date)]]</span><span hidden$="[[exhibit.endDate]]">Ongoing</span><span hidden$="[[!exhibit.endDate]]">&nbsp;&mdash;&nbsp;[[_dayMonthYear(exhibit.endDate)]]</span></strong></div>
+              <p hidden$="[[!exhibit.furtherLocInfo]]"><strong>Location Information</strong><br />[[exhibit.furtherLocInfo]]</p>
+            </div>
+          </div>
+          <template is="dom-if" if="[[exhibit.link]]">
+            <div class="card-actions">
+              <a href="[[exhibit.link]]" target="-1">
+                <paper-button>more info</paper-button>
+              </a>
+            </div>
+          </template>
+
+        </paper-card>
+      </template>
+    </div>
+
+    <div class="shady">
+       <h2 id="featuredExhibits" class="exhibitCategory">Featured Exhibits</h2>
+    </div>
+    <div class="shady layout horizontal wrap center-justified">
+      <template is="dom-repeat" items="[[_exhibits]]" filter="_isFeatured" as="exhibit" on-rendered-item-count-changed="_resized">
+        <paper-card heading$="[[exhibit.title]]" image$="[[whichImage(exhibit.image.url)]]">
+          <div class="card-content">
+            <marked-element markdown="[[exhibit.body]]">
+              <div slot="markdown-html"></div>
+            </marked-element>
+            <div class="uva-margin-top uva-padding-top">
+              <div class="exhibitDates"><strong><span hidden$="[[!exhibit.endDate]]">[[_dayMonthYear(exhibit.date)]]</span><span hidden$="[[exhibit.endDate]]">Ongoing</span><span hidden$="[[!exhibit.endDate]]">&nbsp;&mdash;&nbsp;[[_dayMonthYear(exhibit.endDate)]]</span></strong></div>
+              <p hidden$="[[!exhibit.furtherLocInfo]]"><strong>Location Information</strong><br />[[exhibit.furtherLocInfo]]</p>
+            </div>
+          </div>
+          <template is="dom-if" if="[[exhibit.link]]">
+            <div class="card-actions">
+              <a href="[[exhibit.link]]" target="-1">
+                <paper-button>more info</paper-button>
+              </a>
+            </div>
+          </template>
+
+        </paper-card>
+      </template>
+    </div>
+
+    <div class="shady">
+       <h2 id="pastExhibits" class="exhibitCategory">Past Exhibits</h2>
+    </div>
+    <div class="shady layout horizontal wrap center-justified">
+      <template is="dom-repeat" items="[[_exhibits]]" filter="_isNotCurrentOrFeatured" as="exhibit" on-rendered-item-count-changed="_resized">
+        <paper-card heading$="[[exhibit.title]]" image$="[[whichImage(exhibit.image.url)]]">
+          <div class="card-content">
+            <marked-element markdown="[[exhibit.body]]">
+              <div slot="markdown-html"></div>
+            </marked-element>
+            <div class="uva-margin-top uva-padding-top">
+              <div class="exhibitDates"><strong><span hidden$="[[!exhibit.endDate]]">[[_dayMonthYear(exhibit.date)]]</span><span hidden$="[[exhibit.endDate]]">Ongoing</span><span hidden$="[[!exhibit.endDate]]">&nbsp;&mdash;&nbsp;[[_dayMonthYear(exhibit.endDate)]]</span></strong></div>
+              <p hidden$="[[!exhibit.furtherLocInfo]]"><strong>Location Information</strong><br />[[exhibit.furtherLocInfo]]</p>
+            </div>
+          </div>
+          <template is="dom-if" if="[[exhibit.link]]">
+            <div class="card-actions">
+              <a href="[[exhibit.link]]" target="-1">
+                <paper-button>more info</paper-button>
+              </a>
+            </div>
+          </template>
+        </paper-card>
+      </template>
+    </div>
+  </template>
+
+  <script>
+    let uvalibExhibitsTemplate;
+
+    /**
+     * `uvalib-exhibitspage`
+     * UVA Library exhibits page layout component
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/exhibits.html
+     */
+    class UvalibExhibitspage extends UvalibUiElement {
+      static get is() { return 'uvalib-exhibitspage'; }
+      static get properties() {
+        return Object.assign(super.properties,{
+          _libraries: Array,
+          _exhibits: Array
+        });
+      }
+
+      static get template() {
+        if (!uvalibExhibitsTemplate) {
+            // Retrieve this element's dom-module template
+            uvalibExhibitsTemplate = Polymer.DomModule.import(this.is, 'template');
+
+            // Clone the contents of the superclass template
+            let superTemplateContents = UvalibUiElement.template.content.cloneNode(true);
+
+            // Insert the superclass contents
+            uvalibExhibitsTemplate.content.insertBefore(superTemplateContents,null);
+        }
+        return uvalibExhibitsTemplate;
+      }
+
+      _resized(){
+        this._debouncer = Polymer.Debouncer.debounce(this._debouncer,
+            Polymer.Async.timeOut.after(1000), this._handleAnchor.bind(this));
+      }
+
+      whichImage(img){
+        return super.whichImage(img.replace('https://wwwstatic.lib.virginia.edu','').replace('https://drupal.lib.virginia.edu/sites/default',''))
+      }
+
+      _isCurrent(exhibit) {
+        return (_.find(exhibit.exhibitStatus, {'value': 'current'})) ? true : false;
+      }
+
+      _isFeatured(exhibit) {
+        return (_.find(exhibit.exhibitStatus, {'value': 'featured'})) ? true : false;
+      }
+
+      _isNotCurrentOrFeatured(exhibit) {
+        return ((! _.find(exhibit.exhibitStatus, {'value': 'current'})) ||
+          (! _.find(exhibit.exhibitStatus, {'value': 'featured'}))) ? true : false;
+      }
+      _dayMonthYear(dtString) {
+        return (dtString) ? moment.tz(dtString,'America/New_York').format("MM/DD/YYYY") : '';
+      }
+    }
+
+    window.customElements.define(UvalibExhibitspage.is, UvalibExhibitspage);
+  </script>
+</dom-module>

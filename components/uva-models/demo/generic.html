@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>uva-model demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../polymer/lib/elements/dom-bind.html">
+    <link rel="import" href="../../polymer/lib/elements/dom-repeat.html">
+    <link rel="import" href="../../polymer/lib/elements/dom-if.html">
+    <link rel="import" href="../../json-formatter/json-formatter.html">
+    <link rel="import" href="../uva-model.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic uva-model demo for UVA API Endpoints</h3>
+      <demo-snippet>
+        <template>
+
+          <dom-bind>
+            <template>
+              <select value="{{path::change}}">
+                   <option selected>Select an API enpoint</option>
+                   <option value="facilities">Facilities Info</option>
+                   <option value="facilities/sensors">Facilities Sensors</option>
+                   <option value="library/alerts">Library Alerts</option>
+                   <option value="library/articles">Library Articles</option>
+                   <option value="library/catalog">Library Catalog</option>
+                   <option value="library/files">Library images and media</option>
+                   <option value="library/web">Library Web sitemap</option>
+                   <option value="library/web/banners">Library Web Banners</option>
+                   <option value="library/web/blocks">Library Web Block Content</option>
+                   <option value="schedule/browse/all">Course Schedule listing</option>
+                   <option value="schedule/browse/semester">Semester Schedule</option>
+                   <option value="schedule/browse/structure">Schedule Structure</option>
+                   <option value="schedule/grades/all">Grades</option>
+                   <option value="transit/announcements">UTS Announcements</option>
+                   <option value="transit/bus-stops">UTS Bus stops</option>
+                   <option value="transit/routes">UTS routes</option>
+                   <option value="transit/segments">UTS segments</option>
+                   <option value="transit/vehicles">UTS Vehicles</option>
+              </select>
+              <uva-model path="[[path]]" last-response="{{response}}"></uva-model>
+              <dom-if if="[[response]]">
+                <template>
+                  <json-formatter json="[[response]]"></json-formatter>
+                </template>
+              </dom-if>
+            </template>
+          </dom-bind>
+        </template>
+      </demo-snippet>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,146 @@
+<link rel="import" href="uvalib-directory.html">
+
+<dom-module id="uvalib-services">
+  <template>
+    <custom-style>
+      <style include="uvalib-theme">
+        .service-description p {
+          margin-top: 0;
+        }
+        .services-location {
+          list-style: none;
+          padding-left: 0;
+        }
+        .services-location li {
+          line-height: calc(var(--uvalib-spacing-unit)*1.1);
+          padding-bottom: var(--uvalib-spacing-unit);
+        }
+        .mobileDirectory .services-location li {
+          padding-bottom: calc(var(--uvalib-spacing-unit)/2);
+        }
+      </style>
+    </custom-style>
+
+  </template>
+
+  <script>
+    let uvalibServicesTemplate;
+
+    /**
+     * `uvalib-services`
+     * UVA Library Services directory component
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/services.html
+     */
+    class UvalibServices extends UvalibDirectory {
+      static get is() { return 'uvalib-services'; }
+      static get properties() {
+        return Object.assign(super.properties,
+            {
+              _mainDataModel: {
+                type: String,
+                value: "_services"
+              },
+              searchPlaceholder: {
+                type: String,
+                value: "Search for Library services"
+              },
+              columns: {
+                type: Array,
+                value: [
+                  {
+                    title:"Service",
+                    sortable:{dir:'asc',path:'title'},
+                    width:"45%",
+                    highlight: true,
+                    mkCell:function(item){
+                      var hideTitle = (item.siteLink)?"hidden":"",
+                          hideLink = (item.siteLink)?"":"hidden",
+                          hideBody = (item.body)?"":"hidden",
+                          hideAudience = (item.audience)?"":"hidden",
+                          staffText = (item.audience)?"staff-text":"";
+                      return `
+                        <div class="title cell-title" ${hideTitle}>${item.title}</div>
+                        <div class="title cell-title" ${hideLink}><a href="${item.siteLink}">${item.title}</a></div>
+                        <div class="description service-description" ${hideBody}>${item.body}</div>
+                        <span ${hideAudience} ${staffText}>staff info</span>
+                      `;
+                    }
+                  },
+                  {
+                    title:"Location",
+                    width:"30%",
+                    isNull:function(item,that){
+                      return !!(item.library);
+                    },
+                    mkCell:function(item,that){
+                      if (that._getLibs) {
+                        var libraries = that._getLibs(item.library);
+                        if (libraries.length > 0) {
+                          var libs = '<div class="services-location">';
+                          libraries.forEach(lib=>libs+=`<a href="/hours#${that._getLibrarySlug(lib.uuid)}">${lib.title}</a><br />`);
+                          libs+='</div>';
+                          return libs;
+                        } else {
+                          return "";
+                        }
+                      }
+                    }
+                  },
+                  {
+                    title:"Contact",
+                    width:"35%",
+                    isNull:function(item,that){
+                      return (item.emailAddress || item.phoneNumber || item.fromLink || (that._staffView && (item.owner || item.team)));
+                    },
+                    mkCell:function(item,that){
+                      var cell = "";
+                      if (item.emailAddress)
+                        cell += `<div class="email"><a href="mailto:${item.emailAddress}">${item.emailAddress}</a></div>`;
+                      if (item.phoneNumber)
+                        cell +=`<div class="phone"><a href="tel:${item.phoneNumber}">${item.phoneNumber}</a></div>`;
+                      if (item.formLink)
+                        cell +=`<div class="form"><a href="${item.formLink}">Contact form</a></div>`;
+                      if (that._staffView) {
+                        cell +="<div>";
+                          if (item.owner)
+                            cell+=`<div class="owner-person">Owner: <a href="/staff/${that._getPersonID(item.owner,that._people)}">${that._getPersonName(item.owner,that._people)}</a></div>`;
+                          if (item.team)
+                            cell+=`<div class="owner-person">Team Owner: <a href="/teams/${item.team}">${that._getTeamName(item.team,that._teams)}</a></div>`;
+                        cell +="</div>";
+                      }
+                      return cell;
+                    }
+                  }
+                ]
+              }
+
+            });
+      }
+
+      static get template() {
+        if (!uvalibServicesTemplate) {
+            // Retrieve this element's dom-module template
+            uvalibServicesTemplate = Polymer.DomModule.import(this.is, 'template');
+            // Clone the contents of the superclass template
+            let superTemplateContents = UvalibDirectory.template.content.cloneNode(true);
+            // Insert the superclass contents
+            uvalibServicesTemplate.content.insertBefore(superTemplateContents,null);
+        }
+        return uvalibServicesTemplate;
+      }
+
+      /* filter rows by _query and other parameters */
+      _filterRows(rows){
+        return (this._query)?
+          rows.filter(
+            row=>row.title.toLowerCase().indexOf(this._query.toLowerCase())>=0||(row.body && row.body.toLowerCase().indexOf(this._query.toLowerCase())>=0)||this._getLibs(row.library).reduce((a,b)=>a+" "+b.title,"").toLowerCase().indexOf(this._query.toLowerCase())>=0):
+          rows;
+      }
+
+    }
+    window.customElements.define(UvalibServices.is, UvalibServices);
+  </script>
+</dom-module>

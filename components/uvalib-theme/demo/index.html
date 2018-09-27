@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+  <head><script src="//static.lib.virginia.edu/js/controllers/webcomponents.js"></script>
+    <title>uvalib-theme demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../iron-flex-layout/iron-flex-layout.html">
+    <link rel="import" href="../../paper-card/paper-card.html">
+
+    <link rel="import" href="../uvalib-theme.html">
+    <link rel="import" href="../uvalib-icons.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles uvalib-theme">
+      div.palette {
+        @apply --layout-horizontal;
+        @apply --layout-wrap;
+      }
+      div.palette div {width: 200px; height: 200px; color: var(--color-white); border-radius: 50%;
+          display: -ms-flexbox;
+          display: -webkit-flex;
+          display: flex;
+          -webkit-flex-direction: row;
+          -ms-flex-direction: row;
+          flex-direction: row;
+          -webkit-flex-wrap: nowrap;
+          -ms-flex-wrap: nowrap;
+          flex-wrap: nowrap;
+          -webkit-justify-content: center;
+          -ms-flex-pack: center;
+          justify-content: center;
+          -webkit-align-content: stretch;
+          -ms-flex-line-pack: stretch;
+          align-content: stretch;
+          -webkit-align-items: center;
+          -ms-flex-align: center;
+          align-items: center;
+          margin: 15px;
+          }
+
+          .orange {background-color: var(--uvalib-main-rotunda-orange);}
+          .blue {background-color: var(--uvalib-main-jefferson-blue);}
+          .white {background-color: var(--uvalib-main-white); color: var(--color-text-gray) !important; border: 1px solid var(--color-text-gray);}
+          .black {background-color: var(--uvalib-main-black);}
+
+          .orange-2 {background-color: var(--uvalib-secondary-web-orange);}
+          .blue-2 {background-color: var(--uvalib-secondary-web-blue);}
+          .lt-gry {background-color: var(--uvalib-secondary-light-gray); color: var(--color-text-gray) !important; border: 1px solid var(--color-text-gray);}
+          .md-gry {background-color: var(--uvalib-secondary-medium-gray);}
+          .txt-gry {background-color: var(--uvalib-text-grey);}
+          .txt-dk-gry {background-color: var(--uvalib-text-dk-grey);}
+          .almost-black {background-color: var(--uvalib-text-almost-black);}
+          .emg-red {background-color: var(--uvalib-secondary-emergency-red);}
+          .cyan {background-color: var(--uvalib-secondary-cyan);}
+          .yellow {background-color: var(--uvalib-secondary-yellow);}
+          .teal {background-color: var(--uvalib-secondary-teal);}
+          .magenta {background-color: var(--uvalib-secondary-magenta);}
+          .green {background-color: var(--uvalib-secondary-green);}
+
+          .font-displayH1, .font-displayH2, .font-displayH3, .font-displayH3b, .font-displayH4 {
+            margin: 0 !important;
+            padding: 5px 0 !important;
+          }
+          .font-displayH1 { @apply --h1; }
+          .font-displayH2 { @apply --h2;}
+          .font-displayH3 { @apply --h3;}
+          .font-displayH3b { @apply --h3-with-flair;}
+          .font-displayH4 { @apply --h4;}
+          .font-displayH5 { @apply --h5;}
+
+          .font-family {font-family: var(--uva-font-family);}
+          .font-family-condensed {font-family: var(--uva-font-family-condensed);}
+          .font-family-compressed {font-family: var(--uva-font-family-compressed);}
+          .font-family-flair { @apply --uva-font-decorative;}
+
+          .weights .book { font-weight: var(--font-weight-book);}
+          .weights .medium { font-weight: var(--font-weight-medium);}
+          .weights .demi { font-weight: var(--font-weight-demi);}
+          .weights .heavy { font-weight: var(--font-weight-heavy);}
+
+          .weights {
+            margin: 50px 0;
+          }
+
+          /* Tooltip container */
+          .tooltip {
+              position: relative;
+              display: inline-block;
+              border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+          }
+
+          /* Tooltip text */
+          .tooltip .tooltiptext {
+              visibility: hidden;
+              width: 100%;
+              background-color: #555;
+              color: #fff;
+              text-align: center;
+              padding: 5px;
+              border-radius: 6px;
+
+              /* Position the tooltip text */
+              position: absolute;
+              z-index: 1;
+              top: 25%;
+              left: 27%;
+              margin-left: -60px;
+
+              /* Fade in tooltip */
+              opacity: 0;
+              transition: opacity 0.3s;
+          }
+
+          /* Tooltip arrow */
+          .tooltip .tooltiptext::after {
+              content: "";
+              position: absolute;
+              top: 100%;
+              left: 50%;
+              margin-left: -5px;
+              border-width: 5px;
+              border-style: solid;
+              border-color: #555 transparent transparent transparent;
+          }
+
+          /* Show the tooltip text when you mouse over the tooltip container */
+          .tooltip:hover .tooltiptext {
+              visibility: visible;
+              opacity: 1;
+          }
+
+      </style>
+    </custom-style>
+  </head>
+  <body>
+
+    <div class="vertical-section-container centered" style="max-width: 800px">
+      <h1>'uvalib' Style Sheet</h1>
+      <h2>Brand Colors</h2>
+      <demo-snippet>
+        <template>
+          <custom-style>
+            <style is="custom-style" include="uvalib-theme">
+                  /* Brand Color Palate*/
+                  --uvalib-main-rotunda-orange: #E57200;
+                  --uvalib-main-jefferson-blue: #232D4B;
+                  --uvalib-main-white: #FFFFFF;
+                  --uvalib-main-black: #000000;
+
+                  /*Secondary Brand Colors*/
+                  --uvalib-secondary-web-orange: #EB5F0C;
+                  --uvalib-secondary-web-blue: #141E3C;
+                  --uvalib-secondary-light-gray: #F1F1F1;
+                  --uvalib-secondary-medium-gray: #DADADA;
+                  --uvalib-text-grey: #595959; /*ADA compliant*/
+                  --uvalib-text-dk-grey: #474747; /*ADA compliant for hover over shaded table rows*/
+                  --uvalib-text-almost-black: #212121; /*ADA compliant*/
+                  --uvalib-secondary-emergency-red: #E00000; /*ADA compliant*/
+                  --uvalib-secondary-cyan: #009FDF;
+                  --uvalib-secondary-yellow: #FDDA24;
+                  --uvalib-secondary-teal: #25CAD3;
+                  --uvalib-secondary-magenta: #EF3F6B;
+                  --uvalib-secondary-green: #008000; /*ADA compliant*/
+            </style>
+          </custom-style>
+        </template>
+        <h4>Main Colors</h4>
+        <div class="palette">
+          <div class="orange tooltip">Primary Orange<span class="tooltiptext">--uvalib-main-rotunda-orange</span></div>
+          <div class="blue tooltip">Primary Blue<span class="tooltiptext">--uvalib-main-jefferson-blue</span></div>
+          <div class="white tooltip">White<span class="tooltiptext">--uvalib-main-white</span></div>
+          <div class="black tooltip">Black<span class="tooltiptext">--uvalib-main-black</span></div>
+        </div>
+        <h4>Secondary Colors</h4>
+        <div class="palette">
+          <div class="orange-2 tooltip">Secondary Orange<span class="tooltiptext">uvalib-secondary-web-orange</span></div>
+          <div class="blue-2 tooltip">Secondary Blue<span class="tooltiptext">uvalib-secondary-web-blue</span></div>
+          <div class="lt-gry tooltip">Light Gray<span class="tooltiptext">uvalib-secondary-light-gray</span></div>
+          <div class="md-gry tooltip">Medium Gray<span class="tooltiptext">uvalib-secondary-medium-gray</span></div>
+          <div class="txt-gry tooltip">Text Gray<span class="tooltiptext">--uvalib-text-grey</span></div>
+          <div class="txt-dk-gry tooltip">Text Dk Gray<span class="tooltiptext">--uvalib-text-dk-grey</span></div>
+          <div class="almost-black tooltip">Almost Black<span class="tooltiptext">--uvalib-text-almost-black</span></div>
+          <div class="emg-red tooltip">Emergency Red<span class="tooltiptext">--uvalib-secondary-emergency-red</span></div>
+          <div class="cyan tooltip">Cyan<span class="tooltiptext">--uvalib-secondary-cyan</span></div>
+          <div class="yellow tooltip">Yellow<span class="tooltiptext">--uvalib-secondary-yellow</span></div>
+          <div class="teal tooltip">Teal<span class="tooltiptext">--uvalib-secondary-teal</span></div>
+          <div class="magenta tooltip">Magenta<span class="tooltiptext">--uvalib-secondary-magenta</span></div>
+          <div class="green tooltip">Green<span class="tooltiptext">--uvalib-secondary-green</span></div>
+        </div>
+        <p>Please style property using:&nbsp; <code style="color: var(--uvalib-secondary-emergency-red);">color: var(--name-of-color);</code>.</p>
+        <p>updated Aug. 6, 2018</p>
+      </demo-snippet>
+
+      <h2>Font Styles and Variables</h2>
+      <demo-snippet>
+        <template>
+          <custom-style>
+            <style is="custom-style" include="uvalib-theme">
+            /*Pulling in fonts via Typekit, weights will pull in font variants*/
+
+            /* --font-weight-book: 400;
+            --font-weight-medium: 500;
+            --font-weight-demi: 700;
+            --font-weight-heavy: 900; */
+
+            /* Main sizing unit */
+            /* --uvalib-main-font-size-unit: 16px; */
+
+            /* spacing unit of measure */
+            /* --uvalib-spacing-unit: 1em; */
+
+            </style>
+          </custom-style>
+        </template>
+        <div class="families">
+          <div class="font-family">Franklin Gothic</div>
+          <div class="font-family-condensed">Franklin Gothic Condensed</div>
+          <div class="font-family-compressed">Franklin Gothic Compressed&nbsp;&mdash;&nbsp;<span class="font-family"><em>Refrain from using this one, difficult to read on small screens</em></span></div>
+          <div class="font-family-flair">Bodoni</div>
+        </div>
+
+        <div class="weights">
+           <div class="book">Book Font Weight - 400</div>
+           <div class="medium">Medium Font Weight - 500</div>
+           <div class="demi">Demi Font Weight - 700</div>
+           <div class="heavy">Heavy Font Weight - 900</div>
+        </div>
+
+        <div class="headings">
+          <div class="font-displayH1">Display h1</div>
+          <div class="font-displayH2">Display h2</div>
+          <div class="font-displayH3">Display h3</div>
+          <div><span class="font-displayH3b">Display h3</span>&nbsp;&mdash;&nbsp;<code class="takeNoticeColor">@apply --h3-with-flair</code> <em>Use sparingly!</em></div>
+          <div class="font-displayH4">Display h4</div>
+          <div class="font-displayH5">Display h5</div>
+        </div>
+
+        <div><p>Use the <code class="takeNoticeColor">.all-cap</code> class on headers to transform them to UPPERCASE.<br>Please do not use it on headers LONGER than 3 words as this impairs the readability.</p></div>
+      </demo-snippet>
+
+      <h3>Basic uvalib-theme Style Mixin Demo</h3>
+      <demo-snippet>
+        <template>
+        <custom-style>
+          <style is="custom-style" include="uvalib-theme">
+            .font-headline { @apply --font-headline;}
+            .font-title { @apply --font-title;}
+            .font-subheading { @apply --font-subheading;}
+            .font-body2 { @apply --font-body2;}
+            .font-body1 { @apply --font-body1;}
+            .font-caption { @apply --font-caption;}
+            .font-menu { @apply --font-menu;}
+            .font-button { @apply --font-button;}
+          </style>
+        </custom-style>
+
+        <div class="font-headline">Headline</div>
+        <div class="font-title">Title</div>
+        <div class="font-subheading">Subheading</div>
+        <div class="font-body2">Body2</div>
+        <div class="font-body1">Body1</div>
+        <div class="font-caption">Caption</div>
+        <div class="font-menu">Menu</div>
+        <div class="font-button">Button</div>
+
+        <p class="body2">Strong body copy</p>
+        <p class="body1">Normal Body copy Lorem ipsum dolor sit amet, iusto
+          efficiantur te has, cu mea invenire reformidans, erant delectus
+          laboramus duo no. Sea ei feugait voluptatibus. Eu sit illud dicta delenit. '
+          Luptatum urbanitas cum an, per ne paulo petentium.
+        </p>
+        <blockquote>
+          <p>"Quote lorem ipsum dolor site amet."</p>
+        </blockquote>
+          <ul>
+            <li>Bullet list item</li>
+            <li>Bullet list item</li>
+            <li>Bullet list item</li>
+            <li>Bullet list item</li>
+          </ul>
+          <ol>
+            <li>Numbered list 1</li>
+            <li>Numbered list 2</li>
+            <li>Numbered list 3</li>
+          </ol>
+          <a href="#">Link</link>
+        </template>
+      </demo-snippet>
+
+      <h3>Defined Lists</h3>
+      <demo-snippet>
+        <custom-style>
+          <style is="custom-style" include="uvalib-theme"></style>
+        </custom-style>
+        <paper-card class="uvalibSidebarList" heading="Quick Facts (2015)" image="http://placehold.it/700x167/ABABAB/000000" alt="Description of the image">
+          <div class="card-content">
+            <dl>
+              <dt>Facilities</dt>
+              <dd>12</dd>
+              <dt>Staff</dt>
+              <dd>212</dd>
+              <dt>Budget</dt>
+              <dd>$33 million</dd>
+              <dt>Books</dt>
+              <dd>&gt;5 million</dd>
+            </dl>
+          </div>
+        </paper-card>
+      </demo-snippet>
+
+      <h3>Icon Demo</h3>
+      <demo-snippet>
+        <template>
+          <custom-style>
+            <style is="custom-style" include="uvalib-theme">
+            </style>
+          </custom-style>
+          <iron-icon icon="angle-left"></iron-icon>
+          <iron-icon icon="angle-right"></iron-icon>
+          <iron-icon icon="angle-down"></iron-icon>
+          <iron-icon icon="angle-up"></iron-icon>
+          <iron-icon icon="angle-double-up"></iron-icon>
+          <iron-icon icon="bell"></iron-icon>
+          <iron-icon icon="search"></iron-icon>
+          <iron-icon icon="bars"></iron-icon>
+          <iron-icon icon="user"></iron-icon>
+          <iron-icon icon="clock-o"></iron-icon>
+          <iron-icon icon="comments"></iron-icon>
+          <iron-icon icon="circle-o"></iron-icon>
+          <iron-icon icon="circle"></iron-icon>
+          <iron-icon icon="chevron-left"></iron-icon>
+          <iron-icon icon="chevron-right"></iron-icon>
+          <iron-icon icon="calendar"></iron-icon>
+          <iron-icon icon="envelope-o"></iron-icon>
+          <iron-icon icon="exclamation-circle"></iron-icon>
+          <iron-icon icon="twitter-square"></iron-icon>
+          <iron-icon icon="facebook-square"></iron-icon>
+          <iron-icon icon="pinterest-square"></iron-icon>
+          <iron-icon icon="instagram"></iron-icon>
+          <iron-icon icon="university"></iron-icon>
+          <iron-icon icon="book"></iron-icon>
+          <iron-icon icon="graduation-cap"></iron-icon>
+          <iron-icon icon="cloud"></iron-icon>
+          <iron-icon icon="times"></iron-icon>
+          <iron-icon icon="home"></iron-icon>
+          <iron-icon icon="globe"></iron-icon>
+          <iron-icon icon="close"></iron-icon>
+          <iron-icon icon="cloud-off"></iron-icon>
+          <iron-icon icon="mail"></iron-icon>
+          <iron-icon icon="menu"></iron-icon>
+          <iron-icon icon="share"></iron-icon>
+          <iron-icon icon="timer"></iron-icon>
+          <iron-icon icon="error"></iron-icon>
+          <iron-icon icon="caret-down"></iron-icon>
+          <iron-icon icon="caret-up"></iron-icon>
+          <iron-icon icon="caret-left"></iron-icon>
+          <iron-icon icon="caret-right"></iron-icon>
+        </template>
+      </demo-snippet>
+
+      <h3>Font icons demo</h3>
+      <demo-snippet>
+        <template>
+          <custom-style>
+            <style is="custom-style" include="uvalib-theme">
+              ul {
+                list-style-type: none;
+              }
+              li:before {
+                font-family: uvalib-custom-icons;
+                content: '\f007';
+                margin:0 5px 0 15px;
+                color: #f00;
+              }
+            </style>
+          </custom-style>
+          <h1 style="font-family: uvalib-custom-icons;">&#xf007;</h1>
+          <div>
+            <span class="uvalib-icon-graduation-cap"></span>
+          </div>
+          <ul>
+            <li style="">
+              foo
+            </li>
+          </ul>
+        </template>
+      </demo-snippet>
+    </div>
+
+  </body>
+</html>

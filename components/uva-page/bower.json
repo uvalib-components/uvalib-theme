@@ -1,0 +1,8 @@
+{
+  "name": "uva-page",
+  "description": "UVA Brand Complient page template",
+  "main": "uva-page.html",
+  "dependencies": {
+    "uva-elements": "uva-components/uva-elements#master"
+  }
+}

@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>uvalib-account-auth Demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+    <link rel="import" href="../../paper-button/paper-button.html">
+    <link rel="import" href="../../paper-toggle-button/paper-toggle-button.html">
+    <link rel="import" href="../../paper-input/paper-input.html">
+    <link rel="import" href="../../paper-slider/paper-slider.html">
+
+    <link rel="import" href="../uvalib-account-user.html">
+    <custom-style><style is="custom-style" include="demo-pages-shared-styles"></style></custom-style>
+  </head>
+  <body unresolved>
+
+    <demo-snippet >
+      <template>
+        <dom-bind id="app">
+          <template>
+
+              <uvalib-account-user id="accountuser" signed-in="{{signedIn}}" user-data="{{userData}}"></uvalib-account-user>
+
+              <p>User signed in: [[signedIn]]</p>
+              <p>
+                <paper-button onclick="accountuser.signInWithNetbadge()" hidden$="[[signedIn]]" raised>Sign In with Netbadge</paper-button>
+                <paper-button onclick="accountuser.signOut()" hidden$="[[!signedIn]]" raised>Sign Out</paper-button>
+              </p>
+
+              <paper-toggle-button checked="{{userData.toggled}}" disabled="[[!signedIn]]">Toggle</paper-toggle-button>
+              <paper-slider value="{{userData.rangeValue}}" disabled="[[!signedIn]]"></paper-slider>
+              <textarea value="{{userData.textValue::input}}" disabled="[[!signedIn]]"></textarea>
+          </template>
+        </dom-bind>
+      </template>
+    </demo-snippet>
+
+    <script>
+
+        var app = document.querySelector('#app');
+        app.makeJson = function(data){
+          return JSON.stringify(data);
+        }
+
+    </script>
+
+  </body>
+</html>

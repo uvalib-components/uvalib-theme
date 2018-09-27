@@ -1,0 +1,82 @@
+<link rel="import" href="uvalib-directory.html">
+
+<dom-module id="uvalib-teams">
+
+  <script>
+
+    /**
+     * `uvalib-teams`
+     * UVA Library Staff directory component
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/staff.html
+     */
+    class UvalibTeams extends UvalibDirectory {
+      static get is() { return 'uvalib-teams'; }
+      static get properties() {
+        return Object.assign(super.properties,
+            {
+              _mainDataModel: {
+                type: String,
+                value: "_teams"
+              },
+              searchPlaceholder: {
+                type: String,
+                value: "Search for Library teams"
+              },
+              area: {
+                type: String,
+                value: null
+              },
+              columns: {
+                type: Array,
+                computed: "_makeColumns(area,_init)"
+              }
+            });
+      }
+
+      _makeColumns(area){
+        var cols = [];
+        cols.push(
+          {
+            title:"Team Title",
+            sortable:{dir:'asc',path:'title'},
+            width:"20%",
+            mkCell:function(item,that){
+              return `<a href="/teams/${item.uuid}">${that._getTeamName(item.uuid)}</p>`;
+            }
+          });
+        if (!area) cols.push(
+          {
+            title:"Area",
+            width:"20%",
+            mkCell:function(item,that){
+              return item.area? `<a href="/areas/${item.area}">${that._getAreaName(item.area)}</p>`:"";
+            }
+          });
+        cols.push(
+          {
+            title:"Lead",
+            width:"20%",
+            mkCell:function(item,that){
+              return item.manager? `<a href="/staff/${that._getPersonID(item.manager)}">${that._getPersonName(item.manager)}</a>`:"";
+            }
+          });
+        return cols;
+      }
+
+      /* filter rows by _query and other parameters */
+      _filterRows(rows){
+        if (this.area)
+          rows = rows.filter(row=>row.area && row.area.indexOf(this.area)>=0);
+        return (this._query)?
+          rows.filter(row=>row.displayName.toLowerCase().indexOf(this._query.toLowerCase())>=0):
+          rows;
+      }
+
+
+    }
+    window.customElements.define(UvalibTeams.is, UvalibTeams);
+  </script>
+</dom-module>

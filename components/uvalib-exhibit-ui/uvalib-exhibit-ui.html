@@ -1,0 +1,82 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../uva-models/uva-library.html">
+<link rel="import" href="../uvalib-helper-libs/uvalib-helper-libs.html">
+
+<dom-module id="uvalib-exhibit-ui">
+  <template>
+    <uva-library path="exhibits" items="{{_exhibits}}" sort-by="date" sort-order="desc"></uva-library>
+  </template>
+
+  <script>
+    /**
+     * `uvalib-exhibit-ui`
+     * collection of exhibit objects for display in a user interface
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class UvalibExhibitUi extends Polymer.Element {
+      static get is() { return 'uvalib-exhibit-ui'; }
+      static get properties() {
+        return {
+          mainExhibit: {
+            type: Boolean,
+            value: false
+          },
+          category: {
+            type: String,
+            value: 'current'
+          },
+          limit: {
+            type: Number,
+            value: 1
+          },
+          exhibits: {
+            type: Array,
+            notify: true
+          },
+          _exhibits: {
+            type: Array,
+            observer: '_applyFilter'
+          }
+        };
+      }
+      static get observers() {
+        return [
+          '_applyFilter(_exhibits)'
+        ]
+      }
+
+      _applyFilter(exhibits) {
+//        console.log('mainExhibit: '+this.mainExhibit);
+        // This feature assumes just one exhibit is to be returned in the array
+        if (this.mainExhibit) {
+          this.exhibits = _.filter(exhibits, ['mainExhibit', true]);
+          // if no main exhibit found then get the latest current exhibit
+          if (!this.exhibits.length) {
+            var ex = _.find(exhibits, function(e) { return (_.find(e.exhibitStatus, {'value': 'current'})) ? true : false; });
+            // if no current exhibit then get the latest exhibit
+            if (!ex) {
+              ex = this._exhibits.pop();
+            }
+            this.exhibits.push(ex);
+          }
+        } else {
+          this.exhibits = [];
+//          console.log('category: '+this.category);
+          var category = this.category;
+          var exs = _.filter(exhibits, function(e) { return (_.find(e.exhibitStatus, {'value': category})) ? true : false; });
+//          console.log('limit: '+this.limit);
+          var max = (exs.length < this.limit) ? exs.length : this.limit;
+          for (var i=0; i < max; i++) {
+            this.exhibits.push(exs[i]);
+          }
+        }
+//        console.log(this.exhibits);
+      }
+    }
+
+    window.customElements.define(UvalibExhibitUi.is, UvalibExhibitUi);
+  </script>
+</dom-module>

@@ -1,0 +1,95 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="stylesheet" href="../lightgallery.js/dist/css/lightgallery.min.css"></script>
+<script src="../lightgallery.js/dist/js/lightgallery.min.js"></script>
+<script src="../lg-thumbnail.js/dist/lg-thumbnail.min.js"></script>
+<script src="../lg-fullscreen.js/dist/lg-fullscreen.min.js"></script>
+<script src="../jsonpath-plus/lib/jsonpath-min.js"></script>
+<link rel="import" href="../uvalib-theme/uvalib-theme.html">
+
+
+<custom-style>
+  <style include="uvalib-theme">
+    .lg-sub-html {
+      text-align: center;
+      width: 75%;
+      margin: 0 auto;
+      background-color: rgba(0, 0, 0, 0.65);
+    }
+    .lg-sub-html p {
+      font-size: calc(var(--uvalib-spacing-unit)*1.5);
+      margin: 16px 0 0;
+      color: var(--uvalib-main-white);
+      line-height: 1.2;
+    }
+  </style>
+</custom-style>
+<dom-module id="uvalib-imageviewer">
+
+  <template>
+    <style>
+      :host {
+        display: none;
+      }
+    </style>
+    <div id="dynamic"></div>
+  </template>
+
+  <script>
+    /**
+     * `uvalib-imageviewer`
+     *
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class UvalibImageviewer extends Polymer.Element {
+      static get is() { return 'uvalib-imageviewer'; }
+      static get properties() {
+        return {
+          auto: {
+            type: Boolean,
+            value: false
+          },
+          items: Object,
+          _items: {
+            type: Array,
+            computed: '_transItems(items)'
+          },
+          imageProp: {type:String, value:'src'},
+          thumbProp: {type:String, value:'thumb'},
+          htmlProp: {type:String, value:'subHtml'},
+          firebaseArray: {
+            type: Boolean,
+            value: false
+          }
+        };
+      }
+      connectedCallback() {
+        super.connectedCallback();
+        if (this.auto) this.open();
+      }
+      _transItems(items){
+        if (items)
+          if (this.firebaseArray) {
+            items = Object.values(items);
+          }
+          return items.map(i => {
+            return {
+              src:JSONPath({path: this.imageProp, json:i})[0],
+              thumb:JSONPath({path: this.thumbProp, json:i})[0],
+              subHtml:JSONPath({path: this.htmlProp, json:i})[0]
+            };
+          });
+      }
+      open() {
+        lightGallery(this.shadowRoot.getElementById('dynamic'), {
+          fullScreen: false,
+          dynamic: true,
+          dynamicEl: this._items});
+      }
+    }
+
+    window.customElements.define(UvalibImageviewer.is, UvalibImageviewer);
+  </script>
+</dom-module>

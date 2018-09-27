@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>uvalib-header test</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../uvalib-header.html">
+  </head>
+  <body>
+
+    <test-fixture id="BasicTestFixture">
+      <template>
+        <uvalib-header></uvalib-header>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="ChangedPropertyTestFixture">
+      <template>
+        <uvalib-header lite></uvalib-header>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('uvalib-header', () => {
+
+        test('instantiating the element with default properties works', () => {
+          const element = fixture('BasicTestFixture');
+          assert.equal(element.constructor.is, 'uvalib-header');
+        });
+
+        test('instantiating the element with modified property works', () => {
+          const element = fixture('ChangedPropertyTestFixture');
+          assert.equal(element.lite, true);
+        });
+      });
+
+      a11ySuite('BasicTestFixture');
+      a11ySuite('ChangedPropertyTestFixture');
+    </script>
+
+  </body>
+</html>

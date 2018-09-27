@@ -1,0 +1,35 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../uva-theme/uva-theme.html">
+
+<dom-module id="uva-html-echo">
+  <template>
+  <style is="custom-style" include="uva-theme">
+    #ok {
+      @apply(--html-echo);
+    }
+
+    #ok:first-letter {
+      @apply(--html-echo-first-letter);
+    }
+  </style>
+  <div id="ok"></div>
+  </template>
+</dom-module>
+<script>
+  (function () {
+    Polymer({
+      is: 'uvalib-html-echo',
+      properties: {
+        html: {
+          type: String,
+          observer: '_htmlChanged'
+        }
+      },
+      _htmlChanged: function (neo) {
+        // WARNING: potential XSS vulnerability if `html` comes from an untrusted source
+        Polymer.dom(this.$.ok).innerHTML = neo;
+        this.updateStyles();
+      }
+    });
+  })();
+</script>

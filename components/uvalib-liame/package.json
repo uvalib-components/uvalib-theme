@@ -1,0 +1,19 @@
+{
+  "name": "uvalib-liame",
+  "version": "1.0.0",
+  "description": "Generates email link.",
+  "main": "uvalib-liame.html",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uvalib-components/uvalib-liame"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-accessibility": "^3.0.1",
+    "gulp-rename": "^1.2.2",
+    "run-sequence": "^1.2.2"
+  }
+}

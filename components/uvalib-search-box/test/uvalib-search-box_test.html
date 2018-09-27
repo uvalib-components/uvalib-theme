@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>uvalib-search-box test</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../uvalib-search-box.html">
+  </head>
+  <body>
+
+    <test-fixture id="BasicTestFixture">
+      <template>
+        <uvalib-search-box></uvalib-search-box>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('uvalib-search-box', () => {
+
+        test('instantiating the element with default properties works', () => {
+          const element = fixture('BasicTestFixture');
+          assert.equal(element.constructor.is, 'uvalib-search-box');
+        });
+
+      });
+
+      // a11ySuite complains about the advanced links having a bad ARIA attribute value (AX_ARIA_04)
+      // but I don't understand why it is complaining. So excluding that test.
+      a11ySuite('BasicTestFixture', ['badAriaAttributeValue']);
+    </script>
+
+  </body>
+</html>

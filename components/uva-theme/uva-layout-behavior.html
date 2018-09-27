@@ -1,0 +1,26 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<script>
+  /**
+   * @demo demo/index.html
+   * @uvaBehavior uvabehavior.layout
+   */
+  window.uvabehaviors = window.uvabehaviors || {};
+  uvabehaviors.layout = {
+    properties: {
+      smallScreenQuery: {
+        type: String,
+        value: "(max-width: 600px)"
+      },
+      mediumScreenQuery: {
+        type: String,
+        value: "(min-width: 600px) and (max-width: 992px)"
+      },
+      largeScreenQuery: {
+        type: String,
+        value: "(min-width: 992px)"
+      }
+    }
+  };
+
+</script>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>uva-buildings demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../../polymer/polymer.html">
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../iron-selector/iron-selector.html">
+    <link rel="import" href="../../google-map/google-map.html">
+    <link rel="import" href="../../google-map/google-map-marker.html">
+    <link rel="import" href="../uva-buildings.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic uva-buildings demo</h3>
+      <demo-snippet>
+        <template>
+          <dom-bind>
+            <template>
+
+              <uva-buildings buildings="{{buildings}}" category="{{category}}" categories="{{categories}}" loading="{{loading}}"></uva-buildings>
+              <uva-buildings name="ROTUNDA" building="{{rotunda}}"></uva-buildings>
+
+              <h1>Listing of UVA buildings</h1>
+              <div>
+                <select value="{{category::change}}" style="margin-bottom: 15px;" disabled$="{{loading}}">
+                  <option selected>Select a category to filter</option>
+                  <dom-repeat items="[[categories]]">
+                    <template is="dom-repeat" items="[[categories]]">
+                      <option value="[[item]]">[[item]]</option>
+                    </template>
+                  </dom-repeat>
+                </select>
+              </div>
+              <div style="height:200px; overflow:scroll; margin-bottom:20px;">
+                <dom-repeat items="[[buildings]]">
+                  <template>
+                    <div><strong>[[item.Name]]</strong> [[item.Address]]</div>
+                  </template>
+                </dom-repeat>
+              </div>
+
+
+              <google-map style="height:600px;" zoom="13" latitude="[[rotunda.Latitude]]" longitude="[[rotunda.Longitude]]" api-key="AIzaSyBxAaVYnYIkwmvR4pigOojpxvli_OxBeFs">
+                <dom-repeat items="[[buildings]]">
+                  <template>
+                    <dom-if if="[[item.Latitude]]">
+                      <template>
+                        <google-map-marker latitude="[[item.Latitude]]" longitude="[[item.Longitude]]" title="[[item.Name]]"></google-map-marker>
+                      </template>
+                    </dom-if>
+                  </template>
+                </dom-repeat>
+              </google-map>
+
+            </template>
+          </dom-bind>
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+</html>

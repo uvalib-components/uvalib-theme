@@ -1,0 +1,23 @@
+language: node_js
+node_js: stable
+dist: trusty
+sudo: required
+addons:
+  firefox: latest
+  sauce_connect: true
+  apt:
+    sources:
+    - google-chrome
+    packages:
+    - google-chrome-stable
+before_script:
+- npm install -g bower polymer web-component-tester
+- npm install -g gulp gulp-accessibility gulp-rename run-sequence
+- bower install
+script:
+- xvfb-run wct --plugin sauce
+- xvfb-run gulp accessibility
+env:
+  global:
+  - secure: UuPCfU7C/VFLGygHP2qvB6hp7bMz+eDSfp8nQT859cJKCjGTLB1M1dnu4CIpLbR2hsuHgKQ9VRhHZ31Z4wpeEPKAdnu3S+XH8MO1AEno3+O22u+q9jyqSgJV0zpHoEbd2H2d+wVJpAqHxWWuHHMkc0gh9rg1RriX3HBM75aF1QIC+0oOD39HsCeW4megTsEAJECZRh2QwiXhqvQ3g108GkKsjqiGN3w1+eB/5+dtt3AMrXbLLJDeWsAo3pibAVorxUaPE1S/EBUYdQ7v9OvdInW+v5MNpjzPpWLT4UG3VXQmMMrn5MDMC+LR7bEsjiINWIJJUF6UwjBarCZfboPEMLV8DfMbtghcpvpVeiWIqVuj84cJN/nXKBM7QiwOG1zv2WjLa3/KGguNgH2k+KZ5cE0aSl7y6cwmg4DV/7pjeUr76+X4gejuJuKj6VeiB8UGckG7tgV0VWOa6W9SO0eTYH84UUmQBUCgY8z0Gr07rAr3B+dRMC/DJrDS829OWt94Mpnc08vejzW+eTYumilNpvE6xljvBe1WciEZIK+MrzrqLLohyIyG/iCk5081Qm+LULzlOrCBeWFqvY9ozPAO5FW68hJT+SLyZPEwDHZxoUyAoEDmU2xHPSWrFlD7vVafKgs+Kq8tOK9CAXqWIqdNv5llpD62QeBHvaQKbO/v0Lc=
+  - secure: k36LwsWapD51Gbg5QpoZRP2lilAFD2G3peM/uudd+FboCd97NQPymOm8ngM0og6nZIV1cQVw1dFc+AmKSXOsbfJ0IBJ5nnMkeIV5YqL4TpCAEmgmAu2pYzF1ztae2Hhkz/odR0ok73WI+ILNc3wYpT/4OGJkEA/KlMDVLoZ8xDrDf22xFreLsJlia1Mp9Bz1XAy/W79ODxZ5EfYZFn6Xci8sY2UmPLSDNP7CLxUmD+dLpJNkm3+r1oirlfCz93fjIfxJYZM6oGKSL/9agWR6H5+e3YfJ7+LQEZh03P0HuNtK00O98064kzH5rlP1Y1Kl+WKhML847yNmmF2wD7aLyW28OFSHgvjk+Htz4M93MsAmNVuSpvN1vb0izg4AFp3CyEbi+SPZ/KRuXaEp0ebqXyW0r/tBYIMZe++Rxx/yXqBd2pDf5dy91pd2eOW5xzbJtPINEJrewHg9a+oFnpHzMMWzF37AgvQc65XuT5FsYeM8M7KR0iWwwFTAky4Oj5/UbxLsXHPuAwUC21BWXZPk4K5zBT8P3EMTlnhTJQfV5b30cgmKybVolLnfw3f5xV23KKqv1R21ji/WggPbp5iySYOaBnKkVAfDn3AcsPakvI2XK3d+uTvuQtJTJE//8B9ZX2hj5K6oReV/mAY+gxrY4J9fP9shHBvBbCbc970D3H8=

@@ -1,0 +1,26 @@
+{
+  "name": "uvalib-skip-nav",
+  "description": "Skip to page content",
+  "main": "uvalib-skip-nav.html",
+  "dependencies": {
+    "uvalib-elements": "uvalib-components/uvalib-elements#master"
+  },
+  "devDependencies": {
+    "web-component-tester": "^6.0.0"
+  },
+  "resolutions": {
+    "lodash": "^4.17.4",
+    "polymer": "^2.5.0",
+    "webcomponentsjs": "^1.1.0"
+  },
+  "homepage": "https://github.com/uvalib-components/uvalib-skip-nav",
+  "_release": "f26c992a61",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "f26c992a61537853215724637960006002de4cc8"
+  },
+  "_source": "https://github.com/uvalib-components/uvalib-skip-nav.git",
+  "_target": "master",
+  "_originalSource": "uvalib-components/uvalib-skip-nav"
+}

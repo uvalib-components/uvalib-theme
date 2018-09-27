@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>uvalib-skip-nav demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script>window.Polymer = {lazyRegister: true, dom: 'shadow'};</script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+    <link rel="import" href="../uvalib-skip-nav.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+    </style>
+
+  </head>
+  <body>
+
+    <div class="vertical-section-container centered">
+      <h3>Basic uvalib-skip-nav Demo</h3>
+      <demo-snippet>
+        <template>
+          <uvalib-skip-nav id="skipNav"></uvalib-skip-nav>
+          <div id="header" style="Background-color: blue; color: white;" tabindex="-1">
+            <p tabindex="0">logo here</p>
+            <nav role="navigation" style="color: red">
+              <a id="firstNavItem" href="#item1" style="color: white">Navigation Item 1</a> |
+              <a href="#item2" style="color: white">Navigation Item 2</a> |
+              <a href="#item3" style="color: white">Navigation Item 3</a>
+            </nav>
+          </div>
+          <div id="search" tabindex="-1">
+            <div id="item1b">
+              <h3>Search Box</h3>
+              <input type="text">
+              <button name="Search">
+            </div>
+          </div>
+          <div id="content" tabindex="-1">
+            <p tabindex="0">This is some text in the main content area.</p>
+            <div id="item1">
+              <h3>Item 1</h3>
+              Item one content is located here.
+            </div>
+            <p>Here is some additional text in the main content area.</p>
+            <div id="#item2">
+              <h3>Item 2</h3>
+              Item two content is located in this area.
+            </div>
+            <div id="#item3">
+              <h3>Item 3</h3>
+              Item two content is located in this area.
+            </div>
+          </div>
+          <div id="footer" style="Background-color: blue; color: white;" tabindex="-1">
+            <p tabindex="0">Footer information here</p>
+            <p>
+              bottom bar content goes here
+            </p>
+          </div>
+          <script>
+            document.getElementById("skipNav").addEventListener("jumpToSearch", function() {
+              document.getElementById("search").focus();
+            });
+            document.getElementById("skipNav").addEventListener("jumpToNavigation", function() {
+              document.getElementById("firstNavItem").focus();
+            });
+            document.getElementById("skipNav").addEventListener("jumpToContent", function() {
+              document.getElementById("content").focus();
+            });
+/*            document.getElementById("skipNav").addEventListener("jumpToHeader", function() {
+              document.getElementById("header").focus();
+            });
+            document.getElementById("skipNav").addEventListener("jumpToFooter", function() {
+              document.getElementById("footer").focus();
+            });*/
+          </script>
+        </template>
+      </demo-snippet>
+    </div>
+
+  </body>
+</html>

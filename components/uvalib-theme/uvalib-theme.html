@@ -1,0 +1,282 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="color.html">
+<link rel="import" href="uvalib-styles.html">
+<link rel="stylesheet" href="https://use.typekit.net/pfr1cbw.css">
+
+<script src="//use.typekit.net/tgy5tlj.js"></script>
+<!--<script>try{Typekit.load();}catch(e){}</script>-->
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+<custom-style>
+  <style is="custom-style">
+
+/*********************************************/
+/*              BASE ELEMENTS                */
+/*********************************************/
+
+      @font-face {
+          font-family: 'franklingothic-book';
+          src: url('/fonts/franklingothic-book-webfont.woff2') format('woff2'),
+               url('/fonts/franklingothic-book-webfont.woff') format('woff');
+          font-weight: normal;
+          font-style: normal;
+      }
+      @font-face {
+          font-family: 'franklingothic-demi';
+          src: url('/fonts/franklingothic-demi-webfont.woff2') format('woff2'),
+               url('/fonts/franklingothic-demi-webfont.woff') format('woff');
+          font-weight: normal;
+          font-style: normal;
+      }
+      @font-face {
+          font-family: 'uvalib-custom-icons';
+          src: url('/fonts/uvalib-icon-font-03012018.woff2') format('woff2'),
+               url('/fonts/uvalib-icon-font-03012018.woff') format('woff');
+          font-weight: normal;
+          font-style: normal;
+      }
+
+      /* making site background full width */
+      body { margin: 0; }
+
+/* SITE WIDE CUSTOM VARIABLES */
+      html {
+      /* max display width */
+      --uvalib-display-width-max: 1200px;
+
+      /* small media width */
+      --small-viewport: { max-width: 30em; }
+
+      /* font variables */
+      --font-primary: var(--uva-font-family);
+      --font-secondary: franklingothic-demi, sans-serif;
+
+      /*Pulling in fonts via Typekit, weights will pull in font variants*/
+      --uva-font-family: 'franklin-gothic-urw',arial,sans-serif;
+      --uva-font-family-condensed: 'franklin-gothic-urw-cond',arial narrow,sans-serif;
+      /*try to refrain from using this one, difficult to read on small screens*/
+      --uva-font-family-compressed: 'franklin-gothic-urw-comp',arial narrow,sans-serif;
+      --uva-font-decorative: {
+        font-family: 'bodoni-urw',georgia,serif;
+        font-style: italic;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      --font-weight-light: 300; /*not used?*/
+      --font-weight-book: 400;
+      --font-weight-medium: 500;
+      --font-weight-demi: 700;
+      --font-weight-heavy: 900;
+
+/* Main sizing unit - changing this will update most of the font size/spacing variables on the site */
+      --uvalib-main-font-size-unit: 16px;
+
+/* spacing unit of measure */
+      --uvalib-spacing-unit: 1em;
+
+/* typography variables */
+      --uvalib-font-base: {
+        font-family: var(--font-primary);
+        font-weight: 300;
+        margin-top: calc(var(--uvalib-spacing-unit)/1);
+        margin-bottom: calc(var(--uvalib-spacing-unit)/4);
+        text-transform: none;
+        color: var(--uvalib-text-grey);
+      }
+
+      --h1: {
+        font-family: var(--uva-font-family);
+        font-weight: var(--font-weight-demi);
+        font-size: calc(var(--uvalib-main-font-size-unit)*3.75);
+        line-height: calc(var(--uvalib-main-font-size-unit)*3.75);
+        color: var(--uvalib-main-jefferson-blue);
+        margin-top: calc(var(--uvalib-spacing-unit)/4);
+        margin-bottom: calc(var(--uvalib-spacing-unit)/1.5);
+        /*text-transform: capitalize; Not using, handling with CMS manual entries*/
+      }
+      --h2: {
+        font-family: var(--uva-font-family);
+        font-weight: var(--font-weight-medium);
+        font-size: calc(var(--uvalib-main-font-size-unit)*2);
+        line-height: calc(var(--uvalib-main-font-size-unit)*2);
+        color: var(--uvalib-main-jefferson-blue);
+      }
+      --h3: {
+        font-family: var(--uva-font-family);
+        font-weight: var(--font-weight-medium);
+        font-size: calc(var(--uvalib-main-font-size-unit)*1.5);
+        line-height: calc(var(--uvalib-main-font-size-unit)*1.5);
+        /* text-transform: uppercase; Not using to improve cognitive recognition*/
+        color: var(--uvalib-main-jefferson-blue);
+      }
+      --h3-with-flair: {
+        @apply --uva-font-decorative;
+        font-size: calc(var(--uvalib-main-font-size-unit)*1.5);
+        line-height: calc(var(--uvalib-main-font-size-unit)*1.5);
+        color: var(--uvalib-main-jefferson-blue);
+      }
+      --h4: {
+        font-family: var(--uva-font-family);
+        font-weight: var(--font-weight-medium);
+        font-size: calc(var(--uvalib-main-font-size-unit)*1.25);
+        line-height: calc(var(--uvalib-main-font-size-unit)*1.25);
+        /*text-transform: capitalize; Not using, handling with CMS manual entries*/
+        color: var(--uvalib-main-jefferson-blue);
+      }
+      --h5: {
+        font-family: var(--uva-font-family);
+        font-weight: var(--font-weight-medium);
+        font-size: var(--uvalib-main-font-size-unit);
+        line-height: var(--uvalib-main-font-size-unit);
+        color: var(--uvalib-main-jefferson-blue);
+      }
+      --h6: {
+        font-family: var(--uva-font-family);
+        font-weight: var(--font-weight-book);
+        font-size: var(--uvalib-main-font-size-unit);
+        line-height: var(--uvalib-main-font-size-unit);
+        color: var(--uvalib-text-grey);
+      }
+
+      --font-headline: {
+        font-family: var(--font-primary);
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 32px;
+        color: var(--uvalib-text-grey);
+      };
+
+/* used for headers in card body */
+      --font-title: {
+        font-family: var(--font-primary);
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 28px;
+        color: var(--uvalib-text-grey);
+      };
+
+/* main body font */
+      --font-body1: {
+        font-family: var(--font-primary);
+        font-weight: 400;
+        font-style: normal;
+        font-size: var(--uvalib-main-font-size-unit);
+        line-height: calc(var(--uvalib-main-font-size-unit)*1.25);
+        color: var(--uvalib-text-grey);
+      };
+
+      --uvalib-liame-link-color:  var(--uvalib-link-color);
+
+      --link-hover: {
+        text-decoration: underline;
+      };
+
+/********************************/
+/* Not used? Need to check each */
+/********************************/
+
+      /* variant not showing up on 4,3,2,1 */
+      /* --font-display4: {
+        font-family: var(--font-primary);
+        font-size: 112px;
+        font-weight: 300;
+        line-height: 112px;
+        color: var(--uvalib-text-grey);
+        text-transform: none;
+      };
+
+      --font-display3: {
+        font-family: var(--font-primary);
+        font-size: 56px;
+        font-weight: 400;
+        line-height: 56px;
+        color: var(--uvalib-text-grey);
+        text-transform: none;
+      };
+
+      --font-display2: {
+        font-family: var(--font-primary);
+        font-size: 45px;
+        font-weight: 400;
+        line-height: 48px;
+        color: var(--uvalib-text-grey);
+        text-transform: none;
+      };
+
+      --font-display1: {
+        font-family: var(--font-primary);
+        font-size: 34px;
+        font-weight: 400;
+        line-height: 40px;
+        color: var(--uvalib-text-grey);
+        text-transform: none;
+      }; */
+
+      /* variant not showing up*/
+      /* --font-subheading: {
+        font-family: var(--font-primary);
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        color: var(--uvalib-text-grey);
+      }; */
+
+      /* variant not showing up */
+      /* --font-body2: {
+        font-family: var(--font-primary);
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 24px;
+        color: var(--uvalib-text-grey);
+      }; */
+
+      /* variant not showing up */
+      /* --font-caption: {
+        font-family: var(--font-primary);
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16px;
+        color: var(--uvalib-text-grey);
+      }; */
+
+      /* variant not showing up */
+      /* --font-menu: {
+        font-family: var(--font-primary);
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 17px;
+        color: var(--uvalib-text-grey);
+      }; */
+
+      /* variant not showing up */
+      /* --font-button: {
+        font-family: var(--font-primary);
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 18px;
+        text-transform: uppercase;
+        color: var(--uvalib-text-grey);
+      }; */
+
+      /* added here as all cards don't use uvalib-card */
+      /* variant not showing up */
+      /* --font-card-content: {
+        font-size: 16px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: left;
+        color: var(--uvalib-blue-a400);
+      }; */
+
+      /* --uvalib-TB-margin: {
+        margin-top: var(--uvalib-spacing-unit);
+        margin-bottom: var(--uvalib-spacing-unit);
+      }; */
+    }
+
+  </style>
+</custom-style>

@@ -1,0 +1,104 @@
+<link rel="import" href="../uvalib-theme/uvalib-ui-element.html">
+<link rel="import" href="../uva-models/uva-library.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+
+<dom-module id="uvalib-staff-card">
+
+  <template>
+    <custom-style>
+      <style include="uvalib-theme">
+        :host {
+          display: block;
+        }
+        img {
+          height: 200px;
+        }
+        #contact-info {
+          margin-top: 0;
+          padding-left: 20px;
+        }
+        #name {
+          /* font-weight: bold; */
+          @apply --h4;
+        }
+        #title, #phone {
+          font-style: italic;
+        }
+        #contact-info li { list-style: none; padding-bottom: var(--uvalib-spacing-unit)/2; }
+
+      </style>
+    </custom-style>
+
+    <!-- Data model -->
+    <uva-library path="people" filter="[[_filter]]" items="{{_people}}"></uva-library>
+    <div class="layout horizontal">
+      <template is="dom-if" if="[[_person.field_image]]">
+        <div><img src="[[_person.field_image.url]]" alt="[[_person.field_image.alt]]" /></div>
+      </template>
+      <ul id="contact-info">
+        <li id="name">[[_person.displayName]]</li>
+        <li id="title" hidden$="[[!_person.jobTitle]]">[[_person.jobTitle]]</li>
+        <li id="phone" hidden$="[[!_person.phone]]"><a href="tel:[[_stripPhone(_person.phone)]]">[[_person.phone]]</a></li>
+        <li id="email" hidden$="[[!_person.email]]"><a href="mailto:[[_person.email]]">[[_person.email]]</a></li>
+        <li id="twitter" hidden$="[[!_person.twitter]]"><a href="https://twitter.com/[[_person.twitter]]"><iron-icon icon="twitter-square"></iron-icon>&nbsp;@[[_person.twitter]]</a></li>
+      </ul>
+    </div>
+
+  </template>
+
+  <script>
+    let uvalibStaffCardTemplate;
+
+    /**
+     * `uvalib-staff-card`
+     * UVA Library staff card
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/card.html
+     */
+    class UvalibStaffCard extends UvalibUiElement {
+      static get is() { return 'uvalib-staff-card'; }
+      static get properties() {
+        return Object.assign(super.properties,
+            {
+              computingId: {
+                type: String
+              },
+              _filter: {
+                type: Object,
+                computed: "makeFilter(computingId)"
+              },
+              _people: Array,
+              _person: {
+                type: Object,
+                computed: "getPerson(_people)"
+              }
+            });
+      }
+
+      static get template() {
+        if (!uvalibStaffCardTemplate) {
+            // Retrieve this element's dom-module template
+            uvalibStaffCardTemplate = Polymer.DomModule.import(this.is, 'template');
+            // Clone the contents of the superclass template
+            let superTemplateContents = UvalibUiElement.template.content.cloneNode(true);
+            // Insert the superclass contents
+            uvalibStaffCardTemplate.content.insertBefore(superTemplateContents, null);
+        }
+        return uvalibStaffCardTemplate;
+      }
+      makeFilter(computingId){
+        return ['computingId',computingId];
+      }
+      getPerson(_people){
+        return this._first(_people);
+      }
+      _stripPhone(phone){
+        return phone.replace(/[^0-9]/, "").replace('-','');
+      }
+    }
+
+    window.customElements.define(UvalibStaffCard.is, UvalibStaffCard);
+  </script>
+</dom-module>

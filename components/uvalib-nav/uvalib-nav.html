@@ -1,0 +1,127 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../paper-menu/paper-menu.html">
+<link rel="import" href="../paper-item/paper-item.html">
+<link rel="import" href="../uvalib-theme/uvalib-theme.html">
+<link rel="import" href="../uvalib-theme/uvalib-icons.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+
+<!--
+`uvalib-nav`
+Navigation content component
+
+@demo demo/index.html
+-->
+
+<dom-module id="uvalib-nav">
+  <template>
+    <style is="custom-style" include="uvalib-theme">
+      :host {
+        display: block;
+      }
+      .navigation {
+
+        @apply(--layout-horizontal);
+        @apply(--layout-center);
+
+        background-color: var(--color-primary-blue);
+        color: var(--color-white) !important;
+        font-size: 24px;
+        line-height: 20px;
+        list-style: none;
+      }
+      .item {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .item a, .item h4 {
+        color: var(--color-white) !important;
+        text-decoration: none;
+        font-style: normal !important;
+        line-height: 20px;
+      }
+      paper-icon-button {
+        --paper-icon-button-ink-color: var(--color-accessibility-outline);
+      }
+      .mobile a {
+        @apply(--font-menu);
+        text-decoration: none;
+      }
+      paper-icon-item {
+        display: block;
+        padding: 10px;
+      }
+      paper-icon-item iron-icon {
+        color: var(--color-text-gray) !important;
+        padding-right: 20px;
+      }
+    </style>
+
+    <nav role="navigation">
+      <template is="dom-if" if="{{stacked}}">
+        <paper-menu class="mobile">
+          <template is="dom-repeat" items="{{navigation}}" as="nav">
+              <paper-item>
+                <a href="{{nav.url}}" tabindex="-1">
+                  <iron-icon icon="{{nav.icon}}" item-icon></iron-icon>
+                  {{nav.label}}
+                </a>
+              </paper-item>
+          </template>
+        </paper-menu>
+      </template>
+      <template is="dom-if" if="{{!stacked}}">
+        <ul class="navigation">
+          <template is="dom-repeat" items="{{navigation}}" as="nav">
+            <li class="item">
+              <h4 tabindex="-1"><a href="{{nav.url}}" class="link">{{nav.label}}</a></h4>
+            </li>
+          </template>
+          <template is="dom-if" if="{{includeSearch}}">
+            <li class="search item">
+              <paper-icon-button icon="search" alt="Search Virgo" on-tap="showSearch"></paper-icon-button>
+            </li>
+          </template>
+        </ul>
+      </template>
+    </nav>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'uvalib-nav',
+
+      properties: {
+        /**
+         * Array of JSON items that represent the navigation. Each JSON item has a label property, an icon property, and a url property.
+         */
+        navigation: {
+          type: Array,
+          value: [],
+        },
+
+        stacked: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * Indicates that a search icon should be displayed at the end of the navigation.
+         */
+        includeSearch: {
+          type: Boolean,
+          value: false
+        }
+
+      },
+
+      showSearch: function(e) {
+        this.fire('show-search');
+      },
+
+      
+
+    });
+  </script>
+</dom-module>

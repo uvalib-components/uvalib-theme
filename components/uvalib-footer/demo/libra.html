@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+<html lang="en" prefix="og:http://ogp.me/ns#">
+  <head>
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="OmT+g+0Jn2ZdmyqJPr0mYdQnqqwcpZyrixZPZOW7WG8XcfQCDNPXMRg6k9Y9LmCa7EmHJs3mhLREVdeUfyPnDg==" />
+<meta charset="utf-8" />
+
+<!-- added for use on small devices like phones -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<title>Index Dashboard // Libra OC</title>
+
+<!-- application css -->
+<link rel="stylesheet" media="screen" href="http://libraopen.lib.virginia.edu/assets/application-8cf7ad08301ecac9bf765bfbc856f55615c988ed8868fe7968e48440c98ce7b4.css" />
+
+<!-- application js -->
+<script src="http://libraopen.lib.virginia.edu/assets/application-b2b9d12495b9d11357df3ed2a37f4f9132419387d731ab058c6cec90307cc570.js"></script>
+
+<!-- Shim for any lack of web component support and specify shadow dom usage -->
+    <script>
+      Polymer = {dom: 'shadow'};
+
+      (function() {
+        if ('registerElement' in document
+            && 'import' in document.createElement('link')
+            && 'content' in document.createElement('template')) {
+          // platform is good!
+        } else {
+          document.write( '<script src="../../webcomponentsjs/webcomponents-lite.min.js">\x3C/script>')
+        }
+      })();
+    </script>
+<!-- End Shim -->
+<link rel="import" href="../uvalib-footer.html">
+
+
+
+  </head>
+
+  <body>
+    <a href="#skip_to_content" class="sr-only">Skip to Content</a>
+    <div id="uva_lib_banner">
+  <div id="container1" class="lib_banner">
+    <a href="http://www.library.virginia.edu/askalibrarian/" class="ask-a-librarian"><i class="fa fa-question-circle"></i> Ask a Librarian</a>
+    <div id="uva_lib_logo" class="grid_14 alpha">
+      <a href="http://library.virginia.edu/">
+        <img alt="University of Virginia Library" src="http://libraopen.lib.virginia.edu/assets/uva-horizontal-logo-53b30b149ee3cefef682714557ca496415cdeab1eb0fe332d39161ad5e0bcd9f.svg" />
+</a>    </div>
+  </div>
+</div>
+
+<nav class="navbar navbar-default container-fluid">
+  <div class="navbar-wapper">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        <img alt="LIBRA Logo" src="http://libraopen.lib.virginia.edu/assets/LibraOpenBlue-d23b2d643ba164570bc356a3d2c0d5acdc8cdc9c61c17bfbedccdd42d0fbaa2f.svg" />
+</a>      <span class="search-scope">Online Archive of University of Virginia Scholarship</span>
+    </div>
+      <div id="navbar" class="navbar-collapse collapse navbar-right">
+        <ul class="nav navbar-nav">
+            <li>
+              <a href="/dashboard">Dashboard</a>
+            </li>
+            <li>
+              <a href="http://libraopen.lib.virginia.edu/users/jlk4p@virginia-dot-edu">John Lawrence (Jack) Kelly</a>
+            </li>
+        </ul>
+      </div><!--/.nav-collapse -->
+  </div>
+</nav>
+
+      <nav class="navbar navbar-default navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="searchbar-right navbar-right col-sm-7 col-md-6">
+        <form id="search-form-header" role="search" action="http://libraopen.lib.virginia.edu/dashboard/works" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
+
+  <div class="input-group">
+
+    <label class="sr-only" for="search-field-header">Search Sufia</label>
+    <input type="text" name="q" id="search-field-header" class="q form-control" placeholder="Search my works" />
+
+    <div class="input-group-btn">
+      <button type="submit" class="btn btn-primary" id="search-submit-header">
+        <span class="glyphicon glyphicon-search"></span> Go
+      </button>
+
+      <!-- No search scope options -->
+    </div><!-- /.input-group-btn -->
+
+  </div><!-- /.input-group -->
+</form>
+      </div>
+    </div>
+  </div>
+</nav><!-- /.navbar -->
+
+
+
+
+    <div id="content-wrapper" class="container" role="main">
+      <a name="skip_to_content"></a>
+
+        <div class="col-xs-12 col-sm-9 col-sm-push-3 main-content">
+
+            <div class="row">
+              <div class="col-xs-12 main-header">
+
+    <div class="col-md-12">
+  <h1>My Dashboard</h1>
+</div>
+
+    <div class="col-xs-12 heading-row">
+  <div class="row">
+      <div class="create-work-btn">
+      <a class="btn btn-primary btn-lg item-option contextual-quick-classify new-libra-work" role="menuitem" href="http://libraopen.lib.virginia.edu/concern/libra_works/new">
+                 <span class="glyphicon glyphicon-plus"></span>
+                 Create Work
+</a>  </div>
+
+  </div>
+</div>
+
+
+              </div>
+            </div>
+
+
+
+<div class="panel panel-default" id="activity">
+  <div class="panel-heading dashboard-panel">
+    <h3 class="panel-title ">My Works</h3>
+  </div>
+  <div class="panel-body">
+    <div class="table-responsive">
+<table class="table table-striped dashboard">
+  <caption class="sr-only">Listing of items you have deposited in Libra OC</caption>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th class="sorts-dash"><i id="system_create_dtsi" class=""></i>Date Uploaded</th>
+      <th>ORCID Status</th>
+      <th>Visibility</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div>
+
+  </div>
+</div>
+
+<div class="panel panel-default" id="activity">
+  <div class="panel-heading dashboard-panel">
+    <h3 class="panel-title ">User Activity</h3>
+  </div>
+  <div class="panel-body">
+    User has no recent activity
+  </div>
+</div>
+
+
+
+
+
+        </div>
+        <div id="sidebar" class="col-xs-12 col-sm-3 col-sm-pull-9 sidebar">
+  <div class="panel panel-default panel-user">
+  <div class="panel-heading">
+
+    <h3>
+        John Lawrence (Jack) Kelly<br />
+      jlk4p@virginia.edu
+    </h3>
+  </div>
+
+  <div class="list-group">
+
+
+
+
+    <div class="list-group-item">
+      <dl id="user_info">
+
+  <dd>
+    <a id="connect-orcid-button" rel="nofollow" href="https://orcid.org/oauth/authorize?client_id=APP-YXUW1T8S07K0ZZUA&amp;response_type=code&amp;scope=/activities/update%20/read-limited&amp;redirect_uri=https://libraopen.lib.virginia.edu/orcid/landing"><img src="http://libraopen.lib.virginia.edu/assets/orcid-cb273c1ff10d304ce1b6108a172bfd1660561e7fd8133b083cd66ee0f4a0a944.png" alt="Orcid" /> Create or Connect Your ORCID ID</a><br /><a target="_blank" href="https://orcid.org/faq-page">Learn more about ORCID</a>
+  </dd>
+  <br/>
+
+
+
+  <dt><i class="fa fa-envelope"></i> Email</dt>
+  <dd><a href="mailto:jlk4p@virginia.edu">jlk4p@virginia.edu</a></dd>
+
+
+
+    <dt>Title</dt>
+    <dd>Staff</dd>
+
+
+    <dt>Department</dt>
+    <dd>University of Virginia Library</dd>
+
+    <dt>Office</dt>
+    <dd>PO Box 400112</dd>
+
+
+
+    <dt><i class="glyphicon glyphicon-earphone"></i> Telephone</dt>
+    <dd><a href="wtai://wp/mc;+1 434-924-7119">+1 434-924-7119</a></dd>
+
+</dl>
+
+    </div>
+  </div>
+
+
+  <div class="panel-footer clearfix">
+      <a class="btn btn-default" href="http://libraopen.lib.virginia.edu/users/jlk4p@virginia-dot-edu">View Profile</a>
+
+      <a class="btn btn-default pull-right" href="http://libraopen.lib.virginia.edu/users/jlk4p@virginia-dot-edu/edit">
+        <i class="glyphicon glyphicon-edit"></i> Edit Profile
+</a>  </div>
+</div>
+
+</div>
+    </div><!-- /#content-wrapper -->
+      <script type="text/javascript">
+    var _paq = _paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    _paq.push(['trackAllContentImpressions']);
+    (function() {
+      var u="//analytics.lib.virginia.edu/";
+      _paq.push(['setTrackerUrl', u+'piwik.php']);
+      _paq.push(['setSiteId', 30]);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <noscript><p><img src="//analytics.lib.virginia.edu/piwik.php?idsite=30" style="border:0;" alt="" /></p></noscript>
+
+<uvalib-footer>
+  <div class="footer-extended" slot="bottom-bar">
+    <div class="footer-extended-left">
+      <a href="http://www.library.virginia.edu/libra/terms-of-use/" class="footer-link">Libra Terms</a> &nbsp; | &nbsp;
+      <a href="mailto:libra@virginia.edu" class="footer-link">Libra Feedback</a>
+    </div>
+    <div class="footer-extended-right">
+        <span class="build-version">Version: build-341</span>
+       <img alt="Hydra Community Badge" src="http://libraopen.lib.virginia.edu/assets/hydra-df621100d14d209a52ec4d645e81a6c84fcbd503bfafa1c6d6d6937984d81c98.png" />
+    </div>
+  </div>
+</uvalib-footer>
+
+    <div id="ajax-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal menu" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
+
+  </body>
+</html>

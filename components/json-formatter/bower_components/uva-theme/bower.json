@@ -1,0 +1,8 @@
+{
+  "name": "uva-theme",
+  "description": "Common UVA brand styles",
+  "main": "uva-theme.html",
+  "dependencies": {
+    "uva-elements": "uva-components/uva-elements#master"
+  }
+}

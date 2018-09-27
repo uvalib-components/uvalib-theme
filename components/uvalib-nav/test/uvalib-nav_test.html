@@ -1,0 +1,53 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <title>uvalib-nav test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../uvalib-nav.html">
+  </head>
+  <body>
+
+    <test-fixture id="basic">
+      <template>
+        <uvalib-nav></uvalib-nav>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="stacked">
+      <template>
+        <uvalib-nav stacked
+          navigation='[
+            {"label": "About", "icon": "university", "url": "//www.library.virginia.edu/about-uva-library/"},
+            {"label": "Research", "icon": "graduation-cap", "url": "//www.library.virginia.edu/research/"},
+            {"label": "Collections", "icon": "book", "url": "//www.library.virginia.edu/collections/"},
+            {"label": "Services", "icon": "cloud", "url": "//www.library.virginia.edu/services/"}
+          ]'
+          >
+        </uvalib-nav>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('uvalib-nav', function() {
+
+        test('instantiating the basic element works', function() {
+          var element = fixture('basic');
+          assert.equal(element.is, 'uvalib-nav');
+        });
+        test('instantiating the stacked element works', function() {
+          var element = fixture('stacked');
+          assert.equal(element.is, 'uvalib-nav');
+        });
+
+      });
+
+      a11ySuite('basic');
+      a11ySuite('stacked');
+    </script>
+  </body>
+</html>

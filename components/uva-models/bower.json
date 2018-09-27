@@ -1,0 +1,12 @@
+{
+  "name": "uva-models",
+  "description": "Helper component to list buildings on grounds",
+  "main": "uva-buildings.html",
+  "dependencies": {
+    "uva-elements": "uva-components/uva-elements#master",
+    "lodash": "^4.17.5"
+  },
+  "resolutions": {
+    "lodash": "^4.17.5"
+  }
+}

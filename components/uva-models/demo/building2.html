@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>uva-buildings demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../../polymer/polymer.html">
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../paper-range-slider/paper-range-slider.html">
+    <link rel="import" href="../../iron-selector/iron-selector.html">
+    <link rel="import" href="../../iron-list/iron-list.html">
+    <link rel="import" href="../../google-map/google-map.html">
+    <link rel="import" href="../../google-map/google-map-marker.html">
+    <link rel="import" href="../../google-map/google-map-circle.html">
+    <link rel="import" href="../uva-buildings.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic uva-buildings demo</h3>
+      <demo-snippet>
+        <template>
+          <dom-bind id="app">
+            <template>
+
+              <uva-buildings key="59e7aea6e85e555020cdfe4d" buildings="{{buildings}}" category="[[category]]"
+                categories="{{categories}}" loading="{{loading}}" historic="{{historic}}"
+                max-year-built="[[maxYearBuilt]]" min-year-built="[[minYearBuilt]]"
+                min-square-footage="{{minSquareFootage}}" max-square-footage="{{maxSquareFootage}}"
+                distance="[[distance]]" latitude="[[rotunda.Latitude]]" longitude="[[rotunda.Longitude]]"></uva-buildings>
+              <uva-buildings key="59e7aea6e85e555020cdfe4d" name="ROTUNDA" building="{{rotunda}}"></uva-buildings>
+
+              <h1>Listing of UVA buildings</h1>
+              <div style="margin-bottom: 15px;">
+                <select value="{{category::change}}" style="margin-bottom: 15px;" disabled$="{{loading}}">
+                  <option selected>Select a category to filter</option>
+                  <dom-repeat items="[[categories]]">
+                    <template is="dom-repeat" items="[[categories]]">
+                      <option value="[[item]]">[[item]]</option>
+                    </template>
+                  </dom-repeat>
+                </select><br />
+                <label for="year-selector">Square Footage:</label>
+                <paper-range-slider id="square-footage" snaps step='1' min='0' max='100000' value-min="{{minSquareFootage}}" value-max="{{maxSquareFootage}}"></paper-range-slider><br>
+                <span>[[minSquareFootage]]-[[maxSquareFootage]] ft²</span><br>
+                <label for="year-selector">Year built:</label>
+                <paper-range-slider id="year-selector" snaps pin step='1' min='1780' max='2017' value-min="{{minYearBuilt}}" value-max="{{maxYearBuilt}}"></paper-range-slider><br>
+                <label for="historic">Historic?</label>
+                <input id="historic" type="checkbox" checked="{{historic::change}}"></input><br>
+                <label for="proximity">Proximity Filter?</label>
+                <input id="proximity" type="checkbox" checked="{{proximity::change}}"></input>
+                <dom-if if="[[proximity]]" restamp>
+                  <template>
+                    <div>
+                      <label for="distance">Distance:</label>
+                      <paper-range-slider id="distance" single-slider snaps step='1' min='10' max='5000' value-max="{{distance}}"></paper-range-slider>
+                      <span>[[distance]] meters</span>
+                    </div>
+                  </template>
+                </dom-if>
+              </div>
+              <div style="height:200px; overflow:scroll; margin-bottom:20px;">
+                <iron-list items="[[buildings]]" as="item" selection-enabled selected-item="{{selected}}">
+                  <template>
+                      <div tabindex$="[[tabIndex]]"><strong>[[item.Name]]</strong> [[item.Address]]</div>
+                  </template>
+                </iron-list>
+              </div>
+
+
+              <google-map style="height:600px;" zoom="15" latitude="[[rotunda.Latitude]]" longitude="[[rotunda.Longitude]]" api-key="AIzaSyBxAaVYnYIkwmvR4pigOojpxvli_OxBeFs">
+                <dom-repeat items="[[buildings]]">
+                  <template>
+                    <dom-if if="[[item.Latitude]]">
+                      <template>
+                        <google-map-marker id="marker-[[item.ID]]" latitude="[[item.Latitude]]" longitude="[[item.Longitude]]" title="[[item.Name]]" icon='"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAMAAADXT/YiAAAATlBMVEX/Zmb///+lpaVCQkK9TEzATU0/Pz+ioqJdJSVRICCrRERaJCSurq4zMzNUVFTMUlIeHh5OTk5paWlgYGAkJCTbWFjhWlpaWlpmKSmZmZm14r/wAAAAQ0lEQVQImWNgZGTi4+XjYWRkYBTn5uLn4hRiZJCUYAABDnYGNlYwi4WZQUAMzBIVQRJj5wCzOHkYGIVheoHmCYLNAwBfwQIRDa1rgAAAAABJRU5ErkJggg=="'></google-map-marker>
+                      </template>
+                    </dom-if>
+                  </template>
+                </dom-repeat>
+                <dom-if if="[[proximity]]" restamp>
+                  <template>
+                    <google-map-marker latitude="{{rotunda.Latitude}}" longitude="{{rotunda.Longitude}}" draggable="true"></google-map-marker>
+                    <google-map-circle latitude="[[rotunda.Latitude]]" longitude="[[rotunda.Longitude]]" radius="[[distance]]"></google-map-circle>
+                  </template>
+              </google-map>
+
+            </template>
+          </dom-bind>
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+  <script>
+    var app = document.querySelector('#app');
+    app.maxYearBuilt = 2017;
+    app.minYearBuilt = 1780;
+    app.minSquareFootage = 0;
+    app.maxSquareFootage = 100000;
+    app.rotunda = undefined;
+    app.distance = 10000000;
+    app.addEventListener('selected-changed', function () {
+      console.log('change listener fired');
+    });
+  </script>
+</html>

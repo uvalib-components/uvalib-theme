@@ -1,0 +1,140 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../uvalib-theme/uvalib-theme.html">
+
+<!--
+An element that is an email obfuscator.
+
+Example:
+
+    <div is="uvalib-liame" rid="z4chd">Doug Chestnut</div>
+
+@demo demo/index.html
+@hero hero.svg
+-->
+
+<dom-module id="uvalib-liame">
+  <template>
+    <custom-style>
+    <style include="uvalib-theme">
+      :host {
+        display: inline-block;
+        text-decoration: underline;
+      }
+      #link {
+        color: var(--uvalib-liame-link-color,currentcolor);
+        @apply --uvalib-liame-link;
+        text-decoration: none;
+      }
+      #link:hover {
+        @apply --link-hover;
+      }
+      #link:focus {
+        @apply --link-focus;
+      }
+    </style>
+    </custom-style>
+    <a id="link" href="mailto:[[_eid]]@[[domain]][[_rest]]" aria-label="send email to [[_text]]">[[_text]]</a>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'uvalib-liame',
+
+      properties: {
+        tabindex: {
+          type: Number,
+          value: -1
+        },
+        /**
+         * `domain` is the domain on the other side of the at sign
+         */
+        domain: {
+          type: String,
+          value: "virginia.edu"
+        },
+
+        /**
+         * `rid` is the email id (at virginia.edu) in reverse
+         * This is a required attribute for this element
+         */
+        rid: {
+          type: String,
+          value: null,
+          observer: '_ridChanged'
+        },
+
+        /**
+         * `overwrite` is a flag that when present will ignore children of this element.  Used to support older browsers.
+         */
+        overwrite: Boolean,
+
+        /**
+         * `text` is optional and when present will replace the child text element with its value
+         */
+        text: String,
+
+        /**
+         * `subject` is optional and specifies the subject line to be filled out in the email
+         */
+        subject: String,
+
+        /**
+         * `body` is optional and specifies the default text to be filled out in the body of the email
+         */
+        body: String,
+
+        /**
+         * `_rest` is additional text used in the mailto that combines subject and body input
+         */
+        _rest: String,
+
+        /**
+         * `_eid` is the email id transformed from the rid input
+         */
+        _eid: String,
+
+        /**
+         * `_text` is a combination of input values used to display for the email link if text input is not provided
+         */
+        _text: String
+      },
+
+      // Element Lifecycle
+      ready: function() {
+        this._ridChanged();
+      },
+
+      _ridChanged: function(){
+        if (this.rid) {
+          this._rest = "";
+          this._eid = this.rid.split("").reverse().join("");
+          if (this.subject) {
+            this._rest = "?subject=" + this.subject;
+            if (this.body) this._rest += "&";
+          }
+          if (this.body) this._rest += "body=" + this.body;
+
+          var childText = this.getEffectiveTextContent();
+          this._text = (childText && !this.overwrite)?
+              childText:
+              (this.text)?
+                  this.text:
+                  this._eid+"@"+this.domain;
+
+          /*
+          if ( this.overwrite || this.getContentChildNodes().length == 0) {
+            var content = document.createTextNode(this.eid+"@"+this.domain);
+            if(this.text) content = document.createTextNode(this.text);
+            if(this.overwrite) {
+              this.$.link.replaceChild(content, this.$.link.childNodes[0]);
+            } else {
+              Polymer.dom(this).appendChild(content);
+            }
+          }
+          */
+        }
+      }
+
+    });
+  </script>
+</dom-module>

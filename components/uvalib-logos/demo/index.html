@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>uvalib-logos demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+    <link rel="import" href="../../uvalib-theme/uvalib-theme.html">
+    <link rel="import" href="../uvalib-logos.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles uvalib-theme">
+        demo-snippet.reverse {
+          --demo-snippet-demo: {background-color: black;};
+        }
+        demo-snippet.reverse.blue {
+          --demo-snippet-demo: {background-color: var(--color-primary-blue);};
+        }
+      </style>
+    </custom-style>
+  </head>
+  <body>
+
+    <div class="vertical-section-container centered" style="max-width: 95%;">
+      <h3>Text Only Logo Demo</h3>
+      <demo-snippet>
+        <template>
+          <uvalib-logos text-only></uvalib-logos>
+          <uvalib-logos stacked text-only></uvalib-logos>
+        </template>
+      </demo-snippet>
+
+      <h3>Simple stacked Logo Demo</h3>
+      <demo-snippet>
+        <template>
+          <style is="custom-style">
+            .custom {
+             color: red;
+            }
+          </style>
+          <uvalib-logos stacked two-color></uvalib-logos>
+          <uvalib-logos stacked></uvalib-logos>
+          <uvalib-logos stacked class="custom"></uvalib-logos>
+        </template>
+      </demo-snippet>
+
+      <demo-snippet class="blue reverse">
+        <template>
+          <uvalib-logos stacked reverse two-color></uvalib-logos>
+        </template>
+      </demo-snippet>
+      <demo-snippet class="reverse">
+        <template>
+          <uvalib-logos stacked reverse></uvalib-logos>
+        </template>
+      </demo-snippet>
+
+
+      <h3>Primary Logo Demo</h3>
+      <demo-snippet>
+        <template>
+          <uvalib-logos stacked two-color></uvalib-logos>
+          <uvalib-logos stacked></uvalib-logos>
+        </template>
+      </demo-snippet>
+      <demo-snippet class="blue reverse">
+        <template>
+          <uvalib-logos stacked reverse two-color></uvalib-logos>
+        </template>
+      </demo-snippet>
+      <demo-snippet class="reverse">
+        <template>
+          <uvalib-logos stacked reverse></uvalib-logos>
+        </template>
+      </demo-snippet>
+
+      <h3>Horizontal Logo Demo</h3>
+      <demo-snippet>
+        <template>
+          <uvalib-logos></uvalib-logos>
+          <uvalib-logos two-color></uvalib-logos>
+        </template>
+      </demo-snippet>
+      <demo-snippet class="blue reverse">
+        <template>
+          <uvalib-logos reverse two-color></uvalib-logos>
+        </template>
+      </demo-snippet>
+      <demo-snippet class="reverse">
+        <template>
+          <uvalib-logos reverse></uvalib-logos>
+        </template>
+      </demo-snippet>
+
+      <h3>Centered Logo Demo</h3>
+      <demo-snippet>
+        <template>
+          <uvalib-logos centered></uvalib-logos>
+          <uvalib-logos centered two-color></uvalib-logos>
+        </template>
+      </demo-snippet>
+      <demo-snippet class="blue reverse">
+        <template>
+          <uvalib-logos centered reverse two-color></uvalib-logos>
+        </template>
+      </demo-snippet>
+      <demo-snippet class="reverse">
+        <template>
+          <uvalib-logos centered reverse></uvalib-logos>
+        </template>
+      </demo-snippet>
+
+    </div>
+
+  </body>
+</html>

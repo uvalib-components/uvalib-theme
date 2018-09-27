@@ -1,0 +1,122 @@
+<link rel="import" href="../uvalib-theme/uvalib-ui-element.html">
+<link rel="import" href="../uvalib-theme/uvalib-theme.html">
+<link rel="import" href="../iron-form/iron-form.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../paper-button/paper-button.html">
+
+<dom-module id="uvalib-ils-form">
+  <template>
+    <custom-style>
+      <style include=“uvalib-theme”>
+       fieldset, fieldset legend, fieldset .ils-request { background-color: var(--uvalib-main-white); }
+       /* fieldset { border: none; } */
+       fieldset legend {
+         background-color: var(--uvalib-main-jefferson-blue);
+         color: var(--uvalib-main-white);
+         font-weight: bold;
+         padding: 1em 2.9em;
+       }
+       fieldset paper-button {
+         background-color: var(--uvalib-main-rotunda-orange);
+         color: var(--uvalib-main-white);
+         margin-top: 1em;
+         margin-bottom: 1em;
+       }
+       .sidebarContactInfo h3 { margin-bottom: .25em; }
+       .sidebarContactInfo p { margin-top: .25em }
+
+       :host([small-screen]) fieldset {
+         margin-top: 1em;
+         margin-bottom: 1em;
+       }
+     </style>
+    </custom-style>
+       <fieldset class="ils-request">
+          <legend><slot></slot></legend>
+          <iron-form allow-redirect id="logonform">
+              <form id="Logon" action="[[_action]]" method="post" name="Logon">
+                 <input type="hidden" name="ILLiadForm" value="Logon">
+                 <input type="hidden" name="SubmitButton" value$="{{_buttonAction}}">
+                 <paper-input label="Username" name="Username" id="username"></paper-input>
+                 <paper-input label="Password" name="Password" type="password" id="password"></paper-input>
+                 <paper-button raised name="SubmitButton" value="Logon" type="submit" on-tap="submit">Sign In</paper-button>
+                 <paper-button hidden$="[[!_isILL(type)]]" raised name="SubmitButton" value="First Time Users" type="submit" on-tap="submit">First-time Users</paper-button>
+              </form>
+          </iron-form>
+      </fieldset>
+  </template>
+
+  <script>
+
+    /**
+     * `uvalib-ils-form`
+     * Header element for the UVA Library web apps
+     *
+     * ### Styling
+     *
+     * `<uvalib-header>` provides the following custom properties and mixins for styling:
+     *
+     * Custom property | Description | Default
+     * ----------------|-------------|----------
+     * `--uvalib-header-height-lg` | The elements height when `largeScreen` is true | `253px`
+     * `--uvalib-header-height-md` | The elements height when `mediumScreen` is true | `156px`
+     * `--uvalib-header-height-sm` | The elements height when `smallScreen` is true | `128px`
+     * `--uvalib-header-background-color` | Background color of the header element | '--color-primary-color'
+     * `--uvalib-header-nav-background-color` | Background color of the header nav section (for large screens) | `--color-secondary-blue`
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class UvalibILSForm extends UvalibUiElement {
+      static get is() { return 'uvalib-ils-form'; }
+      static get properties() {
+        return Object.assign(super.properties,{
+          /** either `ils-login` or `ill-login` */
+          type: {
+            type: String,
+            value: "ils-login"
+          },
+          _action: {
+            type: String,
+            computed: "_getAction(type)"
+          },
+          _ilsLogin: {
+            type: String,
+            value: "https://uva.hosts.atlas-sys.com/illiad/lending/illiadlending.dll"
+          },
+          _illLogin: {
+            type: String,
+            value: "https://uva.hosts.atlas-sys.com/illiad/illiad.dll"
+          },
+          _buttonAction: String
+        });
+      }
+      //Concat the this elements template with the parents
+      static get template() {
+        var parentTemplate = UvalibUiElement.template.cloneNode(true);
+        var childTemplate = Polymer.DomModule.import('uvalib-ils-form', 'template');
+        parentTemplate.content.insertBefore(childTemplate.content,null);
+        return parentTemplate;
+      }
+      _getAction(type) {
+        return (this._isILS())?
+                  this._ilsLogin:
+                  (this._isILL())?
+                      this._illLogin: null;
+      }
+      _isILS() {
+        return (this.type==="ils-login");
+      }
+      _isILL() {
+        return (this.type==="ill-login");
+      }
+      submit(e) {
+        this._buttonAction = e.currentTarget.getAttribute('value');
+        this.$.logonform.submit();
+      }
+    }
+
+    window.customElements.define(UvalibILSForm.is, UvalibILSForm);
+  </script>
+</dom-module>

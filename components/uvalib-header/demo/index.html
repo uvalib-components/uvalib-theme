@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>uvalib-header demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../../uvalib-theme/uvalib-theme.html">
+    <link rel="import" href="../uvalib-header.html">
+    <link rel="import" href="../../polymer/lib/elements/dom-bind.html">
+    <link rel="import" href="../../paper-toggle-button/paper-toggle-button.html">
+
+    <custom-style>
+      <style is="custom-style" include="uvalib-theme">
+        body {
+          margin: 0;
+          height: 100vh;
+        }
+        .content {
+          height: 5000px;
+        }
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <dom-bind id="app">
+      <template>
+        <uvalib-header simple$="[[simple]]"></uvalib-header>
+        <div class="content">
+          Simple? [[simple]]
+          <paper-toggle-button checked="{{simple}}"></paper-toggle-button>
+        </div>
+      </template>
+    </dom-bind>
+  </body>
+  <script>
+    var app = document.querySelector('#app');
+    app.simple = false;
+  </script>
+</html>

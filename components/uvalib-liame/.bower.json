@@ -1,0 +1,34 @@
+{
+  "name": "uvalib-liame",
+  "authors": [
+    "Doug Chestnut <dougchestnut@gmail.com>"
+  ],
+  "description": "An element providing a solution to no problem in particular.",
+  "keywords": [
+    "web-component",
+    "polymer",
+    "seed"
+  ],
+  "main": "uvalib-liame.html",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/<USERNAME>/seed-element/",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "uvalib-elements": "uvalib-components/uvalib-elements#master"
+  },
+  "resolutions": {
+    "lodash": "^4.17.4"
+  },
+  "_release": "115f524d96",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "115f524d96972bf38a6066a5f64c37d9455f6519"
+  },
+  "_source": "https://github.com/uvalib-components/uvalib-liame.git",
+  "_target": "master",
+  "_originalSource": "uvalib-components/uvalib-liame"
+}

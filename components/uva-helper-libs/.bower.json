@@ -1,0 +1,37 @@
+{
+  "name": "uva-helper-libs",
+  "authors": [
+    "Anonymous <anonymous@example.com>"
+  ],
+  "description": "An element providing a solution to no problem in particular.",
+  "keywords": [
+    "web-component",
+    "polymer",
+    "seed"
+  ],
+  "main": "uva-helper-libs.html",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/<USERNAME>/seed-element/",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "uva-elements": "uva-components/uva-elements#master",
+    "turfjs": "*",
+    "es6-promise": "^4.1.1",
+    "web-animations-js": "^2.3.1",
+    "moment": "^2.20.1",
+    "moment-timezone": "^0.5.14",
+    "lil-uuid": "^0.1.1"
+  },
+  "_release": "27ac6deec7",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "27ac6deec724b0fe218a40be2e8e2c6433fe30fb"
+  },
+  "_source": "https://github.com/uva-components/uva-helper-libs.git",
+  "_target": "master",
+  "_originalSource": "uva-components/uva-helper-libs"
+}

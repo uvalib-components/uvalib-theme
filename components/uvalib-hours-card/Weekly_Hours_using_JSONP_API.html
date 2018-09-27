@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Test Hours</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js"></script>
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="hours" style="width: 400px; margin: 20px auto;"></div>
+
+<script>
+
+$(document).ready(function(){
+	
+	$.ajax({
+		url: 'https://api3.libcal.com/api_hours_grid.php?iid=863&format=json&weeks=2&callback=?', 
+		dataType: 'jsonp',
+		success: function(data){
+		
+			var text = '<table class="table table-condensed table-hover">';
+			var libs = data.locations.length;
+			
+			//Loop over each location/library
+			for(var i=0; i<libs; i++){
+				var name = data.locations[i].name;
+				text += '<tr><th colspan=2>'+name+'</th></tr>';
+				
+				var weeksData = data.locations[i].weeks;
+				
+				var weekHTML = formatWeeks(weeksData);
+				text += weekHTML;
+			}
+			
+			text += '</table>';
+			
+			$('#hours').html(text);
+		}
+	});
+});
+
+//Function to format a week's worth of hours into HTML
+function formatWeeks(weeks){
+	var text = '';
+	var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+	
+	//loop over the week, using only the first week data (weeks[0] = first week) - but we could loop over all weeks if we wanted to. weeks[1] = second week etc..
+	for	(i = 0; i < days.length; i++) {
+		var day = days[i];
+		var currDate = moment(weeks[0][day].date).format("dddd, Do MMM");
+		var time = weeks[0][day].rendered;
+		text += '<tr><td>' + currDate +'</td><td>' + time +'</td>';
+	}
+	return text;
+}
+</script>
+
+
+</body>
+</html>

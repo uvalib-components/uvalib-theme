@@ -1,0 +1,55 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="uvalib-card-style.html">
+<dom-module id="uvalib-page-style">
+  <template>
+    <custom-style>
+      <style include="iron-flex iron-flex-reverse iron-flex-alignment iron-flex-factors iron-positioning uvalib-card-style">
+
+        .shady {
+          margin: 0 -1000px 0 -1000px;
+          padding: 0 1000px 0 1000px;
+          background-color: var(--color-light-gray);
+        }
+
+        iron-image.round {
+          border-radius: 50%;
+          /*border: 2px solid red;*/
+          width: 300px;
+          height:300px;
+          --iron-image-width: 300px;
+        }
+
+        :host([small-screen]) figure {
+          margin: 2em auto;
+          text-align: center;
+        }
+
+        .bigFirstLetter:first-letter {
+          float: left;
+          /*font-family: var(--font-secondary);*/
+          font-family: 'bodoni-urw',georgia,serif;
+          font-style: italic;
+          font-weight: 900;
+          font-size: 4.5em;
+          line-height: 0.84em;
+          padding-right: 0.2em;
+          color: var(--color-primary-orange);
+        }
+
+        #profile {
+          margin: 0 10px 0 10px;
+          min-width: 300px;
+        }
+
+        iron-image {min-width: 300px;}
+
+        img.aboutSig {
+          width: 200px;
+        }
+
+
+      </style>
+    </custom-style>
+  </template>
+</dom-module>

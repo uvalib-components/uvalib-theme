@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>uvalib-banners demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../polymer/lib/elements/dom-bind.html">
+    <link rel="import" href="../../iron-media-query/iron-media-query.html">
+    <link rel="import" href="../uvalib-banners.html">
+    <link rel="import" href="../../uva-models/uva-library.html">
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+        uvalib-banners {
+          height: 400px;
+        }
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic uvalib-banners demo</h3>
+      <demo-snippet>
+        <template>
+          <dom-bind>
+            <template>
+              <uva-library path="web/banners" last-response="{{banners}}"></uva-library>
+              <uvalib-banners banners="[[banners]]"></uvalib-banners>
+            </template>
+          </dom-bind>
+        </template>
+      </demo-snippet>
+
+      <h3>static banner data uvalib-banners demo</h3>
+      <demo-snippet>
+        <template>
+          <dom-bind>
+            <template>
+              <uvalib-banners banners='[{"body":"<p>Download the FREE app and explore spaces on Grounds in a whole new way.</p>\r\n","buttonText":"Get it now","desktopImage":{"alt":"Walking tour route","height":455,"url":"https://storage.googleapis.com/uvalib-api.appspot.com/3cf7044c-134a-4d0c-b344-ef65352dcf68.jpg","uuid":"3cf7044c-134a-4d0c-b344-ef65352dcf68","width":796},"displayTitle":true,"id":1242,"link":"https://news.library.virginia.edu/2018/08/02/explore-uva-libraries-more-with-new-app/","phoneImage":{"alt":"Walking tour route","height":230,"url":"https://storage.googleapis.com/uvalib-api.appspot.com/eb570d48-36a6-4b19-8027-360987f0ec03.jpg","uuid":"eb570d48-36a6-4b19-8027-360987f0ec03","width":600},"sticky":false,"tabletImage":{"alt":"Walking tour route","height":445,"url":"https://storage.googleapis.com/uvalib-api.appspot.com/380f5229-46d8-4706-9f44-362dd4e5612b.jpg","uuid":"380f5229-46d8-4706-9f44-362dd4e5612b","width":996},"title":"UVA Tours app now features Libraries!","tone":"Dark","uuid":"d3bd7275-eef9-4108-9794-03dfce8200e7"},{"body":"<p>Download the FREE app and explore spaces on Grounds in a whole new way.</p>\r\n","buttonText":"Get it now","desktopImage":{"alt":"Walking tour route","height":455,"url":"https://storage.googleapis.com/uvalib-api.appspot.com/3cf7044c-134a-4d0c-b344-ef65352dcf68.jpg","uuid":"3cf7044c-134a-4d0c-b344-ef65352dcf68","width":796},"displayTitle":true,"id":1242,"link":"https://news.library.virginia.edu/2018/08/02/explore-uva-libraries-more-with-new-app/","phoneImage":{"alt":"Walking tour route","height":230,"url":"https://storage.googleapis.com/uvalib-api.appspot.com/eb570d48-36a6-4b19-8027-360987f0ec03.jpg","uuid":"eb570d48-36a6-4b19-8027-360987f0ec03","width":600},"sticky":false,"tabletImage":{"alt":"Walking tour route","height":445,"url":"https://storage.googleapis.com/uvalib-api.appspot.com/380f5229-46d8-4706-9f44-362dd4e5612b.jpg","uuid":"380f5229-46d8-4706-9f44-362dd4e5612b","width":996},"title":"UVA Tours app now features Libraries!","tone":"Dark","uuid":"d3bd7275-eef9-4108-9794-03dfce8200e7"}]'></uvalib-banners>
+            </template>
+          </dom-bind>
+        </template>
+      </demo-snippet>
+    </div>
+
+  </body>
+</html>

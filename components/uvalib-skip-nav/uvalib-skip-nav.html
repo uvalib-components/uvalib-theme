@@ -1,0 +1,323 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-a11y-keys-behavior/iron-a11y-keys-behavior.html">
+<link rel="import" href="../uvalib-theme/uvalib-theme.html">
+<link rel="import" href="../uvalib-theme/uvalib-icons.html">
+<link rel="import" href="../uvalib-theme/uvalib-ui-element.html">
+
+<dom-module id="uvalib-skip-nav">
+  <template>
+    <custom-style>
+      <style include="uvalib-theme">
+        .skipTo {
+        	padding: .5em;
+        	position: absolute;
+        	background: transparent;
+        	color: #000;
+        	-webkit-transition: top .5s ease-out, background .5s linear;
+        	-moz-transition: top .5s ease-out, background .5s linear;
+        	-o-transition: top .5s ease-out, background .5s linear;
+        	transition: top .5s ease-out, background .5s linear;
+        }
+        .skipTo:focus {
+        	position: absolute;
+        	top: 0;
+        	left: 0;
+        	background: #ccc;
+        	z-index: 100000;
+        	text-decoration: underline;
+        	-webkit-transition: top .1s ease-in, background .3s linear;
+        	-moz-transition: top .1s ease-in, background .3s linear;
+        	-o-transition: top .1s ease-in, background .3s linear;
+        	transition: top .1s ease-in, background .3s linear;
+        }
+        .onFocus {
+        	top: -8em;
+        	left: 0;
+        }
+        .dropMenu-toggle {
+        	*margin-bottom: -3px;
+        }
+        .dropMenu-toggle:active, .open .dropMenu-toggle {
+        	outline: 0;
+        }
+        #skipToMenu .caret {
+          --iron-icon {
+            display: inline-block;
+          	width: 0;
+          	height: 0;
+          	vertical-align: top;
+          	border-top: 4px solid #000;
+          	border-right: 4px solid transparent;
+          	border-left: 4px solid transparent;
+          }
+        }
+        #skipToMenu .dropMenu .caret {
+          --iron-icon {
+            margin-top: 8px;
+          	margin-left: 2px;
+          }
+        }
+        .dropMenu-menu {
+        	position: absolute;
+        	top: 0;
+        	left: 0;
+        	z-index: 100000;
+        	display: none;
+        	float: left;
+        	min-width: 160px;
+        	padding: 5px 0;
+        	margin: 2px 0 0;
+        	list-style: none;
+        	background-color: #fff;
+        	border: 1px solid #ccc;
+        	border: 1px solid rgba(0, 0, 0, 0.2);
+        	*border-right-width: 2px;
+        	*border-bottom-width: 2px;
+        	-webkit-border-radius: 6px;
+        	-moz-border-radius: 6px;
+        	border-radius: 6px;
+        	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        	-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        	-webkit-background-clip: padding-box;
+        	-moz-background-clip: padding;
+        	background-clip: padding-box;
+        }
+        .dropMenu-menu>li>a {
+        	display: block;
+        	padding: 3px 20px;
+        	clear: both;
+        	font-weight: normal;
+        	line-height: 20px;
+        	color: #333;
+        	white-space: nowrap;
+        	text-decoration: none;
+        }
+        .dropMenu-menu>li[role=separator] {
+        	padding-left: 20px;
+        	margin-top: 9px;
+        	font-weight: bold;
+        	border-bottom: thin solid black;
+        }
+        .dropMenu-menu>li>a:hover, .dropMenu-menu>li>a:focus {
+        	text-decoration: none;
+        	color: #fff;
+        	background-color: #0081c2;
+        	background-image: -moz-linear-gradient(top, #08c, #0077b3);
+        	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#08c), to(#0077b3));
+        	background-image: -webkit-linear-gradient(top, #08c, #0077b3);
+        	background-image: -o-linear-gradient(top, #08c, #0077b3);
+        	background-image: linear-gradient(to bottom, #08c, #0077b3);
+        	background-repeat: repeat-x;
+        	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
+        }
+        .dropMenu-menu>.active>a, .dropMenu-menu>.active>a:hover, .dropMenu-menu>.active>a:focus {
+        	color: #fff;
+        	text-decoration: none;
+        	outline: 0;
+        	background-color: #0081c2;
+        	background-image: -moz-linear-gradient(top, #08c, #0077b3);
+        	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#08c), to(#0077b3));
+        	background-image: -webkit-linear-gradient(top, #08c, #0077b3);
+        	background-image: -o-linear-gradient(top, #08c, #0077b3);
+        	background-image: linear-gradient(to bottom, #08c, #0077b3);
+        	background-repeat: repeat-x;
+        	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
+        }
+        .dropMenu-menu>.disabled>a, .dropMenu-menu>.disabled>a:hover, .dropMenu-menu>.disabled>a:focus {
+        	color: #999;
+        }
+        .dropMenu-menu>.disabled>a:hover, .dropMenu-menu>.disabled>a:focus {
+        	text-decoration: none;
+        	background-color: transparent;
+        	background-image: none;
+        	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+        	cursor: default;
+        }
+        .open {
+        	*z-index: 100000;
+          display: block;
+        }
+      </style>
+    </custom-style>
+
+    <div id="skipToMenu" role="complementary" title="Skip To Keyboard Navigation" class="dropMenu">
+      <a tabindex="0" class="dropMenu-toggle skipTo onFocus" id="drop4" role="button" aria-haspopup="true" aria-expanded="false" href="#">Skip To...&nbsp;<span class="caret uvalib-icon-caret-down"></iron-icon></a>
+      <ul id="menu1" class="dropMenu-menu" role="menu" aria-label="Skip To">
+        <li role="separator">Skip To</li>
+        <li role="presentation"><a id="search" tabindex="-1" role="menuitem" href="" on-tap="_jumpToSearch">Search</a></li>
+        <li role="presentation"><a id="content" tabindex="-1" role="menuitem" href="" on-tap="_jumpToContent">Main Content</a></li>
+        <li role="presentation"><a id="navigation" tabindex="-1" role="menuitem" href="" on-tap="_jumpToNavigation">Navigation</a></li>
+        <!-- li role="presentation"><a id="header" tabindex="-1" role="menuitem" href="" on-tap="_jumpToHeader">Header</a></li>
+        <li role="presentation"><a id="footer" tabindex="-1" role="menuitem" href="" on-tap="_jumpToFooter">Footer</a></li -->
+      </ul>
+    </div>
+  </template>
+
+  <script>
+  /**
+   * `uvalib-skip-nav`
+   * Accessibility component that becomes visible on focus and allows for jumping to landmark content.
+   *
+   * ### Styling
+   *
+   * The following custom properties are available for styling:
+   *
+   * Custom property | Description | Default
+   * ----------------|-------------|----------
+   * `--uvalib-skip-nav-color` | Color of skip text | white
+   * `--uvalib-skip-nav-bkgrd-color` | Background color of skip hyperlink | red
+   *
+   * @customElement
+   * @polymer
+   * @demo demo/index.html
+   */
+  //class UvalibSkipNav extends UvalibUiElement {
+  class UvalibSkipNav extends Polymer.mixinBehaviors([Polymer.IronA11yKeysBehavior], Polymer.Element) {
+    static get is() { return 'uvalib-skip-nav'; }
+    static get properties() {
+        return {
+            _skipToLandmarkCount: {
+              type: Number,
+              readOnly: true,
+              value: 3 //5
+            },
+            _currentSkipToSelection: {
+              type: Number
+            },
+            _focusedItem: {
+              type: String,
+              value: ''
+            }
+          };
+    }
+    get keyBindings() {
+      return {
+        'enter': '_skipTo',
+        'space': '_showJumpNavigation',
+        'esc': '_skipToButtonShow',
+        'up': '_decrementMenuSelection',
+        'down': '_incrementMenuSelection'
+      }
+    }
+
+    ready() {
+      super.ready();
+      this._targetDrop4 = this.$.drop4;
+      this._targetContent = this.$.content;
+      this._targetSearch = this.$.search;
+      this._targetNavigation = this.$.navigation;
+      this._targetHeader = this.$.header;
+      this._targetFooter = this.$.footer;
+      this.$.drop4.addEventListener('focus', e => {this._skipToButtonShow(e)});
+      this.$.drop4.addEventListener('blur', e => {this._skipToButtonHide(e)});
+      this.$.drop4.addEventListener('click', e => {this._showJumpNavigation(e)});
+      this.$.search.addEventListener('focus', e => {this._focusedItem = 'search'});
+      this.$.content.addEventListener('focus', e => {this._focusedItem = 'content'});
+      this.$.navigation.addEventListener('focus', e => {this._focusedItem = 'navigation'});
+//      this.$.header.addEventListener('focus', e => {this._focusedItem = 'header'});
+//      this.$.footer.addEventListener('focus', e => {this._focusedItem = 'footer'});
+    }
+
+    _selectMenuItem(item) {
+      switch (item) {
+        case 1: this._focusedItem = 'search'; this.$.search.focus(); break;
+        case 2: this._focusedItem = 'content'; this.$.content.focus(); break;
+        case 3: this._focusedItem = 'navigation'; this.$.navigation.focus(); break;
+//        case 4: this._focusedItem = 'header'; this.$.header.focus(); break;
+//        case 5: this._focusedItem = 'footer'; this.$.footer.focus(); break;
+      }
+    }
+
+    _skipTo(e) {
+      switch (this._focusedItem) {
+        case 'drop4': this._showJumpNavigation(e); break;
+        case 'search': this._jumpToSearch(e); break;
+        case 'content': this._jumpToContent(e); break;
+        case 'navigation': this._jumpToNavigation(e); break;
+//        case 'header': this._jumpToHeader(e); break;
+//        case 'footer': this._jumpToFooter(e); break;
+      }
+    }
+    _skipToButtonShow(e) {
+      e.preventDefault();
+      this.$.drop4.classList.remove('onFocus');
+      this.$.menu1.classList.remove('open');
+      this.$.menu1.setAttribute('aria-expanded', 'false');
+      this.$.drop4.focus();
+      this._focusedItem = 'drop4';
+    }
+    _skipToButtonHide(e) {
+      this.$.drop4.classList.add('onFocus');
+      this.$.menu1.setAttribute('aria-expanded', 'true');
+    }
+
+    _showJumpNavigation(e) {
+      e.preventDefault();
+      if ('drop4' == this._focusedItem) {
+        this.$.menu1.classList.add('open');
+        this.$.search.focus();
+        this._currentSkipToSelection = 1;
+      }
+    }
+
+    _hideJumpNavigation(e) {
+      this.$.menu1.classList.remove('open');
+      this.$.menu1.setAttribute('aria-expanded', 'false');
+    }
+
+    _incrementMenuSelection(e) {
+      e.preventDefault();
+      if (this._focusedItem != 'drop4') {
+        this._currentSkipToSelection = (this._skipToLandmarkCount > this._currentSkipToSelection) ? this._currentSkipToSelection + 1 : 1;
+        this._selectMenuItem(this._currentSkipToSelection);
+      }
+    }
+    _decrementMenuSelection(e) {
+      e.preventDefault();
+      if (this._focusedItem != 'drop4') {
+        this._currentSkipToSelection = (this._currentSkipToSelection > 1) ? this._currentSkipToSelection - 1 : this._skipToLandmarkCount;
+        this._selectMenuItem(this._currentSkipToSelection);
+      }
+    }
+
+    _jumpToSearch(e) {
+      e.preventDefault();
+      this.$.search.blur();
+      this._hideJumpNavigation(e);
+      this.dispatchEvent(new CustomEvent('jumpToSearch', { bubbles: true, composed: true }));
+      console.log('fire search');
+    }
+    _jumpToContent(e) {
+      e.preventDefault();
+      this.$.content.blur();
+      this._hideJumpNavigation(e);
+      this.dispatchEvent(new CustomEvent('jumpToContent', { bubbles: true, composed: true }));
+      console.log('fire content');
+    }
+    _jumpToNavigation(e) {
+      e.preventDefault();
+      this.$.navigation.blur();
+      this._hideJumpNavigation(e);
+      this.dispatchEvent(new CustomEvent('jumpToNavigation', { bubbles: true, composed: true }));
+      console.log('fire navigation');
+    }
+    _jumpToHeader(e) {
+      e.preventDefault();
+      this.$.header.blur();
+      this._hideJumpNavigation(e);
+      this.dispatchEvent(new CustomEvent('jumpToHeader', { bubbles: true, composed: true }));
+      console.log('fire header');
+    }
+    _jumpToFooter(e) {
+      e.preventDefault();
+      this.$.footer.blur();
+      this._hideJumpNavigation(e);
+      this.dispatchEvent(new CustomEvent('jumpToFooter', { bubbles: true, composed: true }));
+      console.log('fire footer');
+    }
+  }
+
+  window.customElements.define(UvalibSkipNav.is, UvalibSkipNav);
+  </script>
+</dom-module>

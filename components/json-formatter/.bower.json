@@ -1,0 +1,25 @@
+{
+  "name": "json-formatter",
+  "description": "formats JSON",
+  "main": "json-formatter.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^2.3.1",
+    "json-human": "^0.1.1",
+    "uva-helper-libs": "uva-components/uva-helper-libs#master"
+  },
+  "devDependencies": {
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
+    "web-component-tester": "Polymer/web-component-tester#^6.4.1",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.22"
+  },
+  "homepage": "https://github.com/uva-components/json-formatter",
+  "_release": "ea3a42bb09",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "ea3a42bb099a3008f0cdd95fb79d8fdff99a72fb"
+  },
+  "_source": "https://github.com/uva-components/json-formatter.git",
+  "_target": "master",
+  "_originalSource": "uva-components/json-formatter"
+}

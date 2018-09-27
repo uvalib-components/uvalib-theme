@@ -1,0 +1,103 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`uva-icon-link`
+Link with icon
+
+### Styling
+
+The following custom properties and mixins are also available for styling:
+Custom property | Description | Default
+----------------|-------------|----------
+`--uva-icon-link` | Mixin applied to the link | `{}`
+
+@demo demo/index.html
+-->
+
+<dom-module id="uva-icon-link">
+  <template>
+    <style is="custom-style">
+      :host {
+        display: block;
+        box-sizing: border-box;
+        height: 50px;
+
+        @apply(--uva-icon-link);
+      }
+      a {
+        color: currentcolor;
+        text-decoration: none;
+      }
+      paper-button {
+        padding: 0px;
+        color: currentcolor;
+        font-family: inherit;
+        text-transform: none;
+      }
+      paper-icon-button {
+        height: 100%;
+        width: 100%;
+        color: currentcolor;
+      }
+
+      iron-icon {
+        padding-right: 5px;
+      }
+    </style>
+
+    <a target="[[target]]" href="[[href]]" tabindex="-1">
+      <template is="dom-if" if="{{!_isContent(target)}}">
+        <paper-icon-button noink icon="{{_iconName}}" alt="[[alt]]"></paper-icon-button>
+      </template>
+      <template is="dom-if" if="{{_isContent(target)}}">
+        <paper-button noink aria-label="[[alt]]"><iron-icon icon="{{_iconName}}"></iron-icon> <content></content></paper-button>
+      </template>
+    </a>
+  </template>
+
+  <script>
+    Polymer({is: 'uva-icon-link',
+
+      properties: {
+        alt: String,
+        href: String,
+        target: {
+          type:String,
+          value:'_blank'
+        },
+        icon: String,
+        iconGroup: {
+          type: String,
+          value: null,
+          observer:'_importGroup'
+        },
+        _iconName: {
+          type: String,
+          computed:"_computeIconName(icon,iconGroup)"
+        }
+      },
+      _importGroup: function(){
+        if (this.iconGroup)
+          this.importHref('../../fontawesome-iconset/fa-'+this.iconGroup+'.html');
+        else
+          this.importHref('../../fontawesome-iconset/fa-all.html');
+      },
+      _computeIconName: function(icon,iconGroup) {
+        if (iconGroup)
+          return 'fa-'+iconGroup+':'+icon;
+        else {
+          return 'fa:'+icon;
+        }
+      },
+      _isContent: function(){
+        var isIt = this.getEffectiveChildNodes().length > 0;
+        if (isIt) { // Load up paper-button and iron-icon
+          this.importHref('../../iron-icon/iron-icon.html');
+          this.importHref('../../paper-button/paper-button.html');
+        } else // Load up paper-icon-button
+          this.importHref('../../paper-icon-button/paper-icon-button.html');
+        return isIt;
+      }
+    });
+  </script>
+</dom-module>

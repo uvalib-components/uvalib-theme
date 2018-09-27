@@ -1,0 +1,21 @@
+{
+  "name": "uvalib-scroll-top",
+  "description": "scroll to top",
+  "main": "uvalib-scroll-top.html",
+  "dependencies": {
+    "uvalib-elements": "uvalib-components/uvalib-elements#master"
+  },
+  "resolutions": {
+    "lodash": "^4.17.4"
+  },
+  "homepage": "https://github.com/uvalib-components/uvalib-scroll-top",
+  "_release": "08d151dd8f",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "08d151dd8f1fee5cf1609d8746feaac2d65abb59"
+  },
+  "_source": "https://github.com/uvalib-components/uvalib-scroll-top.git",
+  "_target": "master",
+  "_originalSource": "uvalib-components/uvalib-scroll-top"
+}

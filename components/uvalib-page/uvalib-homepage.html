@@ -1,0 +1,319 @@
+<link rel="import" href="../uvalib-theme/uvalib-ui-element.html">
+<link rel="import" href="../paper-card/paper-card.html">
+<link rel="import" href="../uvalib-theme/uvalib-theme.html">
+<link rel="import" href="../uvalib-theme/uvalib-card-style.html">
+
+<dom-module id="uvalib-homepage">
+  <link rel="lazy-import" group="uvalib-homepage" href="../paper-button/paper-button.html">
+  <link rel="lazy-import" group="uvalib-homepage" href="../uva-models/uva-library.html">
+  <link rel="lazy-import" group="uvalib-homepage" href="../uvalib-banner/uvalib-banners.html">
+  <link rel="lazy-import" group="uvalib-homepage2" href="../uvalib-exhibit-ui/uvalib-exhibit-ui.html">
+  <link rel="lazy-import" group="uvalib-homepage" href="../uvalib-card/uvalib-hours-ui.html">
+  <link rel="lazy-import" group="uvalib-homepage" href="../uvalib-events-ui/uvalib-events-ui.html">
+  <link rel="lazy-import" group="uvalib-homepage" href="../uvalib-news-section/uvalib-news-section.html">
+
+  <template>
+    <custom-style>
+      <style include="uvalib-theme iron-flex iron-flex-factors uvalib-card-style">
+        :host {
+          display: block;
+        }
+        #banner {
+          width: 100vw;
+          margin: 0 -1em;
+          overflow: hidden;
+          height: 230px;
+        }
+        :host([medium-screen]) #banner {
+          height: 270px;
+        }
+        #hours-card {
+          min-height: 330px;
+        }
+      </style>
+    </custom-style>
+
+    <uva-library path="web/banners" last-response="{{_banners}}"></uva-library>
+
+    <!-- Banner at top outside of card if not large screen -->
+    <template is="dom-if" if="[[!largeScreen]]" restamp>
+      <div>
+        <div class="screen-reader-text" id="carouselheading">News, Events, and messages from the UVA Library</div>
+        <uvalib-banners id="banner" banners="[[_banners]]" aria-labelledby="carouselheading"></uvalib-banners>
+      </div>
+
+      <!-- Stick hours and research in w/ white background if not large -->
+      <div class="layout horizontal wrap">
+        <paper-card class="flex" id="hours-card" heading="Today's Hours">
+          <div class="card-content full-card">
+            <uvalib-hours-ui single-day></uvalib-hours-ui>
+          </div>
+          <div class="card-actions">
+            <a href="/hours" tabindex="-1">
+              <paper-button>View All Hours ⟶</paper-button>
+            </a>
+          </div>
+        </paper-card>
+        <paper-card id="research" class="flex" heading="Research" image$="[[whichImage('/files/cards/research.jpg')]]" alt="Image of student doing research in the Library">
+          <div class="card-content">
+            <ul>
+              <li><a href="https://search.lib.virginia.edu">Virgo: Library Catalog</a></li>
+              <li><a href="https://guides.lib.virginia.edu/az.php">Databases A-Z</a></li>
+              <li><a href="/research/">Subject guides</a></li>
+              <li><a href="http://guides.lib.virginia.edu/journalfinder">Journal finder</a></li>
+              <li><a href="/services/search-course-reserves/">Search course reserves</a></li>
+              <li><a href="http://data.library.virginia.edu/research-software/">Research software</a></li>
+            </ul>
+          </div>
+          <div class="card-actions">
+            <a tabindex="-1" href="/research">
+              <paper-button>More Research Tools</paper-button>
+            </a>
+          </div>
+        </paper-card>
+      </div>
+      <div class="shady layout horizontal wrap">
+        <paper-card id="spaces" class="flex" heading="Spaces &amp; Equipment" image="[[whichImage('/files/cards/spaces.jpg')]]" alt="Student studying in an egg.">
+          <div class="card-content">
+            <ul>
+              <li><a href="/study-spaces/">Find study spaces</a></li>
+              <li><a href="/policies/">Using the library - policies </a></li>
+              <li><a href="/print-copy-scan-computing/">Printers &amp; scanning</a></li>
+              <li><a href="/services/reserve-equipment-computers/">Borrow equipment</a></li>
+              <li><a href="/services/reserve-rooms/">Reserve a room</a></li>
+              <li><a href="/services/digital-labs/">Digital labs</a></li>
+            </ul>
+          </div>
+          <div class="card-actions">
+            <a tabindex="-1" href="http://static.lib.virginia.edu/directory/libraries.html">
+              <paper-button>Explore libraries &amp; labs</paper-button>
+            </a>
+          </div>
+        </paper-card>
+        <paper-card id="services" class="flex" heading="Services" image="[[whichImage('/files/cards/services.jpg')]]" alt="Librarian giving a presentation on a digital display.">
+          <div class="card-content">
+            <ul>
+              <li><a href="/services/ils/">LEO and Interlibrary Loan (ILL)</a></li>
+              <li><a href="http://guides.lib.virginia.edu/subjectlibrarians">Subject librarians</a></li>
+              <li><a href="/services/purchase-requests/">Purchase request</a></li>
+              <li><a href="/services/off-grounds-access/">Off-Grounds access</a></li>
+              <li><a href="/services/accessibility-services/">Accessibility Services </a></li>
+              <li><a href="/services/classes/">Library class request</a></li>
+            </ul>
+          </div>
+          <div class="card-actions">
+            <a tabindex="-1" href="https://library.virginia.edu/services">
+              <paper-button>More Services</paper-button>
+            </a>
+          </div>
+        </paper-card>
+      </div>
+      <div class="layout vertical">
+        <paper-card id="events" heading="Upcoming Events" style="max-width:100%">
+          <div class="card-content">
+            <uvalib-events-ui max-num-events-shown="3"></uvalib-events-ui>
+          </div>
+          <div class="card-actions">
+           <a tabindex="-1" href="http://cal.lib.virginia.edu/calendar/events">
+             <paper-button>View All Events</paper-button>
+           </a>
+          </div>
+        </paper-card>
+        <paper-card is="news" heading="Library News" style="max-width:100%">
+          <div class="card-content">
+            <uvalib-news-section num-items="3"></uvalib-news-section>
+          </div>
+          <div class="card-actions">
+           <a tabindex="-1" href="http://news.library.virginia.edu">
+             <paper-button>More News</paper-button>
+           </a>
+          </div>
+        </paper-card>
+      </div>
+    </template>
+
+    <template is="dom-if" if="[[largeScreen]]" restamp>
+      <!-- Desktop has Banner next to hours card -->
+      <div class="layout horizontal">
+        <paper-card class="flex layout vertical" style="width: 200px; max-width: none; min-width: none;">
+          <div class="card-content flex" style="overflow: hidden; padding:0; margin:0">
+            <div class="screen-reader-text" id="carouselheading">News, Events, and messages from the UVA Library</div>
+            <uvalib-banners id="bannerLg" banners="[[_banners]]" style="height:100%;width:100%;" aria-labelledby="carouselheading"></uvalib-banners>
+          </div>
+        </paper-card>
+        <paper-card id="hours-card" heading="Today's Hours" style="width: 200px; max-width: none; min-width: none;">
+          <div class="card-content full-card">
+            <uvalib-hours-ui single-day></uvalib-hours-ui>
+          </div>
+          <div class="card-actions">
+            <a href="/hours" tabindex="-1">
+              <paper-button>View All Hours ⟶</paper-button>
+            </a>
+          </div>
+        </paper-card>
+      </div>
+      <!-- then shady area with research, spaces, and services -->
+      <div class="shady layout horizontal">
+        <paper-card id="research" heading="Research" class="flex" image$="[[whichImage('/files/cards/research.jpg')]]" alt="Image of student doing research in the Library">
+          <div class="card-content">
+            <ul>
+              <li><a href="https://search.lib.virginia.edu">Virgo: Library Catalog</a></li>
+              <li><a href="https://guides.lib.virginia.edu/az.php">Databases A-Z</a></li>
+              <li><a href="/research/">Subject guides</a></li>
+              <li><a href="http://guides.lib.virginia.edu/journalfinder">Journal finder</a></li>
+              <li><a href="/services/search-course-reserves/">Search course reserves</a></li>
+              <li><a href="http://data.library.virginia.edu/research-software/">Research software</a></li>
+            </ul>
+          </div>
+          <div class="card-actions">
+            <a tabindex="-1" href="/research">
+              <paper-button>More Research Tools</paper-button>
+            </a>
+          </div>
+        </paper-card>
+        <paper-card id="spaces" class="flex" heading="Spaces &amp; Equipment" image="[[whichImage('/files/cards/spaces.jpg')]]" alt="Student studying in an egg.">
+          <div class="card-content">
+            <ul>
+              <li><a href="/study-spaces/">Find study spaces</a></li>
+              <li><a href="/policies/">Using the library - policies </a></li>
+              <li><a href="/print-copy-scan-computing/">Printers &amp; scanning</a></li>
+              <li><a href="/services/reserve-equipment-computers/">Borrow equipment</a></li>
+              <li><a href="/services/reserve-rooms/">Reserve a room</a></li>
+              <li><a href="/services/digital-labs/">Digital labs</a></li>
+            </ul>
+          </div>
+          <div class="card-actions">
+            <a tabindex="-1" href="http://static.lib.virginia.edu/directory/libraries.html">
+              <paper-button>Explore libraries &amp; labs</paper-button>
+            </a>
+          </div>
+        </paper-card>
+        <paper-card id="services" class="flex" heading="Services" image="[[whichImage('/files/cards/services.jpg')]]" alt="Librarian giving a presentation on a digital display.">
+          <div class="card-content">
+            <ul>
+              <li><a href="/services/ils/">LEO and Interlibrary Loan (ILL)</a></li>
+              <li><a href="http://guides.lib.virginia.edu/subjectlibrarians">Subject librarians</a></li>
+              <li><a href="/services/purchase-requests/">Purchase request</a></li>
+              <li><a href="/services/off-grounds-access/">Off-Grounds access</a></li>
+              <li><a href="/services/accessibility-services/">Accessibility Services </a></li>
+              <li><a href="/services/classes/">Library class request</a></li>
+            </ul>
+          </div>
+          <div class="card-actions">
+            <a tabindex="-1" href="https://library.virginia.edu/services">
+              <paper-button>More Services</paper-button>
+            </a>
+          </div>
+        </paper-card>
+      </div>
+      <div class="layout horizontal">
+        <paper-card class="flex" id="events" heading="Upcoming Events">
+          <div class="card-content">
+            <uvalib-events-ui max-num-events-shown="3"></uvalib-events-ui>
+          </div>
+          <div class="card-actions">
+           <a tabindex="-1" href="http://cal.lib.virginia.edu/calendar/events">
+             <paper-button>View All Events</paper-button>
+           </a>
+          </div>
+        </paper-card>
+        <paper-card class="flex" is="news" heading="Library News">
+          <div class="card-content">
+            <uvalib-news-section num-items="3"></uvalib-news-section>
+          </div>
+          <div class="card-actions">
+           <a tabindex="-1" href="http://news.library.virginia.edu">
+             <paper-button>More News</paper-button>
+           </a>
+          </div>
+        </paper-card>
+      </div>
+    </template>
+
+    <div class="shady layout horizontal wrap">
+      <uvalib-exhibit-ui main-exhibit="true" exhibits="{{_exhibits}}"></uvalib-exhibit-ui>
+      <template is="dom-repeat" items="{{_exhibits}}" as="exhibit">
+        <paper-card id="exhibit" heading="Exhibition Spotlight" image="[[whichImage(exhibit.image.url)]]" alt="[[exhibit.title]]">
+          <div class="card-content" inner-h-t-m-l="[[exhibit.body]]">
+          </div>
+          <div class="card-actions">
+            <a tabindex="-1" href="[[exhibit.link]]">
+              <paper-button>Read More</paper-button>
+            </a>
+          </div>
+        </paper-card>
+      </template>
+      <paper-card id="support" heading="Join the Community" image="[[whichImage('/files/cards/engage.jpg')]]" alt="Students studying in the Library">
+        <div class="card-content">
+          <ul>
+            <li><a href="/jobs">Volunteer Opportunities</a></li>
+            <li><a href="/services/alumni">Alumni Services</a></li>
+            <li><a href="/services/community-patrons">Community Patrons</a></li>
+          </ul>
+        </div>
+        <div class="card-actions">
+          <a tabindex="-1" href="https://www.library.virginia.edu/support-library/">
+            <paper-button>Learn More</paper-button>
+          </a>
+        </div>
+      </paper-card>
+    </div>
+
+  </template>
+
+  <script>
+    let uvalibHomepageTemplate;
+
+    /**
+     * `uvalib-homepage`
+     * UVA Library page layout component
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class UvalibHomepage extends UvalibUiElement {
+      static get is() { return 'uvalib-homepage'; }
+      static get properties() {
+        return Object.assign(super.properties,{
+          _exhibits: {
+            type: Array
+          }
+        });
+      }
+      static get template() {
+        if (!uvalibHomepageTemplate) {
+            // Retrieve this element's dom-module template
+            uvalibHomepageTemplate = Polymer.DomModule.import(this.is, 'template');
+            // Clone the contents of the superclass template
+            let superTemplateContents = UvalibUiElement.template.content.cloneNode(true);
+            // Insert the superclass contents
+            uvalibHomepageTemplate.content.insertBefore(superTemplateContents,null);
+        }
+        return uvalibHomepageTemplate;
+      }
+      connectedCallback() {
+        super.connectedCallback();
+
+        // Load group1 then group2 then group3
+        this.importLazyGroup('uvalib-homepage').then( function(results) {
+          this.importLazyGroup('uvalib-homepage2');
+        }.bind(this));
+      }
+      ready() {
+        super.ready();
+      }
+      setBannerFocus() {
+        if (this.largeScreen) {
+          this.shadowRoot.querySelector('#bannerLg').focus();
+          console.log('large banner focus');
+        } else {
+          this.shadowRoot.querySelector('#banner').focus();
+          console.log('not large banner focus');
+        }
+      }
+    }
+
+    window.customElements.define(UvalibHomepage.is, UvalibHomepage);
+  </script>
+</dom-module>

@@ -1,0 +1,267 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="../app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
+<link rel="import" href="../polymer/lib/utils/debounce.html">
+<link rel="import" href="../uva-helper-libs/polyfills/object.assign.html">
+<link rel="import" href="../uva-helper-libs/turf.html">
+
+<dom-module id="uva-buildings">
+  <template>
+    <iron-ajax auto url="[[_buildingsURL]]" handle-as="json" last-response="{{_buildings}}" loading="{{_loadingBuildings}}">
+    <app-indexeddb-mirror key="[[_buildingsURL]]" data="[[_asArray(_buildings)]]" persisted-data="{{_persistedBuildings}}"></app-indexeddb-mirror>
+    <iron-ajax auto url="[[_categoriesURL]]" handle-as="json" last-response="{{_categories}}" loading="{{_loadingCategories}}">
+    <app-indexeddb-mirror key="[[_categoriesURL]]" data="[[_categories]]" persisted-data="{{categories}}"></app-indexeddb-mirror>
+  </template>
+  <script>
+    /**
+     * `uva-buildings`
+     * Helper component to bind to the UVA buildings API.
+     * This API provides information about many buildings on campus. It can be used to get building information such as Name, Category, Address, Square Footage, Year Built, and GPS coordinates of every place on campus.
+     *
+     * The simplest usecase just returns all of the UVA buildings via the buildings attribute
+     *
+     * Example:
+     *
+     *    <uva-buildings buildings="{{buildings}}"></uva-buildings>
+     *
+     * All buildings are available via the `buildings` attribute and can be filtered via the `category` attribute.  All of the valid categories to filter by are available via the `catagories` attribute.
+     *
+     * Example:
+     *
+     *    <uva-buildings buildings="{{buildings}}" category="{{category}}" categories="{{categories}}"></uva-buildings>
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/building.html Map bind demo
+     * @demo demo/building2.html map bind with filters demo
+     */
+    class UvaBuildings extends Polymer.Element {
+      static get is() { return 'uva-buildings'; }
+      static get properties() {
+        return {
+          /** True while Buildings ajax request is in flight */
+          _loadingBuildings: {
+            type: Boolean
+          },
+
+          /** True while Categories ajax request is in flight */
+          _loadingCategories: {
+            type: Boolean
+          },
+
+          /** True while API requests are in flight */
+          loading: {
+            type: Boolean,
+            computed: "_either(_loadingBuildings, _loadingCategories)"
+          },
+
+          /** Used for storing the buildings from ajax call (these are not filtered in any way and are not available offline) */
+          _buildings: {
+            type: Array,
+            value: function(){return [];}
+          },
+
+          /** Used for storing the persisted version of the buildings (this are not filtered in any way BUT are available offline if alreay cached) */
+          _persistedBuildings: {
+            type: Array,
+            value: function(){return [];},
+            observer: "_filterBuildings"
+          },
+
+          /** Used for storing the buildings that have been persisted and filtered */
+          buildings: {
+            type: Array,
+            value: function(){return [];},
+            notify: true
+          },
+
+          /** This is the first building from the `buildings` property.  This is helpful if you specify the building by id or name and want to bind to the building. */
+          building: {
+            type: Object,
+            computed: "_firstBuilding(buildings)",
+            notify: true
+          },
+
+          /** The Name of the building that you would like to filter */
+          name: {
+            type: String
+          },
+
+          /** The id of the building that you would like to filter */
+          id: {
+            type: String
+          },
+
+          /** Used to store the categories from ajax before being persisted */
+          _categories: {
+            type: Array,
+            value: function(){return [];},
+          },
+
+          /** The available categories of buildings, not filtered in any way */
+          categories: {
+            type: Array,
+            value: function(){return [];},
+            notify: true
+          },
+
+          /** The category (case insensitive) of buildings to filter by */
+          category: {
+            type: String,
+            observer: "_filterBuildings"
+          },
+
+          /** The minimum square footage that buildings will be filtered by.  If the building doesn't have a square footage specified it will be filtered out when this is set. */
+          minSquareFootage: {
+            type: Number,
+            observer: "_filterBuildings"
+          },
+
+          /** The maximum square footage that buildings will be filtered by.  If the building doesn't have a square footage specified it will be filtered out when this is set. */
+          maxSquareFootage: {
+            type: Number,
+            observer: "_filterBuildings"
+          },
+
+          /** The oldest four digit year for a building in `buildings`.  If the building doesn't have a year built specified it will be filtered out when this is set. */
+          minYearBuilt: {
+            type: Number,
+            observer: "_filterBuildings"
+          },
+
+          /** The newest four digit year for a building in `buildings`.  If the building doesn't have a year built specified it will be filtered out when this is set. */
+          maxYearBuilt: {
+            type: Number,
+            observer: "_filterBuildings"
+          },
+
+          /** If true, only historic buildings will be listed.  If false, all building are listed in `buildings`. */
+          historic: {
+            type: Boolean,
+            observer: "_filterBuildings"
+          },
+
+          /** If present along with `longitude` will add a distance property to each building that has lat/long properties.  These propertys are also used with the `distance` attribute to filter buildings by distance from a point. */
+          latitude: {
+            type: Number,
+            observer: "_filterBuildings"
+          },
+
+          /** If present along with `latitude` will add a distance property to each building that has lat/long properties.  These propertys are also used with the `distance` attribute to filter buildings by distance from a point. */
+          longitude: {
+            type: Number,
+            observer: "_filterBuildings"
+          },
+
+          /** Filters the `buildings` property given `latitude` and `longitude` properties.  If present, buildings without a lat/long specified will be filtered from the `buildings` property */
+          distance: {
+            type: Number,
+            observer: "_filterBuildings"
+          },
+
+          /** Used to maintain the url used to fetch buildings via ajax. */
+          _buildingsURL: {
+            type: String,
+            computed: "_makeBuildingsURL(name, id, _buildings)",
+            notify: true
+          },
+
+          /** Used to maintain the url used to fetch categories via ajax. */
+          _categoriesURL: {
+            type: String,
+            value: "https://api.library.virginia.edu/devhub/categories",
+            notify: true
+          }
+        };
+      }
+      ready() {
+        super.ready();
+      }
+
+      /**
+       * Given an object, will return an Array if the object is not already an array.  Helper to be sure that we are getting an array from the Buildings API.
+       *
+       * @param {Object} obj The object to be made into an Array if not one already.
+       * @return {Array<Object>} An Array.
+       */
+      _asArray(obj){
+        return (Array.isArray(obj))?
+          obj:
+          new Array(obj);
+      }
+
+      /**
+       * Filters buildings from `_persistedBuildings` to `buildings` using filtering properties.
+       * It is a bit harsh in that it replaces `buildings` with a new Array.
+       */
+      _filterBuildings() {
+        this._debouncer = Polymer.Debouncer.debounce(this._debouncer,
+            Polymer.Async.timeOut.after(25),
+            () => {
+              // A bit crude, but it gets err done
+              var buildings = this._persistedBuildings;
+              if (this.category) buildings = buildings.filter((bl) => bl.Category.toLowerCase() == this.category.toLowerCase() );
+              if (this.minSquareFootage) buildings = buildings.filter((bl) => bl.SquareFootage >= this.minSquareFootage );
+              if (this.maxSquareFootage) buildings = buildings.filter((bl) => bl.SquareFootage <= this.maxSquareFootage );
+              if (this.minYearBuilt) buildings = buildings.filter((bl) => bl.YearBuilt >= this.minYearBuilt );
+              if (this.maxYearBuilt) buildings = buildings.filter((bl) => bl.YearBuilt <= this.maxYearBuilt );
+              if (this.historic) buildings = buildings.filter((bl) => bl.Historic == "Y");
+              if (this.latitude && this.longitude) {
+                // add a distance property to the buildings
+                buildings.forEach(function(bl){
+                  if (bl.Latitude && bl.Longitude) {
+                    bl.distance = turf.distance(turf.point([bl.Longitude,bl.Latitude]),turf.point([this.longitude,this.latitude]))/0.001000;
+                  }
+                }.bind(this));
+                if (this.distance) buildings = buildings.filter((b) => b.distance>=0 && b.distance <= this.distance);
+              }
+              this.set('buildings', buildings);
+            } );
+      }
+
+      /**
+       * Makes the url used to make an ajax call for buildings taking into account the `id` and `name` fields.
+       *
+       * @param {String} name The name of the building to return.
+       * @param {String} id The id of the building to return.
+       * @return {String} The url to use to get the json from the Buildings API.
+       */
+      _makeBuildingsURL(name, id) {
+        console.log('burl');
+        var url = "https://api.library.virginia.edu/devhub/";
+        if (id) {
+          url += "buildingId/"+id;
+        } else if (name) {
+          url += "buildings/"+name;
+        } else {
+          url += "buildings";
+        }
+        console.log(url);
+        return url;
+      }
+
+      /**
+       * Gets the first building from the `buildings` property.
+       *
+       * @return {Object} The building object.
+       */
+      _firstBuilding() {
+        return (this.buildings && this.buildings.length > 0)?
+          this.buildings[0]:null;
+      }
+
+      /**
+       * Returns true if either parameter is truthy
+       *
+       * @param b1 First value to evaluate
+       * @param b2 Second value to evaluate
+       * @return {Boolean} true if either parameter is truthy
+       */
+      _either(b1, b2) {
+        return (b1 || b2);
+      }
+    }
+
+    window.customElements.define(UvaBuildings.is, UvaBuildings);
+  </script>
+</dom-module>

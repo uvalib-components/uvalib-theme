@@ -1,0 +1,12 @@
+{
+  "name": "uvalib-bookplates",
+  "main": "uvalib-bookplate-browse.html",
+  "dependencies": {
+    "uvalib-elements": "uvalib-components/uvalib-elements#master"
+  },
+  "resolutions": {
+    "lodash": "^4.17.5",
+    "webcomponentsjs": "^1.1.1",
+    "polymer": "^2.2.0"
+  }
+}

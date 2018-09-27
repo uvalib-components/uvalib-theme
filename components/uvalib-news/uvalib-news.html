@@ -1,0 +1,58 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../uvalib-theme/uvalib-theme.html">
+<link rel="import" href="../uva-models/uva-library.html">
+<link rel="import" href="uvalib-news-card.html">
+
+<dom-module id="uvalib-news">
+  <template>
+    <custom-style>
+      <style include="uvalib-theme iron-flex iron-flex-alignment">
+        :host {
+          display: block;
+        }
+      </style>
+    </custom-style>
+    <uva-library path="news" items="{{news}}" filter="[[_filter]]" sort-by="created" sort-order="desc"></uva-library>
+    <template is="dom-repeat" items="[[news]]">
+      <uvalib-news-card news-item="[[item]]"></uvalib-news-card>
+    </template>
+  </template>
+
+  <script>
+    /**
+     * `uvalib-news`
+     * News
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class UvalibNews extends Polymer.Element {
+      static get is() { return 'uvalib-news'; }
+      static get properties() {
+        return {
+          news: Array,
+          association: String,
+          _filter: {
+            type: Object,
+            computed: '_mkFilter(association)',
+            notify: true
+          }
+        };
+      }
+      _mkFilter(ass){
+        return function(i){
+          return (i.association === ass);
+        }
+      }
+      _share(){
+        this.shadowRoot.querySelector('#shareMenu').share();
+      }
+      _prettyCreated(created){
+        return moment.unix(created).format('LL');
+      }
+    }
+
+    window.customElements.define(UvalibNews.is, UvalibNews);
+  </script>
+</dom-module>

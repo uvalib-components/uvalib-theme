@@ -1,0 +1,18 @@
+{
+  "name": "uva-theme",
+  "description": "Common UVA brand styles",
+  "main": "uva-theme.html",
+  "dependencies": {
+    "uva-elements": "uva-components/uva-elements#master"
+  },
+  "homepage": "https://github.com/uva-components/uva-theme",
+  "_release": "7c042bbc8c",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "7c042bbc8ca427b286f2d5972311ec3a209ac9fe"
+  },
+  "_source": "https://github.com/uva-components/uva-theme.git",
+  "_target": "master",
+  "_originalSource": "uva-components/uva-theme"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "uva-accordion",
+  "main": "uva-accordion.html",
+  "dependencies": {
+    "uva-elements": "uva-components/uva-elements#master"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "lg-autoplay.js",
+  "version": "1.0.0",
+  "description": "Autoplay module for lightgallery.",
+  "main": [
+      "dist/lg-autoplay.min.js"
+  ],
+  "keywords": [
+      "gallery",
+      "lightbox",
+      "image",
+      "video",
+      "autoplay"
+  ],
+  "authors": [
+      "Sachin N <sachi77n@gmail.com>"
+  ],
+  "homepage": "http://sachinchoolur.github.io/lg-autoplay.js/",
+  "repository": {
+      "type": "git",
+      "url": "git://github.com/sachinchoolur/lg-autoplay.js.git"
+  },
+  "license": "GPLv3",
+  "ignore": [
+      "README.md"
+  ]
+}

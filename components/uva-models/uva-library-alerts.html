@@ -1,0 +1,102 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="./uva-library.html">
+<link rel="import" href="../uva-helper-libs/polyfills/object.assign.html">
+<link rel="import" href="../app-storage/app-localstorage/app-localstorage-document.html" />
+
+<dom-module id="uva-library-alerts">
+  <template>
+    <app-localstorage-document key="uvalib-alerts-seen" data="{{seen}}"></app-localstorage-document>
+  </template>
+  <script>
+    /**
+     * `uva-library-alerts`
+     * Binds to the UVA Library Alerts APIs and offeres some helper functionality
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/library-alerts.html
+     */
+    class UvaLibraryAlerts extends UvaLibrary {
+      static get is() { return 'uva-library-alerts'; }
+      static get properties() {
+        return Object.assign(super.properties,
+            {
+              lastResponse: {
+                type: Array,
+                observer: '_copyAlerts'
+              },
+              alerts: {
+                type: Array,
+                notify: true,
+                value: function(){return [];}
+              },
+              seen: {
+                type: Array,
+                notify: true,
+                observer: '_evalAlerts',
+                value: []
+              },
+              poll: {
+                type: Number,
+                value: 300000
+              },
+              seenCount: {
+                type: Number,
+                notify: true,
+                computed: '_getSeenCount(alerts,_force)'
+              },
+              _force: {
+                type: Boolean,
+                value: true
+              }
+            });
+      }
+      //Concat the this elements template with the parents
+      static get template() {
+        var parentTemplate = UvaLibrary.template.cloneNode(true);
+        var childTemplate = Polymer.DomModule.import('uva-library-alerts', 'template');
+        parentTemplate.content.insertBefore(childTemplate.content,null);
+        return parentTemplate;
+      }
+      _copyAlerts(){
+        if (Array.isArray(this.lastResponse) && this.lastResponse.length>0) {
+          this.set('alerts', this.lastResponse.map(function(alert) {
+            if (alert.severity==="alert3") {this.setSeen(alert.uuid)}
+            if (this.seen.indexOf(alert.uuid)>-1) {alert.seen = true;}
+            else {alert.seen = false;}
+            return alert;
+          }.bind(this)).sort(function(x,y){return x.severity>y.severity}) );
+        }
+      }
+      setSeen(uuid){
+        var seen = this.seen;
+        if (seen.indexOf(uuid)===-1) {
+          seen.push(uuid);
+        }
+        this.set('seen',[]);
+        this.set('seen',seen);
+      }
+      _evalAlerts(){
+        if(Array.isArray(this.alerts) && this.alerts.length>0) {
+          this.alerts.forEach(function(alert,i){
+            if (this.seen.indexOf(alert.uuid)>-1 && !this.alerts[i].seen) {
+              this.set('alerts.'+i+'.seen', true);
+              this.set('_force', !this._force);
+            } else if (this.alerts[i].seen) {
+              this.set('alerts.'+i+'.seen', false);
+              this.set('_force', !this._force);
+            }
+          }.bind(this));
+        }
+      }
+      _makeURL(path,apiVersion) {
+        return this._apidomain+apiVersion+"/library/alerts";
+      }
+      _getSeenCount(alerts){
+        return alerts.filter(a => a.seen).length;
+      }
+    }
+
+    window.customElements.define(UvaLibraryAlerts.is, UvaLibraryAlerts);
+  </script>
+</dom-module>

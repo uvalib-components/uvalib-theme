@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>scroll-top test</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../uvalib-scroll-top.html">
+  </head>
+  <body>
+
+    <test-fixture id="BasicTestFixture">
+      <template>
+        <uvalib-scroll-top></uvalib-scroll-top>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="ChangedPropertyTestFixture">
+      <template>
+        <uvalib-scroll-top enabled="false"></uvalib-scroll-top>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('uvalib-scroll-top', function() {
+
+        test('instantiating the element with default properties works', function() {
+          var element = fixture('BasicTestFixture');
+          assert.equal(element.constructor.is, 'uvalib-scroll-top');
+        });
+
+        test('setting a property on the element works', function() {
+          // Create a test fixture
+          var element = fixture('ChangedPropertyTestFixture');
+          assert.equal(element.enabled, 'false');
+        });
+
+      });
+      a11ySuite('BasicTestFixture');
+      a11ySuite('ChangedPropertyTestFixture');
+    </script>
+
+  </body>
+</html>

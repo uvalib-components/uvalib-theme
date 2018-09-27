@@ -1,0 +1,165 @@
+<link rel="import" href="../lazy-imports/lazy-imports-mixin.html">
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="./uvalib-theme.html">
+<link rel="import" href="../iron-media-query/iron-media-query.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../app-route/app-location.html">
+
+<dom-module id="uvalib-ui-element">
+  <template>
+    <custom-style>
+      <style include="uvalib-theme iron-flex">
+        [hidden] {display:none}
+      </style>
+    </custom-style>
+
+    <app-location route="{{hash}}" use-hash-as-path url-space-regex="^/nomatchme/"></app-location>
+
+    <template is="dom-if" if="[[_isResponsive(lite)]]">
+      <iron-media-query query="[[smallScreenQuery]]" query-matches="{{smallScreen}}"></iron-media-query>
+      <iron-media-query query="[[mediumScreenQuery]]" query-matches="{{mediumScreen}}"></iron-media-query>
+      <iron-media-query query="[[largeScreenQuery]]" query-matches="{{largeScreen}}"></iron-media-query>
+    </template>
+  </template>
+
+  <script>
+    /**
+     * `uvalib-ui-element`
+     *
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html uvalib-theme theme library
+     * @demo demo/page-patterns.html uvalib-page-style styles and patterns
+     */
+    class UvalibUiElement extends Polymer.LazyImportsMixin(Polymer.Element) {
+      static get is() { return 'uvalib-ui-element'; }
+      static get properties() {
+        return {
+          unresolved: {
+            type:Boolean,
+            reflectToAttribute: true
+          },
+          smallScreenQuery: {
+            type: String,
+            value: "(max-width: 600px)"
+          },
+          mediumScreenQuery: {
+            type: String,
+            value: "(min-width: 600px) and (max-width: 992px)"
+          },
+          largeScreenQuery: {
+            type: String,
+            value: "(min-width: 993px)"
+          },
+          smallScreen:{
+            type: Boolean,
+            reflectToAttribute: true
+          },
+          mediumScreen:{
+            type: Boolean,
+            reflectToAttribute: true
+          },
+          largeScreen:{
+            type: Boolean,
+            reflectToAttribute: true
+          },
+          lite: {
+            type: Boolean,
+            reflectToAttribute: true,
+            value: false
+          },
+          webPsupport: {
+            type: Boolean,
+            computed: '_supportsWebp()'
+          },
+          hash: {
+            type: String,
+            value: null,
+            observer: "_handleAnchor"
+          },
+          _localhost: {
+            type: Boolean,
+            value: function(){
+              return (document.location.hostname == "127.0.0.1" || document.location.hostname == "localhost");
+            }
+          }
+        };
+      }
+      static get observers() {
+        return [
+          // Observer method name, followed by a list of dependencies, in parenthesis
+          '_screenChanged(smallScreen,mediumScreen,largeScreen)'
+        ]
+      }
+      /* Override this method to listen for changes to screen size */
+      _screenChanged(){}
+      ready(){
+        super.ready();
+        this.unresolved = false;
+      }
+      _supportsWebp(){
+        return false;
+//        var elem = document.createElement('canvas');
+//        if (!!(elem.getContext && elem.getContext('2d'))) {
+//          // was able or not to get WebP representation
+//          return elem.toDataURL('image/webp').indexOf('data:image/webp') == 0;
+//        }
+//        else {
+//          // very old browser like IE 8, canvas not supported
+//          return false;
+//        }
+      }
+      _handleAnchor(){
+        if (this.hash) {
+            this._scrollToSelector(window.location.hash);
+        }
+      }
+
+      _scrollToSelector(selector){
+        if (selector) {
+          var node = this.shadowRoot.querySelector(selector);
+          if (node) node.scrollIntoView();
+        }
+      }
+      whichImage(obj){
+        if (typeof obj === 'string' || obj instanceof String) {
+          return this._compressedImage(obj);
+        } else {
+          return obj;
+        }
+      }
+      _compressedImage(url){
+        url = url.replace("https://drupal.lib.virginia.edu/sites/default","");
+        if (url.startsWith('/files') && !this._localhost) {
+          return (this.webPsupport && url.match(/.*\.(png|jpg|jpeg)?$/i))?
+            url.replace('/files/','/files-comp/').replace(/\.(png|jpg|jpeg)?$/i,'.webp'):
+            url;
+        }
+        return url;
+      }
+      _isResponsive(){
+        return !(this.lite);
+      }
+      _or(t1, t2){
+        return (t1 || t2);
+      }
+      _and(t1, t2){
+        return (t1 && t2);
+      }
+      _larger(n1, n2){
+        return (n1 > n2);
+      }
+      _not(b1){
+        return !(b1);
+      }
+      _first(a){
+        if (Array.isArray(a) && a.length>0) return a[0];
+        else return null;
+      }
+    }
+
+    window.customElements.define(UvalibUiElement.is, UvalibUiElement);
+  </script>
+</dom-module>

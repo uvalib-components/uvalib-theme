@@ -1,0 +1,90 @@
+<link rel="import" href="../uvalib-theme/uvalib-ui-element.html">
+<link rel="import" href="../uvalib-theme/uvalib-theme.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-card/paper-card.html">
+<link rel="import" href="../marked-element/marked-element.html">
+<link rel="import" href="../uva-models/uva-library.html">
+<link rel="import" href="../uvalib-theme/uvalib-icons.html">
+
+
+<dom-module id="uvalib-collectionspage">
+  <template>
+    <custom-style>
+      <style include="uvalib-theme iron-flex-factors">
+        :host {
+          display: block;
+        }
+        [hidden] {
+          display: none;
+        }
+        paper-card {
+          max-width: 20em;
+          --paper-card-header-image: {
+            max-height: 300px;
+          }
+        }
+
+
+      </style>
+    </custom-style>
+
+    <uva-library path="collections" items="{{_collections}}" sort-by="title" sort-order="desc"></uva-library>
+
+    <div class="shady layout horizontal wrap center-justified">
+      <template is="dom-repeat" items="[[_collections]]" as="col">
+        <paper-card heading$="[[col.title]]">
+          <div class="card-content">
+            <marked-element markdown="[[col.body]]">
+              <div slot="markdown-html"></div>
+            </marked-element>
+          </div>
+          <template is="dom-if" if="[[col.collectionURL]]">
+            <div class="card-actions">
+              <a href="[[col.collectionURL]]" target="-1">
+                <paper-button>Go to Collection</paper-button>
+              </a>
+            </div>
+          </template>
+
+        </paper-card>
+      </template>
+    </div>
+
+  </template>
+
+  <script>
+    let uvalibCollectionspageTemplate;
+
+    /**
+     * `uvalib-collectionspage`
+     * UVA Library collections page layout component
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/exhibits.html
+     */
+    class UvalibCollectionspage extends UvalibUiElement {
+      static get is() { return 'uvalib-collectionspage'; }
+      static get properties() {
+        return Object.assign(super.properties,{
+          _exhibits: Array
+        });
+      }
+      static get template() {
+        if (!uvalibCollectionspageTemplate) {
+            // Retrieve this element's dom-module template
+            uvalibCollectionspageTemplate = Polymer.DomModule.import(this.is, 'template');
+
+            // Clone the contents of the superclass template
+            let superTemplateContents = UvalibUiElement.template.content.cloneNode(true);
+
+            // Insert the superclass contents
+            uvalibCollectionspageTemplate.content.insertBefore(superTemplateContents,null);
+        }
+        return uvalibCollectionspageTemplate;
+      }
+    }
+
+    window.customElements.define(UvalibCollectionspage.is, UvalibCollectionspage);
+  </script>
+</dom-module>

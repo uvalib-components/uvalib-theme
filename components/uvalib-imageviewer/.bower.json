@@ -1,0 +1,32 @@
+{
+  "name": "uvalib-imageviewer",
+  "main": "uvalib-imageviewer.html",
+  "dependencies": {
+    "uvalib-elements": "uvalib-components/uvalib-elements#master",
+    "lightgallery.js": "^1.0.3",
+    "lg-thumbnail.js": "^1.0.0",
+    "lg-autoplay.js": "^1.0.0",
+    "lg-video.js": "^1.0.0",
+    "lg-fullscreen.js": "^1.0.0",
+    "lg-pager.js": "^1.0.0",
+    "lg-zoom.js": "^1.0.1",
+    "lg-hash.js": "^1.2.0",
+    "lg-share.js": "^1.2.2",
+    "jsonpath-plus": "^0.13.1"
+  },
+  "resolutions": {
+    "polymer": "^2.3.1",
+    "webcomponentsjs": "^v1.1.0",
+    "lodash": "^4.17.5"
+  },
+  "homepage": "https://github.com/uvalib-components/uvalib-imageviewer",
+  "_release": "1a05fb5369",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "1a05fb536906bc3412d5f0d1c86fe4df4620955b"
+  },
+  "_source": "https://github.com/uvalib-components/uvalib-imageviewer.git",
+  "_target": "master",
+  "_originalSource": "uvalib-components/uvalib-imageviewer"
+}

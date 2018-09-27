@@ -1,0 +1,107 @@
+<link rel="import" href="../uvalib-theme/uvalib-ui-element.html">
+
+<dom-module id="uvalib-image-header">
+  <template>
+    <custom-style>
+      <style>
+        .header-container {
+          position: relative;
+          margin-top: -1px;
+          margin-bottom: 25px;
+        }
+
+        .header-image-area {
+           position: absolute;
+           top:0;
+           bottom: 0;
+           height: 375px;
+           width: 100vw;
+           z-index: 1;
+
+        }
+        .img-overlay {
+          position: absolute;
+          top:0;
+          bottom: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.4);
+          z-index: 15;
+        }
+        .header-image-area iron-image {
+          width: 100%;
+          height: 100%;
+        }
+        .header-text-container {
+          width: 100%;
+          z-index: 20;
+        }
+        .header-text-container-block {
+          height: 375px;
+          max-width: 75%;
+        }
+        ::slotted(*) {
+          margin: 0;
+          z-index: 10;
+        }
+        #header-h1 ::slotted(*) {
+          color: var(--uvalib-main-white) !important;
+
+        }
+        #header-p ::slotted(*) {
+          font-size: calc(var(--uvalib-spacing-unit)*1.25);
+          line-height: 1;
+          color: var(--uvalib-main-white);
+          font-weight: 400;
+          letter-spacing: 1px;
+          text-align: center;
+        }
+      </style>
+    </custom-style>
+    <div class="header-container layout horizontal center-center">
+      <div class="header-image-area flex">
+        <div class="img-overlay"></div>
+        <iron-image src="[[src]]" atl="[[alt]]" sizing="cover"></iron-image>
+      </div>
+      <div class="flex header-text-container">
+        <div class="layout horizontal center-center" >
+          <div class="header-text-container-block layout vertical center-center">
+              <div id="header-h1"><slot name="header-title"></slot></div>
+              <div id="header-p"><slot name="header-description"></slot></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    /**
+     * `uvalib-image-header`
+     *
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/image-header.html
+     */
+    class UvalibImageHeader extends UvalibUiElement {
+      static get is() { return 'uvalib-image-header'; }
+      static get properties() {
+        return Object.assign(super.properties,
+            {
+              src:String,alt:String,
+            });
+      }
+
+      //Concat the this elements template with the parents
+      static get template() {
+        var parentTemplate = UvalibUiElement.template.cloneNode(true);
+        var childTemplate = Polymer.DomModule.import('uvalib-image-header', 'template');
+        parentTemplate.content.insertBefore(childTemplate.content,null);
+        return parentTemplate;
+      }
+
+    }
+
+    window.customElements.define(UvalibImageHeader.is, UvalibImageHeader);
+  </script>
+</dom-module>

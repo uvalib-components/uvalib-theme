@@ -1,0 +1,52 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="./uva-model.html">
+<link rel="import" href="../uva-helper-libs/polyfills/object.assign.html">
+
+<dom-module id="uva-library">
+
+  <script>
+    /**
+     * `uva-library`
+     * Binds to the UVA Library APIs
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/library.html
+     */
+    class UvaLibrary extends UvaModel {
+      static get is() { return 'uva-library'; }
+      static get properties() {
+        return Object.assign(super.properties,
+            {
+              /**
+                If `uuid` is set will return an item from the result set that matches or null.
+                When `uuid` is not set, will simply return the first item from the list of results
+              */
+              item: {
+                type: Object,
+                computed: '_makeItem(lastResponse,uuid)',
+                notify: true
+              },
+              /** The uuid to filter by */
+              uuid: {
+                type: String
+              }
+            });
+      }
+      _makeURL(path,apiVersion) {
+        return this._apidomain+apiVersion+"/library/"+path;
+      }
+      _makeItem(lastResponse, uuid) {
+        if (this.lastResponse && this.lastResponse.length>0) {
+          if (uuid) {
+            return this.lastResponse.find((e)=>{return (e.uuid==uuid)});
+          } else {
+            return this.lastResponse[0];
+          }
+        }
+      }
+    }
+
+    window.customElements.define(UvaLibrary.is, UvaLibrary);
+  </script>
+</dom-module>

@@ -1,0 +1,58 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="../uvalib-helper-libs/lodash.html">
+<link rel="import" href="../byutv-jsonp/byutv-jsonp.html">
+
+<!--
+`uvalib-news`
+This component handles fetching the news json
+
+@demo demo/index.html
+-->
+
+<dom-module id="uvalib-news-source">
+  <template>
+    <!-- iron-ajax id="newsfeed" auto url="news.json" handle-as="json" on-response="_handleResponse"></iron-ajax -->
+    <byutv-jsonp id="newsfeed" auto url="{{newsSource}}" params="{{_apiParameters}}" on-response="_handleResponse"></byutv-jsonp>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'uvalib-news-source',
+
+      properties: {
+        items: {
+          type: Array,
+          notify: true
+        },
+        limit: {
+          type: Number,
+          observer: '_handleResponse'
+        },
+        newsSource: {
+          type: String,
+          value: "//news.library.virginia.edu/api/get_recent_posts/"
+        },
+        _apiParameters: {
+          type: Object,
+          computed: "_generateWpJsonApiParams()"
+        }
+      },
+
+      _generateWpJsonApiParams: function() {
+        return {order: 'DESC', order_by: 'date'}
+      },
+
+      _handleResponse: function(){
+        if (this.$.newsfeed.lastResponse) {
+          if (this.limit)
+            this.items = this.$.newsfeed.lastResponse.posts.slice(0,this.limit);
+          else
+            this.items = this.$.newsfeed.lastResponse.posts;
+        }
+      }
+
+    });
+  </script>
+</dom-module>

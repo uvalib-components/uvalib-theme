@@ -1,0 +1,27 @@
+{
+  "name": "lg-hash.js",
+  "version": "1.0.0",
+  "description": "History(Hash) module for lightgallery.",
+  "main": [
+      "dist/lg-hash.min.js"
+  ],
+  "keywords": [
+      "gallery",
+      "lightbox",
+      "image",
+      "youtube",
+      "vimeo"
+  ],
+  "authors": [
+      "Sachin N <sachi77n@gmail.com>"
+  ],
+  "homepage": "http://sachinchoolur.github.io/lg-hash.js/",
+  "repository": {
+      "type": "git",
+      "url": "git://github.com/sachinchoolur/lg-hash.js.git"
+  },
+  "license": "GPLv3",
+  "ignore": [
+      "README.md"
+  ]
+}

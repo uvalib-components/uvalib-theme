@@ -1,0 +1,58 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<dom-module id="uvalib-skip-nav-style">
+  <template>
+    <style>
+    :host {
+      display: block;
+      --uvalib-skip-nav-color: white;
+      --uvalib-skip-nav-bkgrd-color: #b60000;
+    }
+    .jump-to-options-hidden {
+      padding: 5px;
+      position: absolute;
+      top: -500px;
+      left: 0px;
+      color: var(--uvalib-skip-nav-color,white);
+      background-color: var(--uvalib-skip-nav-bkgrd-color,red);
+      border-right: 1px solid var(--color-primary-blue);
+      border-bottom: 1px solid var(--color-primary-blue);
+      border-bottom-right-radius: 8px;
+      z-index: 100000;
+    }
+    @keyframes drop-in {
+      from {top: -500px;}
+      to {top: 0px;}
+    }
+    nav ul {
+      list-style-type: none;
+    }
+    h2 {
+      @apply --font-title;
+      color: var(--uvalib-skip-nav-color,white);
+    }
+    a {
+      color: var(--uvalib-skip-nav-color,white);
+      width: auto;
+      height: auto;
+      overflow: visible;
+    }
+    .jump-to-options-visible {
+      animation: drop-in;
+      animation-duration: 1s;
+      animation-timing-function: ease-out;
+      animation-delay: .5s;
+      animation-iteration-count: 1;
+      animation-direction: normal;
+      animation-fill-mode: forwards;
+      -webkit-animation: drop-in;
+      -webkit-animation-duration: 1s;
+      -webkit-animation-timing-function: ease-out;
+      -webkit-animation-delay: .5s;
+      -webkit-animation-iteration-count: 1;
+      -webkit-animation-direction: normal;
+      -webkit-animation-fill-mode: forwards;
+    }
+    </style>
+  </template>
+</dom-module>

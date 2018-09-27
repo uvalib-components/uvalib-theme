@@ -1,0 +1,487 @@
+<link rel="import" href="../uvalib-theme/uvalib-ui-element.html">
+<link rel="import" href="../uva-models/uva-library.html">
+<link rel="import" href="../uvalib-theme/uvalib-theme.html">
+
+<dom-module id="uvalib-directory">
+  <link rel="lazy-import" group="uvalib-directory-controls" href="uvalib-directory-controls.html">
+  <link rel="lazy-import" group="uvalib-directory-table" href="../vaadin-grid/vaadin-grid.html">
+  <link rel="lazy-import" group="uvalib-directory-table" href="../vaadin-grid/vaadin-grid-sorter.html">
+  <link rel="lazy-import" group="uvalib-directory-list" href="../iron-list/iron-list.html">
+  <link rel="lazy-import" group="uvalib-directory-staffview" href="../uvalib-account/uvalib-account-user.html">
+  <link rel="lazy-import" group="uvalib-directory-staffview" href="../app-storage/app-localstorage/app-localstorage-document.html" />
+
+  <template>
+    <custom-style>
+      <style include="uvalib-theme">
+        :host {
+          display: block;
+        }
+        [hidden] {
+          display: none;
+        }
+        vaadin-grid {
+          --vaadin-grid-cell: {
+            padding: 120px;
+          };
+          --vaadin-grid-body-cell: { border: 1px solid green; };
+          --vaadin-grid-cell-content: { border: 1px solid blue; };
+        }
+        .cell-title {
+          font-size: var(--uvalib-main-font-size-unit);
+          font-weight: 700;
+          /*
+          padding-top: var(--uvalib-spacing-unit);
+          */
+        }
+        .mobileDirectory .cell-title {
+          font-size: calc(var(--uvalib-main-font-size-unit)*1.2);
+          padding-top: var(--uvalib-spacing-unit);
+        }
+        .title-text {
+          font-size: var(--uvalib-main-font-size-unit);
+          font-weight: 700;
+        }
+        /* Adds Border and Text for Staff-only items */
+        [staff] {
+          border-left: calc(var(--uvalib-spacing-unit)/2) solid var(--uvalib-main-rotunda-orange);
+          padding-left: var(--uvalib-spacing-unit);
+          margin-left: calc(var(--uvalib-spacing-unit)*-1);
+        }
+        span[staff-text] {
+          @apply --h4;
+          font-size: var(--uvalib-main-font-size-unit);
+          color: var(--uvalib-main-jefferson-blue);
+          margin-top: calc(var(--uvalib-spacing-unit)/1.6);
+          display: inline-block;
+          text-transform: uppercase;
+          font-style: italic;
+        }
+        .mobileDirectory .title-text:first-of-type {
+          display:none;
+        }
+        .mobileDirectory {
+          margin-left: calc(var(--uvalib-spacing-unit)*-1);
+          margin-right: calc(var(--uvalib-spacing-unit)*-1);
+          padding-bottom: var(--uvalib-spacing-unit);
+          padding-left: calc(var(--uvalib-spacing-unit)*2);
+          padding-right: calc(var(--uvalib-spacing-unit)*2);
+        }
+        .mobileDirectory .title-text {
+          margin-top: var(--uvalib-spacing-unit);
+        }
+        .mobileDirectory ul {
+          margin-top: 0;
+          margin-bottom: 0;
+        }
+        .mobileDirectory:nth-child(odd) {
+            background-color: var(--color-light-gray);
+        }
+        /*MOBILE*/
+        iron-list {
+          width: 100%;
+        }
+
+        .cell {
+          padding-top: var(--uvalib-spacing-unit);
+          padding-bottom: var(--uvalib-spacing-unit);
+        }
+
+        vaadin-grid-sorter {
+          color: var(--uvalib-link-color);
+        }
+        vaadin-grid-sorter:visited {
+          color: var(--uvalib-link-color-visited);
+        }
+        vaadin-grid-sorter:hover {
+          text-decoration: underline;
+        }
+      </style>
+    </custom-style>
+
+    <!-- Data models -->
+    <template is="dom-if" if="[[staffView]]" restamp>
+      <uvalib-account-user id="accountuser" signed-in="{{_signedIn}}" lib-staff="{{_staffmember}}"></uvalib-account-user>
+      <app-localstorage-document key="uvalib-staff-view" data="{{_staffViewEnabled}}"></app-localstorage-document>
+    </template>
+    <uva-library last-response="{{_libraries}}"></uva-library>
+    <uva-library path="people" last-response="{{_people}}"></uva-library>
+    <uva-library path="teams" last-response="{{_teams}}"></uva-library>
+    <uva-library path="areas" last-response="{{_areas}}"></uva-library>
+    <uva-library path="services" last-response="{{_services}}"></uva-library>
+
+    <!-- Control section -->
+    <template is="dom-if" if="[[controls]]" restamp>
+      <uvalib-directory-controls query="{{_query}}" staff-view="{{staffView}}" staff-view-enabled="{{_staffViewEnabled}}" staffmember="{{_staffmember}}"
+          signed-in="{{_signedIn}}" on-signin="_signIn" on-signout="_signOut" searchPlaceholder="[[searchPlaceholder]]"></uvalib-directory-controls>
+    </template>
+
+    <!-- Grid for Larger screens -->
+    <vaadin-grid hidden$="[[_hideGrid(_data)]]" height-by-rows="[[largeScreen]]" theme="no-border row-stripes wrap-cell-content" aria-label="Service directory listing" items="[[_data]]">
+      <template is="dom-repeat" items="[[columns]]" as="col">
+        <vaadin-grid-column width="[[col.width]]" flex-grow="[[col.flexGrow]]">
+          <template class="header">
+            <template is="dom-if" if="[[col.sortable]]">
+              <vaadin-grid-sorter direction="[[col.sortable.dir]]" path="[[col.sortable.path]]">
+                <div class="title-text">[[col.title]]</div>
+              </vaadin-grid-sorter>
+            </template>
+            <template is="dom-if" if="[[!col.sortable]]">
+              <div class="title-text">[[col.title]]</div>
+            </template>
+          </template>
+          <template>
+            <div class="cell" staff$="[[_and(col.highlight,item.audience)]]" inner-h-t-m-l="[[_mkCell(col,item)]]"></div>
+          </template>
+        </vaadin-grid-column>
+      </template>
+
+    </vaadin-grid>
+
+    <!-- simple list for mobile sized screens -->
+    <template is="dom-if" if="[[smallScreen]]" restamp>
+      <iron-list items="[[_data]]" scroll-target="document" scroll-offset="200">
+        <template>
+          <div class="mobileDirectory" even$="[[_isEven(index)]]" staff$="[[item.audience]]">
+            <template is="dom-repeat" items="[[columns]]" as="col">
+              <template is="dom-if" if="[[_isNull(col,item)]]">
+                <div class="title-text">[[col.title]]</div>
+                <div class="service" inner-h-t-m-l="[[_mkCell(col,item)]]"></div>
+              </template>
+            </template>
+          </div>
+        </template>
+      </iron-list>
+    </template>
+
+  </template>
+
+  <script>
+    let uvalibDirectoryTemplate;
+
+    /**
+     * `uvalib-directory`
+     * UVA Library directory conponent
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/directory.html
+     */
+    class UvalibDirectory extends UvalibUiElement {
+      static get is() { return 'uvalib-directory'; }
+      static get properties() {
+        return Object.assign(super.properties,
+            {
+              controls: {
+                type: Boolean,
+                value: false,
+                observer: "_controlsChanged"
+              },
+              _query: {
+                type:String,
+              },
+              _libraries: {
+                type: Array,
+                notify: true,
+                observer: "_librariesChanged"
+              },
+              _people: {
+                type: Array,
+                notify: true,
+                observer: "_peopleChanged",
+                value: function(){return [];}
+              },
+              _teams: {
+                type: Array,
+                notify: true,
+                observer: "_teamsChanged"
+              },
+              _areas: {
+                type: Array,
+                notify: true,
+                observer: "_areasChanged"
+              },
+              _services: {
+                type:Array,
+                notify: true,
+                observer: "_servicesChanged"
+              },
+
+              _mainDataModel: {
+                type: String,
+                value: "_services"
+              },
+              _init: {
+                type: Boolean,
+                value: false
+              },
+
+              /* Does this directory have a staff only view */
+              staffView: {
+                type: Boolean,
+                value: false,
+                observer: "_staffViewChanged"
+              },
+              /* Has the user signed in / have a token */
+              _signedIn: Boolean,
+
+              _staffmember: {
+                type: Boolean,
+                value: false,
+                observer: "_staffmemberChange"
+              },
+              /* Should we show the user the staff view of the directory */
+              _staffViewEnabled: {
+                type: Boolean,
+                value: false,
+                notify: true,
+              },
+
+              searchPlaceholder: {
+                type: String,
+                value: "Search the directory"
+              },
+
+              _data: {
+                type: Array,
+                computed: "_makeData(_query,_staffViewEnabled,_libraries,_people,_teams,_areas,_services,smallScreen)"
+              },
+
+              columns: {
+                type: Array,
+                value: function(){ return [
+                  {
+                    title:"Title",
+                    sortable:{dir:'asc',path:'title'},
+                    width:"100%",
+                    highlight: true,
+                    mkCell:function(item){
+                      return `<div class="title">${item.title}</div>`;
+                    }
+                  }
+                ];}
+              },
+
+              _initBuffer: {
+                type: Array,
+                value: []
+              }
+
+            });
+      }
+
+      static get template() {
+        if (!uvalibDirectoryTemplate) {
+            // Retrieve this element's dom-module template
+            uvalibDirectoryTemplate = Polymer.DomModule.import(this.is, 'template');
+            // Clone the contents of the superclass template
+            let superTemplateContents = UvalibUiElement.template.content.cloneNode(true);
+            // Insert the superclass contents
+            uvalibDirectoryTemplate.content.insertBefore(superTemplateContents, null);
+        }
+        return uvalibDirectoryTemplate;
+      }
+
+      _hideGrid(arry) {
+        return this.smallScreen || !arry || arry.length<1;
+      }
+
+      /* Is the data loaded and ready to use */
+      _isDataReady() {
+        return (this[this._mainDataModel] && this[this._mainDataModel].length>0
+                    && this._libraries && this._libraries.length>0
+                    && this._services && this._services.length>0
+                    && this._people && this._people.length>0
+                    && this._areas && this._areas.length>0
+                    && this._teams && this._teams.length>0);
+      }
+
+      // filter out rows with audience=staff if _staffViewEnabled is false
+      _filterStaffRows(data){
+          return data.filter(function(row){return !row.audience || row.audience!="staff" || this._staffViewEnabled}.bind(this));
+      }
+
+      /* take care of any data model massaging here - this makes the array used in the directory */
+      _makeData(){
+        return (this._isDataReady())?
+          this._sortRows(this._filterRows(this._filterStaffRows(this[this._mainDataModel]))):
+          [];
+      }
+
+      /* sort rows on smallScreen (table takes care of sort for larger screens) */
+      _sortRows(rows){
+        return (this.smallScreen)?
+          rows.sort(function(a, b) {
+            var textA = a.title.toUpperCase();
+            var textB = b.title.toUpperCase();
+            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+          }):
+          rows;
+      }
+
+      /* filter rows by _query and other parameters */
+      _filterRows(rows){
+        return (this._query)?
+          rows.filter(row=>row.title.toLowerCase().indexOf(this._query.toLowerCase())>-1):
+          rows;
+      }
+
+      /* helper method to use mkCell method passed via parameter in templates */
+      _mkCell(col,item) {
+        if (item && col.mkCell) {
+          return col.mkCell(item,this);
+        }
+      }
+
+      /* helper method to use isNull method passed via parameter in templates */
+      _isNull(col,item){
+        if (!item) return false;
+        else if (col.isNull)
+          return col.isNull(item,this);
+        else return true;
+      }
+
+      /* observer to _libraries model */
+      _librariesChanged(){}
+
+      /* observer to _people model */
+      _peopleChanged(){}
+
+      /* observer to _teams model */
+      _teamsChanged(){}
+
+      /* observer to _areas model */
+      _areasChanged(){}
+
+      /* observer to _services model */
+      _servicesChanged(){}
+
+      /* observer to staffView and called on ready event, loads staffview import group if needed */
+      _staffViewChanged(){
+        if (!this.staffView) this._staffViewEnabled = false;
+        if (this._init && this.container && this.staffView)
+          this.importLazyGroup("uvalib-directory-staffview");
+        if (!this._init) this._initBuffer.push( this._staffViewChanged.bind(this) );
+      }
+
+      /* observer to _staffmember property */
+      _staffmemberChange() {}
+
+      /* override supers _screenChanged method, loads imports based on screensize */
+      _screenChanged(){
+        if (this._init)
+          // load vaadin grid for larger than small screens
+          if (!this.smallScreen)
+            this.importLazyGroup('uvalib-directory-table');
+          else
+            this.importLazyGroup('uvalib-directory-list');
+        else {
+          this._initBuffer.push( this._screenChanged.bind(this) );
+        }
+      }
+
+      ready(){
+        super.ready();
+        // the lazy import library only looks as far as the local dom for lazy-imports
+        // copy this elements imports into the element that is extending this
+        var query = 'link[rel=\'lazy-import\'][href]:not([href=\'\'])';
+        var links = Polymer.DomModule.import('uvalib-directory').querySelectorAll(query);
+        this.container = Polymer.DomModule.import(this.localName)
+        for (var i = 0; i < links.length; i++) {
+          this.container.appendChild(links[i])
+        }
+
+        this.initLazyLoad();
+      }
+
+      async initLazyLoad(init) {
+        if (!this.smallScreen)
+          await this.importLazyGroup('uvalib-directory-table');
+        else
+          await this.importLazyGroup('uvalib-directory-list');
+        if (this.container && this.controls)
+          await this.importLazyGroup("uvalib-directory-controls");
+        if (this.container && this.staffView)
+          await this.importLazyGroup("uvalib-directory-staffview");
+        this._init = (init==null)?true:init;
+        this._initBuffer.forEach(c=>c());
+      }
+
+      /* observer of controls property */
+      _controlsChanged() {
+        if (this._init && this.container && this.controls)
+          this.importLazyGroup("uvalib-directory-controls");
+//        if (!this._init) setTimeout(this._controlsChanged(),1000);
+        if (!this._init) this._initBuffer.push( this._controlsChanged.bind(this) );
+      }
+
+      /* signIn with netbadge method */
+      _signIn() {
+        this.shadowRoot.getElementById('accountuser').signInWithNetbadge();
+      }
+      /* signout method */
+      _signOut() {
+        this.shadowRoot.getElementById('accountuser').signOut();
+        this._staffViewEnabled = false;
+      }
+
+
+      _getLibrarySlug(uuid){
+        if (! this._libSlugs ) this._libSlugs = {}
+        return this._getListValue(this._libraries,this._libSlugs,uuid,'slug');
+      }
+      _getLibraryName(uuid){
+        if (! this._libNames ) this._libNames = {}
+        return this._getListValue(this._libraries,this._libNames,uuid,'title');
+      }
+      _getTeamName(uuid){
+        if (! this._teamNames ) this._teamNames = {}
+        return this._getListValue(this._teams,this._teamNames,uuid,'title');
+      }
+      _getAreaName(uuid){
+        if (! this._areaNames ) this._areaNames = {}
+        return this._getListValue(this._areas,this._areaNames,uuid,'title');
+      }
+      _getListValue(list,buffer,uuid,prop){
+        if (list && uuid) {
+          if (buffer[uuid]) return buffer[uuid];
+          var item = list.find( item => item.uuid === uuid);
+          if (item) {
+            buffer[uuid] = item[prop];
+            return item[prop];
+          }
+        }
+      }
+      _getPersonName(uuid){
+        if (this._people && uuid) {
+          var person = this._people.find( person => person.uuid === uuid);
+          if (person) return person.displayName;
+        }
+      }
+      _getPersonID(uuid){
+        if (this._people && uuid) {
+          var person = this._people.find( person => person.uuid === uuid);
+          if (person) return person.computingId;
+        }
+      }
+      _getLibs(libs){
+        if (!libs) {
+          return [];
+        } else {
+          libs = Array.isArray(libs)?libs:[libs];
+          return libs.map(function(lib){
+            lib.title = this._getLibraryName(lib.uuid);
+            return lib;
+          }.bind(this));
+        }
+      }
+
+      /* helper method for adding stripes to the rows */
+      _isEven(n) {
+        n = Number(n);
+        return n === 0 || !!(n && !(n%2));
+      }
+    }
+
+    window.customElements.define(UvalibDirectory.is, UvalibDirectory);
+  </script>
+</dom-module>

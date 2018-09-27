@@ -1,0 +1,80 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="uva-logos">
+  <template>
+    <style>
+      :host {
+        display: inline-block;
+        min-height: 22px;
+        padding: 10px 10px 10px 10px;
+      }
+      :host([variation~='centered']) {
+        min-height: 50px;
+      }
+      img {
+        height: 100%;
+      }
+    </style>
+    <img class$="[[variation]]" src$="[[importPath]]/images/[[_fileName]]">
+  </template>
+
+  <script>
+    /**
+     * `uva-logos`
+     * https://brand.virginia.edu/brand-essentials/web-guidelines/web-logos
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class UvaLogos extends Polymer.Element {
+      static get is() { return 'uva-logos'; }
+      static get properties() {
+        return {
+          /**
+           * There are three variations of the UVA logo that serve specific purposes: primary, centered and horizontal.
+           */
+          variation: {
+            type: String,
+            value: "horizontal",
+            reflectToAttribute: true
+          },
+          /**
+           * Use the reverse logo for applications on color or photographic backgrounds. Use the two-color reverse logo on solid blue backgrounds only. Always ensure that the background you choose provides sufficient contrast for the logo.
+           */
+          reverse: {
+            type: Boolean,
+            value: false
+          },
+          twoColor: {
+            type: Boolean,
+            value: false
+          },
+          /**
+           * Used internally to build the filename to use for the logo image
+           */
+          _fileName: {
+            type: String,
+            computed: "_whichFile(variation,reverse,twoColor)"
+          }
+        };
+      }
+
+      _whichFile(variation,reverse,twoColor) {
+        var v = (variation==="horizontal")?
+                  "horiz":
+                  (variation==="primary")?
+                    "primary":
+                    (variation==="centered")?
+                      "centrd":"",
+            r = (!reverse)?
+                  "":
+                  (twoColor)?
+                    "_ko":"_white";
+        return "uva_"+v+"_rgb"+r+".png";
+      }
+    }
+
+    window.customElements.define(UvaLogos.is, UvaLogos);
+  </script>
+</dom-module>

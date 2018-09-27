@@ -1,0 +1,56 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="uvalib-springshare-chat">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <script src="https://v2.libanswers.com/load_chat.php?hash=1a784443d6215a140f28fc6903b4a675"></script>
+    <div id="[[_chatId]]"></div>
+  </template>
+
+  <script>
+    /**
+     * `uvalib-springshare-chat`
+     *
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class UvalibSpringshareChat extends Polymer.Element {
+      static get is() { return 'uvalib-springshare-chat'; }
+      static get properties() {
+        return {
+          _chatId: {
+            type: String,
+            value: 'libchat_1a784443d6215a140f28fc6903b4a675'
+          }
+        };
+      }
+      ready(){
+        super.ready();
+        var cont = document.createElement("div");
+        cont.id = this._chatId;
+        cont.style.cssText = 'visibility:hidden; display:absolute; width: 100%; height: 100%;';
+        document.body.appendChild(cont);
+        setTimeout(this._snatchIframe.bind(this),5000);
+      }
+      _snatchIframe(){
+        var iframe = document.getElementById(this._chatId);
+        if (!iframe) setTimeout(this._snatchIframe.bind(this),5000);
+        else {
+          var height = iframe.querySelector('iframe').height;
+          this.shadowRoot.getElementById(this._chatId).replaceWith(iframe);
+          iframe.style.cssText = 'display: block; visibility:visible;';
+          iframe.querySelector('iframe').width = "100%";
+          iframe.querySelector('iframe').height = "475px;";
+        }
+      }
+    }
+
+    window.customElements.define(UvalibSpringshareChat.is, UvalibSpringshareChat);
+  </script>
+</dom-module>

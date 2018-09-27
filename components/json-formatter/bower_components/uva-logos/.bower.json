@@ -1,0 +1,18 @@
+{
+  "name": "uva-logos",
+  "description": "https://brand.virginia.edu/brand-essentials/web-guidelines/web-logos",
+  "main": "uva-logos.html",
+  "dependencies": {
+    "uva-elements": "uva-components/uva-elements#master"
+  },
+  "homepage": "https://github.com/uva-components/uva-logos",
+  "_release": "71d75784d3",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "71d75784d3b9e3ea19f4912f4d605931d1784330"
+  },
+  "_source": "https://github.com/uva-components/uva-logos.git",
+  "_target": "master",
+  "_originalSource": "uva-components/uva-logos"
+}

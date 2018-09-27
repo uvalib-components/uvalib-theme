@@ -1,0 +1,14 @@
+{
+  "name": "uvalib-theme",
+  "description": "Common UVA Library styles",
+  "main": "uvalib-theme.html",
+  "dependencies": {
+    "uvalib-elements": "uvalib-components/uvalib-elements#master"
+  },
+  "resolutions": {
+    "lodash": "^4.17.4",
+    "paper-icon-button": "^2.0.1",
+    "webcomponentsjs": "^1.1.1",
+    "polymer": "^2.5.0"
+  }
+}

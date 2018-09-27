@@ -1,0 +1,23 @@
+{
+  "name": "uvalib-exhibit-ui",
+  "description": "collection of exhibit objects for display in a user interface.",
+  "main": "uvalib-exhibit-ui.html",
+  "dependencies": {
+    "uvalib-elements": "uvalib-components/uvalib-elements#master"
+  },
+  "devDependencies": {
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
+    "web-component-tester": "Polymer/web-component-tester#^6.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
+  },
+  "homepage": "https://github.com/uvalib-components/uvalib-exhibit-ui",
+  "_release": "36b5e3a336",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "36b5e3a3360a241699b2abf9b5fe4755055cdc77"
+  },
+  "_source": "https://github.com/uvalib-components/uvalib-exhibit-ui.git",
+  "_target": "master",
+  "_originalSource": "uvalib-components/uvalib-exhibit-ui"
+}

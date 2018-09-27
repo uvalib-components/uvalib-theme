@@ -1,0 +1,372 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../uvalib-theme/uvalib-icons.html">
+<link rel="import" href="../uvalib-theme/uvalib-theme.html">
+
+<!--
+An element providing Library Twitter Link.
+
+Example:
+
+    <uvalib-twitter-link></uvalib-twitter-link>
+
+@element uvalib-twitter-link
+@demo demo/index.html
+@hero hero.svg
+-->
+
+<dom-module id="uvalib-twitter-link">
+  <template>
+    <style is="custom-style" include="uvalib-theme">
+      :host {
+        display: block;
+        box-sizing: border-box;
+        height: 50px;
+        width: 50px;
+      }
+      a {
+        color: var(--specialcolor,currentcolor);
+      }
+      a:hover {
+        @apply --link-hover;
+      }
+      paper-icon-button {
+        height:100%;
+        width:100%;
+        color: var(--specialcolor,currentcolor);
+      }
+      paper-icon-button:focus {
+        @apply --link-focus;
+      }
+    </style>
+
+    <a href$="{{href}}" tabindex="-1">
+      <paper-icon-button icon="twitter-square" alt="{{alt}}"></paper-icon-button>
+    </a>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'uvalib-twitter-link',
+
+      properties: {
+        /**
+         * URI for the library twitter account.
+         */
+        href: {
+          type: String,
+          value: "https://twitter.com/UVaLibrary"
+        },
+        /**
+         * Alternate text to display if the icon is not found.
+         */
+        alt: {
+          type: String,
+          value: "Twitter"
+        }
+      }
+    });
+  </script>
+</dom-module>
+
+<!--
+An element providing a Library Facebook Link.
+
+Example:
+
+    <uvalib-facebook-link></uvalib-facebook-link>
+
+@element uvalib-facebook-link
+@demo demo/index.html
+@hero hero.svg
+-->
+
+<dom-module id="uvalib-facebook-link">
+  <template>
+    <style is="custom-style" include="uvalib-theme">
+      :host {
+        display: block;
+        box-sizing: border-box;
+        height: 50px;
+        width: 50px;
+      }
+      a {
+        color: var(--specialcolor,currentcolor);
+      }
+      a:hover {
+        @apply --link-hover;
+      }
+      paper-icon-button {
+        height:100%;
+        width:100%;
+        color: var(--specialcolor,currentcolor);
+      }
+      paper-icon-button:focus {
+        @apply --link-focus;
+      }
+    </style>
+
+    <a href$="{{href}}" tabindex="-1">
+      <paper-icon-button icon="facebook-square" alt$="{{alt}}"></paper-icon-button>
+    </a>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'uvalib-facebook-link',
+
+      properties: {
+        /**
+         * URI for the library facebook account.
+         */
+        href: {
+          type: String,
+          value: "https://www.facebook.com/University-of-Virginia-Library-136530559704906/"
+        },
+        /**
+         * Alternate text to display if the icon is not found.
+         */
+        alt: {
+          type: String,
+          value: "Facebook"
+        }
+      }
+    });
+  </script>
+</dom-module>
+
+<!--
+An element providing a Library Instagram Link.
+
+Example:
+
+    <uvalib-instagram-link></uvalib-instagram-link>
+
+@element uvalib-instagram-link
+@demo demo/index.html
+@hero hero.svg
+-->
+
+<dom-module id="uvalib-instagram-link">
+  <template>
+    <style is="custom-style" include="uvalib-theme">
+      :host {
+        display: block;
+        box-sizing: border-box;
+        height: 50px;
+        width: 50px;
+      }
+      a {
+        color: var(--specialcolor,currentcolor);
+      }
+      a:hover {
+        @apply --link-hover;
+      }
+      paper-icon-button {
+        height:100%;
+        width:100%;
+        color: var(--specialcolor,currentcolor);
+      }
+      paper-icon-button:focus {
+        @apply --link-focus;
+      }
+    </style>
+
+    <a href$="{{href}}" tabindex="-1">
+      <paper-icon-button icon="instagram" alt$="{{alt}}"></paper-icon-button>
+    </a>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'uvalib-instagram-link',
+
+      properties: {
+        /**
+         * URI for the library instagram account.
+         */
+        href: {
+          type: String,
+          value: "https://www.instagram.com/uvalibrary/"
+        },
+        /**
+         * Alternate text to display if the icon is not found.
+         */
+        alt: {
+          type: String,
+          value: "Instagram"
+        }
+      }
+    });
+  </script>
+</dom-module>
+
+<!--
+An element providing a Library Pinterest Link.
+
+Example:
+
+    <uvalib-pinterest-link></uvalib-pinterest-link>
+
+@element uvalib-pinterest-link
+@demo demo/index.html
+@hero hero.svg
+-->
+
+<dom-module id="uvalib-pinterest-link">
+  <template>
+    <style is="custom-style" include="uvalib-theme">
+      :host {
+        display: block;
+        box-sizing: border-box;
+        height: 50px;
+        width: 50px;
+      }
+      a {
+        color: var(--specialcolor,currentcolor);
+      }
+      a:hover {
+        @apply --link-hover;
+      }
+      paper-icon-button {
+        height:100%;
+        width:100%;
+        color: var(--specialcolor,currentcolor);
+      }
+      paper-icon-button:focus {
+        @apply --link-focus;
+      }
+    </style>
+
+    <a href$="{{href}}" tabindex="-1">
+      <paper-icon-button icon="pinterest-square" alt$="{{alt}}"></paper-icon-button>
+    </a>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'uvalib-pinterest-link',
+
+      properties: {
+        /**
+         * URI for the library Pinterest account.
+         */
+        href: {
+          type: String,
+          value: "https://www.pinterest.com/uvalibrary/"
+        },
+        /**
+         * Alternate text to display if the icon is not found.
+         */
+        alt: {
+          type: String,
+          value: "Pinterest"
+        }
+      }
+    });
+  </script>
+</dom-module>
+
+<!--
+An element providing a social link selection Link based on alternate text.
+
+Example:
+
+    <uvalib-social-link alt="YouTube" href="https://www.youtube.com/channel/UCjy7Xanb1YeFGvEXvdu6Uow"></uvalib-social-link>
+
+@element uvalib-social-link
+@demo demo/index.html
+@hero hero.svg
+-->
+
+<dom-module id="uvalib-social-link">
+  <template>
+    <style is="custom-style" include="uvalib-theme">
+      :host {
+        display: block;
+        box-sizing: border-box;
+        height: 50px;
+        width: 50px;
+      }
+      a {
+        color: var(--specialcolor,currentcolor);
+      }
+      a:hover {
+        @apply --link-hover;
+      }
+      paper-icon-button {
+        height:100%;
+        width:100%;
+        color: var(--specialcolor,currentcolor);
+      }
+      paper-icon-button:focus {
+        @apply --link-focus;
+      }
+    </style>
+    <template is="dom-if" if="[[_isTwitter(alt)]]" restamp>
+      <uvalib-twitter-link href$="[[href]]" alt$="[[alt]]" style$="[[style]]"></uvalib-twitter-link>
+    </template>
+    <template is="dom-if" if="[[_isFacebook(alt)]]" restamp>
+      <uvalib-facebook-link href$="[[href]]" alt$="[[alt]]" style$="[[style]]"></uvalib-facebook-link>
+    </template>
+    <template is="dom-if" if="[[_isInstagram(alt)]]" restamp>
+      <uvalib-instagram-link href$="[[href]]" alt$="[[alt]]" style$="[[style]]"></uvalib-instagram-link>
+    </template>
+    <template is="dom-if" if="[[_isPinterest(alt)]]" restamp>
+      <uvalib-pinterest-link href$="[[href]]" alt$="[[alt]]" style$="[[style]]"></uvalib-pinterest-link>
+    </template>
+    <template is="dom-if" if="[[_isOther(alt)]]" restamp>
+      <a href$="[[href]]" tabindex="-1" style$="[[style]]">[[alt]]</a>
+    </template>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'uvalib-social-link',
+
+      properties: {
+        /**
+         * URI for the library social media account.
+         */
+        href: {
+          type: String
+        },
+        /**
+         * Text used to identify the social media link. If text contains one of the supported links (Twitter, Facebook, Instagram, or Pinterest) then an icon is displayed in place of the text.
+         */
+        alt: {
+          type: String
+        },
+        style: {
+          type: String,
+          value: ""
+        }
+
+      },
+
+      _isTwitter: function(txt) {
+        return (txt.toLowerCase().indexOf('twitter') !== -1) ? 1 : 0;
+      },
+      _isFacebook: function(txt) {
+        return (txt.toLowerCase().indexOf('facebook') !== -1) ? 1 : 0;
+      },
+      _isInstagram: function(txt) {
+        return (txt.toLowerCase().indexOf('instagram') !== -1) ? 1 : 0;
+      },
+      _isPinterest: function(txt) {
+        return (txt.toLowerCase().indexOf('pinterest') !== -1) ? 1 : 0;
+      },
+      _isOther: function(txt) {
+        if ((txt.toLowerCase().indexOf('twitter') == -1) &&
+          (txt.toLowerCase().indexOf('facebook') == -1) &&
+          (txt.toLowerCase().indexOf('instagram') == -1) &&
+          (txt.toLowerCase().indexOf('pinterest') == -1)) {
+          return 1;
+        } else {
+          return 0;
+        }
+      }
+
+    });
+  </script>
+</dom-module>

@@ -1,0 +1,34 @@
+{
+  "name": "@vaadin/vaadin-grid",
+  "version": "5.1.0",
+  "description": "A free, flexible and high-quality Web Component for showing large amounts of tabular data",
+  "main": "vaadin-grid.html",
+  "author": "Vaadin Ltd",
+  "license": "Apache-2.0",
+  "repository": "vaadin/vaadin-grid",
+  "bugs": {
+    "url": "https://github.com/vaadin/vaadin-grid/issues"
+  },
+  "homepage": "https://vaadin.com/components",
+  "devDependencies": {
+    "@vaadin/vaadin-component-dev-dependencies": "^1.0.0"
+  },
+  "scripts": {
+    "test": "wct",
+    "preversion": "gulp version:update"
+  },
+  "keywords": [
+    "vaadin",
+    "elements",
+    "components",
+    "webcomponents",
+    "web-components",
+    "gwt",
+    "grid",
+    "datagrid",
+    "datatable",
+    "data-grid",
+    "data-table"
+  ],
+  "dependencies": {}
+}

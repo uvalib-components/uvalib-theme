@@ -1,0 +1,36 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="uva-page">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+  </template>
+
+  <script>
+    /**
+     * `uva-page`
+     * UVA Brand Complient page template
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class UvaPage extends Polymer.Element {
+      static get is() { return 'uva-page'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'uva-page'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(UvaPage.is, UvaPage);
+  </script>
+</dom-module>

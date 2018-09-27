@@ -1,0 +1,161 @@
+<link rel="import" href="../uvalib-theme/uvalib-ui-element.html">
+<link rel="import" href="../uva-helper-libs/polyfills/object.assign.html">
+<link rel="import" href="../uva-models/uva-library-alerts.html">
+<link rel="import" href="../polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="../iron-collapse/iron-collapse.html">
+<link rel="import" href="../marked-element/marked-element.html">
+<link rel="import" href="../paper-button/paper-button.html">
+
+<dom-module id="uvalib-alerts">
+  <template>
+    <custom-style>
+      <style include="uvalib-theme">
+        :host {
+          display: block;
+        }
+        .alert-item {
+          min-height: 41px;
+          background-color: var(--color-primary-orange);
+          border-width: 2px 0 0 0;
+          border-color: var(--color-white);
+          border-style: solid;
+          color: var(--color-white);
+          @apply --layout-horizontal;
+          @apply --layout-center-justified;
+        }
+        .alert-item div {
+          width: 100%;
+          max-width: var(--uvalib-display-width-max);
+          padding: .15em;
+        }
+        .alert-item.alert1 {
+          background-color: var(--color-emergency-red);
+        }
+        .alert-item.alert2 {
+          background-color: var(--color-primary-orange);
+        }
+        .alert-item.alert3 {
+          background-color: var(--uvalib-orange-200);
+          color: var(--uvalib-black);
+        }
+        .alert-item.alert1 p a, .alert-item.alert2 p a {
+          text-decoration: underline;
+          color: var(--color-white);
+        }
+        .alert-item.alert3 p a {
+          text-decoration: underline;
+          color: var(--color-black);
+        }
+        .alert-item.alert1 p a:hover, .alert-item.alert2 p a:hover, .alert-item.alert3 p a:hover {
+          font-style: italic;
+        }
+        .alert-item.alert1 p a:focus, .alert-item.alert2 p a:focus, .alert-item.alert3 p a:focus {
+          outline: var(--color-accessibility-outline-dark-bg) dotted 3px;
+          padding: .15em;
+        }
+        .alert-item.alert3 paper-button {
+          color: var(--uvalib-black);
+        }
+
+        .alert-head {
+          @apply --layout-horizontal;
+        }
+        .alert-title {
+          @apply --layout-flex;
+        }
+        [slot="markdown-html"] p {
+          margin:0;
+          padding:0;
+        }
+        paper-button {
+          color: var(--color-white);
+          position: static;
+          z-index: auto;
+        }
+        .hidden {
+          display: none;
+        }
+      </style>
+    </custom-style>
+
+    <uva-library-alerts id="alertsModel" alerts="{{_alerts}}" seen-count="{{seenCount}}" seen="{{_alertsSeen}}"></uva-library-alerts>
+    <dom-repeat items="[[_alerts]]" as="alert">
+      <template>
+        <iron-collapse opened$="[[!alert.seen]]" on-opened-changed="_sizeChanged" on-transitioning-changed="_sizeChanged">
+          <div class$="alert-item [[alert.severity]]" uuid="[[alert.uuid]]">
+            <div>
+            <div class="alert-head">
+              <div class="alert-title" on-click="_toggleIt">[[alert.title]]</div>
+              <template is="dom-if" if="[[!_isHot(alert.severity)]]">
+                <paper-button class="toggle" on-click="_toggleIt">More</paper-button>
+                <paper-button class="toggle hidden" on-click="_toggleIt">Less</paper-button>
+                <paper-button on-click="_dismissIt">Dismiss</paper-button>
+              </template>
+            </div>
+            <iron-collapse class="body-collapse" opened$="[[_isHot(alert.severity)]]" on-opened-changed="_sizeChanged" on-transitioning-changed="_sizeChanged">
+              <div class="alert-body">
+                <marked-element markdown="[[alert.body]]">
+                  <div slot="markdown-html"></div>
+                </marked-element>
+              </div>
+            </iron-collapse>
+            </div>
+          </div>
+        </iron-collapse>
+      </template>
+    </dom-repeat>
+  </template>
+
+  <script>
+    /**
+     * `uvalib-alerts`
+     * Manages the UX for Library Web Alerts
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class UvalibAlerts extends UvalibUiElement {
+      static get is() { return 'uvalib-alerts'; }
+      static get properties() {
+        return Object.assign(super.properties,{
+          _alerts: Array,
+          _alertsSeen: Array,
+          seenCount: {
+            type: Number,
+            notify: true
+          }
+        });
+      }
+      //Concat the this elements template with the parents
+      static get template() {
+        var parentTemplate = UvalibUiElement.template.cloneNode(true);
+        var childTemplate = Polymer.DomModule.import('uvalib-alerts', 'template');
+        parentTemplate.content.insertBefore(childTemplate.content,null);
+        return parentTemplate;
+      }
+      _isHot(severity){
+        return (severity==="alert1");
+      }
+      _toggleIt(e){
+        e.currentTarget.parentElement.parentElement.querySelector('.body-collapse').toggle();
+        e.currentTarget.parentElement.querySelectorAll('.toggle').forEach(function(el) {
+          el.classList.toggle("hidden");
+          if (!el.classList.contains("hidden")) el.focus();
+        });
+      }
+      _dismissIt(e){
+        var uuid = e.currentTarget.parentElement.parentElement.parentElement.uuid;
+        this.$.alertsModel.setSeen(uuid);
+      }
+      unseeAll(){
+        this.set('_alertsSeen',[]);
+      }
+      _sizeChanged(){
+        this.dispatchEvent(new CustomEvent('size-changed', {detail: {height: this.clientHeight}}));
+      }
+    }
+
+    window.customElements.define(UvalibAlerts.is, UvalibAlerts);
+  </script>
+</dom-module>

@@ -1,0 +1,18 @@
+{
+  "name": "uva-page",
+  "description": "UVA Brand Complient page template",
+  "main": "uva-page.html",
+  "dependencies": {
+    "uva-elements": "uva-components/uva-elements#master"
+  },
+  "homepage": "https://github.com/uva-components/uva-page",
+  "_release": "c9728e2f82",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "c9728e2f82011d9e6984dfd4ae0500cfe6c3c2e3"
+  },
+  "_source": "https://github.com/uva-components/uva-page.git",
+  "_target": "master",
+  "_originalSource": "uva-components/uva-page"
+}

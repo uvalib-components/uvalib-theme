@@ -1,0 +1,80 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../paper-fab/paper-fab.html">
+<link rel="import" href="../uvalib-theme/uvalib-theme.html">
+<link rel="import" href="../uvalib-theme/uvalib-scroll-top-style.html">
+<link rel="import" href="../uvalib-theme/uvalib-icons.html">
+
+<dom-module id="uvalib-scroll-top">
+  <template>
+    <custom-style>
+      <style include="uvalib-theme uvalib-scroll-top-style">
+      </style>
+    </custom-style>
+
+    <paper-fab icon="angle-up" title="top" show$="[[_show]]" on-click="topFunction"></paper-fab>
+    <!-- <paper-fab label="Top" show$="[[_show]]" on-click="topFunction"></paper-fab> -->
+
+  </template>
+
+  <script>
+    /**
+     * `uvalib-scroll-top`
+     * scroll to top
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class UVALibScrollTop extends Polymer.Element {
+
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+        var self = this;
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () { self.scrollFunction() };
+      }
+
+      scrollFunction() {
+        if (this.enabled == "true") {
+          if (document.body.scrollTop > this.activatewhen || document.documentElement.scrollTop > this.activatewhen) {
+            this._show = true;
+          } else {
+            this._show = false;
+          }
+        }
+      }
+
+      //When the user clicks on the button, scroll to the top of the document
+      topFunction() {
+        document.body.scrollTop = 0; // For Chrome, Safari and Opera
+        document.documentElement.scrollTop = 0; // For IE and Firefox
+        window.focus();
+        this.dispatchEvent(new CustomEvent('uvalib-analytics-event', {detail: {uvalibScrollTop: 'backToTop'},bubbles: true, composed: true}));
+      }
+
+      static get is() { return 'uvalib-scroll-top'; }
+      static get properties() {
+        return {
+          activatewhen: {
+            type: String,
+            notify: true,
+            value: "100"
+          },
+          enabled: {
+            type: String,
+            notify: true,
+            value: "true"
+          },
+          _show: Boolean
+        };
+      }
+    }
+
+    window.customElements.define(UVALibScrollTop.is, UVALibScrollTop);
+  </script>
+</dom-module>

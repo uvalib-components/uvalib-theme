@@ -1,0 +1,11 @@
+{
+  "name": "uvalib-logos",
+  "description": "UVA Library Web Logo Variations",
+  "main": "uvalib-logos.html",
+  "dependencies": {
+    "uvalib-elements": "uvalib-components/uvalib-elements#master"
+  },
+  "resolutions": {
+    "lodash": "^4.17.4"
+  }
+}

@@ -1,0 +1,32 @@
+<!doctype html>
+
+<html>
+  <head>
+    <title>uva-icon-link test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../uva-icon-link.html">
+  </head>
+  <body>
+
+    <test-fixture id="basic">
+      <template>
+        <uva-icon-link></uva-icon-link>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('uva-icon-link', function() {
+
+        test('instantiating the element works', function() {
+          var element = fixture('basic');
+          assert.equal(element.is, 'uva-icon-link');
+        });
+
+      });
+    </script>
+  </body>
+</html>

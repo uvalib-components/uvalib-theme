@@ -1,0 +1,36 @@
+{
+  "name": "uvalib-account",
+  "authors": [
+    "Doug Chestnut <dougchestnut@gmail.com>"
+  ],
+  "description": "An element to handle login/logout and account properties.",
+  "keywords": [
+    "web-component",
+    "polymer"
+  ],
+  "main": "uvalib-account-auth.html",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/uvalib-components/uvalib-account/",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "uvalib-elements": "uvalib-components/uvalib-elements#master",
+    "paper-slider": "PolymerElements/paper-slider#^2.0.7"
+  },
+  "resolutions": {
+    "polymer": "^2.5.0",
+    "webcomponentsjs": "^1.1.1",
+    "lodash": "^4.17.4"
+  },
+  "_release": "03fe9ba233",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "03fe9ba233bc95d84fd509e6765d986ebae81831"
+  },
+  "_source": "https://github.com/uvalib-components/uvalib-account.git",
+  "_target": "master",
+  "_originalSource": "uvalib-components/uvalib-account"
+}

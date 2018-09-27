@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>uvalib-nav demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+    <link rel="import" href="../uvalib-nav.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+    </style>
+  </head>
+  <body>
+
+    <div class="vertical-section-container">
+      <h3>Basic uvalib-nav Demo</h3>
+      <demo-snippet>
+        <template>
+          <uvalib-nav include-search
+            navigation='[
+              {"label": "About", "icon": "university", "url": "//www.library.virginia.edu/about-uva-library/"},
+              {"label": "Research", "icon": "graduation-cap", "url": "//www.library.virginia.edu/research/"},
+              {"label": "Collections", "icon": "book", "url": "//www.library.virginia.edu/collections/"},
+              {"label": "Services", "icon": "cloud", "url": "//www.library.virginia.edu/services/"}
+            ]'
+            >
+          </uvalib-nav>
+        </template>
+      </demo-snippet>
+    </div>
+
+    <div class="vertical-section-container">
+      <h3>Mobile uvalib-nav Demo</h3>
+      <demo-snippet>
+        <template>
+          <uvalib-nav stacked
+            navigation='[
+              {"label": "About", "icon": "university", "url": "//www.library.virginia.edu/about-uva-library/"},
+              {"label": "Research", "icon": "graduation-cap", "url": "//www.library.virginia.edu/research/"},
+              {"label": "Collections", "icon": "book", "url": "//www.library.virginia.edu/collections/"},
+              {"label": "Services", "icon": "cloud", "url": "//www.library.virginia.edu/services/"}
+            ]'
+            >
+          </uvalib-nav>
+        </template>
+      </demo-snippet>
+    </div>
+
+  </body>
+</html>

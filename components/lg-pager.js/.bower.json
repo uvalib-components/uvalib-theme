@@ -1,0 +1,36 @@
+{
+  "name": "lg-pager.js",
+  "version": "1.0.0",
+  "description": "Pager module for lightgallery.",
+  "main": [
+    "dist/lg-pager.min.js"
+  ],
+  "keywords": [
+    "gallery",
+    "lightbox",
+    "image",
+    "thumbnail",
+    "pager"
+  ],
+  "authors": [
+    "Sachin N <sachi77n@gmail.com>"
+  ],
+  "homepage": "http://sachinchoolur.github.io/lg-pager.js/",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sachinchoolur/lg-pager.js.git"
+  },
+  "license": "GPLv3",
+  "ignore": [
+    "README.md"
+  ],
+  "_release": "1.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.0.0",
+    "commit": "5f40f3ebb4c4ea2628e2c31e228ccf9acb8321e0"
+  },
+  "_source": "https://github.com/sachinchoolur/lg-pager.js.git",
+  "_target": "^1.0.0",
+  "_originalSource": "lg-pager.js"
+}

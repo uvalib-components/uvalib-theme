@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>UVA Library</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script>
+      Polymer = {dom: 'shadow'};
+
+      (function() {
+        if ('registerElement' in document
+            && 'import' in document.createElement('link')
+            && 'content' in document.createElement('template')) {
+          // platform is good!
+        } else {
+          document.write( '<script src="../../webcomponentsjs/webcomponents-lite.min.js">\x3C/script>')
+        }
+      })();
+    </script>
+
+    <link rel="import" href="../uvalib-alt-page.html">
+    <custom-style>
+      <style is="custom-style">
+        body {
+          margin:0;
+        }
+        .full {
+          max-width: 95%;
+        }
+      </style>
+    </custom-style>
+  </head>
+  <body unresolved>
+    <uvalib-alt-page root-path="/foobar/" title="Hello World" sub-title="A quick demo page"
+                    image="https://staffnews.staffweb.lib.virginia.edu/wp-content/uploads/sites/3/2016/11/header_image_rotunda.jpg">
+      <h1>Hello</h1>
+      <p>World</p>
+      <div style="height:2000px"></div>
+    </uvalib-alt-page>
+  </body>
+</html>

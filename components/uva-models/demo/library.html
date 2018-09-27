@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>uva-library demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../polymer/lib/elements/dom-bind.html">
+    <link rel="import" href="../../polymer/lib/elements/dom-repeat.html">
+    <link rel="import" href="../uva-library.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+
+      <h3>Basic uva-library demo for resource cards</h3>
+      <demo-snippet>
+        <template>
+
+          <dom-bind>
+            <template>
+              <uva-library path="web/resource-cards" last-response="{{response}}"></uva-library>
+              <ul>
+                <dom-repeat items="[[response]]">
+                  <template>
+                    <li>[[item.title]]</li>
+                  </template>
+                </dom-repeat>
+              </ul>
+            </template>
+          </dom-bind>
+
+        </template>
+      </demo-snippet>
+
+      <h3>Basic uva-library demo for web banners</h3>
+      <demo-snippet>
+        <template>
+
+          <dom-bind>
+            <template>
+              <uva-library path="web/banners" last-response="{{response}}"></uva-library>
+              <ul>
+                <dom-repeat items="[[response]]">
+                  <template>
+                    <li>[[item.title]]</li>
+                  </template>
+                </dom-repeat>
+              </ul>
+            </template>
+          </dom-bind>
+        </template>
+      </demo-snippet>
+
+      <h3>Basic uva-library demo for Content Blocks</h3>
+      <demo-snippet>
+        <template>
+
+          <dom-bind>
+            <template>
+              <uva-library path="web/blocks" last-response="{{response}}"></uva-library>
+              <ul>
+                <dom-repeat items="[[response]]">
+                  <template>
+                    <li>[[item.title]]</li>
+                  </template>
+                </dom-repeat>
+              </ul>
+            </template>
+          </dom-bind>
+        </template>
+      </demo-snippet>
+
+      <h3>Basic uva-library demo for Content Blocks with UUID</h3>
+      <demo-snippet>
+        <template>
+          <dom-bind>
+            <template>
+              <uva-library path="web/blocks" item="{{item}}" uuid="697d5fca-d2f6-4f27-9ab5-ed1af7f9f5d1"></uva-library>
+              <h3>[[item.title]]</h3>
+            </template>
+          </dom-bind>
+        </template>
+      </demo-snippet>
+
+      <h3>Basic uva-library demo for Alerts</h3>
+      <demo-snippet>
+        <template>
+
+          <dom-bind>
+            <template>
+              <uva-library poll="60000" path="alerts" last-response="{{response}}"></uva-library>
+              <ul>
+                <dom-repeat items="[[response]]">
+                  <template>
+                    <li>[[item.title]]</li>
+                  </template>
+                </dom-repeat>
+              </ul>
+            </template>
+          </dom-bind>
+
+        </template>
+      </demo-snippet>
+
+      <h3>Basic uva-library demo for Files</h3>
+      <demo-snippet>
+        <template>
+
+          <dom-bind>
+            <template>
+              <uva-library path="files" last-response="{{response}}"></uva-library>
+              <ul>
+                <dom-repeat items="[[response]]">
+                  <template>
+                    <li>[[item.filename]]</li>
+                  </template>
+                </dom-repeat>
+              </ul>
+            </template>
+          </dom-bind>
+
+        </template>
+      </demo-snippet>
+
+    </div>
+  </body>
+</html>

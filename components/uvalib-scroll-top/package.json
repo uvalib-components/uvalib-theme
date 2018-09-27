@@ -1,0 +1,19 @@
+{
+  "name": "uvalib-scroll-top",
+  "version": "1.0.0",
+  "description": "scroll to top",
+  "main": "uvalib-scroll-top.html",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uvalib-components/uvalib-scroll-top"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-accessibility": "^3.0.1",
+    "gulp-rename": "^1.2.2",
+    "run-sequence": "^1.2.2"
+  }
+}

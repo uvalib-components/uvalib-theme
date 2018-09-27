@@ -1,0 +1,15 @@
+{
+  "name": "json-formatter",
+  "description": "formats JSON",
+  "main": "json-formatter.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^2.3.1",
+    "json-human": "^0.1.1",
+    "uva-helper-libs": "uva-components/uva-helper-libs#master"
+  },
+  "devDependencies": {
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
+    "web-component-tester": "Polymer/web-component-tester#^6.4.1",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.22"
+  }
+}

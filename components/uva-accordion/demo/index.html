@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>uva-accordion demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../paper-card/paper-card.html">
+    <link rel="import" href="../uva-accordion.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+      </style>
+    </custom-style>
+  </head>
+  <body>
+
+    <div class="vertical-section-container centered">
+      <h3>Basic uva-accordion demo</h3>
+      <demo-snippet>
+        <template>
+          <uva-accordion>
+            <uva-accordion-item heading-level="2">
+              <div slot="heading">Heading 1</div>
+              <div slot="body">Some Content Here!</div>
+            </uva-accordion-item>
+            <uva-accordion-item heading-level="2">
+              <div slot="heading">Heading 2</div>
+              <div slot="body">Some Content Here!</div>
+            </uva-accordion-item>
+          </uva-accordion>
+        </template>
+      </demo-snippet>
+
+      <h3>Default selection demo</h3>
+      <demo-snippet>
+        <template>
+          <uva-accordion>
+            <uva-accordion-item opened heading-level="2">
+              <div slot="heading">Heading 1</div>
+              <div slot="body">Some Content Here!</div>
+            </uva-accordion-item>
+            <uva-accordion-item heading-level="2">
+              <div slot="heading">Heading 2</div>
+              <div slot="body">Some Content Here!</div>
+            </uva-accordion-item>
+          </uva-accordion>
+        </template>
+      </demo-snippet>
+
+      <h3>Multiple selection demo</h3>
+      <demo-snippet>
+        <template>
+          <uva-accordion multi>
+            <uva-accordion-item opened heading-level="2">
+              <div slot="heading">Heading 1</div>
+              <div slot="body">Some Content Here!</div>
+            </uva-accordion-item>
+            <uva-accordion-item heading-level="2">
+              <div slot="heading">Heading 2</div>
+              <div slot="body">Some Content Here!</div>
+            </uva-accordion-item>
+          </uva-accordion>
+        </template>
+      </demo-snippet>
+
+    </div>
+  </body>
+</html>

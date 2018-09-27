@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>uva-accordion demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../paper-card/paper-card.html">
+    <link rel="import" href="../../paper-button/paper-button.html">
+    <link rel="import" href="../uva-accordion.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+      </style>
+    </custom-style>
+  </head>
+  <body>
+
+    <div class="vertical-section-container centered">
+
+      <h3>Wrapped in a card demo</h3>
+      <demo-snippet>
+        <template>
+          <paper-card heading="Popular Links" image="http://placehold.it/700x167/ABABAB/000000" alt="Description of the image" style="max-width: calc(100% - 20px); width: 100%;">
+            <div class="card-content">
+
+              <uva-accordion>
+                <uva-accordion-item heading-level="2">
+                              <div slot="heading">Academic Search Complete</div>
+                              <div slot="body">A large database of articles from scholarly journals and newspapers, covering all subjects. <a href="" tabindex="-1"><paper-button raised>See More ⟶</paper-button></a></div>
+                            </uva-accordion-item>
+                <uva-accordion-item heading-level="2">
+                              <div slot="heading">ARTstor</div>
+                              <div slot="body">Something here. <a href="" tabindex="-1"><paper-button raised>See More ⟶</paper-button></a></div>
+                            </uva-accordion-item>
+                <uva-accordion-item heading-level="2">
+                              <div slot="heading">Dissertations &amp; Theses Global</div>
+                              <div slot="body">Something here. <a href="" tabindex="-1"><paper-button raised>See More ⟶</paper-button></a></div>
+                            </uva-accordion-item>
+                <uva-accordion-item heading-level="2">
+                              <div slot="heading">Factiva</div>
+                              <div slot="body">Something here. <a href="" tabindex="-1"><paper-button raised>See More ⟶</paper-button></a></div>
+                            </uva-accordion-item>
+                <uva-accordion-item heading-level="2">
+                              <div slot="heading">JSTOR</div>
+                              <div slot="body">Something here. <a href="" tabindex="-1"><paper-button raised>See More ⟶</paper-button></a></div>
+                            </uva-accordion-item>
+                <uva-accordion-item heading-level="2">
+                              <div slot="heading">LexisNexis Academic</div>
+                              <div slot="body">Something here. <a href="" tabindex="-1"><paper-button raised>See More ⟶</paper-button></a></div>
+                            </uva-accordion-item>
+                <uva-accordion-item heading-level="2">
+                              <div slot="heading">Libra (UVA's Institutional Repository</div>
+                              <div slot="body">Something here. <a href="" tabindex="-1"><paper-button raised>See More ⟶</paper-button></a></div>
+                            </uva-accordion-item>
+                <uva-accordion-item heading-level="2">
+                              <div slot="heading">lynda.com</div>
+                              <div slot="body">Something here. <a href="" tabindex="-1"><paper-button raised>See More ⟶</paper-button></a></div>
+                            </uva-accordion-item>
+                <uva-accordion-item heading-level="2">
+                              <div slot="heading">MLA Bibliography</div>
+                              <div slot="body">Something here. <a href="" tabindex="-1"><paper-button raised>See More ⟶</paper-button></a></div>
+                            </uva-accordion-item>
+                <uva-accordion-item heading-level="2">
+                              <div slot="heading">Oxford English Dictionary</div>
+                              <div slot="body">Something here. <a href="" tabindex="-1"><paper-button raised>See More ⟶</paper-button></a></div>
+                            </uva-accordion-item>
+                <uva-accordion-item heading-level="2">
+                              <div slot="heading">PsycINFO</div>
+                              <div slot="body">Something here. <a href="" tabindex="-1"><paper-button raised>See More ⟶</paper-button></a></div>
+                            </uva-accordion-item>
+                <uva-accordion-item heading-level="2">
+                              <div slot="heading">ScienceDirect</div>
+                              <div slot="body">Something here. <a href="" tabindex="-1"><paper-button raised>See More ⟶</paper-button></a></div>
+                            </uva-accordion-item>
+
+              </uva-accordion>
+
+            </div>
+          </paper-card>
+        </template>
+      </demo-snippet>
+
+    </div>
+  </body>
+</html>

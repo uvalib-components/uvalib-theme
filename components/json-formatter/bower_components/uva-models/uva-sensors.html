@@ -1,0 +1,287 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="../app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
+<link rel="import" href="../polymer/lib/utils/debounce.html">
+<link rel="import" href="../uva-helper-libs/polyfills/object.assign.html">
+
+<dom-module id="uva-sensors">
+  <template>
+    <iron-ajax auto url="[[_sensorsURL]]" handle-as="json" last-response="{{sensors}}" loading="{{_loadingSensors}}">
+<!--
+    <app-indexeddb-mirror key="[[_sensorsURL]]" data="[[_asArray(_sensors)]]" persisted-data="{{_persistedSensors}}"></app-indexeddb-mirror>
+    <iron-ajax auto url="[[_categoriesURL]]" handle-as="json" last-response="{{_categories}}" loading="{{_loadingCategories}}">
+    <app-indexeddb-mirror key="[[_categoriesURL]]" data="[[_categories]]" persisted-data="{{categories}}"></app-indexeddb-mirror>
+-->
+  </template>
+  <script>
+    /**
+     * `uva-sensors`
+     * Helper component to bind to the UVA sensors API.
+     * This API provides information about many sensors on campus. It can be used to get building information such as Name, Category, Address, Square Footage, Year Built, and GPS coordinates of every place on campus.
+     *
+     * The simplest usecase just returns all of the UVA sensors via the sensors attribute
+     *
+     * Example:
+     *
+     *    <uva-sensors sensors="{{sensors}}"></uva-sensors>
+     *
+     * All sensors are available via the `sensors` attribute and can be filtered via the `category` attribute.  All of the valid categories to filter by are available via the `catagories` attribute.
+     *
+     * Example:
+     *
+     *    <uva-sensors sensors="{{sensors}}" category="{{category}}" categories="{{categories}}"></uva-sensors>
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/building.html Map bind demo
+     * @demo demo/building2.html map bind with filters demo
+     */
+    class UvaSensors extends Polymer.Element {
+      static get is() { return 'uva-sensors'; }
+      static get properties() {
+        return {
+
+
+//          /** True while sensors ajax request is in flight */
+//          _loadingSensors: {
+//            type: Boolean
+//          },
+//
+//          /** True while Categories ajax request is in flight */
+//          _loadingCategories: {
+//            type: Boolean
+//          },
+//
+//          /** True while API requests are in flight */
+//          loading: {
+//            type: Boolean,
+//            computed: "_either(_loadingSensors, _loadingCategories)"
+//          },
+//
+          /** Used for storing the sensors from ajax call (these are not filtered in any way and are not available offline) */
+          _sensors: {
+            type: Array,
+            value: function(){return [];}
+          },
+//
+//          /** Used for storing the persisted version of the sensors (this are not filtered in any way BUT are available offline if alreay cached) */
+//          _persistedSensors: {
+//            type: Array,
+//            value: function(){return [];},
+//            observer: "_filterSensors"
+//          },
+//
+          /** Used for storing the sensors that have been persisted and filtered */
+          sensors: {
+            type: Array,
+            value: function(){return [];},
+            notify: true
+          },
+//
+//          /** This is the first building from the `sensors` property.  This is helpful if you specify the building by id or name and want to bind to the building. */
+//          building: {
+//            type: Object,
+//            computed: "_firstBuilding(sensors)",
+//            notify: true
+//          },
+//
+//          /** The Name of the building that you would like to filter */
+//          name: {
+//            type: String
+//          },
+//
+//          /** The id of the building that you would like to filter */
+//          id: {
+//            type: String
+//          },
+//
+//          /** Used to store the categories from ajax before being persisted */
+//          _categories: {
+//            type: Array,
+//            value: function(){return [];},
+//          },
+//
+//          /** The available categories of sensors, not filtered in any way */
+//          categories: {
+//            type: Array,
+//            value: function(){return [];},
+//            notify: true
+//          },
+//
+//          /** The category (case insensitive) of sensors to filter by */
+//          category: {
+//            type: String,
+//            observer: "_filterSensors"
+//          },
+//
+//          /** The minimum square footage that sensors will be filtered by.  If the building doesn't have a square footage specified it will be filtered out when this is set. */
+//          minSquareFootage: {
+//            type: Number,
+//            observer: "_filterSensors"
+//          },
+//
+//          /** The maximum square footage that sensors will be filtered by.  If the building doesn't have a square footage specified it will be filtered out when this is set. */
+//          maxSquareFootage: {
+//            type: Number,
+//            observer: "_filterSensors"
+//          },
+//
+//          /** The oldest four digit year for a building in `sensors`.  If the building doesn't have a year built specified it will be filtered out when this is set. */
+//          minYearBuilt: {
+//            type: Number,
+//            observer: "_filterSensors"
+//          },
+//
+//          /** The newest four digit year for a building in `sensors`.  If the building doesn't have a year built specified it will be filtered out when this is set. */
+//          maxYearBuilt: {
+//            type: Number,
+//            observer: "_filterSensors"
+//          },
+//
+//          /** If true, only historic sensors will be listed.  If false, all building are listed in `sensors`. */
+//          historic: {
+//            type: Boolean,
+//            observer: "_filterSensors"
+//          },
+//
+//          /** If present along with `longitude` will add a distance property to each building that has lat/long properties.  These propertys are also used with the `distance` attribute to filter sensors by distance from a point. */
+//          latitude: {
+//            type: Number,
+//            observer: "_filterSensors"
+//          },
+//
+//          /** If present along with `latitude` will add a distance property to each building that has lat/long properties.  These propertys are also used with the `distance` attribute to filter sensors by distance from a point. */
+//          longitude: {
+//            type: Number,
+//            observer: "_filterSensors"
+//          },
+//
+//          /** Filters the `sensors` property given `latitude` and `longitude` properties.  If present, sensors without a lat/long specified will be filtered from the `sensors` property */
+//          distance: {
+//            type: Number,
+//            observer: "_filterSensors"
+//          },
+//
+          /** Used to maintain the url used to fetch sensors via ajax. */
+          _sensorsURL: {
+            type: String,
+            computed: "_makeSensorsURL(name, _sensors)",
+            notify: true
+          },
+//
+//          /** Used to maintain the url used to fetch categories via ajax. */
+//          _categoriesURL: {
+//            type: String,
+//            value: "https://api.library.virginia.edu/devhub/categories",
+//            notify: true
+//          }
+        };
+      }
+      ready() {
+        super.ready();
+      }
+
+      /**
+       * Given an object, will return an Array if the object is not already an array.  Helper to be sure that we are getting an array from the Sensors API.
+       *
+       * @param {Object} obj The object to be made into an Array if not one already.
+       * @return {Array<Object>} An Array.
+       */
+      _asArray(obj){
+        return (Array.isArray(obj))?
+          obj:
+          new Array(obj);
+      }
+
+      /**
+       * Filters sensors from `_persistedSensors` to `sensors` using filtering properties.
+       * It is a bit harsh in that it replaces `sensors` with a new Array.
+       */
+      _filterSensors() {
+        this._debouncer = Polymer.Debouncer.debounce(this._debouncer,
+            Polymer.Async.timeOut.after(25),
+            () => {
+        // A bit crude, but it gets err done
+        var sensors = this._persistedSensors;
+        if (this.category) sensors = sensors.filter((bl) => bl.Category.toLowerCase() == this.category.toLowerCase() );
+        if (this.minSquareFootage) sensors = sensors.filter((bl) => bl.SquareFootage >= this.minSquareFootage );
+        if (this.maxSquareFootage) sensors = sensors.filter((bl) => bl.SquareFootage <= this.maxSquareFootage );
+        if (this.minYearBuilt) sensors = sensors.filter((bl) => bl.YearBuilt >= this.minYearBuilt );
+        if (this.maxYearBuilt) sensors = sensors.filter((bl) => bl.YearBuilt <= this.maxYearBuilt );
+        if (this.historic) sensors = sensors.filter((bl) => bl.Historic == "Y");
+        if (this.latitude && this.longitude) {
+          // add a distance property to the sensors
+          sensors.forEach(function(bl){
+            if (bl.Latitude && bl.Longitude) {
+              bl.distance = this._distance(bl.Latitude,bl.Longitude,this.latitude,this.longitude);
+            }
+            if (this.distance) sensors = sensors.filter((b) => b.distance && b.distance <= this.distance);
+          });
+        }
+        this.set('sensors', sensors);
+            });
+      }
+
+      /**
+       * Gets the distance in km between two lat/long sets.
+       *
+       * @param {Number} lat1 The latitude of the first point.
+       * @param {Number} lon1 The longitude of the first point.
+       * @param {Number} lat2 The latitude of the second point.
+       * @param {Number} lon2 The longitude of the second point.
+       * @return {Number} The distance in km between the two points.
+       */
+      _distance(lat1, lon1, lat2, lon2) {
+        var p = 0.017453292519943295;    // Math.PI / 180
+        var c = Math.cos;
+        var a = 0.5 - c((lat2 - lat1) * p)/2 +
+                c(lat1 * p) * c(lat2 * p) *
+                (1 - c((lon2 - lon1) * p))/2;
+
+        return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
+      }
+
+      /**
+       * Makes the url used to make an ajax call for sensors taking into account the `id` and `name` fields.
+       *
+       * @param {String} name The name of the building to return.
+       * @param {String} id The id of the building to return.
+       * @return {String} The url to use to get the json from the Sensors API.
+       */
+      _makeSensorsURL(name) {
+        console.log('burl');
+        var url = "https://api.library.virginia.edu/devhub/";
+        if (name) {
+          url += "sensors/"+name;
+        } else {
+          url += "sensors";
+        }
+        console.log(url);
+        return url;
+      }
+
+      /**
+       * Gets the first building from the `sensors` property.
+       *
+       * @return {Object} The building object.
+       */
+      _firstBuilding() {
+        return (this.sensors && this.sensors.length > 0)?
+          this.sensors[0]:null;
+      }
+
+      /**
+       * Returns true if either parameter is truthy
+       *
+       * @param b1 First value to evaluate
+       * @param b2 Second value to evaluate
+       * @return {Boolean} true if either parameter is truthy
+       */
+      _either(b1, b2) {
+        return (b1 || b2);
+      }
+    }
+
+    window.customElements.define(UvaSensors.is, UvaSensors);
+  </script>
+</dom-module>

@@ -1,0 +1,17 @@
+{
+  "name": "uva-footer",
+  "main": "uva-footer.html",
+  "dependencies": {
+    "uva-elements": "uva-components/uva-elements#master"
+  },
+  "homepage": "https://github.com/uva-components/uva-footer",
+  "_release": "1f25280b4b",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "1f25280b4b1c172f64f014920581610e08953e16"
+  },
+  "_source": "https://github.com/uva-components/uva-footer.git",
+  "_target": "master",
+  "_originalSource": "uva-components/uva-footer"
+}

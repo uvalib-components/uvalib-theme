@@ -1,0 +1,156 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../uvalib-theme/uvalib-theme.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+
+<dom-module id="uvalib-simple-search-box">
+    <template>
+    <custom-style>
+      <style include="uvalib-theme iron-flex iron-flex-alignment iron-flex-factors">
+
+      :host { display: block; }
+
+      .search-group {
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: .5em;
+        padding-bottom: .5em;
+        @apply(--layout-horizontal);
+        /* max-width: 525px; */
+      }
+
+      .search-field {
+        margin: 0px;
+        padding: 0px;
+        width: 91%;
+        max-width: 500px;
+        background-color: var(--color-white);
+        color: var(--color-text-gray);
+        border-top: var(--uvalib-search-box-border);
+        border-left: var(--uvalib-search-box-border);
+        border-bottom: var(--uvalib-search-box-border);
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+        line-height: 30px;
+        text-align: left;
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: var(--uvalib-main-font-size-unit);
+      }
+
+      .search-button {
+        background-color: var(--uvalib-background-search, var(--uvalib-main-rotunda-orange));
+        font-weight: 700;
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+        margin-left: 0;
+        color: var(--uvalib-main-white);
+        border: none;
+      }
+
+      </style>
+    </custom-style>
+
+    <div role="search">
+      <h2 id="searchStr" class="screen-reader-text">[[label]]</h2>
+      <slot></slot>
+      <form method="get" action="[[action]]" id="searchForm">
+        <template is="dom-repeat" items="[[hiddenInputs]]">
+          <input type="hidden" name="[[item.name]]" value="[[item.value]]">
+        </template>
+        <template is="dom-if" if="[[queryName]]">
+          <input type="hidden" name="[[queryName]]" value$="[[value]]">
+        </template>
+        <label class="screen-reader-text" for="q1">[[placeholder]]</label>
+        <div class="search-group">
+          <input class="search-field" id="q1" value="{{value::change}}" placeholder="[[placeholder]]" tabindex="0" autocomplete="off" />
+          <paper-button class="search-button" on-tap="submitSearch" alt="Search Virgo"><span>Search</span></paper-button>
+        </div>
+      </form>
+    </div>
+    </template>
+
+    <script>
+        /**
+         * `uvalib-simple-search-box`
+         * Search Box for UVA Library pages
+         *
+         * @customElement
+         * @polymer
+         * @demo demo/index.html
+         */
+        class UvalibSimpleSearchBox extends Polymer.Element {
+            static get is() {
+                return 'uvalib-simple-search-box';
+            }
+            static get properties() {
+                return {
+                    /* The Label read aloud to screen readers */
+                    label: {
+                        type: String,
+                        value: "Search"
+                    },
+                    queryName: {
+                        type: String,
+                        value: null
+                    },
+                    action: {
+                        type: String,
+                        value: null
+                    },
+                    value: {
+                        type: String,
+                        notify: true
+                    },
+                    hiddenInputs: Array,
+                    placeholder: {
+                        type: String,
+                        value: "Search terms here"
+                    },
+                    /** Set this to true when you want the links to be relative (when used in library.virginia.edu) **/
+                    relativeLinks: {
+                        type: Boolean,
+                        value: false
+                    }
+                }
+            }
+            ready() {
+              super.ready();
+              this.shadowRoot.querySelector('form').addEventListener('keypress', this._checkForEnter.bind(this));
+            }
+            changeFocusToCatalogAdvanced() {
+                this.$.catalogAdv.focus();
+            }
+
+            submitSearch() {
+              console.log(this.value)
+                if (this.action)
+                    this.$.searchForm.submit();
+                else {
+                    console.log('submitted');
+                    this.dispatchEvent(new CustomEvent('submit', {
+                        detail: {
+                            value: this.value
+                        }
+                    }));
+                }
+            }
+            _checkForEnter(e) {
+                // check if 'enter' was pressed
+                if (e.keyCode === 13) {
+                    e.preventDefault();
+                    var butt = this.shadowRoot.querySelector('paper-button')
+                    butt.focus();
+                    butt.click();
+//                    this.submitSearch();
+                    return false;
+                }
+            }
+
+        }
+
+        window.customElements.define(UvalibSimpleSearchBox.is, UvalibSimpleSearchBox);
+    </script>
+</dom-module>

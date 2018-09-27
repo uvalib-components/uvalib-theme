@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+  <head>
+    <title>uva-theme demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../iron-flex-layout/iron-flex-layout.html">
+
+    <link rel="import" href="../typekit.html">
+    <link rel="import" href="../uva-theme.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles uva-theme">
+        [hide-code] {
+          --demo-snippet-code: {display: none;};
+          paper-icon-button: {display:none;}
+        }
+      </style>
+    </custom-style>
+  </head>
+  <body>
+
+    <div class="vertical-section-container centered" style="max-width: 800px">
+      <h2><a href="">Web Color Palettes</a></h2>
+      <h3>Primary Web Color Palette</h3>
+      <demo-snippet>
+        <template>
+          <custom-style>
+            <style is="custom-style">
+              div.palette {
+                @apply --layout-horizontal;
+                @apply --layout-wrap;
+              }
+              div.palette div {width: 200px; height: 200px; color: var(--color-white);}
+              .orange {background-color: var(--color-primary-orange);}
+              .blue {background-color: var(--color-primary-blue);}
+              .white {background-color: var(--color-white); color: var(--color-text-gray) !important;}
+            </style>
+          </custom-style>
+          <div class="palette">
+            <div class="orange">Primary Orange</div>
+            <div class="blue">Primary Blue</div>
+            <div class="white">White</div>
+          </div>
+        </template>
+      </demo-snippet>
+
+      <h3>Secondary Web Color Palette</h3>
+      <demo-snippet>
+        <template>
+          <custom-style>
+            <style is="custom-style">
+              div.palette {
+                @apply --layout-horizontal;
+                @apply --layout-wrap;
+              }
+              div.palette div {width: 200px; height: 200px; color: var(--color-white);}
+              .orange-2 {background-color: var(--color-secondary-orange);}
+              .blue-2 {background-color: var(--color-secondary-blue);}
+              .lt-gry {background-color: var(--color-light-gray); color: var(--color-text-gray) !important;}
+              .md-gry {background-color: var(--color-medium-gray);}
+              .txt-gry {background-color: var(--color-text-gray);}
+              .emg-red {background-color: var(--color-emergency-red);}
+            </style>
+          </custom-style>
+          <div class="palette">
+            <div class="orange-2">Secondary Orange</div>
+            <div class="blue-2">Secondary Blue</div>
+            <div class="lt-gry">Light Gray</div>
+            <div class="md-gry">Medium Gray</div>
+            <div class="txt-gry">Text Gray</div>
+            <div class="emg-red">Emergency Red</div>
+          </div>
+        </template>
+      </demo-snippet>
+
+      <h2><a href="http://brand.virginia.edu/bp/#/brandguidelines/151/section/8536">Web Fonts</a></h2>
+      <h3>Primary Web Fonts</h3>
+
+      <demo-snippet>
+        <template>
+          <custom-style>
+            <style is="custom-style">
+              .font-show {
+                @apply --layout-horizontal;
+                @apply --layout-around-justified;
+              }
+              .primary {font-family: var(--font-primary);}
+              .primary-condensed {font-family: var(--font-primary-condensed);}
+              .primary-compressed {font-family: var(--font-primary-compressed);}
+              .primary-extra-compressed {font-family: var(--font-primary-extra-compressed);}
+              .italic {font-style: italic;}
+              .book {font-weight: var(--font-weight-book);}
+              .medium {font-weight: var(--font-weight-medium);}
+              .demi {font-weight: var(--font-weight-demi);}
+              .heavy {font-weight: var(--font-weight-heavy) !important;}
+            </style>
+          </custom-style>
+          <h4>Franklin Gothic</h4>
+          <div class="font-show primary">
+            <div>
+               <div class="book">Primary Book</div>
+               <div class="medium">Primary Medium</div>
+               <div class="demi">Primary Demi</div>
+               <div class="heavy">Primary Heavy</div>
+            </div>
+            <div class="italic">
+              <div class="book">Primary Book Italic</div>
+              <div class="medium">Primary Medium Italic</div>
+              <div class="demi">Primary Demi Italic</div>
+              <div class="heavy">Primary Heavy Italic</div>
+            </div>
+          </div>
+          <h4>Franklin Gothic Condensed</h4>
+          <div class="font-show primary-condensed">
+            <div>
+               <div class="book">Primary Condensed Book</div>
+               <div class="demi">Primary Condensed Demi</div>
+            </div>
+            <div class="italic">
+              <div class="book">Primary Condensed Book Italic</div>
+              <div class="demi">Primary Condensed Demi Italic</div>
+            </div>
+          </div>
+          <h4>Franklin Gothic Compressed</h4>
+          <div class="font-show primary-compressed">
+            <div>
+               <div class="book">Primary Compressed Book</div>
+               <div class="demi">Primary Compressed Demi</div>
+            </div>
+            <div class="italic">
+              <div class="book">Primary Compressed Book Italic</div>
+              <div class="demi">Primary Compressed Demi Italic</div>
+            </div>
+          </div>
+          <h4>Franklin Gothic Extra Compressed</h4>
+          <div class="font-show primary-extra-compressed">
+            <div>
+               <div class="book">Primary Extra Compressed Book</div>
+               <div class="demi">Primary Extra Compressed Demi</div>
+            </div>
+            <div class="italic">
+              <div class="book">Primary Extra Compressed Book Italic</div>
+              <div class="demi">Primary Extra Compressed Demi Italic</div>
+            </div>
+          </div>
+        </template>
+      </demo-snippet>
+
+      <h3>Secondary Web Fonts</h3>
+
+      <demo-snippet>
+        <template>
+          <custom-style>
+            <style is="custom-style">
+              .secondary {font-family: var(--font-secondary);}
+              .italic {font-style: italic;}
+              .heavy {font-weight: var(--font-weight-heavy);}
+            </style>
+          </custom-style>
+          <h4>Bodoni</h4>
+          <div class="secondary heavy italic">Secondary Heavy Italic</div>
+        </template>
+      </demo-snippet>
+
+      <h2><a href="http://brand.virginia.edu/bp/#/brandguidelines/151/section/9315">Font Styles and Hierarchy</a></h2>
+      <h3>Typographic pattern example</h3>
+      <demo-snippet>
+        <template>
+          <h1>H1 Page Title</h1>
+          <h2>H2 Section Header</h2>
+          <p>Body copy Lorem ipsum dolor sit amet, iusto efficiantur te has, cu mea invenire reformidans, erant delectus laboramus duo no. Sea ei feugait voluptatibus. Eu sit illud dicta delenit. Luptatum urbanitas cum an, per ne paulo petentium.</p>
+
+          <h3>h3 ALT Header</h3>
+
+          <h4>H4 List Headline</h4>
+          <p>Body copy Lorem ipsum dolor sit amet, iusto efficiantur te has, cu mea invenire reformidans, erant delectus laboramus duo no. Sea ei feugait voluptatibus. Eu sit illud dicta delenit. Luptatum urbanitas cum an, per ne paulo petentium.</p>
+
+          <h4>H4 List Headline</h4>
+          <p>Body copy Lorem ipsum dolor sit amet, iusto efficiantur te has, cu mea invenire reformidans, erant delectus laboramus duo no. Sea ei feugait voluptatibus. Eu sit illud dicta delenit. Luptatum urbanitas cum an, per ne paulo petentium.</p>
+
+          <blockquote>
+            <p>"Quote lorem ipsum dolor site amet."</p>
+            <h5>- H5 Source '17</h5>
+          </blockquote>
+
+          <ul>
+            <li>Bullet list lorem ipsum
+            <li>Bullet list lorem ipsum dolor sit amet, consectetur adipiscing elit, sed elit, sed do eiusmod tempor in doeiusmod
+          </ul>
+
+          <ol>
+            <li>Numbered list 1
+            <li>Numbered list 2
+            <li>Numbered list 3
+          </ol>
+        </template>
+      </demo-snippet>
+    </div>
+
+  </body>
+</html>

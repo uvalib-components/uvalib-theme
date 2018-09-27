@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>uvalib-search-box demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../uvalib-search-box.html">
+    <link rel="import" href="../uvalib-simple-search-box.html">
+
+    <custom-style>
+        <style is="custom-style" include="demo-pages-shared-styles">
+            .centered {
+                min-width: 90%;
+            }
+
+            #libra {
+                --uvalib-search-box-border: 5px solid red;
+                --uvalib-background-search: blue;
+            }
+        </style>
+    </custom-style>
+</head>
+
+<body>
+    <div class="vertical-section-container centered">
+        <h3>Basic uvalib-search-box demo</h3>
+        <demo-snippet>
+            <template>
+              <dom-bind>
+                <template>
+                  Value: [[searchValue]]
+                  <uvalib-simple-search-box value="{{searchValue}}"></uvalib-simple-search-box>
+                  <uvalib-search-box></uvalib-search-box>
+                  <uvalib-search-box id="libra"
+                      placeholder="Search Virgo for Libra Open Access Content"
+                      hidden-inputs='[{"name":"catalog_select","value":"none"},{"name":"f[source_facet][]","value":"Libra Repository"},{"name":"sort_key","value":"relevancy"}]'></uvalib-search-box>
+                </template>
+              </dom-bind>
+            </template>
+        </demo-snippet>
+    </div>
+</body>
+<script>
+    //    document.querySelector('')
+</script>
+
+</html>

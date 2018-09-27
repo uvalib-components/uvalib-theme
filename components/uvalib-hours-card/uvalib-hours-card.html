@@ -1,0 +1,361 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../paper-material/paper-material.html">
+<link rel="import" href="../uvalib-theme/uvalib-icons.html">
+<link rel="import" href="../uvalib-theme/uvalib-theme.html">
+<link rel="import" href="../uvalib-helper-libs/polyfills.html">
+
+<link rel="import" href="../byutv-jsonp/byutv-jsonp.html">
+
+<!--
+`uvalib-hours-card`
+Library hours information displayed in a card section
+
+### Styling
+
+Note that you need to explicitly set the height of this component.
+The following custom properties are available for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--uvalib-hours-card-row-bkgrd-color-odd` | Background color of odd rows | `Based on uvalib-theme --color-light-blue`
+`--uvalib-hours-card-row-bkgrd-color-even` | Background color of even rows | `Based on uvalib-theme --color-white`
+
+@demo demo/index.html
+-->
+
+<dom-module id="uvalib-hours-card">
+  <template>
+    <style is="custom-style" include="uvalib-theme">
+      :host {
+        display: block;
+        --uvalib-hours-card-header-font-size: 24px;
+        --uvalib-hours-card-header-font-weight: bold;
+        --iron-icon-fill-color: var(--color-text-gray,black);
+        /*
+        @apply(--layout-flex);
+        */
+        @apply(--layout-vertical);
+        font-family: var(--font-primary);
+      }
+      paper-material {
+        background-color: var(--color-white,white);
+        @apply(--layout-flex);
+        @apply(--layout-vertical);
+      }
+      iron-icon {
+        padding-right: 10px;
+      }
+      .card {
+        @apply(--layout-flex);
+        @apply(--layout-vertical);
+      }
+      .card-header {
+        @apply(--layout-horizontal);
+        padding: var(--uvalib-hours-card-padding,21px);
+        padding-top: 10px;
+        padding-bottom: 24px;
+
+
+        font-family: var(--font-primary);
+        font-size: 24px;
+        font-weight: 500;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.33;
+        letter-spacing: normal;
+        color: rgba(0, 0, 0, 0.54);
+      }
+      .card-header div[flex] {
+        @apply(--layout-flex);
+      }
+      .card-content {
+        @apply(--layout-flex);
+        padding: var(--uvalib-hours-card-padding,21px);
+
+        padding-top: 0;
+      }
+      .card-actions {
+        border-top: 1px solid LightGray;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: var(--uvalib-hours-card-padding,21px);
+        padding-right: var(--uvalib-hours-card-padding,21px);
+      }
+      .name {
+        font-family: var(--font-primary);
+        font-size: 16px !important;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: left;
+        color: rgba(0, 0, 0, 0.54);
+
+      }
+      .location {
+        padding-bottom: 21px;
+      }
+      .location-info {
+        margin-top: 0px;
+      }
+      .status {
+        float: left;
+      }
+      .hours {
+        color: blue;
+        padding-left: 10px;
+      }
+      .open {
+        color: LightGreen;
+      }
+      .closed {
+        color: Red;
+      }
+      .closing-soon {
+        color: var(--color-primary-orange,Orange);
+      }
+      iron-icon[hidden] {
+       display: none;
+      }
+      .closeicon {
+        cursor: pointer;
+      }
+    </style>
+
+    <byutv-jsonp id="hrsData" auto url="[[libraryHoursSource]]" params="[[_libraryHoursParams]]" last-response="{{_springshareData}}"
+      debounce-duration="300"></byutv-jsonp>
+
+    <paper-material elevation$="[[elevation]]">
+      <div class="card">
+        <div class="card-header">
+          <iron-icon icon$="[[headingIcon]]"></iron-icon>
+          <div flex>[[heading]]</div>
+          <!--<iron-icon class="closeicon" icon="times" on-tap="_closeEvent" hidden$="[[!closeIcon]]"></iron-icon>-->
+        </div>
+        <div class="card-content">
+          <template is="dom-repeat" items="[[_libraries]]">
+            <div class="location">
+                <div class="name">[[item.name]]</div>
+                <div class="location-info">
+                  <span class="hours">[[item.hours]]</span>
+                </div>
+            </div>
+          </template>
+        </div>
+        <div class="card-actions">
+          <content></content>
+        </div>
+      </div>
+    </paper-material>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'uvalib-hours-card',
+
+      properties: {
+        elevation: {
+          type: Number,
+          value: 1
+        },
+
+        headingIcon: {
+          type: String,
+          value: "clock-o"
+        },
+
+        closeIcon: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * Card heading to use for the uvalib-events-card component.
+         */
+        heading: {
+          type: String,
+          value: "Today's Hours"
+        },
+
+        /**
+         * A comma-delimited string of library locations to be included in the
+         * card content. The locations should be the name to be displayed and
+         * be able to be found as a string in the LibCal Hours locations.
+         */
+        locations: {
+          type: String,
+          value: "Alderman,Clemons,Brown,Music",
+        },
+
+        allLocations: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * The vendor URL (less parameters) for retrieving today's hours in JSON format.
+         */
+        libraryHoursSource: {
+          type: String,
+          value: "https://api3.libcal.com/api_hours_today.php"
+        },
+
+        /**
+         * The Springshare parameters for retrieving the current day's hours.
+         */
+        _libraryHoursParams: {
+          type: Object,
+          computed: "_getParams(_iid,_lid,_format)"
+        },
+
+        /**
+         * Institution ID parameter needed to get Springshare hours.
+         */
+        _iid: {
+          type: Number,
+          value: 863
+        },
+
+        /**
+         * Library ID parameter needed to get Springshare hours. 0 retrieves all libraries.
+         */
+        _lid: {
+          type: Number,
+          value: 0
+        },
+
+        /**
+         * Data format parameter needed to get Springshare hours.
+         */
+        _format: {
+          type: String,
+          value: "json"
+        },
+
+        /**
+         * JSON data returned from Springshare API call.
+         */
+        _springshareData: Object,
+
+        /**
+         * Library locations with hours for use in generating this card content.
+         */
+        _libraries: {
+          type: Array,
+          computed: "_buildLibrariesHours(_springshareData)"
+        }
+      },
+
+      /**
+       * Get the Springshare parameters into a proper object.
+       *
+       * @param {Integer} institutionId Springshare institution identifier
+       * @param {Integer} libraryId Springshare library identifier
+       * @param {String} dataFormat structure of the data returned
+       */
+      _getParams: function(institutionId,libraryId,dataFormat) {
+        return {iid:institutionId , lid:libraryId , format:dataFormat};
+      },
+
+      /**
+      * When the Springshare hours JSON object is ready then pull the
+      * needed locations' hours data into this component's object
+      * used to build the list of library hours.
+      *
+      * @param {Object} data the returned data from the AJAX call
+      */
+      _buildLibrariesHours: function(data) {
+        var libraries = new Array();
+        // Create array of needed data and save keys for use in sorting.
+        var unsorted = new Array();
+        var locations = [];
+        for (var i=0; i < data.locations.length; i++) {
+          var unit = (data.locations[i].category != 'library') ? true : false;
+          var key = data.locations[i].name.replace('Library ','').replace(' Library','');
+          var status = (data.locations[i].times.currently_open) ? 'open' : 'closed';
+          var info = {
+            status: status,
+            hours: data.locations[i].rendered,
+            subunit: unit
+          };
+          unsorted[key] = info;
+          locations.push(key);
+        }
+        // If all locations are specified then make sure theh list is sorted alphabetically
+        if (this.allLocations) {
+          locations.sort();
+          for (var i=0; i < locations.length; i++) {
+            var info = {
+              name: locations[i],
+              status: unsorted[locations[i]].status,
+              hours: unsorted[locations[i]].hours,
+              subunit: unsorted[locations[i]].subunit
+            };
+            libraries[i] = info;
+          }
+        } else {
+          // create libraries array from string of locations
+          var libLocations = this.locations.split(",");
+          // loop through each library and build
+          for (var i=0; i < libLocations.length; i++) {
+            for (key in unsorted) {
+              if (key.toString().includes(libLocations[i])) {
+                var info = {
+                  name: key,
+                  status: unsorted[key].status,
+                  hours: unsorted[key].hours,
+                  subunit: unsorted[key].subunit
+                };
+                libraries[i] = info;
+              }
+            }
+          }
+        }
+        return libraries;
+      },
+
+      /**
+       * Adjust Library location row background color based on odd/even item.
+       *
+       * @param {Integer} index row of dom-repeat item/_libraries being processed
+       */
+      _rowBackgroundColor: function(index) {
+        var clsName = (index % 2) ? 'row-bkgrd-color-even' : 'row-bkgrd-color-odd';
+        return clsName;
+      },
+
+      /**
+       * Specify status class to use for adjusting color, etc.
+       *
+       * @param {String} status
+       */
+      _statusColor: function(status) {
+        var clsName = (status == 'closing soon') ? 'closing-soon' : status;
+        return clsName;
+      },
+
+      /**
+       * Apply styles from this component onto the LibCal widget
+       */
+      ready: function() {
+        this.scopeSubtree(this.querySelector('.card-actions'), true);
+      },
+
+      attached: function() {
+        this._childText = Polymer.dom(this).textContent;
+      },
+      _hasContent: function(){
+        return this._childText && this._childText.length > 0;
+      },
+
+      _closeEvent: function(){
+        this.fire('close');
+      }
+
+    });
+
+  </script>
+</dom-module>

@@ -1,0 +1,17 @@
+{
+  "name": "uva-accordion",
+  "main": "uva-accordion.html",
+  "dependencies": {
+    "uva-elements": "uva-components/uva-elements#master"
+  },
+  "homepage": "https://github.com/uva-components/uva-accordion",
+  "_release": "e546a31f2d",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "e546a31f2d15d30f425ed98f760bc7e8e6cd573d"
+  },
+  "_source": "https://github.com/uva-components/uva-accordion.git",
+  "_target": "master",
+  "_originalSource": "uva-components/uva-accordion"
+}
