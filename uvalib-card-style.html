@@ -17,12 +17,12 @@
           };
           --paper-card: {
               margin: var(--uvalib-spacing-unit);
-              max-width: 600px;
-              min-width: 290px;
+              max-width: var(--uvalib-card-maxwidth, 600px);
+              min-width: var(--uvalib-card-minwidth, 290px);
           }
         }
         :host[dark] { color: var(--color-white); --paper-card-background-color: var(--color-primary-orange); }
-
+    
         paper-card {
           --paper-card-header-text: {
             font-family: var(--uva-font-family);
