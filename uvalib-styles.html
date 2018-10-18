@@ -6,6 +6,13 @@
   <template>
     <custom-style>
       <style is="custom-style" include="uvalib-fonts">
+/*********************************************/
+/*             DEBUGGING TOOL                */
+/*********************************************/
+
+      /* * {
+        background-color: rgba(0, 0, 255, 0.1);
+      } */
 
 /*********************************************/
 /*          STRUCTURAL ELEMENTS              */
@@ -124,8 +131,8 @@
 
 /*USEFUL TWEAKS & CLASSES (for when you need a little extra) */
         .shady {
-          margin: 0 -1000px 0 -1000px;
-          padding: 0 1000px 0 1000px;
+          margin: var(--uvalib-spacing-unit) -1000px var(--uvalib-spacing-unit) -1000px;
+          padding: calc(var(--uvalib-spacing-unit)*2) 1000px calc(var(--uvalib-spacing-unit)*2) 1000px;
           background-color: var(--color-light-gray);
         }
 
@@ -181,7 +188,34 @@
         .uva-margin-top { margin-top: var(--uvalib-spacing-unit); }
         .uva-margin-bottom { margin-bottom: var(--uvalib-spacing-unit); }
         .uva-margin-top-bottom { margin-top: var(--uvalib-spacing-unit); margin-bottom: var(--uvalib-spacing-unit); }
+
+        .uva-margin-top-none { margin: 0; }
 /*END*/
+
+/* GRID */
+        .grid-main,
+        .grid-container,
+        .grid-one-third-right {
+          display: grid;
+          /* grid-gap: 1rem; */
+          grid-template-columns: 1fr;
+          /* line-height: 1.75; */
+          font-size: 18px;
+          margin-bottom: 2rem;
+        }
+
+        :host([large-screen]) .grid-one-third-right {
+          display: grid;
+          grid-gap: 2rem;
+          grid-template-columns: 2fr 1.5fr;
+        }
+
+        :host([large-screen]) .grid-container {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
+          grid-gap: 1rem;
+        }
+/* END */
 
 /* BUTTONS */
         .smallButton { font-size: .75em; }
@@ -338,6 +372,12 @@
         img.aboutSig { width: 200px; }
 /*END*/
 
+/* SUPPORT THE LIBRARY */
+        #supportAnnualFund,
+        #supportCollect,
+        #supportConserPreser { --uvalib-pc-max-width: 90%; --uvalib-pc-min-width: 90%; }
+/*END*/
+
 /* LIBRARY SPECIFIC PAGES (e.g. RMC) */
         #library-template .lt-thumbnail figure { border: 1px solid var(--uvalib-grey-500); }
         #library-template .lead-image figure { margin: 0; }
@@ -360,6 +400,18 @@
           background: none;
         }
         #renovation-timeline td.activeYear { border-bottom: 4px solid var(--uvalib-secondary-blue); }
+
+        #supportLibrary {
+          --paper-card: {
+              margin: calc(var(--uvalib-spacing-unit)/8);
+              background-color: blue;
+              max-width: 600px;
+              min-width: 290px;
+          }
+        }
+        #supportLibrary figure { margin-left: 0; margin-right: 0; }
+
+
 /*END*/
 
 /* COLLECTIONS PAGE */
