@@ -158,22 +158,27 @@
         if (Array.isArray(a) && a.length>0) return a[0];
         else return null;
       }
-      _shuffle(array) {
-        var currentIndex = array.length, temporaryValue, randomIndex;
+      _shuffle(thearray) {
+        var array;
+        if (Array.isArray(thearray)) {
+          array = JSON.parse(JSON.stringify(thearray));
+          var currentIndex = array.length, temporaryValue, randomIndex;
 
-        // While there remain elements to shuffle...
-        while (0 !== currentIndex) {
+          // While there remain elements to shuffle...
+          while (0 !== currentIndex) {
 
-          // Pick a remaining element...
-          randomIndex = Math.floor(Math.random() * currentIndex);
-          currentIndex -= 1;
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
 
-          // And swap it with the current element.
-          temporaryValue = array[currentIndex];
-          array[currentIndex] = array[randomIndex];
-          array[randomIndex] = temporaryValue;
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+          }
+        } else {
+          array = thearray;
         }
-
         return array;
       }
     }
