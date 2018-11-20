@@ -203,7 +203,7 @@
           font-size: 18px;
           margin-bottom: 2rem;
         }
-        
+
         .grid-container {
           grid-gap: 1rem;
         }
@@ -258,6 +258,17 @@
           border-radius: 5px;
           --paper-button-flat-keyboard-focus: { @apply --accessibility-outline-for-dark-bg; }
         }
+
+        /*Make the button orange*/
+        .button-pop {
+          background-color: var(--uvalib-main-rotunda-orange);
+          color: white;
+        }
+        .button-pop:hover {
+          background: var(--uvalib-orange-200);
+          color: var(--uvalib-black);
+        }
+
         iron-collapse:focus { @apply --accessibility-outline-for-dark-bg; }
         paper-button:hover { text-decoration: underline; }
 
