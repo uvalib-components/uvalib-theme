@@ -6,11 +6,52 @@
   <template>
     <custom-style>
       <style is="custom-style" include="uvalib-fonts">
-      
-      .aeon {
-      color: pink;
-      background-color: green; }
-      
+        #content{ margin: 0; }
+
+        #utility {
+          position: relative;
+          top: inherit;
+          left: inherit;
+          width: auto;
+        }
+
+        #type-b #content { margin: 0; }
+        #type-b #content-wrap {
+          display: grid;
+          grid-gap: 1rem;
+          grid-template-columns: 250px 1fr;
+          font-size: 18px;
+          margin-bottom: 2rem;
+        }
+
+        #nav li.active a:link, #nav li.active a:visited, #nav li.active a:active { color: #E57200;}
+        #nav li.active a:hover { background-color: #E57200; color: #fff; }
+        #nav li.active li a, #nav li.active li a:link, #nav li.active li a:visited { background: #fff; width: auto; }
+        #nav li.active li a:hover { color: #000; text-decoration: underline; }
+
+        form.f-wrap-request { padding: 1em; }
+        form.f-wrap-request fieldset legend { color: #232D4B; }
+        form.f-wrap-request label .field { width: 35%; }
+        form.f-wrap-request label .field .req {
+          position: initial;
+          font-size: 125%;
+          left: -.6em;
+        }
+        form.f-wrap-request label select { height: 2.5em; background-color: white; }
+        form.f-wrap-request div.req { top: 5px; }
+        form.f-wrap-request label { width: 90%; text-align: right; }
+        form.f-wrap-request label input.f-checkbox { margin-top: .4em; }
+
+        input.f-submit {
+          padding: 10px;
+          background: #E57200;
+          color: #fff;
+          font-weight: bold;
+          border-radius: .4em;
+        }
+
+        input { font-size: 1em; }
+
       </style>
     </custom-style>
   </template>

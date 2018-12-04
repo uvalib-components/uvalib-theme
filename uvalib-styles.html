@@ -240,6 +240,30 @@
         }
 /*END*/
 
+/* TABLES */
+/*table tr td, table tr th { padding-left: 15px; padding-right: 15px; }
+table th { vertical-align: top; }
+*/
+table { border-collapse: collapse; width: 100%; /*min-width: 200px;*/ }
+thead { display: none; }
+tr { display: block; padding: 0.5em; border: 1px solid #BBB; }
+td { display: block; padding-left: 40%; }
+td:before { content: attr(data-label); display: inline-block; width: 50%; margin-left: -65%; font-weight: bold; }
+tbody tr:nth-child(even) { background-color: #E0E0E0; }
+/* tbody td:not(:last-child) { border-bottom: 1px solid #DDD; } */
+
+@media screen and (min-width: 60em) {
+  thead { display: table-header-group; }
+  thead tr { background-color: #AAA; }
+  /* thead th:not(:last-child) { border-right: 1px solid blue; } */
+  tr { display: table-row; }
+  td { display: table-cell; padding: 1em; text-align: center; }
+  td:before { display: none; }
+  /* tbody td:not(:last-child) { border-bottom: none; border-right: 1px solid red; } */
+  /* tbody td { border-right: 1px solid red; } */
+}
+/* END */
+
 /* ACCESSIBILITY */
         a:focus { @apply --accessibility-outline-for-light-bg; }
         /* a:hover { text-decoration: underline; } */
@@ -402,7 +426,7 @@
 /*END*/
 
 /* RENOVATION PAGES */
-        #renovation-timeline { margin: 0; }
+        /* #renovation-timeline { margin: 0; }
         #renovation-timeline tr:nth-child(even) { background-color: var(--uvalib-secondary-lt-grey); }
         #renovation-timeline span.completed::before {
           content: "✔ ";
@@ -414,7 +438,7 @@
           border-bottom: 4px solid var(--uvalib-main-white);
           background: none;
         }
-        #renovation-timeline td.activeYear { border-bottom: 4px solid var(--uvalib-secondary-blue); }
+        #renovation-timeline td.activeYear { border-bottom: 4px solid var(--uvalib-secondary-blue); } */
 
         #supportLibrary {
           --paper-card: {
