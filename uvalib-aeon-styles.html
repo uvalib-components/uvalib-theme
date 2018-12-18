@@ -1,6 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../uvalib-theme/uvalib-icons.html">
-<link rel="import" href="uvalib-fonts.html">
+<link rel="import" href="../uvalib-theme/uvalib-fonts.html">
 
 <custom-style>
   <style is="custom-style" include="uvalib-fonts">
@@ -14,6 +14,34 @@
     }
     h1 { border-bottom: 0; }
     h4 { color: #000066 !important; }
+
+    /* LAYOUT - HEADER */
+    #header {
+      background-color: none;
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      border-bottom: 5px solid #000066;
+      margin: 0 0 25px;
+      padding: 6px 0 0 2px;
+    }
+    /* #header #site-name { font: 265% arial;letter-spacing: -.05em;margin:0px 0 0 40px;padding:3px;color:#000066;border:none} */
+    #header #title-name { display: none; }
+    #header #user-name { /*font: 100% ariel;*/ margin:0px 0 0 0; padding:3px; color:#333333; border:none; }
+
+    /* SEARCH */
+    #search { color:#000066; font-weight:bold; /* position:absolute; top:17px; right:10px;*/ }
+    #search form { margin:0 0 5px 0; }
+
+    #search input.f-criteria { width: 8em; margin: 0 0 -1px; height:1.6em; }
+
+    #search label { padding:5px 0 0; display:inline; }
+    #search input.f-submit { width:auto; font-size:81%; margin:0 0 -.15em; height:1.95em; }
+    #search #searchType input { margin: 0 0 -0.4em; height:1.2em;}
+    #search #searchType label { font-weight:normal; font-size:0.8em; padding:0px 0 0 5; }
+
+
+
 
     #type-b #content { margin: 0; }
     #type-b #content-wrap {
@@ -38,6 +66,7 @@
       border-top: none;
       background-color: none;
       padding: 1em;
+      width: 96%;
     }
     form.f-wrap-request fieldset legend { color: #232D4B; }
     form.f-wrap-request label .field { width: 35%; }
@@ -51,8 +80,10 @@
     form.f-wrap-request label { width: 90%; text-align: right; }
     form.f-wrap-request label input.f-checkbox { margin-top: .4em; }
 
-    .collapse-control-expand:before { content:url(css/images/expand.png);margin-right: 15px; }
-    .collapse-control-collapse:before { content:url(css/images/collapse.png); margin-right: 15px; }
+    /* .collapse-control-expand:before { content:url(css/images/expand.png);margin-right: 15px; }
+    .collapse-control-collapse:before { content:url(css/images/collapse.png); margin-right: 15px; } */
+    .collapse-control-expand:before { content:"&plus;"; margin-right: 15px; }
+    .collapse-control-collapse:before { content:"&ndash;"; margin-right: 15px; }
 
     input.f-submit {
       padding: 10px;
