@@ -17,14 +17,19 @@
 
     /* LAYOUT - HEADER */
     #header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 1em;
       background-color: #fff;
       border-left: none;
       border-right: none;
       border-top: none;
       border-bottom: 5px solid #000066;
       margin: 0 0 25px;
-      padding: 6px 0 0 2px;
+      padding: 1em 0;
     }
+    #header #status { margin:0; padding: 1em; border-raduis: 4px; background-color: #C6D0E2; width: 94%; }
+
     /* #header #site-name { font: 265% arial;letter-spacing: -.05em;margin:0px 0 0 40px;padding:3px;color:#000066;border:none} */
     #header #title-name { display: none; }
     #header #user-name { /*font: 100% ariel;*/ margin:0px 0 0 0; padding:3px; color:#333333; border:none; }
@@ -35,7 +40,7 @@
 
     #search label { padding:5px 0 0; display:inline; }
 
-    /**/#search input.f-criteria { width:45%; margin: 0 0.5em 1.5em; height:2em; }
+    /**/#search input.f-criteria { width:85%; margin: 0 0.5em 1.5em 0; height:2em; }
     /**/#search input.f-submit { width:auto; font-size: 100%; margin:0; height: inherit; }
 
     #search #searchType input { margin: 0 0 -0.4em; height:1.2em;}
@@ -103,7 +108,7 @@
 
     #transactionMenu { border-top: none; border-bottom: none; margin-bottom: 1em; }
     #transactionMenu .menuSeparator { display:none; }
-    #transactionMenu a:link, #transactionMenu a:visited { color:#000; padding: 10px; border: 1px solid #000; border-radius: 0.4em; }
+    #transactionMenu a:link, #transactionMenu a:visited { color:#000; padding: 10px; border: 1px solid #ccc; border-radius: 0.4em; }
 
 
     .default-table { width:100%; margin-bottom: 2em; }
