@@ -29,31 +29,22 @@
       padding: 1em 0;
     }
     #header #status span { display: block; margin:0; padding: 1em; border-radius: 4px; width: 94%; }
-    .statusNormal {  background-color: #C6D0E2; color: #333; }
-    .statusInformation { background-color:#000066; color: #fff; }
-    .statusError { background-color:#CC0000; color: #fff; }
+    #header #status span.statusNormal {  background-color: #C6D0E2; color: #333; }
+    #header #status span.statusInformation { background-color:#000066; color: #fff; }
+    #header #status span.statusError { background-color:#CC0000; color: #fff; }
 
     /* #header #site-name { font: 265% arial;letter-spacing: -.05em;margin:0px 0 0 40px;padding:3px;color:#000066;border:none} */
     #header #title-name { display: none; }
     #header #user-name { /*font: 100% ariel;*/ margin:0px 0 0 0; padding:3px; color:#333333; border:none; }
 
     /* SEARCH */
-    /**/#search { color:#000066; font-weight:bold; position: inherit; top: inherit; right:inherit; }
-    /**/#search form { margin:0 0 1.5em 0; text-align: right; }
+    #search { color:#000066; font-weight:bold; position: inherit; top: inherit; right:inherit; }
+    #search form { margin:0 0 1.5em 0; text-align: right; }
+    #search input.f-criteria { width:85%; margin: 0 0.5em 1.5em 0; height:2em; }
+    #search input.f-submit { width:auto; font-size: 100%; margin:0; height: inherit; }
+    #search #searchType label { font-weight:normal; font-size:1em; padding:0 5px; }
 
-    #search label { padding:5px 0 0; display:inline; }
-
-    /**/#search input.f-criteria { width:85%; margin: 0 0.5em 1.5em 0; height:2em; }
-    /**/#search input.f-submit { width:auto; font-size: 100%; margin:0; height: inherit; }
-
-    #search #searchType input { margin: 0 0 -0.4em; height:1.2em;}
-
-    /**/#search #searchType label { font-weight:normal; font-size:1em; padding:0 5px; }
-
-
-
-
-    #type-b #content { margin: 0; }
+    #type-b #content, #type-c #content { margin: 0; }
     #type-b #content-wrap, #type-c #content-wrap {
       display: grid;
       background: none;
@@ -143,7 +134,7 @@
     .table-export-link {display: inline-block; float: right;}
     .table-export-link a {color: #bbb;}
 
-    .researcher-tag-cloud { background-color: none; }
+    .researcher-tag-cloud { background-color: inherit; }
 
   </style>
 </custom-style>
