@@ -17,7 +17,7 @@
 
     /* LAYOUT - HEADER */
     #header {
-      background-color: none;
+      background-color: #fff;
       border-left: none;
       border-right: none;
       border-top: none;
@@ -30,12 +30,13 @@
     #header #user-name { /*font: 100% ariel;*/ margin:0px 0 0 0; padding:3px; color:#333333; border:none; }
 
     /* SEARCH */
-    /**/#search { color:#000066; font-weight:bold; position: inherit; top: unset; right:unset; }
+    /**/#search { color:#000066; font-weight:bold; position: inherit; top: inherit; right:inherit; }
     /**/#search form { margin:0 0 1.5em 0; text-align: right; }
 
     #search label { padding:5px 0 0; display:inline; }
 
     /**/#search input.f-criteria { width:45%; margin: 0 0.5em 1.5em; height:2em; }
+    /**/#search input.f-submit { width:auto; font-size: 100%; margin:0; height: inherit; }
 
     #search #searchType input { margin: 0 0 -0.4em; height:1.2em;}
 
@@ -84,8 +85,9 @@
     form.f-wrap-request label { width: 90%; text-align: right; }
     form.f-wrap-request label input.f-checkbox { margin-top: .4em; }
 
-    /* .collapse-control-expand:before { content:url(css/images/expand.png);margin-right: 15px; }
-    .collapse-control-collapse:before { content:url(css/images/collapse.png); margin-right: 15px; } */
+    #researcher-tags-update label input { margin:0 3px; width: 79%; height: 2em; }
+    #researcher-tags-update label button { float:right; width: 19%; height:auto; }
+
     .collapse-control-expand:before { content:"&plus;"; margin-right: 15px; }
     .collapse-control-collapse:before { content:"&ndash;"; margin-right: 15px; }
 
@@ -100,6 +102,7 @@
     input { font-size: 1em; }
 
     #transactionMenu { border-top: none; border-bottom: none; margin-bottom: 1em; }
+    #transactionMenu .menuSeparator { display:none; }
     #transactionMenu a:link, #transactionMenu a:visited { color:#000; padding: 10px; border: 1px solid #000; border-radius: 0.4em; }
 
 
