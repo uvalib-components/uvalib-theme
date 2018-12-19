@@ -30,21 +30,22 @@
     #header #user-name { /*font: 100% ariel;*/ margin:0px 0 0 0; padding:3px; color:#333333; border:none; }
 
     /* SEARCH */
-    #search { color:#000066; font-weight:bold; /* position:absolute; top:17px; right:10px;*/ }
-    #search form { margin:0 0 5px 0; }
-
-    #search input.f-criteria { width: 8em; margin: 0 0 -1px; height:1.6em; }
+    /**/#search { color:#000066; font-weight:bold; position: inherit; top: unset; right:unset; }
+    /**/#search form { margin:0 0 1.5em 0; text-align: right; }
 
     #search label { padding:5px 0 0; display:inline; }
-    #search input.f-submit { width:auto; font-size:81%; margin:0 0 -.15em; height:1.95em; }
+
+    /**/#search input.f-criteria { width:45%; margin: 0 0.5em 1.5em; height:2em; }
+
     #search #searchType input { margin: 0 0 -0.4em; height:1.2em;}
-    #search #searchType label { font-weight:normal; font-size:0.8em; padding:0px 0 0 5; }
+
+    /**/#search #searchType label { font-weight:normal; font-size:1em; padding:0 5px; }
 
 
 
 
     #type-b #content { margin: 0; }
-    #type-b #content-wrap {
+    #type-b #content-wrap, #type-c #content-wrap {
       display: grid;
       background: none;
       grid-gap: 1rem;
@@ -52,6 +53,9 @@
       font-size: 18px;
       margin-bottom: 2rem;
     }
+
+    #type-c #content-wrap #sidebar { display: none; }
+
     #nav { border-top: 1px solid #ccc; }
     #nav li, li { padding-left: 0; background-image: none; }
     #nav li.active a:link, #nav li.active a:visited, #nav li.active a:active { color: #E57200;}
@@ -85,7 +89,7 @@
     .collapse-control-expand:before { content:"&plus;"; margin-right: 15px; }
     .collapse-control-collapse:before { content:"&ndash;"; margin-right: 15px; }
 
-    input.f-submit {
+    input.f-submit, #search input.f-submit, #update-researcher-tags-button {
       padding: 10px;
       background: #E57200;
       color: #fff;
@@ -94,6 +98,41 @@
     }
 
     input { font-size: 1em; }
+
+    #transactionMenu { border-top: none; border-bottom: none; margin-bottom: 1em; }
+    #transactionMenu a:link, #transactionMenu a:visited { color:#000; padding: 10px; border: 1px solid #000; border-radius: 0.4em; }
+
+
+    .default-table { width:100%; margin-bottom: 2em; }
+    .default-table table {border: 1px solid #000066;font: 75%/1.5em arial, geneva, sans-serif;border-collapse:collapse;}
+    .default-table tbody td {font-size: 100%;letter-spacing: 0.05em;}
+    .default-table tbody td, th {border-left: 1px solid #000066;vertical-align: middle;padding: 5px;}
+
+    /**/.default-table thead tr, .default-table tfoot tr { background: #fff; }
+
+    .default-table thead tr.row-header {background: #000066;color: #fff;}
+
+    /**/.default-table caption { letter-spacing: 0em; padding: 10px; }
+
+    .default-table thead tr.row-headings th{border-bottom: 1px solid #000066;}
+
+    /**/.default-table thead th, .default-table tfoot tr { padding: 5px 5px;text-align: left;letter-spacing: 0em;font-weight: bold;font-size: 1.2em;}
+    /**/.default-table tbody tr:nth-child(even) { background-color: #fff; }
+
+    .default-table tbody th {padding: 5px 5px 5px 5px;text-align: left;font-size: 110%;color: #fff;letter-spacing: 0.1em;line-height: 1.5em;text-transform: uppercase;}
+    .default-table tbody th[scope="row"] { color: #333; font-size: 100%; text-transform: none; letter-spacing: 0.05em; font-weight: normal;}
+    .default-table tbody tr.row-odd th {background: #efefef;}
+    .default-table tbody tr.row-odd {background: #efefef;}
+    .default-table tbody tr th {background: #ffffff;}
+    .default-table tbody tr {background: #ffffff;}
+    .default-table tfoot td {border-top: 1px solid #000066; padding: 5px;}
+    .default-table tfoot tr td {padding: 5px;}
+    .default-table tfoot tr.row-footer {background: #ffffff; color:#000000;}
+    .default-table a {text-decoration:none;}
+    .table-export-link {display: inline-block; float: right;}
+    .table-export-link a {color: #bbb;}
+
+    .researcher-tag-cloud { background-color: none; }
 
   </style>
 </custom-style>
