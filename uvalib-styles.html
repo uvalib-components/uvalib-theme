@@ -441,7 +441,6 @@ td ul li { list-style-type: none; }
           margin: var(--uvalib-spacing-unit) -1000px var(--uvalib-spacing-unit) -1000px;
           padding: calc(var(--uvalib-spacing-unit)/4) 1000px calc(var(--uvalib-spacing-unit)/4) 1000px;
           background-color: var(--uvalib-secondary-light-gray);
-          /* padding: .25em; */
         }
         #services-page ul {
           padding-left: 0;
@@ -465,11 +464,9 @@ td ul li { list-style-type: none; }
           text-decoration: underline;
         }
 
-
         /* grid */
         .services-grid-container {
           display: grid;
-          /* grid-gap: 1rem; */
           grid-template-columns: 1fr;
           margin-bottom: 2rem;
         }
@@ -478,7 +475,7 @@ td ul li { list-style-type: none; }
         }
         :host([large-screen]) .services-grid-container {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
           grid-gap: 1rem;
         }
         /*grid end*/
