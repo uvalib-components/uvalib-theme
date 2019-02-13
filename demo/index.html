@@ -10,12 +10,12 @@
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
     <link rel="import" href="../../iron-flex-layout/iron-flex-layout.html">
     <link rel="import" href="../../paper-card/paper-card.html">
-
+    <link rel="import" href="../uvalib-fonts.html">
     <link rel="import" href="../uvalib-theme.html">
-    <link rel="import" href="../uvalib-icons.html">
+    <!-- <link rel="import" href="../uvalib-icons.html"> -->
 
     <custom-style>
-      <style is="custom-style" include="demo-pages-shared-styles uvalib-theme">
+      <style is="custom-style" include="demo-pages-shared-styles uvalib-theme uvalib-fonts">
       div.palette {
         @apply --layout-horizontal;
         @apply --layout-wrap;
@@ -356,8 +356,8 @@
       </demo-snippet>
 
 
-      <h3>Icon Demo</h3>
-      <demo-snippet>
+      <!--<h3>Icon Demo</h3>
+       <demo-snippet>
         <template>
           <custom-style>
             <style is="custom-style" include="uvalib-theme">
@@ -404,33 +404,87 @@
           <iron-icon icon="caret-left"></iron-icon>
           <iron-icon icon="caret-right"></iron-icon>
         </template>
-      </demo-snippet>
+      </demo-snippet> -->
 
       <h3>Font icons demo</h3>
       <demo-snippet>
         <template>
           <custom-style>
             <style is="custom-style" include="uvalib-theme">
-              ul {
-                list-style-type: none;
-              }
-              li:before {
-                font-family: uvalib-custom-icons;
-                content: '\f007';
-                margin:0 5px 0 15px;
-                color: #f00;
+              p span {
+                font-family: 'franklin-gothic-urw',arial,sans-serif;
+                font-size: 20px;
+                font-weight: 400;
+                line-height: 28px;
+                color: var(--uvalib-text-grey);
               }
             </style>
           </custom-style>
-          <h1 style="font-family: uvalib-custom-icons;">&#xf007;</h1>
           <div>
-            <span class="uvalib-icon-graduation-cap"></span>
+            <p><span class="uvalib-icon-american-sign-language-interpreting">&nbsp;american-sign-language-interpreting</span></p>
+            <p><span class="uvalib-icon-angle-double-up">&nbsp;angle-double-up</span></p>
+            <p><span class="uvalib-icon-angle-down">&nbsp;angle-down</span></p>
+            <p><span class="uvalib-icon-angle-left">&nbsp;angle-left</span></p>
+            <p><span class="uvalib-icon-angle-right">&nbsp;angle-right</span></p>
+            <p><span class="uvalib-icon-angle-up">&nbsp;angle-up</span></p>
+            <p><span class="uvalib-icon-asl-interpreting">&nbsp;asl-interpreting</span></p>
+            <p><span class="uvalib-icon-assistive-listening-systems">&nbsp;assistive-listening-systems</span></p>
+            <p><span class="uvalib-icon-audio-description">&nbsp;audio-description</span></p>
+            <p><span class="uvalib-icon-bank">&nbsp;bank</span></p>
+            <p><span class="uvalib-icon-bars">&nbsp;bars</span></p>
+            <p><span class="uvalib-icon-bell">&nbsp;bell</span></p>
+            <p><span class="uvalib-icon-blind">&nbsp;blind</span></p>
+            <p><span class="uvalib-icon-book">&nbsp;book</span></p>
+            <p><span class="uvalib-icon-braille">&nbsp;braille</span></p>
+            <p><span class="uvalib-icon-calendar">&nbsp;calendar</span></p>
+            <p><span class="uvalib-icon-caret-down">&nbsp;caret-down</span></p>
+            <p><span class="uvalib-icon-caret-left">&nbsp;caret-left</span></p>
+            <p><span class="uvalib-icon-caret-right">&nbsp;caret-right</span></p>
+            <p><span class="uvalib-icon-caret-up">&nbsp;caret-up</span></p>
+            <p><span class="uvalib-icon-cc">&nbsp;cc</span></p>
+            <p><span class="uvalib-icon-chevron-left">&nbsp;chevron-left</span></p>
+            <p><span class="uvalib-icon-chevron-right">&nbsp;chevron-right</span></p>
+            <p><span class="uvalib-icon-circle">&nbsp;circle</span></p>
+            <p><span class="uvalib-icon-circle-o">&nbsp;circle-o</span></p>
+            <p><span class="uvalib-icon-clock-o">&nbsp;clock-o</span></p>
+            <p><span class="uvalib-icon-close">&nbsp;close</span></p>
+            <p><span class="uvalib-icon-cloud">&nbsp;cloud</span></p>
+            <p><span class="uvalib-icon-comments">&nbsp;comments</span></p>
+            <p><span class="uvalib-icon-deaf">&nbsp;deaf</span></p>
+            <p><span class="uvalib-icon-deafness">&nbsp;deafness</span></p>
+            <p><span class="uvalib-icon-envelope">&nbsp;envelope</span></p>
+            <p><span class="uvalib-icon-envelope-o">&nbsp;envelope-o</span></p>
+            <p><span class="uvalib-icon-envelope-square">&nbsp;envelope-square</span></p>
+            <p><span class="uvalib-icon-exclamation-circle">&nbsp;exclamation-circle</span></p>
+            <p><span class="uvalib-icon-exclamation-triangle">&nbsp;exclamation-triangle</span></p>
+            <p><span class="uvalib-icon-facebook-square">&nbsp;facebook-square</span></p>
+            <p><span class="uvalib-icon-flickr">&nbsp;flickr</span></p>
+            <p><span class="uvalib-icon-globe">&nbsp;globe</span></p>
+            <p><span class="uvalib-icon-graduation-cap">&nbsp;graduation-cap</span></p>
+            <p><span class="uvalib-icon-hard-of-hearing">&nbsp;hard-of-hearing</span></p>
+            <p><span class="uvalib-icon-home">&nbsp;home</span></p>
+            <p><span class="uvalib-icon-instagram">&nbsp;instagram</span></p>
+            <p><span class="uvalib-icon-institution">&nbsp;institution</span></p>
+            <p><span class="uvalib-icon-language">&nbsp;language</span></p>
+            <p><span class="uvalib-icon-linkedin-square">&nbsp;linkedin-square</span></p>
+            <p><span class="uvalib-icon-map-marker">&nbsp;map-marker</span></p>
+            <p><span class="uvalib-icon-mortar-board">&nbsp;mortar-board</span></p>
+            <p><span class="uvalib-icon-navicon">&nbsp;navicon</span></p>
+            <p><span class="uvalib-icon-o-globe">&nbsp;o-globe</span></p>
+            <p><span class="uvalib-icon-phone">&nbsp;phone</span></p>
+            <p><span class="uvalib-icon-phone-square">&nbsp;phone-square</span></p>
+            <p><span class="uvalib-icon-pinterest-square">&nbsp;pinterest-square</span></p>
+            <p><span class="uvalib-icon-remove">&nbsp;remove</span></p>
+            <p><span class="uvalib-icon-reorder">&nbsp;reorder</span></p>
+            <p><span class="uvalib-icon-search">&nbsp;search</span></p>
+            <p><span class="uvalib-icon-times">&nbsp;times</span></p>
+            <p><span class="uvalib-icon-twitter">&nbsp;twitter</span></p>
+            <p><span class="uvalib-icon-twitter-square">&nbsp;twitter-square</span></p>
+            <p><span class="uvalib-icon-university">&nbsp;university</span></p>
+            <p><span class="uvalib-icon-user">&nbsp;user</span></p>
+            <p><span class="uvalib-icon-warning">&nbsp;warning</span></p>
+            <p><span class="uvalib-icon-wheelchair-alt">&nbsp;wheelchair-alt</span></p>
           </div>
-          <ul>
-            <li style="">
-              foo
-            </li>
-          </ul>
         </template>
       </demo-snippet>
     </div>
