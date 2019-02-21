@@ -473,6 +473,11 @@ td ul li { list-style-type: none; }
         .services-grid-container {
           grid-gap: 1rem;
         }
+        :host([medium-screen]) .services-grid-container {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          grid-gap: 1rem;
+        }
         :host([large-screen]) .services-grid-container {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -541,6 +546,53 @@ td ul li { list-style-type: none; }
           }
         }
 /*END*/
+
+/* STAFF BIO PAGE */
+        :host([small-screen]) #staff-bio-container {
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-template-rows: auto;
+          margin-bottom: 2rem;
+        }
+        :host([small-screen]) .bio-quick-details { margin-top: 100px; margin-bottom: 0px; display: block; }
+
+        #staff-bio-container {
+          display: grid;
+          grid-template-rows: 70px 1fr;
+          grid-template-columns: 330px 1fr;
+          grid-gap: 2em;
+          margin-bottom: 2rem;
+        }
+        .spacer-row {
+          grid-column: 1 / 3;
+          /* border: 1px solid #555; */
+        }
+
+        .bio-quick-details, .bio-web-links { margin-bottom: 2em; background-color: var(--uvalib-secondary-light-gray); text-align: center; padding: 2em; }
+        .bio-quick-details .bio-image .round { margin-top: -130px; width: 260px; height: 260px;  }
+        .bio-quick-details .display-name { @apply --h2; color: var(--uvalib-main-rotunda-orange); margin-top: 0.75em; }
+        .bio-quick-details .job-title, .bio-department p, .bio-languages p, .bio-pronouns p { margin-top: calc(var(--uvalib-spacing-unit)/4); line-height: 1.15; }
+
+        .bio-contact-info, .bio-department, .bio-languages, .bio-pronouns { text-align: left;  }
+        .bio-department h4, .bio-languages h4, .bio-pronouns h4 { margin-bottom: 0; }
+
+        .bio-contact-info .phone,
+        .bio-contact-info .email,
+        .bio-contact-info .office-location,
+        .bio-contact-info .address { }
+
+        .bio-department { }
+        .bio-languages {}
+        .bio-pronouns p { color: var(--uvalib-main-rotunda-orange); }
+
+        .bio-web-links h4 { margin: 0 0 0.75em 0; }
+        .bio-web-links a, .bio-web-links a:before { color: var(--uvalib-main-rotunda-orange); font-size: 1.25em; text-decoration: none; }
+        .bio-web-links a:hover { color: var(--uvalib-main-jefferson-blue); }
+
+        .bio-full-details {}
+
+/*END*/
+
 
 /*********************************************/
 /*              BROWSER HACKS                */
