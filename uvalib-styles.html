@@ -538,18 +538,24 @@ td ul li { list-style-type: none; }
 
         .bio-web-links h4 { margin: 0 0 0.75em 0; }
         .bio-web-links a, .bio-web-links a:before { color: var(--uvalib-main-rotunda-orange); font-size: 1.25em; text-decoration: none; }
-        .bio-web-links a:hover { color: var(--uvalib-main-jefferson-blue); }
+        .bio-web-links a:hover, .bio-web-links a:hover:before { color: var(--uvalib-main-jefferson-blue); }
 
-        #staff-bio-container paper-button {
+        #staff-bio-container a paper-button {
           margin-top: var(--uvalib-spacing-unit);
           background-color: var(--uvalib-main-rotunda-orange);
           border-color: var(--uvalib-main-rotunda-orange);
           color: white;
+          --paper-button-raised-keyboard-focus: {
+            border-color: var(--uvalib-orange-200);
+            background-color: var(--uvalib-orange-200) !important;
+            color: #000 !important;
+          };
         }
-        #staff-bio-container paper-button:hover {
-          background: var(--uvalib-orange-200);
-          border-color: var(--uvalib-orange-200);
-          color: var(--uvalib-black);
+        #staff-bio-container a:hover paper-button {
+            background-color: var(--uvalib-orange-200);
+            border-color: var(--uvalib-orange-200);
+            color: var(--uvalib-black);
+            font-weight: bold;
         }
 /*END*/
 
