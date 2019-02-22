@@ -68,13 +68,8 @@
           font-style: italic;
           line-height: 1.25;
         }
-        blockquote p {
-          font-size: calc(var(--uvalib-main-font-size-unit)*1.15);
-        }
-        blockquote footer {
-          text-align: right;
-          font-size: calc(var(--uvalib-main-font-size-unit)/1.12);
-        }
+        blockquote p { font-size: calc(var(--uvalib-main-font-size-unit)*1.15); }
+        blockquote footer { text-align: right; font-size: calc(var(--uvalib-main-font-size-unit)/1.12); }
 
         ul, ol {
           font-family: var(--font-primary);
@@ -197,16 +192,12 @@
         .grid-container,
         .grid-one-third-right {
           display: grid;
-          /* grid-gap: 1rem; */
           grid-template-columns: 1fr;
-          /* line-height: 1.75; */
           font-size: 18px;
           margin-bottom: 2rem;
         }
 
-        .grid-container {
-          grid-gap: 1rem;
-        }
+        .grid-container { grid-gap: 1rem; }
 
         :host([large-screen]) .grid-one-third-right {
           display: grid;
@@ -238,6 +229,11 @@
             color: white !important;
           };
         }
+
+        .orangeButton {}
+
+
+
 /*END*/
 
 /* TABLES */
@@ -434,35 +430,22 @@ td ul li { list-style-type: none; }
 
 /* SERVICES - GRAD STUDENT PAGE */
         /*use this to set the header styles*/
-        #services-page h2 {
-          text-align: center;
-        }
+        #services-page h2 { text-align: center; }
         #services-page h2.background {
           margin: var(--uvalib-spacing-unit) -1000px var(--uvalib-spacing-unit) -1000px;
           padding: calc(var(--uvalib-spacing-unit)/4) 1000px calc(var(--uvalib-spacing-unit)/4) 1000px;
           background-color: var(--uvalib-secondary-light-gray);
         }
-        #services-page ul {
-          padding-left: 0;
-        }
-        #services-page ul li {
-          list-style-type: none;
-        }
-        #services-page ul li h3, .services-graphic-index h3 {
-          margin-bottom: 0;
-        }
-        #services-page ul li p {
-          margin-top: .25em;
-          margin-bottom: .25em;
-        }
+        #services-page ul { padding-left: 0; }
+        #services-page ul li { list-style-type: none; }
+        #services-page ul li h3, .services-graphic-index h3 { margin-bottom: 0; }
+        #services-page ul li p { margin-top: .25em; margin-bottom: .25em; }
         #services-page ul li a, .services-graphic-index a:not(.basic) {
           color: var(--uvalib-main-rotunda-orange);
           text-decoration: none;
           font-weight: var(--font-weight-medium);
         }
-        #services-page ul li a:hover, .services-graphic-index a:hover:not(.basic) {
-          text-decoration: underline;
-        }
+        #services-page ul li a:hover, .services-graphic-index a:hover:not(.basic) { text-decoration: underline; }
 
         /* grid */
         .services-grid-container {
@@ -470,9 +453,7 @@ td ul li { list-style-type: none; }
           grid-template-columns: 1fr;
           margin-bottom: 2rem;
         }
-        .services-grid-container {
-          grid-gap: 1rem;
-        }
+        .services-grid-container { grid-gap: 1rem; }
         :host([medium-screen]) .services-grid-container {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -495,23 +476,11 @@ td ul li { list-style-type: none; }
           border: 2px solid var(--uvalib-secondary-light-gray);
           padding: 1.5em;
         }
-        .services-graphic-index img.icon {
-          width: 100px;
-          height: 100px;
-        }
-        a.clickbox {
-          text-decoration: none;
-          color: inherit;
-        }
-        a.clickbox:hover {
-          background-color: var(--uvalib-secondary-light-gray);
-        }
-        .no-border {
-          border: none;
-        }
-        #Request, #Publishing, #Instruction, #Consultation, #Spaces {
-          padding-top: 2em;
-        }
+        .services-graphic-index img.icon { width: 100px; height: 100px; }
+        a.clickbox { text-decoration: none; color: inherit; }
+        a.clickbox:hover { background-color: var(--uvalib-secondary-light-gray); }
+        .no-border { border: none; }
+        #Request, #Publishing, #Instruction, #Consultation, #Spaces { padding-top: 2em; }
 /*END*/
 
 /* COLLECTIONS PAGE */
@@ -530,10 +499,7 @@ td ul li { list-style-type: none; }
         .aldCollectionTable td { border-bottom: 1px solid var(--color-medium-gray); }
 
         .aldCollectionTable th, .aldCollectionTable td { text-align: center; }
-        .aldCollectionTable th[scope="row"]  {
-          text-align: left;
-          border-bottom: 1px solid var(--color-medium-gray);
-        }
+        .aldCollectionTable th[scope="row"]  { text-align: left; border-bottom: 1px solid var(--color-medium-gray); }
         .aldCollectionTable tr:last-child th, .aldCollectionTable tr:last-child td { border-bottom: none; }
 /*END*/
 
@@ -563,10 +529,7 @@ td ul li { list-style-type: none; }
           grid-gap: 2em;
           margin-bottom: 2rem;
         }
-        .spacer-row {
-          grid-column: 1 / 3;
-          /* border: 1px solid #555; */
-        }
+        .spacer-row { grid-column: 1 / 3; }
 
         .bio-quick-details, .bio-web-links { margin-bottom: 2em; background-color: var(--uvalib-secondary-light-gray); text-align: center; padding: 2em; }
         .bio-quick-details .bio-image .round { margin-top: -130px; width: 260px; height: 260px;  }
@@ -575,22 +538,17 @@ td ul li { list-style-type: none; }
 
         .bio-contact-info, .bio-department, .bio-languages, .bio-pronouns { text-align: left;  }
         .bio-department h4, .bio-languages h4, .bio-pronouns h4 { margin-bottom: 0; }
-
-        .bio-contact-info .phone,
-        .bio-contact-info .email,
-        .bio-contact-info .office-location,
-        .bio-contact-info .address { }
-
-        .bio-department { }
-        .bio-languages {}
         .bio-pronouns p { color: var(--uvalib-main-rotunda-orange); }
 
         .bio-web-links h4 { margin: 0 0 0.75em 0; }
         .bio-web-links a, .bio-web-links a:before { color: var(--uvalib-main-rotunda-orange); font-size: 1.25em; text-decoration: none; }
         .bio-web-links a:hover { color: var(--uvalib-main-jefferson-blue); }
 
-        .bio-full-details {}
-
+        #staff-bio-container paper-button {
+          margin-top: var(--uvalib-spacing-unit);
+          background-color: var(--uvalib-main-rotunda-orange);
+          color: #fff;
+        }
 /*END*/
 
 
