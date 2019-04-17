@@ -25,10 +25,11 @@
       border-right: none;
       border-top: none;
       border-bottom: 5px solid #000066;
-      margin: 0 0 25px;
+      margin: 0 0 25px 0;
       padding: 1em 0;
     }
-    #header #status span { display: block; margin:0; padding: 1em; border-radius: 4px; width: 94%; }
+    #header #status { margin: 0 5%; }
+    #header #status span { display: block; margin:0; padding: 1em; border-radius: 4px; width: 84%; }
     #header #status span.statusNormal {  background-color: #C6D0E2; color: #333; }
     #header #status span.statusInformation { background-color:#000066; color: #fff; }
     #header #status span.statusError { background-color:#CC0000; color: #fff; }
@@ -38,7 +39,7 @@
     #header #user-name { /*font: 100% ariel;*/ margin:0px 0 0 0; padding:3px; color:#333333; border:none; }
 
     /* SEARCH */
-    #search { color:#000066; font-weight:bold; position: inherit; top: inherit; right:inherit; }
+    #search { margin-top: 20px; color:#000066; font-weight:bold; position: inherit; top: inherit; right:inherit; }
     #search form { margin:0 0 1.5em 0; text-align: right; }
     #search input.f-criteria { width:85%; margin: 0 0.5em 1.5em 0; height:2em; }
     #search input.f-submit { width:auto; font-size: 100%; margin:0; height: inherit; }
@@ -55,6 +56,22 @@
     }
 
     #type-c #content-wrap #sidebar { display: none; }
+
+    .mainNav li {
+      list-style: none;
+      padding: 10px;
+      border-radius: 4px;
+      border: 2px solid #888;
+      margin: 6px 0;
+    }
+
+    .mainNav li:hover {
+      background-color: #E57200;
+      color: white;
+      border-color: #eb5f0c;
+    }
+
+
 
     #nav { border-top: 1px solid #ccc; }
     #nav li, li { padding-left: 0; background-image: none; }
@@ -100,8 +117,12 @@
       font-weight: bold;
       border-radius: .4em;
     }
+
+    .reproButton button { border: none; }
+
     .reproButton a {
       background-color: #888;
+      border: 2px solid #888;
       display: inline-block;
       margin-bottom: 20px;
       font-weight: normal;
@@ -109,7 +130,6 @@
     .reproButton a:hover {
       background-color: #dadada;
       color: black;
-      border: 2px solid #888;
     }
 
 
