@@ -191,7 +191,8 @@
 /* GRID */
         .grid-main,
         .grid-container,
-        .grid-one-third-right {
+        .grid-one-third-right,
+        .grid-three-cols {
           display: grid;
           grid-template-columns: 1fr;
           font-size: 18px;
@@ -199,6 +200,9 @@
         }
 
         .grid-container { grid-gap: 1rem; }
+
+        :host([medium-screen]) .grid-three-cols { grid-template-columns: 1fr 1fr; }
+        :host([large-screen]) .grid-three-cols { grid-template-columns: 1fr 1fr 1fr; }
 
         :host([large-screen]) .grid-one-third-right {
           display: grid;
