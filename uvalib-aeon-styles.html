@@ -4,6 +4,10 @@
 
 <custom-style>
   <style is="custom-style" include="uvalib-fonts">
+    #Login { padding: 0 5%; }
+    
+    :host([medium-screen]) #Login .grid-container, :host([large-screen]) #Login .grid-container { grid-template-columns: 1fr 1fr; }
+
     #content{ margin: 0; }
 
     #utility {
@@ -100,8 +104,6 @@
     form.f-wrap-request label input.f-checkbox { margin-top: .4em; }
 
     #logonform ul { margin: 15px 20px; }
-
-
 
     #researcher-tags-update label input { margin:0 3px; width: 79%; height: 2em; }
     #researcher-tags-update label button { float:right; width: 19%; height:auto; }
