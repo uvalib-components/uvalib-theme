@@ -79,6 +79,15 @@
             value: null,
             observer: "_handleAnchor"
           },
+          /** Set this to true when you want the links to be relative (when used in library.virginia.edu) **/
+          relativeLinks: {
+            type: Boolean,
+            value: false
+          },
+          _domain: {
+            type: String,
+            computed: "_makeLinkDomain(relativeLinks)"
+          },
           _localhost: {
             type: Boolean,
             value: function(){
@@ -98,6 +107,9 @@
       ready(){
         super.ready();
         this.unresolved = false;
+      }
+      _makeLinkDomain(relLinks) {
+        return (relLinks)? "":"https://www.library.virginia.edu";
       }
       _supportsWebp(){
         return false;
