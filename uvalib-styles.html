@@ -185,7 +185,8 @@
         .uva-margin-bottom { margin-bottom: var(--uvalib-spacing-unit); }
         .uva-margin-top-bottom { margin-top: var(--uvalib-spacing-unit); margin-bottom: var(--uvalib-spacing-unit); }
 
-        .uva-margin-top-none { margin: 0; }
+        .uva-margin-top-none { margin-top: 0; }
+        .uva-margin-bottom-none { margin-bottom: 0; }
 /*END*/
 
 /* GRID */
@@ -282,6 +283,15 @@ td ul li { list-style-type: none; }
         }
         .button-pop:hover {
           background: var(--uvalib-orange-200);
+          color: var(--uvalib-black);
+        }
+
+        .button-pop-alt {
+          background-color: var(--uvalib-main-jefferson-blue);
+          color: white;
+        }
+        .button-pop-alt:hover {
+          background: var(--uvalib-secondary-md-grey);
           color: var(--uvalib-black);
         }
 
@@ -505,13 +515,8 @@ td ul li { list-style-type: none; }
 /*END*/
 
 /* LIBRA LANDING PAGE */
-        #libraETD, #libraData, #libraOpen {
-          --paper-card: {
-            margin: var(--uvalib-spacing-unit);
-            max-width: 600px;
-            min-width: 225px;
-          }
-        }
+        .libraLanding uvalib-simple-search-box { --uvalib-background-search: var(--uvalib-main-jefferson-blue); }
+
 /*END*/
 
 /* STAFF BIO PAGE */
