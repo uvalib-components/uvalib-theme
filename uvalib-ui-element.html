@@ -112,16 +112,16 @@
         return (relLinks)? "":"https://www.library.virginia.edu";
       }
       _supportsWebp(){
-        return false;
-//        var elem = document.createElement('canvas');
-//        if (!!(elem.getContext && elem.getContext('2d'))) {
-//          // was able or not to get WebP representation
-//          return elem.toDataURL('image/webp').indexOf('data:image/webp') == 0;
-//        }
-//        else {
-//          // very old browser like IE 8, canvas not supported
-//          return false;
-//        }
+//        return false;
+        var elem = document.createElement('canvas');
+        if (!!(elem.getContext && elem.getContext('2d'))) {
+          // was able or not to get WebP representation
+          return elem.toDataURL('image/webp').indexOf('data:image/webp') == 0;
+        }
+        else {
+          // very old browser like IE 8, canvas not supported
+          return false;
+        }
       }
       _handleAnchor(){
         if (this.hash) {
@@ -145,8 +145,8 @@
       _compressedImage(url){
         url = url.replace("https://drupal.lib.virginia.edu/sites/default","");
         if (url.indexOf('/files')==0 && !this._localhost) {
-          return (this.webPsupport && url.match(/.*\.(png|jpg|jpeg)?$/i))?
-            url.replace('/files/','/files-comp/').replace(/\.(png|jpg|jpeg)?$/i,'.webp'):
+          return (this.webPsupport && url.match(/.*\.(jpg|jpeg)?$/i))? //url.match(/.*\.(png|jpg|jpeg)?$/i))?
+            url.replace(/\.(png|jpg|jpeg)?$/i,'.webp'):
             url;
         }
         return url;
