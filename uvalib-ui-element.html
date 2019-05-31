@@ -154,8 +154,9 @@
       _isResponsive(){
         return !(this.lite);
       }
-      _or(t1, t2){
-        return (t1 || t2);
+      _or(...items){
+        var i;
+        return items.some(i=>!!i);
       }
       _and(t1, t2){
         return (t1 && t2);
