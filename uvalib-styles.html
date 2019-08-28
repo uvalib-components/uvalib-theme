@@ -530,27 +530,13 @@ td ul li { list-style-type: none; }
         .aldCollectionTable tr:last-child th, .aldCollectionTable tr:last-child td { border-bottom: none; }
 
         /*new styling August 2019*/
-        .collections-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          grid-gap: 2rem;
-        }
+        .collections-grid { display: grid; grid-template-columns: 1fr 1fr; grid-gap: 2rem; }
 
-        .collections-grid.third {
-          grid-template-columns: 250px 1fr;
-          margin-top: 2rem;
-        }
+        .collections-grid.third { grid-template-columns: 250px 1fr; margin-top: 2rem; }
 
-        :host([small-screen]) .collections-grid, :host([small-screen]) .collections-grid.third {
-          display: grid;
-          grid-template-columns: 1fr;
-          grid-gap: 2rem;
-        }
+        :host([small-screen]) .collections-grid, :host([small-screen]) .collections-grid.third { display: grid; grid-template-columns: 1fr; grid-gap: 2rem; }
 
-        .collections-grid.third div h3 {
-          margin-top: 0;
-          padding-top: 0;
-        }
+        .collections-grid.third div h3 { margin-top: 0; padding-top: 0; }
 
         .collections-big-deal::before,
         .collections-big-deal::after {
@@ -562,10 +548,11 @@ td ul li { list-style-type: none; }
           background: linear-gradient(to right, #FFF, var(--uvalib-main-rotunda-orange), #FFF) center / 100% 2px no-repeat;
         }
 
-        .collections-section {
-          display: block;
-          margin-bottom: 4rem;
-        }
+        .collections-section { display: block; margin-bottom: 4rem; }
+
+        #collectionForm { height: 450px; }
+        :host([small-screen]) #collectionForm { height: 370px; }
+        :host([medium-screen]) #collectionForm { height: 415px; }
 /*END*/
 
 /* LIBRA LANDING PAGE */
