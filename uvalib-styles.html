@@ -237,6 +237,18 @@
           };
         }
 
+        .give-button {
+          margin-top: .5em;
+          margin-bottom: 1em;
+          margin-left: 0;
+          border: none;
+          font-size: calc(var(--uvalib-main-font-size-unit)*1.125);
+        }
+        paper-button.give-button {
+          color: var(--color-white);
+          background: var(--color-primary-orange);
+        }
+
 /*END*/
 
 /* TABLES */
@@ -268,6 +280,7 @@ td ul li { list-style-type: none; }
         a span { text-decoration: underline; color: var(--uvalib-link-color); }
         a span:hover { text-decoration: none; }
         a span:visited { color: var(--uvalib-link-color-visited); }
+        a:link paper-button { text-decoration: none; }
 
         #top #logo a:focus { @apply --accessibility-outline-for-dark-bg; }
         #top #logo a:hover { border-bottom: 1px solid var(--color-accessibility-outline-dark-bg); padding-bottom: .1em; }
