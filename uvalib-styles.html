@@ -220,6 +220,28 @@
 /* END */
 
 /* BUTTONS */
+        /* phase out use of paper button 09-2019 */
+        paper-button {
+          border: 1px solid var(--uvalib-secondary-md-grey);
+          border-radius: 5px;
+          --paper-button-flat-keyboard-focus: { @apply --accessibility-outline-for-dark-bg; }
+        }
+
+        /* Start using this class on anchor links for buttons 09-2019 */
+        a.uvalib-btn, a.uvalib-btn:link, a.uvalib-btn:visited, a.uvalib-btn:hover, a.uvalib-btn:active {
+          /* @apply --button-pop; */
+          padding: calc(var(--uvalib-spacing-unit)/2);
+          text-decoration: none;
+          background-color: var(--alt-button-color, var(--uvalib-main-rotunda-orange));
+          color: var(--alt-button-text-color, #fff);
+          text-transform: uppercase;
+          border-radius: 5px;
+         }
+
+        a.uvalib-btn:hover { text-decoration: underline; }
+
+        /* .foo { --alt-button-color: green; } */
+
         .smallButton { font-size: .75em; }
         .mediumButton { font-size: .85em; }
 
@@ -249,25 +271,50 @@
           background: var(--color-primary-orange);
         }
 
+    /* Make the button orange PHASE OUT */
+        .button-pop {
+          background-color: var(--uvalib-main-rotunda-orange);
+          color: white;
+        }
+        .button-pop:hover {
+          background: var(--uvalib-orange-200);
+          color: var(--uvalib-black);
+        }
+
+    /* Make the button blue PHASE OUT */
+        .button-pop-alt {
+          background-color: var(--uvalib-main-jefferson-blue);
+          color: white;
+        }
+        .button-pop-alt:hover {
+          background: var(--uvalib-secondary-md-grey);
+          color: var(--uvalib-black);
+        }
+
+        paper-button:hover { text-decoration: underline; }
+
+        paper-button[disabled], paper-button[toggles][active] { background: var(--uvalib-orange-200); color: var(--uvalib-black); }
+        paper-button:focus { outline: var(--color-accessibility-outline-dark-bg) dotted 3px; }
+
 /*END*/
 
 /* TABLES */
-table { border-collapse: collapse; width: 100%; /*min-width: 200px;*/ }
-thead { display: none; }
-th { padding: 1.5em; }
-tr { display: block; padding: 0.5em; /*border: 1px solid #BBB;*/ }
-td { display: block; padding-left: 40%; }
-td:before { content: attr(data-label); display: inline-block; width: 50%; margin-left: -65%; font-weight: bold; }
-tbody tr:nth-child(even) { background-color: #E0E0E0; }
-td ul li { list-style-type: none; }
-@media screen and (min-width: 60em) {
-  thead { display: table-header-group; }
-  thead tr { background-color: #AAA; }
-  tr { display: table-row; }
-  td { display: table-cell; padding: 1em; text-align: center; }
-  td:before { display: none; }
+        table { border-collapse: collapse; width: 100%; /*min-width: 200px;*/ }
+        thead { display: none; }
+        th { padding: 1.5em; }
+        tr { display: block; padding: 0.5em; /*border: 1px solid #BBB;*/ }
+        td { display: block; padding-left: 40%; }
+        td:before { content: attr(data-label); display: inline-block; width: 50%; margin-left: -65%; font-weight: bold; }
+        tbody tr:nth-child(even) { background-color: #E0E0E0; }
+        td ul li { list-style-type: none; }
+        @media screen and (min-width: 60em) {
+          thead { display: table-header-group; }
+          thead tr { background-color: #AAA; }
+          tr { display: table-row; }
+          td { display: table-cell; padding: 1em; text-align: center; }
+          td:before { display: none; }
 
-}
+        }
 /* END */
 
 /* ACCESSIBILITY */
@@ -286,36 +333,7 @@ td ul li { list-style-type: none; }
         #top #logo a:hover { border-bottom: 1px solid var(--color-accessibility-outline-dark-bg); padding-bottom: .1em; }
         #top .section a:focus, #top .section paper-icon-button:focus { @apply --accessibility-outline-for-dark-bg; }
 
-        paper-button {
-          border: 1px solid var(--uvalib-secondary-md-grey);
-          border-radius: 5px;
-          --paper-button-flat-keyboard-focus: { @apply --accessibility-outline-for-dark-bg; }
-        }
-
-        /*Make the button orange*/
-        .button-pop {
-          background-color: var(--uvalib-main-rotunda-orange);
-          color: white;
-        }
-        .button-pop:hover {
-          background: var(--uvalib-orange-200);
-          color: var(--uvalib-black);
-        }
-
-        .button-pop-alt {
-          background-color: var(--uvalib-main-jefferson-blue);
-          color: white;
-        }
-        .button-pop-alt:hover {
-          background: var(--uvalib-secondary-md-grey);
-          color: var(--uvalib-black);
-        }
-
         iron-collapse:focus { @apply --accessibility-outline-for-dark-bg; }
-        paper-button:hover { text-decoration: underline; }
-
-        paper-button[disabled], paper-button[toggles][active] { background: var(--uvalib-orange-200); color: var(--uvalib-black); }
-        paper-button:focus { outline: var(--color-accessibility-outline-dark-bg) dotted 3px; }
 
         /* Text meant only for screen readers. Mostly used in the Search Bar and Header components */
         .screen-reader-text {
