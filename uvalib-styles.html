@@ -13,6 +13,7 @@
 
       /* * {
         background-color: rgba(0, 0, 255, 0.1);
+        outline: 1px solid rebeccapurple;
       } */
 
 /*********************************************/
@@ -118,6 +119,10 @@
           caption-side: bottom;
         }
 
+        /* img responsive for all */
+        img { max-width: 100%; height: auto; }
+
+        /* deprecated class */
         .img-responsive { max-width: 100%; height: auto; }
 
         .noBG { background-color: inherit; }
@@ -229,7 +234,6 @@
 
         /* Start using this class on anchor links for buttons 09-2019 */
         a.uvalib-btn, a.uvalib-btn:link, a.uvalib-btn:visited, a.uvalib-btn:hover, a.uvalib-btn:active {
-          /* @apply --button-pop; */
           padding: calc(var(--uvalib-spacing-unit)/2);
           text-decoration: none;
           background-color: var(--alt-button-color, var(--uvalib-main-rotunda-orange));
@@ -239,6 +243,15 @@
          }
 
         a.uvalib-btn:hover { text-decoration: underline; }
+
+        .uvalib-btn-margin { margin: var(--uvalib-spacing-unit) !important; }
+
+        .uvalib-btn-white {
+          --alt-button-color: var(--uvalib-white);
+          --alt-button-text-color: var(--uvalib-text-dk-grey);
+         }
+        .uvalib-btn-blue { --alt-button-color: var(--uvalib-main-jefferson-blue); }
+        .uvalib-btn-outline { border: 1px solid var(--uvalib-secondary-md-grey); }
 
         /* .foo { --alt-button-color: green; } */
 
@@ -641,6 +654,97 @@
             border-color: var(--uvalib-orange-200);
             color: var(--uvalib-black);
             font-weight: bold;
+        }
+/*END*/
+
+/* LEARNING RESOURCES PAGE */
+        #tnl-container .tools > div {
+          width: 90%;
+        }
+
+        #tnl-container uva-accordion {
+          --uva-accordion-item-panel-padding: 0 !important;
+      /* --uva-accordion-item-heading-border-bottom: 1px solid; */
+        }
+      #tnl-container uva-accordion:last-child {
+        --uva-accordion-item-heading-border-bottom: 1px solid;
+      }
+
+        #tnl-container ul {
+          margin: 0;
+          padding: 0;
+        }
+        #tnl-container paper-button {
+          text-transform: none;
+          margin: var(--uvalib-spacing-unit) !important;
+        }
+        #tnl-container li {
+          padding: var(--uvalib-spacing-unit) !important;
+          list-style-type: none !important;
+        }
+        #tnl-container li > h4 {
+          margin-top: 0;
+        }
+        #tnl-container .shaded {
+          background-color: var(--uvalib-secondary-lt-grey);
+          padding: var(--uvalib-spacing-unit);
+        }
+        /* #tnl-container li:nth-of-type(even) {
+          background-color: var(--uvalib-secondary-lt-grey);
+        } */
+        #tnl-container div > img {
+          float: left;
+          /*
+          max-width: 80px;
+          max-height: 80px;
+          */
+          padding-right: var(--uvalib-spacing-unit);
+        }
+        #tnl-container ul li > h4 {
+          margin-top: 50px;
+        }
+        #tnl-container ul li:first-child > h4 {
+          margin-top: inherit;
+        }
+        #tnl-container .linkto {
+          font-weight: bold;
+          margin: calc(var(--uvalib-spacing-unit)*2) 0;
+        }
+        #tnl-container .linkto img {
+          height: 15px;
+          padding-left: calc(var(--uvalib-spacing-unit)*.5)
+        }
+        #tnl-container uvalib-simple-search-box {
+          --uvalib-background-search: var(--uvalib-secondary-web-blue);
+        }
+        #tnl-container paper-radio-button {
+          margin-left: var(--uvalib-spacing-unit);
+        }
+        #tnl-container .azbody {
+          padding: var(--uvalib-spacing-unit);
+          /* background-color: var(--uvalib-secondary-lt-grey); */
+        }
+        #tnl-container uva-accordion-item {
+          --uvalib-box-shadow-custom: none;
+        }
+        #tnl-container .permalink a {
+          font-size: calc(var(--uvalib-main-font-size-unit)*0.75);
+          padding-top: var(--uvalib-spacing-unit);
+        }
+        #tnl-container uva-results-highlighter {
+          --uva-results-highlighter-color: var(--color-medium-gray);
+        }
+        #tnl-container .alert {
+          margin: var(--uvalib-spacing-unit);
+        }
+        #tnl-container .cat:not(:first-child) {
+          margin-left: -.3em;
+        }
+        #tnl-container .cat:not(:first-child):before {
+          content: ", ";
+        }
+        uva-results-highlighter {
+          --uva-results-highlighter-color: var(--uvalib-secondary-light-gray);
         }
 /*END*/
 
