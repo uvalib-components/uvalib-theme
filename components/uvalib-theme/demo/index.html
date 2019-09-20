@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-  <head><script src="//static.lib.virginia.edu/js/controllers/webcomponents.js"></script>
+  <head>
     <title>uvalib-theme demo</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
@@ -10,12 +10,12 @@
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
     <link rel="import" href="../../iron-flex-layout/iron-flex-layout.html">
     <link rel="import" href="../../paper-card/paper-card.html">
-
+    <link rel="import" href="../uvalib-fonts.html">
     <link rel="import" href="../uvalib-theme.html">
-    <link rel="import" href="../uvalib-icons.html">
+    <!-- <link rel="import" href="../uvalib-icons.html"> -->
 
     <custom-style>
-      <style is="custom-style" include="demo-pages-shared-styles uvalib-theme">
+      <style is="custom-style" include="demo-pages-shared-styles uvalib-theme uvalib-fonts">
       div.palette {
         @apply --layout-horizontal;
         @apply --layout-wrap;
@@ -138,7 +138,7 @@
   </head>
   <body>
 
-    <div class="vertical-section-container centered" style="max-width: 800px">
+    <div class="vertical-section-container centered" style="max-width: 1200px">
       <h1>'uvalib' Style Sheet</h1>
       <h2>Brand Colors</h2>
       <demo-snippet>
@@ -242,151 +242,131 @@
         <div><p>Use the <code class="takeNoticeColor">.all-cap</code> class on headers to transform them to UPPERCASE.<br>Please do not use it on headers LONGER than 3 words as this impairs the readability.</p></div>
       </demo-snippet>
 
-      <h3>Basic uvalib-theme Style Mixin Demo</h3>
-      <demo-snippet>
-        <template>
-        <custom-style>
-          <style is="custom-style" include="uvalib-theme">
-            .font-headline { @apply --font-headline;}
-            .font-title { @apply --font-title;}
-            .font-subheading { @apply --font-subheading;}
-            .font-body2 { @apply --font-body2;}
-            .font-body1 { @apply --font-body1;}
-            .font-caption { @apply --font-caption;}
-            .font-menu { @apply --font-menu;}
-            .font-button { @apply --font-button;}
-          </style>
-        </custom-style>
-
-        <div class="font-headline">Headline</div>
-        <div class="font-title">Title</div>
-        <div class="font-subheading">Subheading</div>
-        <div class="font-body2">Body2</div>
-        <div class="font-body1">Body1</div>
-        <div class="font-caption">Caption</div>
-        <div class="font-menu">Menu</div>
-        <div class="font-button">Button</div>
-
-        <p class="body2">Strong body copy</p>
-        <p class="body1">Normal Body copy Lorem ipsum dolor sit amet, iusto
-          efficiantur te has, cu mea invenire reformidans, erant delectus
-          laboramus duo no. Sea ei feugait voluptatibus. Eu sit illud dicta delenit. '
-          Luptatum urbanitas cum an, per ne paulo petentium.
-        </p>
-        <blockquote>
-          <p>"Quote lorem ipsum dolor site amet."</p>
-        </blockquote>
-          <ul>
-            <li>Bullet list item</li>
-            <li>Bullet list item</li>
-            <li>Bullet list item</li>
-            <li>Bullet list item</li>
-          </ul>
-          <ol>
-            <li>Numbered list 1</li>
-            <li>Numbered list 2</li>
-            <li>Numbered list 3</li>
-          </ol>
-          <a href="#">Link</link>
-        </template>
-      </demo-snippet>
-
-      <h3>Defined Lists</h3>
-      <demo-snippet>
-        <custom-style>
-          <style is="custom-style" include="uvalib-theme"></style>
-        </custom-style>
-        <paper-card class="uvalibSidebarList" heading="Quick Facts (2015)" image="http://placehold.it/700x167/ABABAB/000000" alt="Description of the image">
-          <div class="card-content">
-            <dl>
-              <dt>Facilities</dt>
-              <dd>12</dd>
-              <dt>Staff</dt>
-              <dd>212</dd>
-              <dt>Budget</dt>
-              <dd>$33 million</dd>
-              <dt>Books</dt>
-              <dd>&gt;5 million</dd>
-            </dl>
-          </div>
-        </paper-card>
-      </demo-snippet>
-
-      <h3>Icon Demo</h3>
+     
+      <h3>Grid Demo</h3>
       <demo-snippet>
         <template>
           <custom-style>
             <style is="custom-style" include="uvalib-theme">
+              .grid-container-test {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                grid-gap: 1rem;
+              }
+              .example {
+                height: 200px;
+                background-color: orange;
+              }
+
             </style>
           </custom-style>
-          <iron-icon icon="angle-left"></iron-icon>
-          <iron-icon icon="angle-right"></iron-icon>
-          <iron-icon icon="angle-down"></iron-icon>
-          <iron-icon icon="angle-up"></iron-icon>
-          <iron-icon icon="angle-double-up"></iron-icon>
-          <iron-icon icon="bell"></iron-icon>
-          <iron-icon icon="search"></iron-icon>
-          <iron-icon icon="bars"></iron-icon>
-          <iron-icon icon="user"></iron-icon>
-          <iron-icon icon="clock-o"></iron-icon>
-          <iron-icon icon="comments"></iron-icon>
-          <iron-icon icon="circle-o"></iron-icon>
-          <iron-icon icon="circle"></iron-icon>
-          <iron-icon icon="chevron-left"></iron-icon>
-          <iron-icon icon="chevron-right"></iron-icon>
-          <iron-icon icon="calendar"></iron-icon>
-          <iron-icon icon="envelope-o"></iron-icon>
-          <iron-icon icon="exclamation-circle"></iron-icon>
-          <iron-icon icon="twitter-square"></iron-icon>
-          <iron-icon icon="facebook-square"></iron-icon>
-          <iron-icon icon="pinterest-square"></iron-icon>
-          <iron-icon icon="instagram"></iron-icon>
-          <iron-icon icon="university"></iron-icon>
-          <iron-icon icon="book"></iron-icon>
-          <iron-icon icon="graduation-cap"></iron-icon>
-          <iron-icon icon="cloud"></iron-icon>
-          <iron-icon icon="times"></iron-icon>
-          <iron-icon icon="home"></iron-icon>
-          <iron-icon icon="globe"></iron-icon>
-          <iron-icon icon="close"></iron-icon>
-          <iron-icon icon="cloud-off"></iron-icon>
-          <iron-icon icon="mail"></iron-icon>
-          <iron-icon icon="menu"></iron-icon>
-          <iron-icon icon="share"></iron-icon>
-          <iron-icon icon="timer"></iron-icon>
-          <iron-icon icon="error"></iron-icon>
-          <iron-icon icon="caret-down"></iron-icon>
-          <iron-icon icon="caret-up"></iron-icon>
-          <iron-icon icon="caret-left"></iron-icon>
-          <iron-icon icon="caret-right"></iron-icon>
+          <!-- <div class="grid-container" style="width: 90%; border: 1px solid green;">
+            <div style="display: block; height: 20px; width: 20px; background-color: blue; border: 1px solid red;"></div>
+            <div style="display: block; height: 20px; width: 20px; background-color: blue; border: 1px solid red;"></div>
+            <div style="display: block; height: 20px; width: 20px; background-color: blue; border: 1px solid red;"></div>
+            <div style="display: block; height: 20px; width: 20px; background-color: blue; border: 1px solid red;"></div>
+            <div style="display: block; height: 20px; width: 20px; background-color: blue; border: 1px solid red;"></div>
+            <div style="display: block; height: 20px; width: 20px; background-color: blue; border: 1px solid red;"></div>
+            <div style="display: block; height: 20px; width: 20px; background-color: blue; border: 1px solid red;"></div>
+            <div style="display: block; height: 20px; width: 20px; background-color: blue; border: 1px solid red;"></div>
+            <div style="display: block; height: 20px; width: 20px; background-color: blue; border: 1px solid red;"></div>
+            <div style="display: block; height: 20px; width: 20px; background-color: blue; border: 1px solid red;"></div>
+            <div style="display: block; height: 20px; width: 20px; background-color: blue; border: 1px solid red;"></div>
+            <div style="display: block; height: 20px; width: 20px; background-color: blue; border: 1px solid red;"></div>
+            <div style="display: block; height: 20px; width: 20px; background-color: blue; border: 1px solid red;"></div>
+            <div style="display: block; height: 20px; width: 20px; background-color: blue; border: 1px solid red;"></div>
+          </div> -->
+          <main class="grid-container-test">
+            <article class="example"></article>
+            <article class="example"></article>
+            <article class="example"></article>
+            <article class="example"></article>
+            <article class="example"></article>
+          </main>
         </template>
       </demo-snippet>
+
+
 
       <h3>Font icons demo</h3>
       <demo-snippet>
         <template>
           <custom-style>
             <style is="custom-style" include="uvalib-theme">
-              ul {
-                list-style-type: none;
-              }
-              li:before {
-                font-family: uvalib-custom-icons;
-                content: '\f007';
-                margin:0 5px 0 15px;
-                color: #f00;
+              p span {
+                font-family: 'franklin-gothic-urw',arial,sans-serif;
+                font-size: 20px;
+                font-weight: 400;
+                line-height: 28px;
+                color: var(--uvalib-text-grey);
               }
             </style>
           </custom-style>
-          <h1 style="font-family: uvalib-custom-icons;">&#xf007;</h1>
           <div>
-            <span class="uvalib-icon-graduation-cap"></span>
+            <p><span class="uvalib-icon-american-sign-language-interpreting">&nbsp;american-sign-language-interpreting</span></p>
+            <p><span class="uvalib-icon-angle-double-up">&nbsp;angle-double-up</span></p>
+            <p><span class="uvalib-icon-angle-down">&nbsp;angle-down</span></p>
+            <p><span class="uvalib-icon-angle-left">&nbsp;angle-left</span></p>
+            <p><span class="uvalib-icon-angle-right">&nbsp;angle-right</span></p>
+            <p><span class="uvalib-icon-angle-up">&nbsp;angle-up</span></p>
+            <p><span class="uvalib-icon-asl-interpreting">&nbsp;asl-interpreting</span></p>
+            <p><span class="uvalib-icon-assistive-listening-systems">&nbsp;assistive-listening-systems</span></p>
+            <p><span class="uvalib-icon-audio-description">&nbsp;audio-description</span></p>
+            <p><span class="uvalib-icon-bank">&nbsp;bank</span></p>
+            <p><span class="uvalib-icon-bars">&nbsp;bars</span></p>
+            <p><span class="uvalib-icon-bell">&nbsp;bell</span></p>
+            <p><span class="uvalib-icon-blind">&nbsp;blind</span></p>
+            <p><span class="uvalib-icon-book">&nbsp;book</span></p>
+            <p><span class="uvalib-icon-braille">&nbsp;braille</span></p>
+            <p><span class="uvalib-icon-calendar">&nbsp;calendar</span></p>
+            <p><span class="uvalib-icon-caret-down">&nbsp;caret-down</span></p>
+            <p><span class="uvalib-icon-caret-left">&nbsp;caret-left</span></p>
+            <p><span class="uvalib-icon-caret-right">&nbsp;caret-right</span></p>
+            <p><span class="uvalib-icon-caret-up">&nbsp;caret-up</span></p>
+            <p><span class="uvalib-icon-cc">&nbsp;cc</span></p>
+            <p><span class="uvalib-icon-chevron-left">&nbsp;chevron-left</span></p>
+            <p><span class="uvalib-icon-chevron-right">&nbsp;chevron-right</span></p>
+            <p><span class="uvalib-icon-circle">&nbsp;circle</span></p>
+            <p><span class="uvalib-icon-circle-o">&nbsp;circle-o</span></p>
+            <p><span class="uvalib-icon-clock-o">&nbsp;clock-o</span></p>
+            <p><span class="uvalib-icon-close">&nbsp;close</span></p>
+            <p><span class="uvalib-icon-cloud">&nbsp;cloud</span></p>
+            <p><span class="uvalib-icon-comments">&nbsp;comments</span></p>
+            <p><span class="uvalib-icon-deaf">&nbsp;deaf</span></p>
+            <p><span class="uvalib-icon-deafness">&nbsp;deafness</span></p>
+            <p><span class="uvalib-icon-envelope">&nbsp;envelope</span></p>
+            <p><span class="uvalib-icon-envelope-o">&nbsp;envelope-o</span></p>
+            <p><span class="uvalib-icon-envelope-square">&nbsp;envelope-square</span></p>
+            <p><span class="uvalib-icon-exclamation-circle">&nbsp;exclamation-circle</span></p>
+            <p><span class="uvalib-icon-exclamation-triangle">&nbsp;exclamation-triangle</span></p>
+            <p><span class="uvalib-icon-facebook-square">&nbsp;facebook-square</span></p>
+            <p><span class="uvalib-icon-flickr">&nbsp;flickr</span></p>
+            <p><span class="uvalib-icon-globe">&nbsp;globe</span></p>
+            <p><span class="uvalib-icon-graduation-cap">&nbsp;graduation-cap</span></p>
+            <p><span class="uvalib-icon-hard-of-hearing">&nbsp;hard-of-hearing</span></p>
+            <p><span class="uvalib-icon-home">&nbsp;home</span></p>
+            <p><span class="uvalib-icon-instagram">&nbsp;instagram</span></p>
+            <p><span class="uvalib-icon-institution">&nbsp;institution</span></p>
+            <p><span class="uvalib-icon-language">&nbsp;language</span></p>
+            <p><span class="uvalib-icon-linkedin-square">&nbsp;linkedin-square</span></p>
+            <p><span class="uvalib-icon-map-marker">&nbsp;map-marker</span></p>
+            <p><span class="uvalib-icon-mortar-board">&nbsp;mortar-board</span></p>
+            <p><span class="uvalib-icon-navicon">&nbsp;navicon</span></p>
+            <p><span class="uvalib-icon-o-globe">&nbsp;o-globe</span></p>
+            <p><span class="uvalib-icon-phone">&nbsp;phone</span></p>
+            <p><span class="uvalib-icon-phone-square">&nbsp;phone-square</span></p>
+            <p><span class="uvalib-icon-pinterest-square">&nbsp;pinterest-square</span></p>
+            <p><span class="uvalib-icon-remove">&nbsp;remove</span></p>
+            <p><span class="uvalib-icon-reorder">&nbsp;reorder</span></p>
+            <p><span class="uvalib-icon-search">&nbsp;search</span></p>
+            <p><span class="uvalib-icon-times">&nbsp;times</span></p>
+            <p><span class="uvalib-icon-twitter">&nbsp;twitter</span></p>
+            <p><span class="uvalib-icon-twitter-square">&nbsp;twitter-square</span></p>
+            <p><span class="uvalib-icon-university">&nbsp;university</span></p>
+            <p><span class="uvalib-icon-user">&nbsp;user</span></p>
+            <p><span class="uvalib-icon-warning">&nbsp;warning</span></p>
+            <p><span class="uvalib-icon-wheelchair-alt">&nbsp;wheelchair-alt</span></p>
           </div>
-          <ul>
-            <li style="">
-              foo
-            </li>
-          </ul>
         </template>
       </demo-snippet>
     </div>
