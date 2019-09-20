@@ -5,6 +5,7 @@
   <template>
     <custom-style>
       <style include="paper-material-styles">
+      /*10-2018 - CURRENT STYLE GUIDES FOR PAPER-CARDS*/
         :host { display: block; }
 
         :host {
@@ -14,11 +15,6 @@
             width: 95%;
             padding-right: 1em;
           };
-          --paper-card: {
-              margin: var(--uvalib-spacing-unit);
-              max-width: 600px;
-              min-width: 290px;
-          }
         }
         :host[dark] { color: var(--color-white); --paper-card-background-color: var(--color-primary-orange); }
 
@@ -28,21 +24,20 @@
             font-weight: var(--font-weight-demi);
             font-size: calc(var(--uvalib-main-font-size-unit)*1.875);
             line-height: calc(var(--uvalib-main-font-size-unit)*1.875);
-            text-transform: capitalize;
             color: var(--uvalib-main-jefferson-blue);
           }
           /*many variables added for addressing slotted content*/
+          margin: var(--uvalib-spacing-unit);
           padding: var(--uvalib-pc-padding, --uvalib-spacing-unit);
           border: var(--uvalib-pc-border, inherit);
           border-radius: var(--uvalib-pc-border-radius, inherit);
-          background-color: var(--uvalib-pc-background-color, inherit);
+          background-color: var(--uvalib-pc-background-color, var(--uvalib-main-white));
           border-top: var(--uvalib-pc-border-top, inherit);
           border-bottom: var(--uvalib-pc-border-bottom, inherit);
           border-left: var(--uvalib-pc-border-left, inherit);
           border-right: var(--uvalib-pc-border-right, inherit);
-          /*max-width: var(--uvalib-pc-max-width, inherit);
-          min-width: var(--uvalib-pc-min-width, inherit);*/
-
+          max-width: var(--uvalib-pc-max-width, 600px);
+          min-width: var(--uvalib-pc-min-width, 290px);
           @apply --paper-material-elevation-2;
         }
 
@@ -100,7 +95,8 @@
         .card-content { overflow: hidden; padding: 1em; }
         .card-content p:first-child { margin-top: 0; }
 
-        .card-actions a { color: var(--color-primary-orange); font-weight: bold; }
+        .card-actions a { color: var(--color-primary-orange); font-weight: bold; text-decoration: none; }
+        .card-actions a:hover { text-decoration: underline; }
 
         /* clear out padding from general card for special cards*/
         .full-card { padding: 0; }
@@ -174,6 +170,15 @@
 
 
 /* Homepage Cards */
+        paper-card#research {
+          --paper-card-header: { border-top: 25px solid var(--uvalib-main-jefferson-blue); }
+        }
+        paper-card#spaces {
+          --paper-card-header: { border-top: 25px solid var(--uvalib-grey-600); }
+        }
+        paper-card#services {
+          --paper-card-header: { border-top: 25px solid var(--uvalib-main-rotunda-orange); }
+        }
         uvalib-events-ui .event { padding: 1em; }
 
         :host([small-screen]) .shady #exhibit, :host([small-screen]) .shady #support { max-width: none; }
@@ -181,8 +186,28 @@
         :host([large-screen]) .shady #exhibit, :host([large-screen]) .shady #support { max-width: 46%; }
 
 /* Libra Landing page cards */
-        :host([small-screen]) #libraETD, :host([small-screen]) #libraData, :host([small-screen]) #libraOpen { max-width: none; }
-        :host([large-screen]) #libraETD, :host([large-screen]) #libraData, :host([large-screen]) #libraOpen { max-width: 45%; }
+        paper-card#libraOpen {
+          --paper-card-header: { border-top: 25px solid var(--uvalib-main-jefferson-blue); text-align: center; }
+        }
+        paper-card#libraETD {
+          --paper-card-header: { border-top: 25px solid var(--uvalib-grey-600); text-align: center; }
+        }
+        paper-card#libraData {
+          --paper-card-header: { border-top: 25px solid var(--uvalib-main-rotunda-orange); text-align: center; }
+        }
+
+        paper-card#libraETD .card-content,
+        paper-card#libraData .card-content,
+        paper-card#libraOpen .card-content
+         { padding-top: 0; }
+
+        paper-card#libraETD .card-content h3,
+        paper-card#libraData .card-content h3,
+        paper-card#libraOpen .card-content h3 { font-weight: bold; padding-left: 0; }
+
+        /* :host([small-screen]) #libraETD, :host([small-screen]) #libraData, :host([small-screen]) #libraOpen { max-width: none; }
+        :host([large-screen]) #libraETD, :host([large-screen]) #libraData, :host([large-screen]) #libraOpen { max-width: 45%; } */
+
 
 /* Emergency page cards */
         paper-card#numbers { padding-left: 1em; padding-right: 1em; padding-bottom: 1em; }

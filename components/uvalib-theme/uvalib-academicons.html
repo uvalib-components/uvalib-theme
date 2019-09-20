@@ -1,0 +1,399 @@
+<link rel="import" href="../polymer/polymer.html">
+<dom-module id="uvalib-academicons">
+  <template>
+    <style>
+    /*
+     *  Academicons 1.8.6 by James Walsh (https://github.com/jpswalsh) and Katja Bercic (https://github.com/katjabercic)
+     *  Fonts generated using the IcoMoon app - http://icomoon.io/app
+     *  Square icons designed to be used alongside Font Awesome square icons - https://fortawesome.github.io/Font-Awesome/
+     *  Licenses - Font: SIL OFL 1.1, CSS: MIT License
+     */
+      /* @font-face {
+          font-family: 'Academicons';
+          src:url('../fonts/academicons.eot?v=1.8.6');
+          src:url('../fonts/academicons.eot?v=1.8.6') format('embedded-opentype'),
+              url('../fonts/academicons.ttf?v=1.8.6') format('truetype'),
+              url('../fonts/academicons.woff?v=1.8.6') format('woff'),
+              url('../fonts/academicons.svg?v=1.8.6#academicons') format('svg');
+          font-weight: normal;
+          font-style: normal;
+      }
+      .ai {
+      	display:inline-block;
+      	font:normal normal normal 14px/1 Academicons;
+      	font-size:inherit;
+      	text-rendering:auto;
+      	-webkit-font-smoothing:antialiased;
+      	-moz-osx-font-smoothing:grayscale;
+      } */
+
+
+/*MAPPING*/
+[class^="uvalib-ai-"],
+[class*=" uvalib-ai-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'uvalib-custom-academicons' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  padding-right: 5px;
+  font-size: 1.35em !important;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.uvalib-ai-academia:before {
+  content: "\e9af";
+}
+.uvalib-ai-academia-square:before {
+  content: "\e93d";
+}
+.uvalib-ai-acclaim:before {
+  content: "\e92e";
+}
+.uvalib-ai-acclaim-square:before {
+  content: "\e93a";
+}
+.uvalib-ai-acm:before {
+  content: "\e93c";
+}
+.uvalib-ai-acm-square:before {
+  content: "\e95d";
+}
+.uvalib-ai-acmdl:before {
+  content: "\e96a";
+}
+.uvalib-ai-acmdl-square:before {
+  content: "\e9d3";
+}
+.uvalib-ai-ads:before {
+  content: "\e9cb";
+}
+.uvalib-ai-ads-square:before {
+  content: "\e94a";
+}
+.uvalib-ai-arxiv:before {
+  content: "\e974";
+}
+.uvalib-ai-arxiv-square:before {
+  content: "\e9a6";
+}
+.uvalib-ai-biorxiv:before {
+  content: "\e9a2";
+}
+.uvalib-ai-biorxiv-square:before {
+  content: "\e98b";
+}
+.uvalib-ai-ceur:before {
+  content: "\e96d";
+}
+.uvalib-ai-ceur-square:before {
+  content: "\e92f";
+}
+.uvalib-ai-coursera:before {
+  content: "\e95f";
+}
+.uvalib-ai-coursera-square:before {
+  content: "\e97f";
+}
+.uvalib-ai-cv:before {
+  content: "\e9a5";
+}
+.uvalib-ai-cv-square:before {
+  content: "\e90a";
+}
+.uvalib-ai-dataverse:before {
+  content: "\e9f7";
+}
+.uvalib-ai-dataverse-square:before {
+  content: "\e9e4";
+}
+.uvalib-ai-dblp:before {
+  content: "\e94f";
+}
+.uvalib-ai-dblp-square:before {
+  content: "\e93f";
+}
+.uvalib-ai-depsy:before {
+  content: "\e97a";
+}
+.uvalib-ai-depsy-square:before {
+  content: "\e94b";
+}
+.uvalib-ai-doi:before {
+  content: "\e97e";
+}
+.uvalib-ai-doi-square:before {
+  content: "\e98f";
+}
+.uvalib-ai-dryad:before {
+  content: "\e97c";
+}
+.uvalib-ai-dryad-square:before {
+  content: "\e98c";
+}
+.uvalib-ai-figshare:before {
+  content: "\e981";
+}
+.uvalib-ai-figshare-square:before {
+  content: "\e9e7";
+}
+.uvalib-ai-google-scholar:before {
+  content: "\e9d4";
+}
+.uvalib-ai-google-scholar-square:before {
+  content: "\e9f9";
+}
+.uvalib-ai-ideas-repec:before {
+  content: "\e9ed";
+}
+.uvalib-ai-ideas-repec-square:before {
+  content: "\e9f8";
+}
+.uvalib-ai-ieee:before {
+  content: "\e929";
+}
+.uvalib-ai-ieee-square:before {
+  content: "\e9b9";
+}
+.uvalib-ai-impactstory:before {
+  content: "\e9cf";
+}
+.uvalib-ai-impactstory-square:before {
+  content: "\e9aa";
+}
+.uvalib-ai-inspire:before {
+  content: "\e9e9";
+}
+.uvalib-ai-inspire-square:before {
+  content: "\e9fe";
+}
+.uvalib-ai-lattes:before {
+  content: "\e9b3";
+}
+.uvalib-ai-lattes-square:before {
+  content: "\e99c";
+}
+.uvalib-ai-mathoverflow:before {
+  content: "\e9f6";
+}
+.uvalib-ai-mathoverflow-square:before {
+  content: "\e97b";
+}
+.uvalib-ai-mendeley:before {
+  content: "\e9f0";
+}
+.uvalib-ai-mendeley-square:before {
+  content: "\e9f3";
+}
+.uvalib-ai-open-access:before {
+  content: "\e939";
+}
+.uvalib-ai-open-access-square:before {
+  content: "\e9f4";
+}
+.uvalib-ai-orcid:before {
+  content: "\e9d9";
+  color: #A6CE39 !important;
+  /*color defined by ORCiD Branding*/
+}
+.uvalib-ai-orcid-square:before {
+  content: "\e9c3";
+}
+.uvalib-ai-osf:before {
+  content: "\e9ef";
+}
+.uvalib-ai-osf-square:before {
+  content: "\e931";
+}
+.uvalib-ai-overleaf:before {
+  content: "\e914";
+}
+.uvalib-ai-overleaf-square:before {
+  content: "\e98d";
+}
+.uvalib-ai-philpapers:before {
+  content: "\e98a";
+}
+.uvalib-ai-philpapers-square:before {
+  content: "\e96f";
+}
+.uvalib-ai-piazza:before {
+  content: "\e99a";
+}
+.uvalib-ai-piazza-square:before {
+  content: "\e90c";
+}
+.uvalib-ai-publons:before {
+  content: "\e937";
+}
+.uvalib-ai-publons-square:before {
+  content: "\e94e";
+}
+.uvalib-ai-pubmed:before {
+  content: "\e99f";
+}
+.uvalib-ai-pubmed-square:before {
+  content: "\e97d";
+}
+.uvalib-ai-researcherid:before {
+  content: "\e91a";
+}
+.uvalib-ai-researcherid-square:before {
+  content: "\e95c";
+}
+.uvalib-ai-researchgate:before {
+  content: "\e95e";
+}
+.uvalib-ai-researchgate-square:before {
+  content: "\e99e";
+}
+.uvalib-ai-scirate:before {
+  content: "\e98e";
+}
+.uvalib-ai-scirate-square:before {
+  content: "\e99d";
+}
+.uvalib-ai-semantic-scholar:before {
+  content: "\e96e";
+}
+.uvalib-ai-semantic-scholar-square:before {
+  content: "\e96c";
+}
+.uvalib-ai-springer:before {
+  content: "\e928";
+}
+.uvalib-ai-springer-square:before {
+  content: "\e99b";
+}
+.uvalib-ai-zotero:before {
+  content: "\e962";
+}
+.uvalib-ai-zotero-square:before {
+  content: "\e932";
+}
+/*  Duplication of the FontAwesome style classes using 'ai' in place of 'fa'. */
+.uvalib-ai-lg {
+  font-size: 1.33333333em;
+  line-height: 0.75em;
+  vertical-align: -15%;
+}
+.uvalib-ai-2x {
+  font-size: 2em;
+}
+.uvalib-ai-3x {
+  font-size: 3em;
+}
+.uvalib-ai-4x {
+  font-size: 4em;
+}
+.uvalib-ai-5x {
+  font-size: 5em;
+}
+.uvalib-ai-fw {
+  width: 1.28571429em;
+  text-align: center;
+}
+.uvalib-ai-ul {
+  padding-left: 0;
+  margin-left: 2.14285714em;
+  list-style-type: none;
+}
+.uvalib-ai-ul > li {
+  position: relative;
+}
+.uvalib-ai-li {
+  position: absolute;
+  left: -2.14285714em;
+  width: 2.14285714em;
+  top: 0.14285714em;
+  text-align: center;
+}
+.uvalib-ai-li.fa-lg {
+  left: -1.85714286em;
+}
+.uvalib-ai-border {
+  padding: .2em .25em .15em;
+  border: solid 0.08em #eeeeee;
+  border-radius: .1em;
+}
+.uvalib-ai-pull-left {
+  float: left;
+}
+.uvalib-ai-pull-right {
+  float: right;
+}
+.uvalib-ai.fa-pull-left {
+  margin-right: .3em;
+}
+.uvalib-ai.fa-pull-right {
+  margin-left: .3em;
+}
+/*
+ *  Repeat of the FontAwesome style classes to prevent override if academicons.css
+ *  is called after font-awesome.css.
+ */
+.fa-lg {
+  font-size: 1.33333333em;
+  line-height: 0.75em;
+  vertical-align: -15%;
+}
+.fa-2x {
+  font-size: 2em;
+}
+.fa-3x {
+  font-size: 3em;
+}
+.fa-4x {
+  font-size: 4em;
+}
+.fa-5x {
+  font-size: 5em;
+}
+.fa-fw {
+  width: 1.28571429em;
+  text-align: center;
+}
+.fa-ul {
+  padding-left: 0;
+  margin-left: 2.14285714em;
+  list-style-type: none;
+}
+.fa-ul > li {
+  position: relative;
+}
+.fa-li {
+  position: absolute;
+  left: -2.14285714em;
+  width: 2.14285714em;
+  top: 0.14285714em;
+  text-align: center;
+}
+.fa-li.fa-lg {
+  left: -1.85714286em;
+}
+.fa-border {
+  padding: .2em .25em .15em;
+  border: solid 0.08em #eeeeee;
+  border-radius: .1em;
+}
+.fa-pull-left {
+  float: left;
+}
+.fa-pull-right {
+  float: right;
+}
+.fa.fa-pull-left {
+  margin-right: .3em;
+}
+.fa.fa-pull-right {
+  margin-left: .3em;
+}
+</style>
+
+</template></dom-module>
