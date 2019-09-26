@@ -585,42 +585,42 @@
 
         /* END */
 
-        /* CUSTOM TABLES */
-        #CustomCollections table,
-        #CustomCollections thead,
-        #CustomCollections tbody,
-        #CustomCollections th,
-        #CustomCollections td,
-        #CustomCollections tr {
+                /* CUSTOM TABLES */
+        #AlternateTable table,
+        #AlternateTable thead,
+        #AlternateTable tbody,
+        #AlternateTable th,
+        #AlternateTable td,
+        #AlternateTable tr {
           display: block;
         }
 
-        #CustomCollections caption {
+        #AlternateTable caption {
           display: block;
         }
 
         /* Hide table headers (but not display: none;, for accessibility) */
-        #CustomCollections thead tr {
+        #AlternateTable thead tr {
           position: absolute;
           top: -9999px;
           left: -9999px;
         }
 
-        #CustomCollections tbody tr:nth-child(even) {
+        #AlternateTable tbody tr:nth-child(even) {
           background-color: inherit;
         }
 
-        #CustomCollections tr {
+        #AlternateTable tr {
           padding: 0 0 10px 0;
         }
 
-        #CustomCollections tr th {
+        #AlternateTable tr th {
           background-color: var(--uvalib-main-jefferson-blue);
           color: var(--uvalib-white);
           padding: 5px;
         }
 
-        #CustomCollections td {
+        #AlternateTable td {
           /* Behave  like a "row" */
           border: none;
           border-bottom: 1px solid #eee;
@@ -630,7 +630,7 @@
           padding-bottom: 5px;
         }
 
-        #CustomCollections td::before {
+        #AlternateTable td::before {
           display: inherit;
           margin: inherit;
           position: absolute;
@@ -642,26 +642,25 @@
         }
 
         /* Label the data */
-        #CustomCollections td:nth-of-type(1)::before {
+        #AlternateTable td:nth-of-type(1)::before {
           content: attr(aria-labelledby);
           font-weight: bold;
         }
 
-        #CustomCollections td:nth-of-type(2)::before {
+        #AlternateTable td:nth-of-type(2)::before {
           content: attr(aria-labelledby);
           font-weight: bold;
         }
 
-        #CustomCollections td:nth-of-type(3)::before {
+        #AlternateTable td:nth-of-type(3)::before {
           content: attr(aria-labelledby);
           font-weight: bold;
         }
 
-        #CustomCollections td:nth-of-type(4)::before {
+        #AlternateTable td:nth-of-type(4)::before {
           content: attr(aria-labelledby);
           font-weight: bold;
         }
-
         /* END */
 
         /* ACCESSIBILITY */
