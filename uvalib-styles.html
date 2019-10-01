@@ -348,6 +348,9 @@
           margin-bottom: 0;
         }
 
+        .uva-clear-margin { margin: 0; }
+        .uva-clear-padding { padding: 0; }
+
         /*END*/
 
         /* GRID */
@@ -1120,19 +1123,20 @@
           padding-top: 0;
         }
 
-        .collections-big-deal::before,
-        .collections-big-deal::after {
+        .collections-seperator::before,
+        .collections-seperator::after {
           content: " ";
           display: block;
-          width: 80%;
+          width: 100%;
           height: 1em;
           margin: 0 auto;
+          padding: 35px 0;
           background: linear-gradient(to right, #FFF, var(--uvalib-main-rotunda-orange), #FFF) center / 100% 2px no-repeat;
         }
 
         .collections-section {
           display: block;
-          margin-bottom: 4rem;
+          margin-bottom: 2rem;
         }
 
         #collectionForm {
