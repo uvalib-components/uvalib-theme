@@ -1,6 +1,6 @@
 import {html, LitElement, property} from 'lit-element';
 
-class UvaLitElement extends LitElement {
+export class UvaLitElement extends LitElement {
   @property({type: String}) myProp = 'stuff';
   render() {
     return html`
