@@ -1,9 +1,26 @@
 import {property} from 'lit-element';
 export let uvalibBreakpointMixin = (superclass) => class extends superclass {
-  @property({type: Boolean, reflect: true, attribute: 'small-screen'}) smallScreen = false;
-  @property({type: Boolean, reflect: true, attribute: 'medium-screen'}) mediumScreen = false;
-  @property({type: Boolean, reflect: true, attribute: 'large-screen'}) largeScreen = false;
+  static get properties() {
+    return {
+      smallScreen: {
+        type: Boolean,
+        reflect: true,
+        attribute: 'small-screen'
+      },
+      mediumScreen: {
+        type: Boolean,
+        reflect: true,
+        attribute: 'medium-screen'
+      },
+      largeScreen: {
+        type: Boolean,
+        reflect: true,
+        attribute: 'large-screen'
+      },
+    };
+  }
   firstUpdated() {
+    this.smallScreen = this.mediumScreen = this.largeScreen = false;
     const small = window.matchMedia("(max-width: 600px)");
     if (small.matches) this.__setscreen('small');
     small.addListener(q=>{ if (q.matches) this.__setscreen('small'); });

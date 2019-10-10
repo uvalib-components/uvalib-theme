@@ -1,4 +1,4 @@
-import {html, LitElement, property} from 'lit-element';
+import {html, LitElement} from 'lit-element';
 import { uvalibBreakpointMixin } from './uvalib-breakpoint-mixin';
 
 export class UvaLitElement extends uvalibBreakpointMixin(LitElement) {
@@ -10,7 +10,6 @@ export class UvaLitElement extends uvalibBreakpointMixin(LitElement) {
       ${this.largeScreen? html`<h1>Large Screen</h1>`:''}
     `;
   }
-  
 }
 
 customElements.define('uvalib-lit-element', UvaLitElement);
