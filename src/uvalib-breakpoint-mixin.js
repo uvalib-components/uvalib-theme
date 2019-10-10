@@ -16,11 +16,13 @@ export let uvalibBreakpointMixin = (superclass) => class extends superclass {
         type: Boolean,
         reflect: true,
         attribute: 'large-screen'
-      },
+      }
     };
   }
   firstUpdated() {
-    this.smallScreen = this.mediumScreen = this.largeScreen = false;
+    this.smallScreen = false;
+    this.mediumScreen = false;
+    this.largeScreen = false;
     const small = window.matchMedia("(max-width: 600px)");
     if (small.matches) this.__setscreen('small');
     small.addListener(q=>{ if (q.matches) this.__setscreen('small'); });
