@@ -6,7 +6,133 @@
   <style is="custom-style" include="uvalib-fonts">
 
 
-/*CSS CODE GOES HERE*/
+    /*--- sirsidynix.css overrides -----------------------------------------------*/
+    body {
+    	font-size: 14px !important;
+    	line-height: 1.5 !important;
+    }
+
+    a {
+      text-decoration: underline;
+      color:inherit;
+    }
+
+    a:hover {
+      text-decoration:none;
+    }
+
+    #enriched-content a.truncator-link {
+    	font-weight: normal;
+    	text-decoration: underline;
+    	color: inherit;
+    }
+
+    #enriched-content a.truncator-link:hover {
+    	font-weight: normal;
+    	text-decoration: none;
+    	color: inherit;
+    }
+
+
+    .top_edge, .right_edge, .bottom_edge, .left_edge, .top_left, .top_right, .bottom_right, .bottom_left {
+    	display: none;
+    }
+
+    #detail_item_information {
+    	margin-top: 20px;
+    }
+
+    .bibinfo, .summary {
+    	font-size: 1.25em;
+    	line-height: 1.8;
+    	margin-top: 15px;
+    }
+
+    .columns_container {
+    	display: flex;
+    	background-color: #fff;
+    }
+
+    .column {
+    	float: inherit;
+    	display: inline-block;
+    	position: relative;
+    	padding: 0px;
+    	margin: 0px auto;
+    	overflow: hidden;
+    }
+
+    .tabs_container li {
+        display: inline;
+        margin-right: 10px;
+        cursor: pointer;
+        color: #000;
+        padding: 8px 10px;
+        border-radius: 5px;
+        background-color: #c5c5c5;
+        text-transform: uppercase;
+    }
+
+    .tabs_container li:hover {
+    	background-color: #595959;
+    	color: #fff;
+    }
+
+    .tabs_container li.selected_tab {
+    	background-color: #232D4B;
+    	font-weight: inherit;
+        color: #fff;
+    }
+
+    .tabs_container li.selected_tab:hover {
+    	background-color: #0370B7;
+    }
+
+    .detail_page {
+        float: left;
+        display: inline;
+        margin: 0px;
+        padding: 5px;
+    }
+
+    .header_container {
+    	height: 55px;
+    	background-color: #1c4b82;
+    	background-color: #232D4B;
+    }
+
+    .header_menu_container {
+    	background-image: url();
+    }
+
+    .secondary_header_menu_container {
+    	background-color: #E57200;
+    	background-image: url();
+    }
+
+    .button, .formButton {
+    	background-color: #232D4B;
+    	border: 1px solid #E57200;
+    }
+
+    #enriched-content .syn_title {
+    	text-align: left;
+    	padding: 10px;
+    	background-color: #232D4B;
+    }
+
+    .detail_page dt {
+        font-weight: bold;
+        float: left;
+        display: inline;
+        position: relative;
+        vertical-align: top;
+        display: inline;
+        clear: left;
+        /* width: 80%; */
+        padding: 0px;
+        margin-bottom: 4px;
+    }
 
   </style>
 </custom-style>
