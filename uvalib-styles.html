@@ -71,29 +71,33 @@
           margin-bottom: 0;
         }
 
-        h1 {
+        h1, .h1 {
           @apply --h1;
         }
 
-        h2 {
+        h2, .h2 {
           @apply --h2;
           margin-bottom: calc(var(--uvalib-spacing-unit)/8);
         }
 
-        h3 {
+        h3, .h3 {
           @apply --h3;
         }
 
-        h4 {
+        h4, .h4 {
           @apply --h4;
         }
 
-        h5 {
+        h5, .h5 {
           @apply --h5;
         }
 
-        h6 {
+        h6, .h6 {
           @apply --h6;
+        }
+
+        .paragraph {
+          @apply --font-body1;
         }
 
         /* p { line-height: 1.75; }needs further conditions */
@@ -139,6 +143,9 @@
         }
         article ul.simple li {
           list-style-type: none;
+        }
+        article ul.simple li > ul li {
+          list-style-type: inherit;
         }
 
         article ul li li {
@@ -258,6 +265,14 @@
         }
 
         .bigFirstLetter:first-letter {
+          @apply --uva-font-decorative;
+          float: left;
+          font-size: calc(var(--uvalib-main-font-size-unit)*5.8);
+          line-height: calc(var(--uvalib-spacing-unit)*0.9);
+          padding-right: calc(var(--uvalib-spacing-unit)*0.2);
+          color: var(--color-primary-orange);
+        }
+        .dropCap:first-letter {
           @apply --uva-font-decorative;
           float: left;
           font-size: calc(var(--uvalib-main-font-size-unit)*5.8);
