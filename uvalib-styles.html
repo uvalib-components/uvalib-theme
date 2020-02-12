@@ -160,6 +160,9 @@
           min-height: 500px;
         }
 
+        a { color: var(--uvalib-blue-alt-dark); }
+        a.light-link { color: var(--uvalib-blue-alt-lightest); }
+
         a:hover {
           text-decoration: none;
         }
@@ -427,10 +430,16 @@
         a.uvalib-btn:active {
           padding: calc(var(--uvalib-spacing-unit)/2);
           text-decoration: none;
-          background-color: var(--alt-button-color, var(--uvalib-main-rotunda-orange));
+          background-color: var(--alt-button-color, var(--uvalib-brand-blue-light));
           color: var(--alt-button-text-color, #fff);
           text-transform: uppercase;
           border-radius: 5px;
+          cursor: pointer;
+        }
+        a.uvalib-btn.disabled {
+          --alt-button-color: var(--uvalib-grey-lightest);
+          color: var(--uvalib-text-dark);
+          border: 1px solid var(--uvalib-grey-light);
         }
 
         a.uvalib-btn:hover {
@@ -442,16 +451,21 @@
         }
 
         .uvalib-btn-white {
-          --alt-button-color: var(--uvalib-white);
-          --alt-button-text-color: var(--uvalib-text-dk-grey);
+          --alt-button-color: white;
+          --alt-button-text-color: var(--uvalib-text-dark);
         }
 
+        /* Clear out this button, it's now default */
         .uvalib-btn-blue {
-          --alt-button-color: var(--uvalib-main-jefferson-blue);
+          --alt-button-color: var(--uvalib-brand-blue);
+        }
+
+        .uvalib-btn-alt {
+          --alt-button-color: var(--uvalib-brand-orange);
         }
 
         .uvalib-btn-outline {
-          border: 1px solid var(--uvalib-secondary-md-grey);
+          border: 1px solid var(--uvalib-grey-light);
         }
 
         /* .foo { --alt-button-color: green; } */
@@ -480,7 +494,7 @@
         }
 
         .emergencyButton a paper-button {
-          color: var(--color-white);
+          color: white;
 
           --paper-button-raised-keyboard-focus: {
             color: white !important;
@@ -498,19 +512,19 @@
         }
 
         paper-button.give-button {
-          color: var(--color-white);
-          background: var(--color-primary-orange);
+          color: white;
+          background: var(--uvalib-brand-orange);
         }
 
         /* Make the button orange PHASE OUT */
         .button-pop {
-          background-color: var(--uvalib-main-rotunda-orange);
+          background-color: var(--uvalib-brand-orange);
           color: white;
         }
 
         .button-pop:hover {
           background: var(--uvalib-orange-200);
-          color: var(--uvalib-black);
+          color: var(--uvalib-grey-darkest);
         }
 
         /* Make the button blue PHASE OUT */
