@@ -426,7 +426,7 @@
         a.uvalib-btn,
         a.uvalib-btn:link,
         a.uvalib-btn:visited,
-        a.uvalib-btn:hover,
+        /* a.uvalib-btn:hover, */
         a.uvalib-btn:active {
           padding: calc(var(--uvalib-spacing-unit)/2);
           text-decoration: none;
@@ -436,15 +436,19 @@
           border-radius: 5px;
           cursor: pointer;
         }
+        a.uvalib-btn:hover {
+          background-color: var(--alt-button-color, var(--uvalib-brand-blue-lightest));
+          --alt-button-text-color: var(--uvalib-text-dark);
+        }
         a.uvalib-btn.disabled {
           --alt-button-color: var(--uvalib-grey-lightest);
           color: var(--uvalib-text-dark);
           border: 1px solid var(--uvalib-grey-light);
         }
 
-        a.uvalib-btn:hover {
+        /* a.uvalib-btn:hover {
           text-decoration: underline;
-        }
+        } */
 
         .uvalib-btn-margin {
           margin: var(--uvalib-spacing-unit) !important;
@@ -453,6 +457,9 @@
         .uvalib-btn-white {
           --alt-button-color: white;
           --alt-button-text-color: var(--uvalib-text-dark);
+        }
+        a.uvalib-btn.uvalib-btn-white:hover {
+          --alt-button-color: var(--uvalib-grey-light);
         }
 
         /* Clear out this button, it's now default */
@@ -463,12 +470,14 @@
         .uvalib-btn-alt {
           --alt-button-color: var(--uvalib-brand-orange);
         }
+        a.uvalib-btn.uvalib-btn-alt:hover {
+          --alt-button-color: var(--uvalib-brand-orange-dark);
+          --alt-button-text-color: white;
+        }
 
         .uvalib-btn-outline {
           border: 1px solid var(--uvalib-grey-light);
         }
-
-        /* .foo { --alt-button-color: green; } */
 
         .smallButton {
           font-size: .75em;
@@ -503,7 +512,7 @@
           ;
         }
 
-        .give-button {
+        paper-button.give-button, paper-button.give-button:focus, paper-button.give-button:visited {
           margin-top: .5em;
           margin-bottom: 1em;
           margin-left: 0;
@@ -514,6 +523,11 @@
         paper-button.give-button {
           color: white;
           background: var(--uvalib-brand-orange);
+        }
+
+        paper-button#give-button:hover {
+          color: white;
+          background: var(--uvalib-brand-orange-dark);
         }
 
         /* Make the button orange PHASE OUT */
@@ -548,7 +562,7 @@
           color: var(--uvalib-black);
         }
 
-        paper-button:focus {
+        paper-button:focus, a.uvalib-btn:focus {
           outline: var(--color-accessibility-outline-dark-bg) dotted 3px;
         }
 
