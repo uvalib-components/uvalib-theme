@@ -175,6 +175,10 @@
           text-decoration: underline;
         }
 
+        hr {
+          border: .5px solid var(--uvalib-grey-light);
+        }
+
         /*END*/
 
         /* IMAGES */
@@ -233,6 +237,9 @@
         /*END*/
 
         /*USEFUL TWEAKS & CLASSES (for when you need a little extra) */
+        .box-shadow {
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
+        }
         .shady {
           margin: var(--uvalib-spacing-unit) -1000px var(--uvalib-spacing-unit) -1000px;
           padding: calc(var(--uvalib-spacing-unit)*2) 1000px calc(var(--uvalib-spacing-unit)*2) 1000px;
@@ -857,6 +864,21 @@
           background-color: var(--uvalib-blue-alt-lightest);
           border-color: var(--uvalib-blue-alt-light);
           color: var(--uvalib-text-dark);
+        }
+        .alertbox-emergency {
+          background-color: var(--uvalib-red-lightest);
+          border-color: var(--uvalib-red);
+          color: var(--uvalib-text-dark);
+        }
+        .border-it {
+          position: relative;
+          padding: .75rem 1.25rem;
+          margin-bottom: 1rem;
+          border: 1px solid transparent;
+          border: 1px solid var(--uvalib-grey-light);
+        }
+        .border-it h2:first-of-type {
+          margin-top: .5rem;
         }
         /*END*/
 
