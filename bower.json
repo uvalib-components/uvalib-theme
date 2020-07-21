@@ -3,7 +3,8 @@
   "description": "Common UVA Library styles",
   "main": "uvalib-theme.html",
   "dependencies": {
-    "uvalib-elements": "uvalib-components/uvalib-elements#master"
+    "uvalib-elements": "uvalib-components/uvalib-elements#master",
+    "components-font-awesome": "^5.14.0"
   },
   "resolutions": {
     "lodash": "^4.17.4",
@@ -14,6 +15,7 @@
     "iron-flex-layout": "^2.0.3",
     "paper-styles": "^2.0.0",
     "iron-a11y-keys-behavior": "^v2.0.0",
-    "iron-resizable-behavior": "^v2.0.0"
+    "iron-resizable-behavior": "^v2.0.0",
+    "uva-accordion": "2.0.9"
   }
 }
