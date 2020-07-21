@@ -985,43 +985,6 @@
         }
         /*END*/
 
-        /* COVID SERVICE STATUS PAGE */
-        .s-libraries {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          grid-gap: 1em;
-        }
-        .s-libraries .s-library-status h2 {
-          margin: 0;
-        }
-        .s-libraries .s-library-status {
-          display: grid;
-          grid-template-columns: 1fr 75px 75px;
-          grid-gap: 1em;
-        }
-        .s-libraries .s-library-status div {
-          align-self: end;
-        }
-        :host([small-screen]) .s-libraries {
-          display: grid;
-          grid-template-columns: 1fr;
-          grid-gap: 1em;
-        }
-        :host([small-screen]) table td {
-          padding-left: 1em;
-        }
-        .s-data {
-          display: grid;
-          grid-template-rows: 1fr;
-          grid-gap: 1em;
-        }
-        .s-fred {
-          display: grid;
-          grid-template-columns: 25% 1fr 100px;
-        }
-        .services-accordion-block ::slotted(.s-fred p) { color: red; }
-        /* END */
-
         /* LIBRARY SPECIFIC PAGES (e.g. RMC) */
         #library-template .lt-thumbnail figure {
           border: 1px solid var(--uvalib-grey-500);
