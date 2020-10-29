@@ -445,7 +445,6 @@
         a.uvalib-btn,
         a.uvalib-btn:link,
         a.uvalib-btn:visited,
-        /* a.uvalib-btn:hover, */
         a.uvalib-btn:active {
           padding: calc(var(--uvalib-spacing-unit)/2);
           text-decoration: none;
@@ -617,99 +616,191 @@
         }
 
         /******** NEW BUTTONS 10/2020 ********/
-        .uvalib-button {
-                font-size: 1em;
-                appearance: none;
-                border: 0;
-                cursor: pointer;
-                display: inline-block;
-                margin-right: 1em;
-                padding: .6rem 1.25rem;
-                text-align: center;
-                text-decoration: none;
-                width: 100%;
-                background-color: var(--uvalib-blue-alt);
-                color: white;
-                border-radius: 5px;
-                text-transform: uppercase;
-                border-radius: 5px;
-              }
-              .uvalib-button:visited {
-                color: white;
-              }
-              .uvalib-button:hover, .uvalib-button.uvalib-button--hover {
-                background-color: var(--uvalib-blue-alt-dark);
-              }
-              .uvalib-button:active, .uvalib-button.uvalib-button--active {
-                background-color: var(--uvalib-brand-blue);
-              }
-              .uvalib-button:not([disabled]):focus, .uvalib-button:not([disabled]).uvalib-focus {
-                outline-offset: 0.35em;
-                outline: 2px dashed var(--uvalib-grey);
-              }
-              .uvalib-button:disabled {
-                background-color: var(--uvalib-grey-light);
-                color: #fff;
-                pointer-events: none;
-              }
-              .uvalib-button--unstyled, .uvalib-button--unstyled:active, .uvalib-button--unstyled:hover, .uvalib-button--unstyled:visited, .uvalib-button--unstyled:focus,
-              .uvalib-button--subtle.uvalib-button--unstyled, .uvalib-button--subtle.uvalib-button--unstyled:active, .uvalib-button--subtle.uvalib-button--unstyled:hover, .uvalib-button--subtle.uvalib-button--unstyled:visited, .uvalib-button--subtle.uvalib-button--unstyled:focus {
-                color: var(--uvalib-blue-alt-dark);
-                text-decoration: underline;
-                background-color: transparent;
-                border: 0;
-                border-radius: 0;
-                box-shadow: none;
-                font-weight: 400;
-                margin: 0;
-                padding: 0;
-                text-align: left;
-                text-transform: initial;
-              }
-              .uvalib-button--unstyled:active {
-                color: var(--uvalib-brand-blue);
-              }
-              .uvalib-button--unstyled:hover {
-                color: var(--uvalib-brand-blue);
-                text-decoration: none;
-              }
-              .uvalib-button--subtle.uvalib-button--unstyled {
-                color: var(--uvalib-text-dark);
-              }
-              .uvalib-button--subtle.uvalib-button--unstyled:active {
-                color: var(--uvalib-text-dark);
-              }
-              .uvalib-button--subtle.uvalib-button--unstyled:hover {
-                color: var(--uvalib-grey);
-                text-decoration: none;
-              }
-              .uvalib-button--subtle {
-                background-color: var(--uvalib-blue-alt-lightest);
-                color: var(--uvalib-text-dark);
-              }
-              .uvalib-button--subtle:hover, .uvalib-button--subtle.uvalib-button--hover {
-                background-color: #91D8F2;
-              }
-              .uvalib-button--subtle:active, .uvalib-button--subtle.uvalib-button--active {
-                background-color: #55C4EC;
-              }
-              .uvalib-button--small {
-                border-radius: .25rem;
-                font-size: .85rem;
-                padding: .5rem 1rem;
-              }
-              .uvalib-button--large {
-                border-radius: .25rem;
-                font-size: 1.33rem;
-                padding: 1rem 1.5rem;
-              }
+        /* Default Buttons including text buttons */
+        .uvalib-button,
+        .uvalib-text-button {
+          font-size: 1em;
+          appearance: none;
+          border: 0;
+          cursor: pointer;
+          display: inline-block;
+          margin-right: 1em;
+          padding: .6rem 1.25rem;
+          text-align: center;
+          text-decoration: none;
+          width: 100%;
+          background-color: var(--uvalib-blue-alt);
+          color: white;
+          border-radius: 5px;
+          text-transform: uppercase;
+          border-radius: 5px;
+        }
+        .uvalib-button:visited,
+        .uvalib-text-button:visited {
+          color: white;
+        }
+        .uvalib-button:hover, 
+        .uvalib-button.uvalib-button--hover,
+        .uvalib-text-button:hover {
+          background-color: var(--uvalib-blue-alt-dark);
+        }
+        .uvalib-button:active, 
+        .uvalib-button.uvalib-button--active,
+        .uvalib-text-button:active {
+          background-color: var(--uvalib-brand-blue);
+        }
+        .uvalib-button:not([disabled]):focus, 
+        .uvalib-button:not([disabled]).uvalib-focus,
+        .uvalib-text-button:not([disabled]):focus {
+          outline-offset: 0.25em;
+          outline: 2px dotted var(--uvalib-blue-alt-dark);
+        }
 
-              @media (min-width: 30em) {
-                .uvalib-button {
-                    width: auto;
-                }
-              }
+        /* Disabled Buttons */
+        .uvalib-button:disabled,
+        .uvalib-button.uvalib-button--subtle:disabled {
+          background-color: var(--uvalib-grey-light);
+          color: #fff;
+          pointer-events: none;
+        }
 
+        /* Default Subtle Buttons */
+        .uvalib-button--subtle {
+          background-color: var(--uvalib-blue-alt-lightest);
+          color: var(--uvalib-text-dark);
+        }
+        .uvalib-button--subtle:hover, 
+        .uvalib-button--subtle.uvalib-button--hover {
+          background-color: #91D8F2;
+        }
+        .uvalib-button--subtle:active, 
+        .uvalib-button--subtle.uvalib-button--active {
+          background-color: #55C4EC;
+        }
+
+        /* Secondary Buttons */
+        .uvalib-button--secondary {
+          background-color: var(--uvalib-brand-orange);
+          color: var(--uvalib-text-dark);
+        }
+        .uvalib-button--secondary:hover, 
+        .uvalib-button--secondary.uvalib-button--hover {
+          background-color: #FF870F;
+        }
+        .uvalib-button--secondary:active, 
+        .uvalib-button--secondary.uvalib-button--active {
+          background-color: #FFA852;
+        }
+
+        /* Secondary Subtle Buttons */
+        .uvalib-button--secondary.uvalib-button--subtle {
+          background-color: var(--uvalib-brand-orange-lightest);
+          color: var(--uvalib-text-dark);
+        }
+        .uvalib-button--secondary.uvalib-button--subtle:hover, 
+        .uvalib-button--secondary.uvalib-button--subtle.uvalib-button--hover {
+          background-color: #FFC999;
+        }
+        .uvalib-button--secondary.uvalib-button--subtle:active, 
+        .uvalib-button--secondary.uvalib-button--subtle.uvalib-button--active {
+          background-color: #FFB370;
+        }
+
+        /* Unstyled buttons */
+        .uvalib-button--unstyled, 
+        .uvalib-button--unstyled:active, 
+        .uvalib-button--unstyled:hover, 
+        .uvalib-button--unstyled:visited, 
+        .uvalib-button--unstyled:focus,
+        .uvalib-button--subtle.uvalib-button--unstyled, 
+        .uvalib-button--subtle.uvalib-button--unstyled:active, 
+        .uvalib-button--subtle.uvalib-button--unstyled:hover, 
+        .uvalib-button--subtle.uvalib-button--unstyled:visited, 
+        .uvalib-button--subtle.uvalib-button--unstyled:focus,
+        .uvalib-button--secondary.uvalib-button--unstyled, 
+        .uvalib-button--secondary.uvalib-button--unstyled:active, 
+        .uvalib-button--secondary.uvalib-button--unstyled:hover, 
+        .uvalib-button--secondary.uvalib-button--unstyled:visited, 
+        .uvalib-button--secondary.uvalib-button--unstyled:focus,
+        .uvalib-button--secondary.uvalib-button--subtle.uvalib-button--unstyled, 
+        .uvalib-button--secondary.uvalib-button--subtle.uvalib-button--unstyled:active, 
+        .uvalib-button--secondary.uvalib-button--subtle.uvalib-button--unstyled:hover, 
+        .uvalib-button--secondary.uvalib-button--subtle.uvalib-button--unstyled:visited, 
+        .uvalib-button--secondary.uvalib-button--subtle.uvalib-button--unstyled:focus  {
+          color: var(--uvalib-blue-alt-dark);
+          text-decoration: underline;
+          background-color: transparent;
+          border: 0;
+          border-radius: 0;
+          box-shadow: none;
+          font-weight: 400;
+          margin: 0;
+          padding: 0;
+          text-align: left;
+          text-transform: initial;
+        }
+        .uvalib-button--unstyled:active {
+          color: var(--uvalib-brand-blue);
+        }
+        .uvalib-button--unstyled:hover {
+          color: var(--uvalib-brand-blue);
+          text-decoration: none;
+        }
+
+        /* button sizes */
+        .uvalib-button--small {
+          border-radius: .25rem;
+          font-size: .85rem;
+          padding: .5rem 1rem;
+        }
+        .uvalib-button--large {
+          border-radius: .25rem;
+          font-size: 1.33rem;
+          padding: 1rem 1.5rem;
+        }
+
+        /* button icon positioning */
+        .uvalib-icon__left i {
+          padding-right: .5rem;
+        }
+        .uvalib-icon__right i {
+          padding-left: .5rem;
+        }
+        .uvalib-icon__notext {
+          padding: .6rem 1rem;
+        }
+
+        /* buttons for mobile */
+        @media (min-width: 30em) {
+          .uvalib-button,
+          .uvalib-text-button {
+              width: auto;
+          }
+        }
+
+        /*END*/
+
+        /******** NEW TEXT-BUTTONS 10/2020 ********/
+        /* a.uvalib-text-button,
+        a.uvalib-text-button:link,
+        a.uvalib-text-button:visited,
+        a.uvalib-text-button:active {
+          padding: calc(var(--uvalib-spacing-unit)/2);
+          text-decoration: none;
+          background-color: var(--alt-button-color, var(--uvalib-brand-blue-light));
+          color: var(--alt-button-text-color, #fff);
+          text-transform: uppercase;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+        a.uvalib-text-button:hover {
+          background-color: var(--alt-button-color, var(--uvalib-brand-blue-lightest));
+        }
+        a.uvalib-text-button.disabled {
+          --alt-button-color: var(--uvalib-grey-lightest);
+          color: var(--uvalib-text-dark);
+          border: 1px solid var(--uvalib-grey-light);
+        } */
         /*END*/
 
         /* TABLES */
