@@ -21,17 +21,20 @@
 
       --uvalib-teal-lightest: #C8F2F4;
       --uvalib-teal-light: #5BD7DE;
-      --uvalib-teal: #1DA1A8;
-      --uvalib-teal-dark: #16777C;
+      --uvalib-teal: #25CAD3;
+      --uvalib-teal-dark: #1DA1A8;
+      --uvalib-teal-darker: #16777C;
+      
 
-      --uvalib-green-lightest: #89CC74;
+      --uvalib-green-lightest: #DDEFDC;
+      --uvalib-green-lighter: #89CC74;
       --uvalib-green: #62BB46;
       --uvalib-green-dark: #4E9737;
 
       --uvalib-red-lightest: #FBCFDA;
       --uvalib-red: #EF3F6B;
       --uvalib-red-dark: #DF1E43;
-      --uvalib-red-darkest: #B30000;
+      --uvalib-red-darker: #B30000;
 
       --uvalib-yellow-lightest: #FEF6C8;
       --uvalib-yellow: #ECC602;
@@ -50,29 +53,34 @@
       --uvalib-text: var(--uvalib-grey-dark);
       --uvalib-text-dark: var(--uvalib-grey-darkest);
       
-      --uvalib-red-emergency: var(--uvalib-red-darkest);
+      --uvalib-red-emergency: var(--uvalib-red-darker);
 
-      /* STATUS COLORS - ADA COMPLIANT - IBM MODEL */
-      --uvalib-status-ltorange: #FFB000;
-      --uvalib-status-orange: #FE6100;
-      --uvalib-status-magenta: #DC267F;
-      --uvalib-status-purple: #785EF0;
-      --uvalib-status-blue: #648FFF;
+      /* ALERT COLORS - ADA COMPLIANT */
+      --uvalib-alert-a1-bg: var(--uvalib-red-lightest);
+      --uvalib-alert-a1-border: var(--uvalib-red-dark);
+      --uvalib-alert-a2-bg: var(--uvalib-yellow-lightest);
+      --uvalib-alert-a2-border: var(--uvalib-yellow);
+      --uvalib-alert-a3-bg: var(--uvalib-blue-alt-lightest);
+      --uvalib-alert-a3-border: var(--uvalib-blue-alt);
+      --uvalib-alert-a4-bg: var(--uvalib-teal);
+      --uvalib-alert-r1-bg: var(--uvalib-yellow-lightest);
+      --uvalib-alert-r1-border: var(--uvalib-yellow);
+      --uvalib-alert-r2-bg: var(--uvalib-blue-alt-lightest);
+      --uvalib-alert-r2-border: var(--uvalib-blue-alt);
 
-      --uvalib-status-available: var(--uvalib-status-blue);
-      --uvalib-status-modified: var(--uvalib-status-ltorange);
-      --uvalib-status-notavailable: var(--uvalib-status-magenta);
+      --uvalib-alert-error-inline: var(--uvalib-red-darker);
+      --uvalib-alert-confirmation-inline: var(--uvalib-green-dark);
 
-          /* establish new alert colors and background colors using these colors*/
-      --uvalib-status-alert1: var(--uvalib-status-magenta); /*non dissable*/
-      --uvalib-status-alert2: var(--uvalib-status-ltorange); /* e.g. a library closing - dismissable, shows by default*/
-      --uvalib-status-alert3: var(--uvalib-status-orange); /* dismissable, hidden by default */
-      --uvalib-status-alert4: var(--uvalib-status-blue); /* e.g. what's new at library/covid status, etc., dismissable, show by default */
+      --uvalib-alert-info-bg: var(--uvalib-blue-alt-lightest);
+      --uvalib-alert-info-border: var(--uvalib-blue-alt);
+      --uvalib-alert-confirmation-bg: var(--uvalib-green-lightest);
+      --uvalib-alert-confirmation-border: var(--uvalib-green-dark);
+      
+      --uvalib-status-available: var(--uvalib-blue-alt);
+      --uvalib-status-modified: var(--uvalib-yellow);
+      --uvalib-status-notavailable: var(--uvalib-red-darker);
 
-          /* Regional Alert  make these border colors with white backgrounds - maybe a header? */
-      --uvalib-status-ra-fyi: var(--uvalib-status-blue);
-      --uvalib-status-ra-notice: var(--uvalib-status-ltorange);
-
+        
       /* PHASE OUT THE CODE BELOW */
       /* Brand Color Palate*/
       --uvalib-main-white: var(--uvalib-white);
