@@ -616,6 +616,100 @@
           outline: var(--color-accessibility-outline-dark-bg) dotted 3px;
         }
 
+        /******** NEW BUTTONS 10/2020 ********/
+        .uvalib-button {
+                font-size: 1em;
+                appearance: none;
+                border: 0;
+                cursor: pointer;
+                display: inline-block;
+                margin-right: 1em;
+                padding: .6rem 1.25rem;
+                text-align: center;
+                text-decoration: none;
+                width: 100%;
+                background-color: var(--uvalib-blue-alt);
+                color: white;
+                border-radius: 5px;
+                text-transform: uppercase;
+                border-radius: 5px;
+              }
+              .uvalib-button:visited {
+                color: white;
+              }
+              .uvalib-button:hover, .uvalib-button.uvalib-button--hover {
+                background-color: var(--uvalib-blue-alt-dark);
+              }
+              .uvalib-button:active, .uvalib-button.uvalib-button--active {
+                background-color: var(--uvalib-brand-blue);
+              }
+              .uvalib-button:not([disabled]):focus, .uvalib-button:not([disabled]).uvalib-focus {
+                outline-offset: 0.35em;
+                outline: 2px dashed var(--uvalib-grey);
+              }
+              .uvalib-button:disabled {
+                background-color: var(--uvalib-grey-light);
+                color: #fff;
+                pointer-events: none;
+              }
+              .uvalib-button--unstyled, .uvalib-button--unstyled:active, .uvalib-button--unstyled:hover, .uvalib-button--unstyled:visited, .uvalib-button--unstyled:focus,
+              .uvalib-button--subtle.uvalib-button--unstyled, .uvalib-button--subtle.uvalib-button--unstyled:active, .uvalib-button--subtle.uvalib-button--unstyled:hover, .uvalib-button--subtle.uvalib-button--unstyled:visited, .uvalib-button--subtle.uvalib-button--unstyled:focus {
+                color: var(--uvalib-blue-alt-dark);
+                text-decoration: underline;
+                background-color: transparent;
+                border: 0;
+                border-radius: 0;
+                box-shadow: none;
+                font-weight: 400;
+                margin: 0;
+                padding: 0;
+                text-align: left;
+                text-transform: initial;
+              }
+              .uvalib-button--unstyled:active {
+                color: var(--uvalib-brand-blue);
+              }
+              .uvalib-button--unstyled:hover {
+                color: var(--uvalib-brand-blue);
+                text-decoration: none;
+              }
+              .uvalib-button--subtle.uvalib-button--unstyled {
+                color: var(--uvalib-text-dark);
+              }
+              .uvalib-button--subtle.uvalib-button--unstyled:active {
+                color: var(--uvalib-text-dark);
+              }
+              .uvalib-button--subtle.uvalib-button--unstyled:hover {
+                color: var(--uvalib-grey);
+                text-decoration: none;
+              }
+              .uvalib-button--subtle {
+                background-color: var(--uvalib-blue-alt-lightest);
+                color: var(--uvalib-text-dark);
+              }
+              .uvalib-button--subtle:hover, .uvalib-button--subtle.uvalib-button--hover {
+                background-color: #91D8F2;
+              }
+              .uvalib-button--subtle:active, .uvalib-button--subtle.uvalib-button--active {
+                background-color: #55C4EC;
+              }
+              .uvalib-button--small {
+                border-radius: .25rem;
+                font-size: .85rem;
+                padding: .5rem 1rem;
+              }
+              .uvalib-button--large {
+                border-radius: .25rem;
+                font-size: 1.33rem;
+                padding: 1rem 1.5rem;
+              }
+
+              @media (min-width: 30em) {
+                .uvalib-button {
+                    width: auto;
+                }
+              }
+
         /*END*/
 
         /* TABLES */
