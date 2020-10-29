@@ -116,6 +116,8 @@
           text-transform: none;
           font-style: italic;
           line-height: 1.25;
+          border-left: 2px solid var(--alt-border-color, var(--uvalib-brand-orange));
+          padding-left: 1em;
         }
 
         blockquote p {
@@ -125,6 +127,13 @@
         blockquote footer {
           text-align: right;
           font-size: calc(var(--uvalib-main-font-size-unit)/1.12);
+        }
+
+        blockquote.do {
+          --alt-border-color: var(--uvalib-green-dark);
+        }
+        blockquote.dont {
+          --alt-border-color: var(--uvalib-red-dark);
         }
 
         ul,
@@ -448,12 +457,43 @@
         }
         a.uvalib-btn:hover {
           background-color: var(--alt-button-color, var(--uvalib-brand-blue-lightest));
-          --alt-button-text-color: var(--uvalib-text-dark);
         }
         a.uvalib-btn.disabled {
           --alt-button-color: var(--uvalib-grey-lightest);
           color: var(--uvalib-text-dark);
           border: 1px solid var(--uvalib-grey-light);
+        }
+
+        .uvalib-btn-primary {
+          --alt-button-color: var(--uvalib-brand-blue-light);
+        }
+        .uvalib-btn-primary:hover {
+          --alt-button-color: #02558D;
+        }
+        .uvalib-btn-primary-subtle {
+          --alt-button-color: var(--uvalib-blue-alt-lightest);
+          --alt-button-text-color: var(--uvalib-brand-blue);
+        }
+        .uvalib-btn-primary-subtle:hover {
+          --alt-button-color: #A4DDF4;
+        }
+        .uvalib-btn-secondary {
+          --alt-button-color: green;
+        }
+        .uvalib-btn-secondary:hover {
+          --alt-button-color: lime;
+        }
+        .uvalib-btn-critical {
+          --alt-button-color: var(--uvalib-red-darker);
+        }
+        .uvalib-btn-critical:hover {
+          --alt-button-color: var(--uvalib-red);
+        }
+        .uvalib-btn-critical-subtle {
+          --alt-button-color: var(--uvalib-red-lightest);
+        }
+        .uvalib-btn-critical-subtle:hover {
+          --alt-button-color: var(--uvalib-red);
         }
 
         /* a.uvalib-btn:hover {
@@ -468,7 +508,7 @@
           --alt-button-color: white;
           --alt-button-text-color: var(--uvalib-text-dark);
         }
-        a.uvalib-btn.uvalib-btn-white:hover {
+        .uvalib-btn-white:hover {
           --alt-button-color: var(--uvalib-grey-light);
         }
 
@@ -884,6 +924,113 @@
           margin-top: .5rem;
         }
         /*END*/
+
+        /*********************************************/
+        /*      CURRENT ALERT STYLING 10/2020        */
+        /*********************************************/
+
+        .uva-alert {
+            font-size: 1.06rem;
+            line-height: 1.5;
+            padding: 1.25rem 1.25rem 1rem 1.75rem;
+            position: relative;
+            color: var(--uvalib-text-dark);
+            margin-bottom: 1em;
+          }
+          .uva-alert--a1 {
+            background-color: var(--uvalib-alert-a1-bg);
+            border-left: 8px solid var(--uvalib-alert-a1-border);
+          }
+          .uva-alert--a1::before {
+            content: "\f06a";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: 1.5em;
+            display: table-cell;
+          }
+          .uva-alert--a2 {
+            background-color: var(--uvalib-alert-a2-bg);
+            border-left: 8px solid var(--uvalib-alert-a2-border);
+          }
+          .uva-alert--a2::before {
+            content: "\f071";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: 1.5em;
+            display: table-cell;
+          }
+          .uva-alert--a3 {
+            background-color: var(--uvalib-alert-a3-bg);
+            border-left: 8px solid var(--uvalib-alert-a3-border);
+          }
+          .uva-alert--a3::before {
+            content: "\f05a";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: 1.5em;
+            display: table-cell;
+          }
+          .uva-alert--a4 {
+            background-color: var(--uvalib-alert-a4-bg);
+            text-align: center;
+          }
+          .uva-alert--a4 .uva-alert__body {
+            display: inline-block;
+            padding-left: 1.25rem;
+          }
+          .uva-alert--a4 .uva-alert__body .uva-alert__text a {
+            color: var(--uvalib-blue-alt-darkest);
+          }
+          .uva-alert--dismissable::after {
+            content: "\f057"; 
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: 1.5em;
+            display: table-cell;
+            position: absolute;
+            top: .25em;
+            right: .45em;
+          }
+
+          .uva-alert--r1, .uva-alert--r2 {
+            border: 0.2em solid var(--alert-border-color, #ffffff);
+            border-radius: 0.5em;
+          }
+          .uva-alert--r1 {
+            background-color: var(--uvalib-alert-r1-bg);
+            --alert-border-color: var(--uvalib-alert-r1-border);
+          }
+          .uva-alert--r2 {
+            background-color: var(--uvalib-alert-r2-bg);
+            --alert-border-color: var(--uvalib-alert-r2-border);
+          }
+          .uva-alert--error, .uva-alert--confirmation {
+            margin: 0;
+            padding: 0;
+          }
+          .uva-alert--error {
+            color: var(--uvalib-alert-error-inline);
+          }
+          .uva-alert--confirmation {
+            color: var(--uvalib-alert-confirmation-inline);
+          }
+          .uva-alert__heading {
+            font-size: 1.33rem;
+            line-height: 1.1;
+            margin-top: 0;
+            margin-bottom: .5rem;
+          }
+          .uva-alert__body {
+            padding-left: 1.25rem;
+            display: table-cell;
+            vertical-align: top;
+          }
+          .uva-alert__text {
+            margin-bottom: 0;
+            margin-top: 0;
+          }  
+
+          /* END */
 
         /*********************************************/
         /*          PAGE SPECIFIC CSS                */
