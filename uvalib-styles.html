@@ -191,6 +191,12 @@
           border: .5px solid var(--uvalib-grey-light);
         }
 
+        dl.uvalib-dl-inline {
+          display: grid;
+          grid-template-columns: 15% 1fr;
+          grid-gap: 1rem;
+        }
+
         /*END*/
 
         /* IMAGES */
@@ -624,7 +630,7 @@
           border: 0;
           cursor: pointer;
           display: inline-block;
-          margin-right: 1em;
+          margin: .8em;
           padding: .6rem 1.25rem;
           text-align: center;
           text-decoration: none;
@@ -654,6 +660,12 @@
         .uvalib-text-button:not([disabled]):focus {
           outline-offset: 0.25em;
           outline: 2px dotted var(--uvalib-blue-alt-dark);
+        }
+        .uvalib-button--inverse:not([disabled]):focus, 
+        .uvalib-button--inverse:not([disabled]).uvalib-focus,
+        .uvalib-text-button--inverse:not([disabled]):focus {
+          outline-offset: 0.25em;
+          outline: 2px dotted var(--uvalib-grey-lightest);
         }
 
         /* Disabled Buttons */
@@ -685,11 +697,13 @@
         }
         .uvalib-button--secondary:hover, 
         .uvalib-button--secondary.uvalib-button--hover {
-          background-color: #FF870F;
+          background-color: var(--uvalib-brand-orange-dark);
+          color: #ffffff;
         }
         .uvalib-button--secondary:active, 
         .uvalib-button--secondary.uvalib-button--active {
-          background-color: #FFA852;
+          background-color: var(--uvalib-brand-orange-darker);
+          color: #ffffff;
         }
 
         /* Secondary Subtle Buttons */
@@ -699,11 +713,56 @@
         }
         .uvalib-button--secondary.uvalib-button--subtle:hover, 
         .uvalib-button--secondary.uvalib-button--subtle.uvalib-button--hover {
-          background-color: #FFC999;
+          background-color: var(--uvalib-brand-orange-lighter);
         }
         .uvalib-button--secondary.uvalib-button--subtle:active, 
         .uvalib-button--secondary.uvalib-button--subtle.uvalib-button--active {
-          background-color: #FFB370;
+          background-color: var(--uvalib-brand-orange-light);
+        }
+
+        /* Outline Buttons */
+        .uvalib-button--outline {
+          background-color: transparent;
+          box-shadow: inset 0 0 0 2px #005ea2;
+          color: #005ea2;
+        }
+        .uvalib-button--outline.uvalib-button--hover, .uvalib-button--outline:hover {
+          background-color: transparent;
+          box-shadow: inset 0 0 0 2px #1a4480;
+          color: #1a4480; 
+        }
+        .uvalib-button--outline.uvalib-button--active, .uvalib-button--outline:active {
+          background-color: transparent;
+          box-shadow: inset 0 0 0 2px #162e51;
+          color: #162e51;
+        }
+        .uvalib-button--outline-disabled, .uvalib-button--outline:disabled {
+          background-color: transparent;
+          box-shadow: inset 0 0 0 2px #c9c9c9;
+          color: #c9c9c9;
+        }
+
+        /* Outline Inverse Buttons */
+        .uvalib-button--outline.uvalib-button--inverse {
+          box-shadow: inset 0 0 0 2px #fff;
+          color: #fff;
+        }
+        .uvalib-button--outline.uvalib-button--inverse.uvalib-button--hover, 
+        .uvalib-button--outline.uvalib-button--inverse:hover {
+          box-shadow: inset 0 0 0 2px var(--uvalib-grey-lightest);
+          color: var(--uvalib-grey-lightest);
+        }
+        .uvalib-button--outline.uvalib-button--inverse.uvalib-button--active, 
+        .uvalib-button--outline.uvalib-button--inverse:active {
+          background-color: transparent;
+          box-shadow: inset 0 0 0 2px #fff;
+          color: #fff;
+        }
+        .uvalib-button--outline-disabled.uvalib-button--inverse, 
+        .uvalib-button--outline:disabled.uvalib-button--inverse {
+          background-color: transparent;
+          box-shadow: inset 0 0 0 2px #757575;
+          color: #757575;
         }
 
         /* Unstyled buttons */
@@ -726,7 +785,17 @@
         .uvalib-button--secondary.uvalib-button--subtle.uvalib-button--unstyled:active, 
         .uvalib-button--secondary.uvalib-button--subtle.uvalib-button--unstyled:hover, 
         .uvalib-button--secondary.uvalib-button--subtle.uvalib-button--unstyled:visited, 
-        .uvalib-button--secondary.uvalib-button--subtle.uvalib-button--unstyled:focus  {
+        .uvalib-button--secondary.uvalib-button--subtle.uvalib-button--unstyled:focus,
+        .uvalib-button--outline.uvalib-button--unstyled,
+        .uvalib-button--outline.uvalib-button--unstyled:active,
+        .uvalib-button--outline.uvalib-button--unstyled:hover,
+        .uvalib-button--outline.uvalib-button--unstyled:visited,
+        .uvalib-button--outline.uvalib-button--unstyled:focus,
+        .uvalib-button--inverse.uvalib-button--unstyled,
+        .uvalib-button--inverse.uvalib-button--unstyled:active,
+        .uvalib-button--inverse.uvalib-button--unstyled:hover,
+        .uvalib-button--inverse.uvalib-button--unstyled:visited,
+        .uvalib-button--inverse.uvalib-button--unstyled:focus  {
           color: var(--uvalib-blue-alt-dark);
           text-decoration: underline;
           background-color: transparent;
@@ -745,6 +814,12 @@
         .uvalib-button--unstyled:hover {
           color: var(--uvalib-brand-blue);
           text-decoration: none;
+        }
+        .uvalib-button--inverse.uvalib-button--unstyled {
+          color: #fff;
+        }
+        .uvalib-button--inverse.uvalib-button--unstyled:hover {
+          color: var(--uvalib-grey-lightest);
         }
 
         /* button sizes */
