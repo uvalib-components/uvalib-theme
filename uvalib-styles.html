@@ -25,15 +25,15 @@
           @apply --font-body1;
 
           --accessibility-outline-for-light-bg: {
-            outline: var(--color-accessibility-outline-light-bg) dotted 3px;
-            padding: .15em;
+            outline-offset: 0.25em;
+            outline: 2px dotted var(--accessibility-outline-color--bgislight);
           }
 
           ;
 
           --accessibility-outline-for-dark-bg: {
-            outline: var(--color-accessibility-outline-dark-bg) dotted 3px;
-            padding: .15em;
+            outline-offset: 0.25em;
+            outline: 2px dotted var(--accessibility-outline-color--bgisdark);
           }
 
           ;
@@ -144,6 +144,9 @@
           margin: 15px 0px;
           color: var(--color-text-gray);
         }
+         ul > ul, ul > ol, ol > ol, ol > ul {
+           margin: 0;
+         }
 
         article ul li {
           list-style-type: disc;
@@ -153,10 +156,18 @@
         article ul li ul, article ul li ol, article ol li ol, article ol li ul {
           margin-bottom: 0;
         }
+        /*OLD*/
         article ul.simple li {
           list-style-type: none;
         }
         article ul.simple li > ul li {
+          list-style-type: inherit;
+        }
+        /*NEW*/
+        article ul.list--simple li {
+          list-style-type: none;
+        }
+        article ul.list--simple li > ul li {
           list-style-type: inherit;
         }
 
@@ -191,7 +202,7 @@
           border: .5px solid var(--uvalib-grey-light);
         }
 
-        dl.uvalib-dl-inline {
+        dl.uvalib-dl--inline {
           display: grid;
           grid-template-columns: 15% 1fr;
           grid-gap: 1rem;
@@ -510,14 +521,13 @@
         }
 
         .uvalib-btn-white {
-          --alt-button-color: white;
+          --alt-button-color: #fff;
           --alt-button-text-color: var(--uvalib-text-dark);
         }
         .uvalib-btn-white:hover {
           --alt-button-color: var(--uvalib-grey-light);
         }
 
-        /* Clear out this button, it's now default */
         .uvalib-btn-blue {
           --alt-button-color: var(--uvalib-brand-blue);
         }
@@ -527,7 +537,7 @@
         }
         a.uvalib-btn.uvalib-btn-alt:hover {
           --alt-button-color: var(--uvalib-brand-orange-dark);
-          --alt-button-text-color: white;
+          --alt-button-text-color: #fff;
         }
 
         .uvalib-btn-outline {
@@ -558,7 +568,7 @@
         }
 
         .emergencyButton a paper-button {
-          color: white;
+          color: #fff;
 
           --paper-button-raised-keyboard-focus: {
             color: white !important;
@@ -576,19 +586,18 @@
         }
 
         paper-button.give-button {
-          color: white;
+          color: #fff;
           background: var(--uvalib-brand-orange);
         }
 
         paper-button#give-button:hover {
-          color: white;
+          color: #fff;
           background: var(--uvalib-brand-orange-dark);
         }
 
-        /* Make the button orange PHASE OUT */
         .button-pop {
           background-color: var(--uvalib-brand-orange);
-          color: white;
+          color: #fff;
         }
 
         .button-pop:hover {
@@ -596,10 +605,9 @@
           color: var(--uvalib-grey-darkest);
         }
 
-        /* Make the button blue PHASE OUT */
         .button-pop-alt {
           background-color: var(--uvalib-main-jefferson-blue);
-          color: white;
+          color: #fff;
         }
 
         .button-pop-alt:hover {
@@ -618,11 +626,11 @@
         }
 
         paper-button:focus, a.uvalib-btn:focus {
-          outline: var(--color-accessibility-outline-dark-bg) dotted 3px;
+          outline: var(--accessibility-outline-color--bgisdark) dotted 3px;
         }
 
-        /******** NEW BUTTONS 10/2020 ********/
-        /* Default Buttons including text buttons */
+/******** NEW BUTTONS 11/2020 ********/
+/* Default Buttons including text buttons */
         .uvalib-button,
         .uvalib-text-button {
           font-size: 1em;
@@ -630,24 +638,25 @@
           border: 0;
           cursor: pointer;
           display: inline-block;
-          margin: .8em;
+          margin: .8em .4em;
           padding: .6rem 1.25rem;
           text-align: center;
           text-decoration: none;
           width: 100%;
           background-color: var(--uvalib-blue-alt);
-          color: white;
+          color: #fff;
           border-radius: 5px;
           text-transform: uppercase;
           border-radius: 5px;
         }
         .uvalib-button:visited,
         .uvalib-text-button:visited {
-          color: white;
+          color: #fff;
         }
         .uvalib-button:hover, 
         .uvalib-button.uvalib-button--hover,
-        .uvalib-text-button:hover {
+        .uvalib-text-button:hover,
+        .uvalib-text-button.uvalib-text-button--hover {
           background-color: var(--uvalib-blue-alt-dark);
         }
         .uvalib-button:active, 
@@ -657,112 +666,143 @@
         }
         .uvalib-button:not([disabled]):focus, 
         .uvalib-button:not([disabled]).uvalib-focus,
-        .uvalib-text-button:not([disabled]):focus {
-          outline-offset: 0.25em;
-          outline: 2px dotted var(--uvalib-blue-alt-dark);
+        .uvalib-text-button:not([disabled]):focus,
+        .uvalib-text-button:not([disabled]).uvalib-focus {
+          @apply --accessibility-outline-for-light-bg;
         }
         .uvalib-button--inverse:not([disabled]):focus, 
         .uvalib-button--inverse:not([disabled]).uvalib-focus,
-        .uvalib-text-button--inverse:not([disabled]):focus {
-          outline-offset: 0.25em;
-          outline: 2px dotted var(--uvalib-grey-lightest);
+        .uvalib-text-button--inverse:not([disabled]):focus,
+        .uvalib-text-button--inverse:not([disabled]).uvalib-focus {
+          @apply --accessibility-outline-for-dark-bg;
         }
 
         /* Disabled Buttons */
         .uvalib-button:disabled,
-        .uvalib-button.uvalib-button--subtle:disabled {
+        .uvalib-button.uvalib-button--subtle:disabled,
+        .uvalib-text-button:disabled,
+        .uvalib-text-button.uvalib-text-button--subtle:disabled {
           background-color: var(--uvalib-grey-light);
           color: #fff;
           pointer-events: none;
         }
 
         /* Default Subtle Buttons */
-        .uvalib-button--subtle {
+        .uvalib-button--subtle,
+        .uvalib-text-button--subtle {
           background-color: var(--uvalib-blue-alt-lightest);
           color: var(--uvalib-text-dark);
         }
         .uvalib-button--subtle:hover, 
-        .uvalib-button--subtle.uvalib-button--hover {
-          background-color: #91D8F2;
+        .uvalib-button--subtle.uvalib-button--hover,
+        .uvalib-text-button--subtle:hover, 
+        .uvalib-text-button--subtle.uvalib-text-button--hover {
+          background-color: var(--uvalib-blue-alt-lighter);
         }
         .uvalib-button--subtle:active, 
-        .uvalib-button--subtle.uvalib-button--active {
-          background-color: #55C4EC;
+        .uvalib-button--subtle.uvalib-button--active,
+        .uvalib-text-button--subtle:active, 
+        .uvalib-text-button--subtle.uvalib-text-button--active {
+          background-color: var(--uvalib-blue-alt-light);
         }
 
         /* Secondary Buttons */
-        .uvalib-button--secondary {
+        .uvalib-button--secondary,
+        .uvalib-text-button--secondary {
           background-color: var(--uvalib-brand-orange);
           color: var(--uvalib-text-dark);
         }
         .uvalib-button--secondary:hover, 
-        .uvalib-button--secondary.uvalib-button--hover {
+        .uvalib-button--secondary.uvalib-button--hover,
+        .uvalib-text-button--secondary:hover, 
+        .uvalib-text-button--secondary.uvalib-text-button--hover {
           background-color: var(--uvalib-brand-orange-dark);
-          color: #ffffff;
+          color: #fff;
         }
         .uvalib-button--secondary:active, 
-        .uvalib-button--secondary.uvalib-button--active {
+        .uvalib-button--secondary.uvalib-button--active,
+        .uvalib-text-button--secondary:active, 
+        .uvalib-text-button--secondary.uvalib-text-button--active {
           background-color: var(--uvalib-brand-orange-darker);
-          color: #ffffff;
+          color: #fff;
         }
 
         /* Secondary Subtle Buttons */
-        .uvalib-button--secondary.uvalib-button--subtle {
+        .uvalib-button--secondary.uvalib-button--subtle,
+        .uvalib-text-button--secondary.uvalib-text-button--subtle {
           background-color: var(--uvalib-brand-orange-lightest);
           color: var(--uvalib-text-dark);
         }
         .uvalib-button--secondary.uvalib-button--subtle:hover, 
-        .uvalib-button--secondary.uvalib-button--subtle.uvalib-button--hover {
+        .uvalib-button--secondary.uvalib-button--subtle.uvalib-button--hover,
+        .uvalib-text-button--secondary.uvalib-text-button--subtle:hover, 
+        .uvalib-text-button--secondary.uvalib-text-button--subtle.uvalib-text-button--hover {
           background-color: var(--uvalib-brand-orange-lighter);
         }
         .uvalib-button--secondary.uvalib-button--subtle:active, 
-        .uvalib-button--secondary.uvalib-button--subtle.uvalib-button--active {
+        .uvalib-button--secondary.uvalib-button--subtle.uvalib-button--active,
+        .uvalib-text-button--secondary.uvalib-text-button--subtle:active, 
+        .uvalib-text-button--secondary.uvalib-text-button--subtle.uvalib-text-button--active {
           background-color: var(--uvalib-brand-orange-light);
         }
 
         /* Outline Buttons */
-        .uvalib-button--outline {
+        .uvalib-button--outline,
+        .uvalib-text-button--outline {
           background-color: transparent;
-          box-shadow: inset 0 0 0 2px #005ea2;
-          color: #005ea2;
+          box-shadow: inset 0 0 0 2px var(--uvalib-blue-alt);
+          color: var(--uvalib-blue-alt);
         }
-        .uvalib-button--outline.uvalib-button--hover, .uvalib-button--outline:hover {
+        .uvalib-button--outline.uvalib-button--hover, .uvalib-button--outline:hover,
+        .uvalib-text-button--outline.uvalib-text-button--hover, .uvalib-text-button--outline:hover {
           background-color: transparent;
-          box-shadow: inset 0 0 0 2px #1a4480;
-          color: #1a4480; 
+          box-shadow: inset 0 0 0 2px var(--uvalib-blue-alt-dark);
+          color: var(--uvalib-blue-alt-dark); 
         }
-        .uvalib-button--outline.uvalib-button--active, .uvalib-button--outline:active {
+        .uvalib-button--outline.uvalib-button--active, .uvalib-button--outline:active,
+        .uvalib-text-button--outline.uvalib-text-button--active, .uvalib-text-button--outline:active {
           background-color: transparent;
-          box-shadow: inset 0 0 0 2px #162e51;
-          color: #162e51;
+          box-shadow: inset 0 0 0 2px var(--uvalib-brand-blue);
+          color: var(--uvalib-brand-blue);
         }
-        .uvalib-button--outline-disabled, .uvalib-button--outline:disabled {
+        .uvalib-button--outline-disabled, .uvalib-button--outline:disabled,
+        .uvalib-text-button--outline-disabled, .uvalib-text-button--outline:disabled {
           background-color: transparent;
-          box-shadow: inset 0 0 0 2px #c9c9c9;
-          color: #c9c9c9;
+          box-shadow: inset 0 0 0 2px var(--uvalib-grey-light);
+          color: var(--uvalib-grey-light);
         }
 
         /* Outline Inverse Buttons */
-        .uvalib-button--outline.uvalib-button--inverse {
+        .uvalib-button--outline.uvalib-button--inverse,
+        .uvalib-text-button--outline.uvalib-text-button--inverse {
           box-shadow: inset 0 0 0 2px #fff;
           color: #fff;
         }
+        .uvalib-text-button--inverse {
+          color: #fff;
+        }
         .uvalib-button--outline.uvalib-button--inverse.uvalib-button--hover, 
-        .uvalib-button--outline.uvalib-button--inverse:hover {
-          box-shadow: inset 0 0 0 2px var(--uvalib-grey-lightest);
-          color: var(--uvalib-grey-lightest);
+        .uvalib-button--outline.uvalib-button--inverse:hover,
+        .uvalib-text-button--outline.uvalib-text-button--inverse.uvalib-text-button--hover, 
+        .uvalib-text-button--outline.uvalib-text-button--inverse:hover {
+          box-shadow: inset 0 0 0 2px var(--uvalib-grey-light);
+          color: var(--uvalib-grey-light);
         }
         .uvalib-button--outline.uvalib-button--inverse.uvalib-button--active, 
-        .uvalib-button--outline.uvalib-button--inverse:active {
+        .uvalib-button--outline.uvalib-button--inverse:active,
+        .uvalib-text-button--outline.uvalib-text-button--inverse.uvalib-text-button--active, 
+        .uvalib-text-button--outline.uvalib-text-button--inverse:active {
           background-color: transparent;
           box-shadow: inset 0 0 0 2px #fff;
           color: #fff;
         }
         .uvalib-button--outline-disabled.uvalib-button--inverse, 
-        .uvalib-button--outline:disabled.uvalib-button--inverse {
+        .uvalib-button--outline:disabled.uvalib-button--inverse,
+        .uvalib-text-button--outline-disabled.uvalib-text-button--inverse, 
+        .uvalib-text-button--outline:disabled.uvalib-text-button--inverse {
           background-color: transparent;
-          box-shadow: inset 0 0 0 2px #757575;
-          color: #757575;
+          box-shadow: inset 0 0 0 2px var(--uvalib-grey);
+          color: var(--uvalib-grey);
         }
 
         /* Unstyled buttons */
@@ -823,12 +863,14 @@
         }
 
         /* button sizes */
-        .uvalib-button--small {
+        .uvalib-button--small,
+        .uvalib-text-button--small {
           border-radius: .25rem;
           font-size: .85rem;
           padding: .5rem 1rem;
         }
-        .uvalib-button--large {
+        .uvalib-button--large,
+        .uvalib-text-button--large {
           border-radius: .25rem;
           font-size: 1.33rem;
           padding: 1rem 1.5rem;
@@ -852,31 +894,7 @@
               width: auto;
           }
         }
-
-        /*END*/
-
-        /******** NEW TEXT-BUTTONS 10/2020 ********/
-        /* a.uvalib-text-button,
-        a.uvalib-text-button:link,
-        a.uvalib-text-button:visited,
-        a.uvalib-text-button:active {
-          padding: calc(var(--uvalib-spacing-unit)/2);
-          text-decoration: none;
-          background-color: var(--alt-button-color, var(--uvalib-brand-blue-light));
-          color: var(--alt-button-text-color, #fff);
-          text-transform: uppercase;
-          border-radius: 5px;
-          cursor: pointer;
-        }
-        a.uvalib-text-button:hover {
-          background-color: var(--alt-button-color, var(--uvalib-brand-blue-lightest));
-        }
-        a.uvalib-text-button.disabled {
-          --alt-button-color: var(--uvalib-grey-lightest);
-          color: var(--uvalib-text-dark);
-          border: 1px solid var(--uvalib-grey-light);
-        } */
-        /*END*/
+/*BUTTON / TEXT-BUTTON END*/
 
         /* TABLES */
         table {
@@ -1056,7 +1074,7 @@
         }
 
         #top #logo a:hover {
-          border-bottom: 1px solid var(--color-accessibility-outline-dark-bg);
+          border-bottom: 1px solid var(--accessibility-outline-color--bgisdark);
           padding-bottom: .1em;
         }
 
@@ -1173,21 +1191,21 @@
           border-color: var(--uvalib-red);
           color: var(--uvalib-text-dark);
         }
-        .border-it {
+        .apply-border {
           position: relative;
           padding: .75rem 1.25rem;
           margin-bottom: 1rem;
           border: 1px solid transparent;
           border: 1px solid var(--uvalib-grey-light);
         }
-        .border-it h2:first-of-type {
+        .apply-border h2:first-of-type {
           margin-top: .5rem;
         }
         /*END*/
 
-        /*********************************************/
-        /*      CURRENT ALERT STYLING 10/2020        */
-        /*********************************************/
+/*********************************************/
+/*      CURRENT ALERT STYLING 11/2020        */
+/*********************************************/
 
         .uva-alert {
             font-size: 1.06rem;
@@ -1252,7 +1270,7 @@
           }
 
           .uva-alert--r1, .uva-alert--r2 {
-            border: 0.2em solid var(--alert-border-color, #ffffff);
+            border: 0.2em solid var(--alert-border-color, #fff);
             border-radius: 0.5em;
           }
           .uva-alert--r1 {
@@ -1289,7 +1307,7 @@
             margin-top: 0;
           }  
 
-          /* END */
+/* ALERT STYLING END */
 
         /*********************************************/
         /*          PAGE SPECIFIC CSS                */
@@ -1754,7 +1772,7 @@
           margin-top: var(--uvalib-spacing-unit);
           background-color: var(--uvalib-main-rotunda-orange);
           border-color: var(--uvalib-main-rotunda-orange);
-          color: white;
+          color: #fff;
 
           --paper-button-raised-keyboard-focus: {
             border-color: var(--uvalib-orange-200);
@@ -1781,7 +1799,6 @@
 
         #tnl-container uva-accordion {
           --uva-accordion-item-panel-padding: 0 !important;
-          /* --uva-accordion-item-heading-border-bottom: 1px solid; */
         }
 
         #tnl-container uva-accordion:last-child {
@@ -1812,15 +1829,8 @@
           padding: var(--uvalib-spacing-unit);
         }
 
-        /* #tnl-container li:nth-of-type(even) {
-          background-color: var(--uvalib-secondary-lt-grey);
-        } */
         #tnl-container div>img {
           float: left;
-          /*
-          max-width: 80px;
-          max-height: 80px;
-          */
           padding-right: var(--uvalib-spacing-unit);
         }
 
@@ -1852,7 +1862,6 @@
 
         #tnl-container .azbody {
           padding: var(--uvalib-spacing-unit);
-          /* background-color: var(--uvalib-secondary-lt-grey); */
         }
 
         #tnl-container uva-accordion-item {
