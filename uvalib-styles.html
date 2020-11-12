@@ -120,7 +120,7 @@
           padding-left: 1em;
         }
 
-        blockquote p {
+        blockquote p, blockquote b {
           font-size: calc(var(--uvalib-main-font-size-unit)*1.15);
         }
 
@@ -205,18 +205,10 @@
         dt {
           font-weight: 700;
         }
-
-        dd {
+        .uvalib-dl--stacked dd {
           margin-inline-start: inherit;
           margin-bottom: .25rem;
         }
-
-        /* dl.uvalib-dl--inline {
-          display: grid;
-          grid-template-columns: 15% 1fr;
-          grid-gap: 1rem;
-        } */
-
         dl.uvalib-dl--inline {
           display: flex;
           flex-flow: row wrap;
@@ -1247,7 +1239,7 @@
           }
           .uva-alert--a1::before {
             content: "\f06a";
-            font-family: "Font Awesome 5 Free";
+            font-family: "Font Awesome 5 Pro";
             font-weight: 900;
             font-size: 1.5em;
             display: table-cell;
@@ -1258,7 +1250,7 @@
           }
           .uva-alert--a2::before {
             content: "\f071";
-            font-family: "Font Awesome 5 Free";
+            font-family: "Font Awesome 5 Pro";
             font-weight: 900;
             font-size: 1.5em;
             display: table-cell;
@@ -1269,7 +1261,7 @@
           }
           .uva-alert--a3::before {
             content: "\f05a";
-            font-family: "Font Awesome 5 Free";
+            font-family: "Font Awesome 5 Pro";
             font-weight: 900;
             font-size: 1.5em;
             display: table-cell;
