@@ -647,10 +647,10 @@
           outline: var(--accessibility-outline-color--bgisdark) dotted 3px;
         }
 
-/******** NEW BUTTONS 11/2020 ********/
-/* Default Buttons including text buttons */
-        .uvalib-button,
-        .uvalib-text-button {
+/******** NEW BUTTONS & LINK BUTTONS 2/2021 ********/
+
+/* Default Buttons including Link Buttons */
+        .uvalib-button {
           font-size: 1em;
           appearance: none;
           border: 0;
@@ -667,124 +667,117 @@
           text-transform: uppercase;
           border-radius: 5px;
         }
-        .uvalib-button:visited,
-        .uvalib-text-button:visited {
+        a.uvalib_link--button {
+          display: inline-block;
+          margin: .5em;
+          padding: .88em;
+          background-color: var(--uvalib-blue-alt);
+          border-radius: 5px;
+          text-decoration: underline;
           color: #fff;
         }
+
+        .uvalib-button:visited { color: #fff; }
+
         .uvalib-button:hover, 
         .uvalib-button.uvalib-button--hover,
-        .uvalib-text-button:hover,
-        .uvalib-text-button.uvalib-text-button--hover {
+        a.uvalib_link--button:hover,
+        a.uvalib_link--button.uvalib_link--button--hover {
           background-color: var(--uvalib-blue-alt-dark);
         }
+        a.uvalib_link--button:hover, 
+        a.uvalib_link--button.uvalib_link--button--hover {
+          text-decoration: none;
+        }
+        
         .uvalib-button:active, 
         .uvalib-button.uvalib-button--active,
-        .uvalib-text-button:active {
+        a.uvalib_link--button:active, a.uvalib_link--button--active {
           background-color: var(--uvalib-brand-blue);
         }
+
         .uvalib-button:not([disabled]):focus, 
         .uvalib-button:not([disabled]).uvalib-focus,
-        .uvalib-text-button:not([disabled]):focus,
-        .uvalib-text-button:not([disabled]).uvalib-focus {
+        a.uvalib_link--button:not([disabled]):focus,
+        a.uvalib_link--button:not([disabled]).uvalib-focus {
           @apply --accessibility-outline-for-light-bg;
         }
+        
         .uvalib-button--inverse:not([disabled]):focus, 
         .uvalib-button--inverse:not([disabled]).uvalib-focus,
-        .uvalib-text-button--inverse:not([disabled]):focus,
-        .uvalib-text-button--inverse:not([disabled]).uvalib-focus {
+        a.uvalib_link--button--inverse:not([disabled]):focus,
+        a.uvalib_link--button--inverse:not([disabled]).uvalib-focus {
           @apply --accessibility-outline-for-dark-bg;
+        }
+
+        a.uvalib_link--button i {
+          padding: 2px 4px;
+          text-decoration: none;
+        }
+        a.uvalib_link--button:hover i {
+          text-decoration: underline;
         }
 
         /* Disabled Buttons */
         .uvalib-button:disabled,
         .uvalib-button.uvalib-button--subtle:disabled,
-        .uvalib-text-button:disabled,
-        .uvalib-text-button.uvalib-text-button--subtle:disabled {
+        a.uvalib_link--button--disabled,
+        a.uvalib_link--button.uvalib_link--button--subtle.uvalib_link--button--disabled,
+        a.uvalib_link--button.uvalib_link--button--alt--disabled {
           background-color: var(--uvalib-grey-light);
           color: #fff;
           pointer-events: none;
         }
 
-        /* Default Subtle Buttons */
+        /* Default Subtle Buttons & Link Buttons */
         .uvalib-button--subtle,
-        .uvalib-text-button--subtle {
+        a.uvalib_link--button.uvalib_link--button--subtle {
           background-color: var(--uvalib-blue-alt-lightest);
           color: var(--uvalib-text-dark);
         }
+
         .uvalib-button--subtle:hover, 
         .uvalib-button--subtle.uvalib-button--hover,
-        .uvalib-text-button--subtle:hover, 
-        .uvalib-text-button--subtle.uvalib-text-button--hover {
+        a.uvalib_link--button.uvalib_link--button--subtle:hover,
+        a.uvalib_link--button.uvalib_link--button--subtle.uvalib_link--button--hover {
           background-color: var(--uvalib-blue-alt-lighter);
         }
+
         .uvalib-button--subtle:active, 
         .uvalib-button--subtle.uvalib-button--active,
-        .uvalib-text-button--subtle:active, 
-        .uvalib-text-button--subtle.uvalib-text-button--active {
+        a.uvalib_link--button.uvalib_link--button--subtle:active,
+        a.uvalib_link--button.uvalib_link--button--subtle.uvalib_link--button--active {
           background-color: var(--uvalib-blue-alt-light);
-        }
-
-        /* Secondary Buttons */
-        .uvalib-button--secondary,
-        .uvalib-text-button--secondary {
-          background-color: var(--uvalib-brand-orange);
-          color: var(--uvalib-text-dark);
-        }
-        .uvalib-button--secondary:hover, 
-        .uvalib-button--secondary.uvalib-button--hover,
-        .uvalib-text-button--secondary:hover, 
-        .uvalib-text-button--secondary.uvalib-text-button--hover {
-          background-color: var(--uvalib-brand-orange-dark);
-          color: #fff;
-        }
-        .uvalib-button--secondary:active, 
-        .uvalib-button--secondary.uvalib-button--active,
-        .uvalib-text-button--secondary:active, 
-        .uvalib-text-button--secondary.uvalib-text-button--active {
-          background-color: var(--uvalib-brand-orange-darker);
-          color: #fff;
-        }
-
-        /* Secondary Subtle Buttons */
-        .uvalib-button--secondary.uvalib-button--subtle,
-        .uvalib-text-button--secondary.uvalib-text-button--subtle {
-          background-color: var(--uvalib-brand-orange-lightest);
-          color: var(--uvalib-text-dark);
-        }
-        .uvalib-button--secondary.uvalib-button--subtle:hover, 
-        .uvalib-button--secondary.uvalib-button--subtle.uvalib-button--hover,
-        .uvalib-text-button--secondary.uvalib-text-button--subtle:hover, 
-        .uvalib-text-button--secondary.uvalib-text-button--subtle.uvalib-text-button--hover {
-          background-color: var(--uvalib-brand-orange-lighter);
-        }
-        .uvalib-button--secondary.uvalib-button--subtle:active, 
-        .uvalib-button--secondary.uvalib-button--subtle.uvalib-button--active,
-        .uvalib-text-button--secondary.uvalib-text-button--subtle:active, 
-        .uvalib-text-button--secondary.uvalib-text-button--subtle.uvalib-text-button--active {
-          background-color: var(--uvalib-brand-orange-light);
         }
 
         /* Outline Buttons */
         .uvalib-button--outline,
-        .uvalib-text-button--outline {
+        .uvalib_link--button--outline,
+        a.uvalib_link--button.uvalib_link--button--outline {
           background-color: transparent;
           box-shadow: inset 0 0 0 2px var(--uvalib-blue-alt);
           color: var(--uvalib-blue-alt);
         }
-        .uvalib-button--outline.uvalib-button--hover, .uvalib-button--outline:hover,
-        .uvalib-text-button--outline.uvalib-text-button--hover, .uvalib-text-button--outline:hover {
+        .uvalib-button--outline.uvalib-button--hover, 
+        .uvalib-button--outline:hover,
+        a.uvalib_link--button--outline.uvalib_link--button--hover, 
+        a.uvalib_link--button--outline:hover {
           background-color: transparent;
           box-shadow: inset 0 0 0 2px var(--uvalib-blue-alt-dark);
           color: var(--uvalib-blue-alt-dark); 
         }
-        .uvalib-button--outline.uvalib-button--active, .uvalib-button--outline:active,
-        .uvalib-text-button--outline.uvalib-text-button--active, .uvalib-text-button--outline:active {
+        .uvalib-button--outline.uvalib-button--active, 
+        .uvalib-button--outline:active,
+        a.uvalib_link--button--outline.uvalib_link--button--active, 
+        a.uvalib_link--button--outline:active {
           background-color: transparent;
           box-shadow: inset 0 0 0 2px var(--uvalib-brand-blue);
           color: var(--uvalib-brand-blue);
         }
-        .uvalib-button--outline-disabled, .uvalib-button--outline:disabled,
-        .uvalib-text-button--outline-disabled, .uvalib-text-button--outline:disabled {
+        .uvalib-button--outline-disabled, 
+        .uvalib-button--outline:disabled,
+        a.uvalib_link--button.uvalib_link--button--outline.uvalib_link--button--disabled, 
+        a.uvalib_link--button--outline:disabled {
           background-color: transparent;
           box-shadow: inset 0 0 0 2px var(--uvalib-grey-light);
           color: var(--uvalib-grey-light);
@@ -792,103 +785,68 @@
 
         /* Outline Inverse Buttons */
         .uvalib-button--outline.uvalib-button--inverse,
-        .uvalib-text-button--outline.uvalib-text-button--inverse {
+        a.uvalib_link--button--outline.uvalib_link--button--inverse {
           box-shadow: inset 0 0 0 2px #fff;
           color: #fff;
         }
-        .uvalib-text-button--inverse {
+        .uvalib_link--button--inverse {
           color: #fff;
         }
         .uvalib-button--outline.uvalib-button--inverse.uvalib-button--hover, 
         .uvalib-button--outline.uvalib-button--inverse:hover,
-        .uvalib-text-button--outline.uvalib-text-button--inverse.uvalib-text-button--hover, 
-        .uvalib-text-button--outline.uvalib-text-button--inverse:hover {
+        a.uvalib_link--button--outline.uvalib_link--button--inverse.uvalib_link--button--hover, 
+        a.uvalib_link--button--outline.uvalib_link--button--inverse:hover {
           box-shadow: inset 0 0 0 2px var(--uvalib-grey-light);
           color: var(--uvalib-grey-light);
         }
         .uvalib-button--outline.uvalib-button--inverse.uvalib-button--active, 
         .uvalib-button--outline.uvalib-button--inverse:active,
-        .uvalib-text-button--outline.uvalib-text-button--inverse.uvalib-text-button--active, 
-        .uvalib-text-button--outline.uvalib-text-button--inverse:active {
+        a.uvalib_link--button--outline.uvalib_link--button--inverse.uvalib_link--button--active, 
+        a.uvalib_link--button--outline.uvalib_link--button--inverse:active {
           background-color: transparent;
           box-shadow: inset 0 0 0 2px #fff;
           color: #fff;
         }
         .uvalib-button--outline-disabled.uvalib-button--inverse, 
         .uvalib-button--outline:disabled.uvalib-button--inverse,
-        .uvalib-text-button--outline-disabled.uvalib-text-button--inverse, 
-        .uvalib-text-button--outline:disabled.uvalib-text-button--inverse {
+        a.uvalib_link--button.uvalib_link--button--outline.uvalib_link--button--inverse--disabled, 
+        a.uvalib_link--button--outline:disabled.uvalib_link--button--inverse {
           background-color: transparent;
           box-shadow: inset 0 0 0 2px var(--uvalib-grey);
           color: var(--uvalib-grey);
         }
 
-        /* Unstyled buttons */
-        .uvalib-button--unstyled, 
-        .uvalib-button--unstyled:active, 
-        .uvalib-button--unstyled:hover, 
-        .uvalib-button--unstyled:visited, 
-        .uvalib-button--unstyled:focus,
-        .uvalib-button--subtle.uvalib-button--unstyled, 
-        .uvalib-button--subtle.uvalib-button--unstyled:active, 
-        .uvalib-button--subtle.uvalib-button--unstyled:hover, 
-        .uvalib-button--subtle.uvalib-button--unstyled:visited, 
-        .uvalib-button--subtle.uvalib-button--unstyled:focus,
-        .uvalib-button--secondary.uvalib-button--unstyled, 
-        .uvalib-button--secondary.uvalib-button--unstyled:active, 
-        .uvalib-button--secondary.uvalib-button--unstyled:hover, 
-        .uvalib-button--secondary.uvalib-button--unstyled:visited, 
-        .uvalib-button--secondary.uvalib-button--unstyled:focus,
-        .uvalib-button--secondary.uvalib-button--subtle.uvalib-button--unstyled, 
-        .uvalib-button--secondary.uvalib-button--subtle.uvalib-button--unstyled:active, 
-        .uvalib-button--secondary.uvalib-button--subtle.uvalib-button--unstyled:hover, 
-        .uvalib-button--secondary.uvalib-button--subtle.uvalib-button--unstyled:visited, 
-        .uvalib-button--secondary.uvalib-button--subtle.uvalib-button--unstyled:focus,
-        .uvalib-button--outline.uvalib-button--unstyled,
-        .uvalib-button--outline.uvalib-button--unstyled:active,
-        .uvalib-button--outline.uvalib-button--unstyled:hover,
-        .uvalib-button--outline.uvalib-button--unstyled:visited,
-        .uvalib-button--outline.uvalib-button--unstyled:focus,
-        .uvalib-button--inverse.uvalib-button--unstyled,
-        .uvalib-button--inverse.uvalib-button--unstyled:active,
-        .uvalib-button--inverse.uvalib-button--unstyled:hover,
-        .uvalib-button--inverse.uvalib-button--unstyled:visited,
-        .uvalib-button--inverse.uvalib-button--unstyled:focus  {
-          color: var(--uvalib-blue-alt-dark);
-          text-decoration: underline;
-          background-color: transparent;
-          border: 0;
-          border-radius: 0;
-          box-shadow: none;
-          font-weight: 400;
-          margin: 0;
-          padding: 0;
-          text-align: left;
-          text-transform: initial;
+        /* Alternate Buttons */
+        .uvalib-button--alt,
+        .uvalib_link--button--alt,
+        a.uvalib_link--button.uvalib_link--button--alt {
+          background-color: var(--uvalib-brand-orange);
+          color: var(--uvalib-text-dark);
         }
-        .uvalib-button--unstyled:active {
-          color: var(--uvalib-brand-blue);
-        }
-        .uvalib-button--unstyled:hover {
-          color: var(--uvalib-brand-blue);
-          text-decoration: none;
-        }
-        .uvalib-button--inverse.uvalib-button--unstyled {
+        .uvalib-button--alt:hover, 
+        .uvalib-button--alt.uvalib-button--hover,
+        a.uvalib_link--button--alt:hover, 
+        a.uvalib_link--button--alt.uvalib_link--button--hover {
+          background-color: var(--uvalib-brand-orange-dark);
           color: #fff;
         }
-        .uvalib-button--inverse.uvalib-button--unstyled:hover {
-          color: var(--uvalib-grey-lightest);
+        .uvalib-button--alt:active, 
+        .uvalib-button--alt.uvalib-button--active,
+        a.uvalib_link--button--alt:active, 
+        a.uvalib_link--button--alt.uvalib_link--button--active {
+          background-color: var(--uvalib-brand-orange-darker);
+          color: #fff;
         }
 
         /* button sizes */
         .uvalib-button--small,
-        .uvalib-text-button--small {
+        .uvalib_link--button--small {
           border-radius: .25rem;
           font-size: .85rem;
           padding: .5rem 1rem;
         }
         .uvalib-button--large,
-        .uvalib-text-button--large {
+        .uvalib_link--button--large {
           border-radius: .25rem;
           font-size: 1.33rem;
           padding: 1rem 1.5rem;
@@ -908,7 +866,7 @@
         /* buttons for mobile */
         @media (min-width: 30em) {
           .uvalib-button,
-          .uvalib-text-button {
+          .uvalib_link--button {
               width: auto;
           }
         }
@@ -1225,7 +1183,126 @@
 /*      CURRENT ALERT STYLING 11/2020        */
 /*********************************************/
 
+
         .uva-alert {
+          font-size: 1.06rem;
+          line-height: 1.5;
+          position: relative;
+          color: var(--uvalib-text-dark);
+        }
+        .uva-alert--a1,.uva-alert--a2,.uva-alert--a3 {
+          padding: .5em;
+        }
+        .uva-alert--a1 {
+          background-color: var(--uvalib-alert-a1-bg);
+          border-left: 8px solid var(--uvalib-alert-a1-border);
+        }
+        .uva-alert--a1::before {
+          content: "\f06a";
+          font-family: "Font Awesome 5 Pro";
+          font-weight: 900;
+          font-size: 1.5em;
+          display: table-cell;
+        }
+        .uva-alert--a2 {
+          background-color: var(--uvalib-alert-a2-bg);
+          border-left: 8px solid var(--uvalib-alert-a2-border);
+        }
+        .uva-alert--a2::before {
+          content: "\f071";
+          font-family: "Font Awesome 5 Pro";
+          font-weight: 900;
+          font-size: 1.5em;
+          display: table-cell;
+        }
+        .uva-alert--a3 {
+          background-color: var(--uvalib-alert-a3-bg);
+          border-left: 8px solid var(--uvalib-alert-a3-border);
+        }
+        .uva-alert--a3::before {
+          content: "\f05a";
+          font-family: "Font Awesome 5 Pro";
+          font-weight: 900;
+          font-size: 1.5em;
+          display: table-cell;
+        }
+
+        .uva-alert--dismissable a.uva-alert--close {
+          font-size: 1.5em;
+          display: table-cell;
+          position: absolute;
+          top: .25em;
+          right: .45em;
+          text-decoration: none;
+          color: var(--uvalib-text-dark);
+        }
+
+        .uva-alert--r1, .uva-alert--r2 {
+          border: 0.2em solid var(--alert-border-color);
+          border-radius: 0.5em;
+          padding: 0.75rem 1rem;
+          margin-bottom: 1rem;
+        }
+        .uva-alert--r1 {
+          background-color: var(--uvalib-alert-r1-bg);
+          --alert-border-color: var(--uvalib-alert-r1-border);
+        }
+        .uva-alert--r2 {
+          background-color: var(--uvalib-alert-r2-bg);
+          --alert-border-color: var(--uvalib-alert-r2-border);
+        }
+        .uva-alert--error, .uva-alert--confirmation {
+          margin: 0;
+          padding: 0;
+        }
+        .uva-alert--error {
+          color: var(--uvalib-alert-error-inline);
+        }
+        .uva-alert--confirmation {
+          color: var(--uvalib-alert-confirmation-inline);
+        }
+        .uva-alert__heading {
+          font-size: 1.33rem;
+          line-height: 1.1;
+          margin-top: 0;
+          margin-bottom: .5rem;
+          margin-right: 1em;
+        }
+        .uva-alert__body {
+          padding-left: 1.25rem;
+          display: table-cell;
+          vertical-align: top;
+        }
+        .uva-alert__text, .uva-alert__text p {
+          margin-bottom: 0;
+          margin-top: 0;
+        }  
+
+        .uva-alert--a4 {
+          background-color: var(--uvalib-alert-a4-bg);
+          text-align: center;
+          padding: .5em;
+        }
+        .uva-alert--a4 .uva-alert__body {
+          display: inline-block;
+          padding-left: 1.25rem; 
+        }
+        .uva-alert--a4 .uva-alert__body .uva-alert__heading {
+          display: inline-block;
+          font-size: 1.15em;
+          font-weight: bold;
+          margin: 0;
+        }
+        .uva-alert--a4 .uva-alert__text {
+          display: inline-block;
+          color: #000;
+          font-size: 1em;
+        }
+        .uva-alert--a4 .uva-alert__text a {
+          color: var(--uvalib-blue-alt-darkest);
+        }
+
+        /* .uva-alert {
             font-size: 1.06rem;
             line-height: 1.5;
             padding: 1.25rem 1.25rem 1rem 1.75rem;
@@ -1308,7 +1385,7 @@
           }
           .uva-alert--confirmation {
             color: var(--uvalib-alert-confirmation-inline);
-          }
+          } */
           .uva-alert__heading {
             font-size: 1.33rem;
             line-height: 1.1;
